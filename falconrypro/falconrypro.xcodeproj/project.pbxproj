@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D7B21088DAAB20DA280DD182 /* Pods_falconrypro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15045DAE0FFDE292FB29065 /* Pods_falconrypro.framework */; };
+		DFBFC8248F3526A15DE9AB3F /* Pods_falconryproTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5C3730AAC0E46D0A22F7AF1 /* Pods_falconryproTests.framework */; };
+		F1026AAE1E9D818D00A89821 /* SDWLoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1026AAD1E9D818D00A89821 /* SDWLoginCoordinator.swift */; };
+		F1AD8B6D1E9E4B27006B2EB1 /* SDWNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B6C1E9E4B27006B2EB1 /* SDWNetwork.swift */; };
+		F1AD8B6F1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */; };
+		F1AD8B711E9EA18A006B2EB1 /* SDWBirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */; };
+		F1AD8B731E9EA518006B2EB1 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B721E9EA518006B2EB1 /* Models.swift */; };
 		F1CB9CC51E9905C900A90363 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB9CC41E9905C900A90363 /* AppDelegate.swift */; };
 		F1CB9CC71E9905C900A90363 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB9CC61E9905C900A90363 /* ViewController.swift */; };
 		F1CB9CCA1E9905C900A90363 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1CB9CC81E9905C900A90363 /* Main.storyboard */; };
@@ -14,6 +21,7 @@
 		F1CB9CCF1E9905C900A90363 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1CB9CCD1E9905C900A90363 /* LaunchScreen.storyboard */; };
 		F1CB9CDA1E9905C900A90363 /* falconryproTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB9CD91E9905C900A90363 /* falconryproTests.swift */; };
 		F1CB9CE51E9905C900A90363 /* falconryproUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB9CE41E9905C900A90363 /* falconryproUITests.swift */; };
+		F2950879FA849E324918C5AA /* Pods_falconryproUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECFDFFD9EB6FBDB9478BE8F4 /* Pods_falconryproUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +42,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00AB4F7618D1F44996013ED6 /* Pods-falconryproUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-falconryproUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-falconryproUITests/Pods-falconryproUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2850813AAB1448043CED6643 /* Pods-falconryproTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-falconryproTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-falconryproTests/Pods-falconryproTests.release.xcconfig"; sourceTree = "<group>"; };
+		68E0ADEF20EABE87C48F934C /* Pods-falconryproTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-falconryproTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-falconryproTests/Pods-falconryproTests.debug.xcconfig"; sourceTree = "<group>"; };
+		70864FC200F14B0B54A28D62 /* Pods-falconryproUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-falconryproUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-falconryproUITests/Pods-falconryproUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A73D7675904B829DCC5919B2 /* Pods-falconrypro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-falconrypro.release.xcconfig"; path = "Pods/Target Support Files/Pods-falconrypro/Pods-falconrypro.release.xcconfig"; sourceTree = "<group>"; };
+		AB873D0E87BC0AD9C1A3080A /* Pods-falconrypro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-falconrypro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-falconrypro/Pods-falconrypro.debug.xcconfig"; sourceTree = "<group>"; };
+		B15045DAE0FFDE292FB29065 /* Pods_falconrypro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_falconrypro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5C3730AAC0E46D0A22F7AF1 /* Pods_falconryproTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_falconryproTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECFDFFD9EB6FBDB9478BE8F4 /* Pods_falconryproUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_falconryproUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1026AAD1E9D818D00A89821 /* SDWLoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWLoginCoordinator.swift; sourceTree = "<group>"; };
+		F1AD8B6C1E9E4B27006B2EB1 /* SDWNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWNetwork.swift; sourceTree = "<group>"; };
+		F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdsTableViewController.swift; sourceTree = "<group>"; };
+		F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdViewController.swift; sourceTree = "<group>"; };
+		F1AD8B721E9EA518006B2EB1 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		F1CB9CC11E9905C900A90363 /* falconrypro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = falconrypro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1CB9CC41E9905C900A90363 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1CB9CC61E9905C900A90363 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7B21088DAAB20DA280DD182 /* Pods_falconrypro.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFBFC8248F3526A15DE9AB3F /* Pods_falconryproTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +92,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2950879FA849E324918C5AA /* Pods_falconryproUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		685F36DB00F61AD08F6853C7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B15045DAE0FFDE292FB29065 /* Pods_falconrypro.framework */,
+				E5C3730AAC0E46D0A22F7AF1 /* Pods_falconryproTests.framework */,
+				ECFDFFD9EB6FBDB9478BE8F4 /* Pods_falconryproUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7A9490C7AC6E6D0C12682422 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AB873D0E87BC0AD9C1A3080A /* Pods-falconrypro.debug.xcconfig */,
+				A73D7675904B829DCC5919B2 /* Pods-falconrypro.release.xcconfig */,
+				68E0ADEF20EABE87C48F934C /* Pods-falconryproTests.debug.xcconfig */,
+				2850813AAB1448043CED6643 /* Pods-falconryproTests.release.xcconfig */,
+				00AB4F7618D1F44996013ED6 /* Pods-falconryproUITests.debug.xcconfig */,
+				70864FC200F14B0B54A28D62 /* Pods-falconryproUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F1CB9CB81E9905C900A90363 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +129,8 @@
 				F1CB9CD81E9905C900A90363 /* falconryproTests */,
 				F1CB9CE31E9905C900A90363 /* falconryproUITests */,
 				F1CB9CC21E9905C900A90363 /* Products */,
+				7A9490C7AC6E6D0C12682422 /* Pods */,
+				685F36DB00F61AD08F6853C7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +149,11 @@
 			children = (
 				F1CB9CC41E9905C900A90363 /* AppDelegate.swift */,
 				F1CB9CC61E9905C900A90363 /* ViewController.swift */,
+				F1AD8B6C1E9E4B27006B2EB1 /* SDWNetwork.swift */,
+				F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */,
+				F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */,
+				F1AD8B721E9EA518006B2EB1 /* Models.swift */,
+				F1026AAD1E9D818D00A89821 /* SDWLoginCoordinator.swift */,
 				F1CB9CC81E9905C900A90363 /* Main.storyboard */,
 				F1CB9CCB1E9905C900A90363 /* Assets.xcassets */,
 				F1CB9CCD1E9905C900A90363 /* LaunchScreen.storyboard */,
@@ -132,9 +187,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F1CB9CE91E9905C900A90363 /* Build configuration list for PBXNativeTarget "falconrypro" */;
 			buildPhases = (
+				8CF62F282151E37AAB5BCA62 /* [CP] Check Pods Manifest.lock */,
 				F1CB9CBD1E9905C900A90363 /* Sources */,
 				F1CB9CBE1E9905C900A90363 /* Frameworks */,
 				F1CB9CBF1E9905C900A90363 /* Resources */,
+				09466929528DD2AB19F81326 /* [CP] Embed Pods Frameworks */,
+				18E08E185AD8406D7F7FD3DB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +207,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F1CB9CEC1E9905C900A90363 /* Build configuration list for PBXNativeTarget "falconryproTests" */;
 			buildPhases = (
+				9B50650D598CED7BE9255334 /* [CP] Check Pods Manifest.lock */,
 				F1CB9CD11E9905C900A90363 /* Sources */,
 				F1CB9CD21E9905C900A90363 /* Frameworks */,
 				F1CB9CD31E9905C900A90363 /* Resources */,
+				66BCCFF88A4454992D0867A5 /* [CP] Embed Pods Frameworks */,
+				09A54D42CD6C6B71ED6DE291 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +228,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F1CB9CEF1E9905C900A90363 /* Build configuration list for PBXNativeTarget "falconryproUITests" */;
 			buildPhases = (
+				D3C243DF39F1C91DEDF06469 /* [CP] Check Pods Manifest.lock */,
 				F1CB9CDC1E9905C900A90363 /* Sources */,
 				F1CB9CDD1E9905C900A90363 /* Frameworks */,
 				F1CB9CDE1E9905C900A90363 /* Resources */,
+				205164218DC27E90D41A057B /* [CP] Embed Pods Frameworks */,
+				2AB4514ADB4F6E7FC4DDDE3B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -257,13 +321,156 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		09466929528DD2AB19F81326 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-falconrypro/Pods-falconrypro-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		09A54D42CD6C6B71ED6DE291 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-falconryproTests/Pods-falconryproTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		18E08E185AD8406D7F7FD3DB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-falconrypro/Pods-falconrypro-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		205164218DC27E90D41A057B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-falconryproUITests/Pods-falconryproUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2AB4514ADB4F6E7FC4DDDE3B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-falconryproUITests/Pods-falconryproUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66BCCFF88A4454992D0867A5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-falconryproTests/Pods-falconryproTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8CF62F282151E37AAB5BCA62 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9B50650D598CED7BE9255334 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D3C243DF39F1C91DEDF06469 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F1CB9CBD1E9905C900A90363 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1AD8B711E9EA18A006B2EB1 /* SDWBirdViewController.swift in Sources */,
 				F1CB9CC71E9905C900A90363 /* ViewController.swift in Sources */,
 				F1CB9CC51E9905C900A90363 /* AppDelegate.swift in Sources */,
+				F1026AAE1E9D818D00A89821 /* SDWLoginCoordinator.swift in Sources */,
+				F1AD8B6F1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift in Sources */,
+				F1AD8B6D1E9E4B27006B2EB1 /* SDWNetwork.swift in Sources */,
+				F1AD8B731E9EA518006B2EB1 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +622,7 @@
 		};
 		F1CB9CEA1E9905C900A90363 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB873D0E87BC0AD9C1A3080A /* Pods-falconrypro.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 43R88X5B35;
@@ -428,6 +636,7 @@
 		};
 		F1CB9CEB1E9905C900A90363 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A73D7675904B829DCC5919B2 /* Pods-falconrypro.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 43R88X5B35;
@@ -441,6 +650,7 @@
 		};
 		F1CB9CED1E9905C900A90363 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68E0ADEF20EABE87C48F934C /* Pods-falconryproTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -456,6 +666,7 @@
 		};
 		F1CB9CEE1E9905C900A90363 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2850813AAB1448043CED6643 /* Pods-falconryproTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -471,6 +682,7 @@
 		};
 		F1CB9CF01E9905C900A90363 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00AB4F7618D1F44996013ED6 /* Pods-falconryproUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 43R88X5B35;
@@ -485,6 +697,7 @@
 		};
 		F1CB9CF11E9905C900A90363 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70864FC200F14B0B54A28D62 /* Pods-falconryproUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 43R88X5B35;
@@ -516,6 +729,7 @@
 				F1CB9CEB1E9905C900A90363 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F1CB9CEC1E9905C900A90363 /* Build configuration list for PBXNativeTarget "falconryproTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +738,7 @@
 				F1CB9CEE1E9905C900A90363 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F1CB9CEF1E9905C900A90363 /* Build configuration list for PBXNativeTarget "falconryproUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +747,7 @@
 				F1CB9CF11E9905C900A90363 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
