@@ -9,13 +9,14 @@
 import UIKit
 import ImageRow
 import Eureka
+import Networking
 
 class SDWBirdViewController: FormViewController {
 
-    @IBOutlet weak var mainView: UIView!
+    var birdtypes = [TypeDisplayItem]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.loadBirdTypes()
         let addButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(finish(_:)))
         addButton.tintColor = UIColor.black
         self.navigationItem.rightBarButtonItem = addButton
@@ -60,17 +61,67 @@ class SDWBirdViewController: FormViewController {
         }
         
 
-            <<< PushRow<String> {
+            <<< PushRow<TypeDisplayItem> {
+                $0.tag = "species"
                 $0.title = "Species"
-                $0.options = ["Falcon", "SuperFalcon", "Muthafucker"]
+                $0.displayValueFor = { value in
+                    return value?.name
+                }
+                
+                }.cellUpdate { cell, row in
+                    row.options = self.birdtypes
         }
         
     
     }
     
     
-    func finish(_ sender: Any) {
+    func loadBirdTypes() {
         
+        let networking = Networking(baseURL: Constants.server.BASEURL)
+        
+        let token = UserDefaults.standard.value(forKey: "access-token")
+        let expires = UserDefaults.standard.value(forKey: "expiry")
+        let client = UserDefaults.standard.value(forKey: "client")
+        let uid = UserDefaults.standard.value(forKey: "uid")
+        
+        var array = [TypeDisplayItem]()
+        
+        networking.headerFields = ["access-token": token as! String,"client":client as! String,"uid":uid as! String,"expiry":expires as! String]
+        
+        
+        networking.get("/bird_types")  { result in
+          
+            switch result {
+            case .success(let response):
+                print(response)
+                print(response.arrayBody)
+                for item in response.arrayBody {
+                    
+                    let object = TypeDisplayItem()
+                    object.name = item["name"] as? String
+                    object.latin = item["latin"] as? String
+        
+                    
+                    array.append(object)
+                    
+                    
+                }
+                self.birdtypes = array
+                self.form.rowBy(tag: "species")?.reload()
+                
+            case .failure(let response):
+                print(response)
+            }
+            
+        }
+        
+    }
+    
+    
+    func finish(_ sender: Any) {
+        let valuesDictionary = form.values()
+        print(valuesDictionary)
         self.dismiss(animated: true, completion: nil)
     }
     

@@ -10,6 +10,7 @@ import UIKit
 import ILLoginKit
 import Networking
 import PKHUD
+import SDWebImage
 
 class SDWBirdsTableViewController: UITableViewController {
     
@@ -31,6 +32,9 @@ class SDWBirdsTableViewController: UITableViewController {
         let settingsButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(logout(_:)))
         settingsButton.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = settingsButton
+        
+        let nibName = UINib(nibName: "SDWBirdListTableViewCell", bundle:nil)
+        self.tableView.register(nibName, forCellReuseIdentifier:"Cell")
         
     }
     
@@ -63,6 +67,7 @@ class SDWBirdsTableViewController: UITableViewController {
         loginCoordinator.start()
     }
     
+    
     func loadBirds() {
         
         let networking = Networking(baseURL: Constants.server.BASEURL)
@@ -89,6 +94,7 @@ class SDWBirdsTableViewController: UITableViewController {
                     object.first = item["name"] as? String
                     let dict = item["bird_type"] as! NSDictionary
                     object.sub = dict["name"] as? String
+                    object.imageURL = item["thumb"] as? String
                     
                     array.append(object)
                     
@@ -118,15 +124,20 @@ class SDWBirdsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
+        let cell:SDWBirdListTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SDWBirdListTableViewCell
+
         var object:ListDisplayItem
         
-        object = objects[indexPath.row] 
-        let string = object.first
-        cell.textLabel!.text = string
         
-        cell.detailTextLabel?.text = object.sub
+        object = objects[indexPath.row]
+        let string = object.first
+        cell.mainLabel!.text = string
+        
+        cell.birdImage?.sd_setImage(with: URL(string: object.imageURL!), placeholderImage:nil)
+
+        
+        
+        cell.subLabel?.text = object.sub
         return cell
     }
     

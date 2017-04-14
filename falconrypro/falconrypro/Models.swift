@@ -12,10 +12,24 @@ class ListDisplayItem: NSObject {
     
     var first:String?
     var sub:String?
+    var imageURL:String?
     
     override init() {
         super.init()
         
     }
 }
+
+
+class TypeDisplayItem: NSObject {
+    
+    var name:String?
+    var latin:String?
+
+    override init() {
+        super.init()
+        
+    }
+}
+
 

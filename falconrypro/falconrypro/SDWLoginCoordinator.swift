@@ -63,7 +63,7 @@ class SDWLoginCoordinator: ILLoginKit.LoginCoordinator {
             switch result {
             case .success(let response):
                 print(response)
-                
+                self.configureHeaders(json: response.headers as NSDictionary)
                 self.finish()
                 
                 

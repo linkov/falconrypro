@@ -13,6 +13,8 @@ target 'falconrypro' do
   pod 'PKHUD', '~> 4.0'
   pod 'Eureka', '~> 2.0'
   pod 'ImageRow', '~> 1.0'
+  pod 'SDWebImage', '~>4.0'
+  pod 'Reveal-SDK', :configurations => ['Debug']
 
   target 'falconryproTests' do
     inherit! :search_paths
