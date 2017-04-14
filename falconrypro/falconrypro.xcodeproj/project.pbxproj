@@ -10,10 +10,10 @@
 		D7B21088DAAB20DA280DD182 /* Pods_falconrypro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15045DAE0FFDE292FB29065 /* Pods_falconrypro.framework */; };
 		DFBFC8248F3526A15DE9AB3F /* Pods_falconryproTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5C3730AAC0E46D0A22F7AF1 /* Pods_falconryproTests.framework */; };
 		F1026AAE1E9D818D00A89821 /* SDWLoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1026AAD1E9D818D00A89821 /* SDWLoginCoordinator.swift */; };
-		F1AD8B6D1E9E4B27006B2EB1 /* SDWNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B6C1E9E4B27006B2EB1 /* SDWNetwork.swift */; };
 		F1AD8B6F1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */; };
 		F1AD8B711E9EA18A006B2EB1 /* SDWBirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */; };
 		F1AD8B731E9EA518006B2EB1 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B721E9EA518006B2EB1 /* Models.swift */; };
+		F1AD8B761EA0410B006B2EB1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B751EA0410B006B2EB1 /* Constants.swift */; };
 		F1CB9CC51E9905C900A90363 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB9CC41E9905C900A90363 /* AppDelegate.swift */; };
 		F1CB9CC71E9905C900A90363 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB9CC61E9905C900A90363 /* ViewController.swift */; };
 		F1CB9CCA1E9905C900A90363 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1CB9CC81E9905C900A90363 /* Main.storyboard */; };
@@ -52,10 +52,10 @@
 		E5C3730AAC0E46D0A22F7AF1 /* Pods_falconryproTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_falconryproTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECFDFFD9EB6FBDB9478BE8F4 /* Pods_falconryproUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_falconryproUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1026AAD1E9D818D00A89821 /* SDWLoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWLoginCoordinator.swift; sourceTree = "<group>"; };
-		F1AD8B6C1E9E4B27006B2EB1 /* SDWNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWNetwork.swift; sourceTree = "<group>"; };
 		F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdsTableViewController.swift; sourceTree = "<group>"; };
 		F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdViewController.swift; sourceTree = "<group>"; };
 		F1AD8B721E9EA518006B2EB1 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		F1AD8B751EA0410B006B2EB1 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F1CB9CC11E9905C900A90363 /* falconrypro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = falconrypro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1CB9CC41E9905C900A90363 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1CB9CC61E9905C900A90363 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 			children = (
 				F1CB9CC41E9905C900A90363 /* AppDelegate.swift */,
 				F1CB9CC61E9905C900A90363 /* ViewController.swift */,
-				F1AD8B6C1E9E4B27006B2EB1 /* SDWNetwork.swift */,
+				F1AD8B751EA0410B006B2EB1 /* Constants.swift */,
 				F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */,
 				F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */,
 				F1AD8B721E9EA518006B2EB1 /* Models.swift */,
@@ -193,6 +193,7 @@
 				F1CB9CBF1E9905C900A90363 /* Resources */,
 				09466929528DD2AB19F81326 /* [CP] Embed Pods Frameworks */,
 				18E08E185AD8406D7F7FD3DB /* [CP] Copy Pods Resources */,
+				F1AD8B771EA04FE8006B2EB1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -457,6 +458,19 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		F1AD8B771EA04FE8006B2EB1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 7afe2a1f919e83706ec88df871b173b4faf5c453 3839a1107ea2065826d0f2cc6c1d95263dc301ca2f0209be3f35956a167721f1";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -468,8 +482,8 @@
 				F1CB9CC71E9905C900A90363 /* ViewController.swift in Sources */,
 				F1CB9CC51E9905C900A90363 /* AppDelegate.swift in Sources */,
 				F1026AAE1E9D818D00A89821 /* SDWLoginCoordinator.swift in Sources */,
+				F1AD8B761EA0410B006B2EB1 /* Constants.swift in Sources */,
 				F1AD8B6F1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift in Sources */,
-				F1AD8B6D1E9E4B27006B2EB1 /* SDWNetwork.swift in Sources */,
 				F1AD8B731E9EA518006B2EB1 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -625,11 +639,13 @@
 			baseConfigurationReference = AB873D0E87BC0AD9C1A3080A /* Pods-falconrypro.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 43R88X5B35;
 				INFOPLIST_FILE = falconrypro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdwr.falconrypro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -639,11 +655,14 @@
 			baseConfigurationReference = A73D7675904B829DCC5919B2 /* Pods-falconrypro.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 43R88X5B35;
 				INFOPLIST_FILE = falconrypro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdwr.falconrypro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "\"-D\" \"PROD\"";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

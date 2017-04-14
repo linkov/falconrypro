@@ -26,7 +26,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--Root View Controller-->
+        <!--My birds-->
         <scene sceneID="LR5-VP-fEP">
             <objects>
                 <tableViewController storyboardIdentifier="SDWBirdsTableViewController" id="1sj-mz-z9I" customClass="SDWBirdsTableViewController" customModule="falconrypro" customModuleProvider="target" sceneMemberID="viewController">
@@ -35,31 +35,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="Gho-5v-p7f" detailTextLabel="AKT-Rq-ah2" style="IBUITableViewCellStyleSubtitle" id="U63-S3-bJi">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="Gho-5v-p7f" detailTextLabel="AKT-Rq-ah2" imageView="3cS-mM-sWC" style="IBUITableViewCellStyleSubtitle" id="U63-S3-bJi">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U63-S3-bJi" id="Vif-bb-0bZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gho-5v-p7f">
-                                            <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="74" y="5" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AKT-Rq-ah2">
-                                            <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
+                                            <rect key="frame" x="74" y="25.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="progress_activity" id="3cS-mM-sWC">
+                                            <rect key="frame" x="15" y="0.0" width="44" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="hfd-uE-QvY" kind="showDetail" id="uTj-mZ-RFr"/>
+                                    <segue destination="hfd-uE-QvY" kind="push" id="uTj-mZ-RFr"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -68,16 +72,29 @@
                             <outlet property="delegate" destination="1sj-mz-z9I" id="zaM-YT-XC2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="kB2-7V-DOK"/>
-                    <connections>
-                        <segue destination="gf5-yI-iS0" kind="presentation" identifier="openbird" id="pbu-p1-gbM"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="My birds" id="kB2-7V-DOK"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C4H-1D-yDu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2273" y="-345"/>
         </scene>
-        <!--Bird View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="KKZ-G3-6nO">
+            <objects>
+                <navigationController storyboardIdentifier="BirdProfileEdit" id="tcw-iN-XCI" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Ihw-4v-V0x">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="gf5-yI-iS0" kind="relationship" relationship="rootViewController" id="GVx-5m-r0U"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ow0-mB-xLi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2306" y="-1161"/>
+        </scene>
+        <!--Bird-->
         <scene sceneID="Ktn-iU-FHD">
             <objects>
                 <viewController storyboardIdentifier="SDWBirdViewController" id="gf5-yI-iS0" customClass="SDWBirdViewController" customModule="falconrypro" customModuleProvider="target" sceneMemberID="viewController">
@@ -90,10 +107,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Bird" id="HPS-Ff-OEi"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O4z-F9-bsb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3076" y="-1093"/>
+            <point key="canvasLocation" x="3362" y="-1293"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="Ku9-Cq-KZv">
@@ -137,6 +155,7 @@
         <scene sceneID="Eey-6A-tU9">
             <objects>
                 <tabBarController id="hfd-uE-QvY" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="EFf-Jh-UKD"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5jt-J4-eVB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -168,4 +187,7 @@
             <point key="canvasLocation" x="1228" y="-309"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="progress_activity" width="60" height="60"/>
+    </resources>
 </document>
