@@ -13,6 +13,7 @@ class ListDisplayItem: NSObject {
     var first:String?
     var sub:String?
     var imageURL:String?
+    var model:Dictionary<String,Any>?
     
     override init() {
         super.init()
@@ -25,6 +26,7 @@ class TypeDisplayItem: NSObject {
     
     var name:String?
     var latin:String?
+    var model:Dictionary<String,Any>?
 
     override init() {
         super.init()

@@ -80,7 +80,7 @@
             </objects>
             <point key="canvasLocation" x="3362" y="-1293"/>
         </scene>
-        <!--Item 2-->
+        <!--Stats-->
         <scene sceneID="Ku9-Cq-KZv">
             <objects>
                 <viewController id="zCa-tB-QhU" sceneMemberID="viewController">
@@ -93,13 +93,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="zfL-BR-FfQ"/>
+                    <tabBarItem key="tabBarItem" title="Stats" id="zfL-BR-FfQ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Cw-It-awL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5010" y="-2"/>
         </scene>
-        <!--Item 1-->
+        <!--Diary-->
         <scene sceneID="kde-wF-9HW">
             <objects>
                 <viewController id="69C-mM-jtS" sceneMemberID="viewController">
@@ -112,25 +112,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="But-CU-6be"/>
+                    <tabBarItem key="tabBarItem" title="Diary" id="But-CU-6be"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v8O-0x-9c4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5010" y="-657"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--HomeTBC-->
         <scene sceneID="Eey-6A-tU9">
             <objects>
-                <tabBarController id="hfd-uE-QvY" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="EFf-Jh-UKD">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="PBG-YQ-Chf">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zun-eb-GTv">
-                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="edit"/>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                <tabBarController storyboardIdentifier="SDWHomeTBC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hfd-uE-QvY" customClass="SDWHomeTBC" customModule="falconrypro" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="EFf-Jh-UKD"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5jt-J4-eVB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

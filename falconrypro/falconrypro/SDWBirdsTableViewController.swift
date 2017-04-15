@@ -95,6 +95,7 @@ class SDWBirdsTableViewController: UITableViewController {
                     let dict = item["bird_type"] as! NSDictionary
                     object.sub = dict["name"] as? String
                     object.imageURL = item["thumb"] as? String
+                    object.model = item
                     
                     array.append(object)
                     
@@ -133,13 +134,31 @@ class SDWBirdsTableViewController: UITableViewController {
         let string = object.first
         cell.mainLabel!.text = string
         
-        cell.birdImage?.sd_setImage(with: URL(string: object.imageURL!), placeholderImage:nil)
+        
+        if let image = object.imageURL {
+            cell.birdImage.sd_setImage(with: URL(string:image),
+                         placeholderImage: nil,
+                         options: [],
+                         completed: nil)
+        }
+        
+        
 
         
         
         cell.subLabel?.text = object.sub
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let bird = objects[indexPath.row]
+       
+        
+        let controller:SDWHomeTBC = storyboard?.instantiateViewController(withIdentifier: "SDWHomeTBC") as! SDWHomeTBC
+        controller.bird = bird
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+
     
   
 
