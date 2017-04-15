@@ -102,7 +102,7 @@
         <!--Diary-->
         <scene sceneID="kde-wF-9HW">
             <objects>
-                <viewController id="69C-mM-jtS" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SDWDiaryListViewController" id="69C-mM-jtS" customClass="SDWDiaryListViewController" customModule="falconrypro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w2I-qZ-nYG"/>
                         <viewControllerLayoutGuide type="bottom" id="gbj-0N-6cX"/>

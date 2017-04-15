@@ -24,6 +24,9 @@ PODS:
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
+  - Sparrow/Core (1.0.1)
+  - Sparrow/Modules/RequestPermission (1.0.1):
+    - Sparrow/Core
   - Validator (2.1.1)
 
 DEPENDENCIES:
@@ -36,6 +39,16 @@ DEPENDENCIES:
   - PKHUD (~> 4.0)
   - Reveal-SDK
   - SDWebImage (~> 4.0)
+  - Sparrow/Modules/RequestPermission (from `https://github.com/IvanVorobei/Sparrow.git`)
+
+EXTERNAL SOURCES:
+  Sparrow:
+    :git: https://github.com/IvanVorobei/Sparrow.git
+
+CHECKOUT OPTIONS:
+  Sparrow:
+    :commit: f5354738460f009a22aa24ed34029846df05ba23
+    :git: https://github.com/IvanVorobei/Sparrow.git
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -50,8 +63,9 @@ SPEC CHECKSUMS:
   PKHUD: 957ce2a68b3c97a51839b30216120c1dbc0c3a78
   Reveal-SDK: 43be4e662864e937960d0d04d005135e29c4e53b
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  Sparrow: 4b7826e69656f4745b0b4f74afadefa4f19cb9ee
   Validator: b1793fbfd0046097551d0edd18e2c30792d69ef5
 
-PODFILE CHECKSUM: 21df6292c31541d4ca0fa15c0effca6867e6be00
+PODFILE CHECKSUM: c4f06e0f868bd1bf4fd543a4e89e419e47a90472
 
 COCOAPODS: 1.2.1

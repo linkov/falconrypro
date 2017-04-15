@@ -10,6 +10,7 @@
 		D7B21088DAAB20DA280DD182 /* Pods_falconrypro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15045DAE0FFDE292FB29065 /* Pods_falconrypro.framework */; };
 		DFBFC8248F3526A15DE9AB3F /* Pods_falconryproTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5C3730AAC0E46D0A22F7AF1 /* Pods_falconryproTests.framework */; };
 		F1026AAE1E9D818D00A89821 /* SDWLoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1026AAD1E9D818D00A89821 /* SDWLoginCoordinator.swift */; };
+		F12550621EA2D034004122D4 /* SDWDiaryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */; };
 		F140C5E41EA149A10099C592 /* SDWBirdListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F140C5E21EA149A10099C592 /* SDWBirdListTableViewCell.swift */; };
 		F140C5E51EA149A10099C592 /* SDWBirdListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */; };
 		F140C5E71EA2509C0099C592 /* SDWHomeTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F140C5E61EA2509C0099C592 /* SDWHomeTBC.swift */; };
@@ -56,6 +57,7 @@
 		E5C3730AAC0E46D0A22F7AF1 /* Pods_falconryproTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_falconryproTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECFDFFD9EB6FBDB9478BE8F4 /* Pods_falconryproUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_falconryproUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1026AAD1E9D818D00A89821 /* SDWLoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWLoginCoordinator.swift; sourceTree = "<group>"; };
+		F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDiaryListViewController.swift; sourceTree = "<group>"; };
 		F140C5E21EA149A10099C592 /* SDWBirdListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdListTableViewCell.swift; sourceTree = "<group>"; };
 		F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWBirdListTableViewCell.xib; sourceTree = "<group>"; };
 		F140C5E61EA2509C0099C592 /* SDWHomeTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWHomeTBC.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				F140C5E81EA25C6F0099C592 /* Extensions.swift */,
 				F140C5E21EA149A10099C592 /* SDWBirdListTableViewCell.swift */,
 				F140C5E61EA2509C0099C592 /* SDWHomeTBC.swift */,
+				F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */,
 				F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */,
 				F1026AAD1E9D818D00A89821 /* SDWLoginCoordinator.swift */,
 				F1CB9CC81E9905C900A90363 /* Main.storyboard */,
@@ -271,7 +274,7 @@
 					F1CB9CC01E9905C900A90363 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = 43R88X5B35;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					F1CB9CD41E9905C900A90363 = {
 						CreatedOnToolsVersion = 8.3.1;
@@ -498,6 +501,7 @@
 				F1AD8B761EA0410B006B2EB1 /* Constants.swift in Sources */,
 				F140C5E91EA25C6F0099C592 /* Extensions.swift in Sources */,
 				F1AD8B6F1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift in Sources */,
+				F12550621EA2D034004122D4 /* SDWDiaryListViewController.swift in Sources */,
 				F1AD8B731E9EA518006B2EB1 /* Models.swift in Sources */,
 				F140C5E41EA149A10099C592 /* SDWBirdListTableViewCell.swift in Sources */,
 				F140C5E71EA2509C0099C592 /* SDWHomeTBC.swift in Sources */,
@@ -654,15 +658,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB873D0E87BC0AD9C1A3080A /* Pods-falconrypro.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 43R88X5B35;
 				INFOPLIST_FILE = falconrypro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdwr.falconrypro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "6a1fa44d-afdc-427b-b118-89b90ac09b5a";
+				PROVISIONING_PROFILE_SPECIFIER = "Falconrypro App Store";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -670,16 +676,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A73D7675904B829DCC5919B2 /* Pods-falconrypro.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 43R88X5B35;
 				INFOPLIST_FILE = falconrypro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdwr.falconrypro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "6a1fa44d-afdc-427b-b118-89b90ac09b5a";
+				PROVISIONING_PROFILE_SPECIFIER = "Falconrypro App Store";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "\"-D\" \"PROD\"";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
