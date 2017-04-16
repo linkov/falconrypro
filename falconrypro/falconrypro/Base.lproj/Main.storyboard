@@ -49,7 +49,7 @@
         <scene sceneID="KKZ-G3-6nO">
             <objects>
                 <navigationController storyboardIdentifier="BirdProfileEdit" id="tcw-iN-XCI" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Ihw-4v-V0x">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ihw-4v-V0x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -141,7 +141,7 @@
         <scene sceneID="Q5G-4v-8Lt">
             <objects>
                 <navigationController id="Apd-Xo-FPZ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8Mv-GK-ohS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Mv-GK-ohS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
