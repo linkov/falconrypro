@@ -659,15 +659,15 @@
 			baseConfigurationReference = AB873D0E87BC0AD9C1A3080A /* Pods-falconrypro.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEVELOPMENT_TEAM = 43R88X5B35;
 				INFOPLIST_FILE = falconrypro/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdwr.falconrypro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6a1fa44d-afdc-427b-b118-89b90ac09b5a";
-				PROVISIONING_PROFILE_SPECIFIER = "Falconrypro App Store";
+				PROVISIONING_PROFILE = "5af0b21d-8dfc-4b0e-a386-36e5c72163b7";
+				PROVISIONING_PROFILE_SPECIFIER = "Falconry AdHoc";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -681,12 +681,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 43R88X5B35;
 				INFOPLIST_FILE = falconrypro/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdwr.falconrypro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6a1fa44d-afdc-427b-b118-89b90ac09b5a";
-				PROVISIONING_PROFILE_SPECIFIER = "Falconrypro App Store";
+				PROVISIONING_PROFILE = "5af0b21d-8dfc-4b0e-a386-36e5c72163b7";
+				PROVISIONING_PROFILE_SPECIFIER = "Falconry AdHoc";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "\"-D\" \"PROD\"";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

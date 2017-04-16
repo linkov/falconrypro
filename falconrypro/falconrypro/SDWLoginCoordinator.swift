@@ -51,14 +51,18 @@ class SDWLoginCoordinator: ILLoginKit.LoginCoordinator {
         emailPlaceholder = "E-Mail"
         passwordPlaceholder = "Password"
         repeatPasswordPlaceholder = "Confirm password"
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
     }
     
     // MARK: - Completion Callbacks
     
     override func login(email: String, password: String) {
+        PKHUD.sharedHUD.show()
         // Handle login via your API
         
         networking.post("/auth/sign_in",parameters: ["email" : email, "password" : password])  { result in
+            
+            PKHUD.sharedHUD.hide()
             
             switch result {
             case .success(let response):
@@ -76,10 +80,10 @@ class SDWLoginCoordinator: ILLoginKit.LoginCoordinator {
     
     override func signup(name: String, email: String, password: String) {
         // Handle signup via your API
-
+        PKHUD.sharedHUD.show()
         
         networking.post("/auth",parameters: ["email" : email, "password" : password, "password_confirmation":password])  { result in
-            
+            PKHUD.sharedHUD.hide()
             switch result {
             case .success(let response):
                 let json = response.headers
@@ -110,15 +114,23 @@ class SDWLoginCoordinator: ILLoginKit.LoginCoordinator {
             client = json["client"]!
             uid = json["uid"]!
         } else {
-            token = json["Access-Token"]!
-            expires = json["Expiry"]!
-            client = json["Client"]!
-            uid = json["Uid"]!
+            
+            if (isFacebook == true) {
+                token = json["access-token"]!
+                expires = json["expiry"]!
+                client = json["client"]!
+                uid = json["uid"]!
+            } else {
+                token = json["Access-Token"]!
+                expires = json["Expiry"]!
+                client = json["Client"]!
+                uid = json["Uid"]!
+            }
+
+            
+
         }
         
-        if (isFacebook == true) {
-            token = json["access-token"]!
-        }
 
         
         networking.setAuthorizationHeader(headerKey: "access-token", headerValue:token as! String)
@@ -136,8 +148,11 @@ class SDWLoginCoordinator: ILLoginKit.LoginCoordinator {
     override func enterWithFacebook(profile: FacebookProfile) {
         // Handle Facebook login/signup via your API
       
+        PKHUD.sharedHUD.show()
         
         networking.get("/auth/facebook_access_token/callback?access_token="+profile.facebookToken)  { result in
+            
+            PKHUD.sharedHUD.hide()
 
             switch result {
             case .success(let response):
