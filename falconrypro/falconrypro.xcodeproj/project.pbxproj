@@ -15,12 +15,12 @@
 		F140C5E51EA149A10099C592 /* SDWBirdListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */; };
 		F140C5E71EA2509C0099C592 /* SDWHomeTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F140C5E61EA2509C0099C592 /* SDWHomeTBC.swift */; };
 		F140C5E91EA25C6F0099C592 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F140C5E81EA25C6F0099C592 /* Extensions.swift */; };
+		F19FEDC71EB380ED00996B40 /* searchable_push_row.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */; };
 		F1AD8B6F1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */; };
 		F1AD8B711E9EA18A006B2EB1 /* SDWBirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */; };
 		F1AD8B731E9EA518006B2EB1 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B721E9EA518006B2EB1 /* Models.swift */; };
 		F1AD8B761EA0410B006B2EB1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B751EA0410B006B2EB1 /* Constants.swift */; };
 		F1CB9CC51E9905C900A90363 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB9CC41E9905C900A90363 /* AppDelegate.swift */; };
-		F1CB9CC71E9905C900A90363 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB9CC61E9905C900A90363 /* ViewController.swift */; };
 		F1CB9CCA1E9905C900A90363 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1CB9CC81E9905C900A90363 /* Main.storyboard */; };
 		F1CB9CCC1E9905C900A90363 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1CB9CCB1E9905C900A90363 /* Assets.xcassets */; };
 		F1CB9CCF1E9905C900A90363 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1CB9CCD1E9905C900A90363 /* LaunchScreen.storyboard */; };
@@ -62,13 +62,13 @@
 		F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWBirdListTableViewCell.xib; sourceTree = "<group>"; };
 		F140C5E61EA2509C0099C592 /* SDWHomeTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWHomeTBC.swift; sourceTree = "<group>"; };
 		F140C5E81EA25C6F0099C592 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchable_push_row.swift; sourceTree = "<group>"; };
 		F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdsTableViewController.swift; sourceTree = "<group>"; };
 		F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdViewController.swift; sourceTree = "<group>"; };
 		F1AD8B721E9EA518006B2EB1 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		F1AD8B751EA0410B006B2EB1 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F1CB9CC11E9905C900A90363 /* falconrypro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = falconrypro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1CB9CC41E9905C900A90363 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F1CB9CC61E9905C900A90363 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F1CB9CC91E9905C900A90363 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F1CB9CCB1E9905C900A90363 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1CB9CCE1E9905C900A90363 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -158,11 +158,11 @@
 			isa = PBXGroup;
 			children = (
 				F1CB9CC41E9905C900A90363 /* AppDelegate.swift */,
-				F1CB9CC61E9905C900A90363 /* ViewController.swift */,
 				F1AD8B751EA0410B006B2EB1 /* Constants.swift */,
 				F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */,
 				F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */,
 				F1AD8B721E9EA518006B2EB1 /* Models.swift */,
+				F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */,
 				F140C5E81EA25C6F0099C592 /* Extensions.swift */,
 				F140C5E21EA149A10099C592 /* SDWBirdListTableViewCell.swift */,
 				F140C5E61EA2509C0099C592 /* SDWHomeTBC.swift */,
@@ -495,13 +495,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1AD8B711E9EA18A006B2EB1 /* SDWBirdViewController.swift in Sources */,
-				F1CB9CC71E9905C900A90363 /* ViewController.swift in Sources */,
 				F1CB9CC51E9905C900A90363 /* AppDelegate.swift in Sources */,
 				F1026AAE1E9D818D00A89821 /* SDWLoginCoordinator.swift in Sources */,
 				F1AD8B761EA0410B006B2EB1 /* Constants.swift in Sources */,
 				F140C5E91EA25C6F0099C592 /* Extensions.swift in Sources */,
 				F1AD8B6F1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift in Sources */,
 				F12550621EA2D034004122D4 /* SDWDiaryListViewController.swift in Sources */,
+				F19FEDC71EB380ED00996B40 /* searchable_push_row.swift in Sources */,
 				F1AD8B731E9EA518006B2EB1 /* Models.swift in Sources */,
 				F140C5E41EA149A10099C592 /* SDWBirdListTableViewCell.swift in Sources */,
 				F140C5E71EA2509C0099C592 /* SDWHomeTBC.swift in Sources */,
@@ -658,7 +658,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB873D0E87BC0AD9C1A3080A /* Pods-falconrypro.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEVELOPMENT_TEAM = 43R88X5B35;
 				INFOPLIST_FILE = falconrypro/Info.plist;
@@ -677,7 +677,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A73D7675904B829DCC5919B2 /* Pods-falconrypro.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 43R88X5B35;
 				INFOPLIST_FILE = falconrypro/Info.plist;

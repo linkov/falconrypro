@@ -21,17 +21,21 @@ class ListDisplayItem: NSObject {
     }
 }
 
-
-class TypeDisplayItem: NSObject {
-    
+class TypeDisplayItem: NSObject, SearchableItem {
     var name:String?
     var latin:String?
     var model:Dictionary<String,Any>?
-
-    override init() {
-        super.init()
+    
+    override var description: String {
+        return name!
+    }
+    
+    
+    func matchesSearchQuery(_ query: String) -> Bool {
+        
+        let tmp: String = name!
+        let range = tmp.range(of: query, options: NSString.CompareOptions.caseInsensitive)
+        return range?.isEmpty == false
         
     }
 }
-
-

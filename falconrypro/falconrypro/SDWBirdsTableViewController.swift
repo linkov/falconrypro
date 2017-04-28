@@ -11,8 +11,9 @@ import ILLoginKit
 import Networking
 import PKHUD
 import SDWebImage
+import UIEmptyState
 
-class SDWBirdsTableViewController: UITableViewController {
+class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStateDelegate {
     
     var objects = [ListDisplayItem]()
     
@@ -36,9 +37,18 @@ class SDWBirdsTableViewController: UITableViewController {
         let nibName = UINib(nibName: "SDWBirdListTableViewCell", bundle:nil)
         self.tableView.register(nibName, forCellReuseIdentifier:"Cell")
         
+        self.emptyStateDataSource = self
+        self.emptyStateDelegate = self
+        
+        // Optionally remove seperator lines from empty cells
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        self.reloadEmptyState(forTableView: self.tableView)
         
         if ((UserDefaults.standard.value(forKey: "access-token")) != nil) {
             
@@ -103,6 +113,7 @@ class SDWBirdsTableViewController: UITableViewController {
                 }
                  self.objects = array
                  self.tableView.reloadData()
+                 self.reloadEmptyState(forTableView: self.tableView)
                 
             case .failure(let response):
                 print(response)
@@ -134,6 +145,9 @@ class SDWBirdsTableViewController: UITableViewController {
         let string = object.first
         cell.mainLabel!.text = string
         
+        cell.birdImage.layer.cornerRadius = cell.birdImage.frame.size.width/2
+        cell.birdImage.clipsToBounds = true
+        
         
         if let image = object.imageURL {
             cell.birdImage.sd_setImage(with: URL(string:image),
@@ -158,7 +172,54 @@ class SDWBirdsTableViewController: UITableViewController {
         controller.bird = bird
         self.navigationController?.pushViewController(controller, animated: true)
     }
+    
+    
+    var emptyStateViewAnimationDuration: TimeInterval {
+        return 0.0
+    }
+    
 
+    
+    var emptyStateImage: UIImage? {
+
+        return #imageLiteral(resourceName: "tint-logo")
+    }
+    
+    
+    var emptyStateDetailMessage: NSAttributedString? {
+        
+        let attrs = [NSForegroundColorAttributeName: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
+                     NSFontAttributeName: UIFont.systemFont(ofSize: 12)]
+        return NSAttributedString(string: "Hit + to add one now", attributes: attrs)
+    }
+    
+    var emptyStateTitle: NSAttributedString {
+        let attrs = [NSForegroundColorAttributeName: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
+                     NSFontAttributeName: UIFont.systemFont(ofSize: 22)]
+        return NSAttributedString(string: "No birds yet", attributes: attrs)
+    }
+    
+//    var emptyStateButtonSize: CGSize? {
+//        return CGSize.init(width: 40, height: 40)
+//    }
+//    
+//    var emptyStateButtonImage: UIImage? {
+//        return #imageLiteral(resourceName: "f1")
+//    }
+    
+//    var emptyStateButtonTitle: NSAttributedString? {
+//        let attrs = [NSForegroundColorAttributeName: UIColor.black,
+//                     NSFontAttributeName: UIFont.systemFont(ofSize: 26)]
+//        return NSAttributedString(string: "Add", attributes: attrs)
+//    }
+
+    
+    // MARK: - Empty State Delegate
+    
+    func emptyStatebuttonWasTapped(button: UIButton) {
+
+    }
+    
     
   
 

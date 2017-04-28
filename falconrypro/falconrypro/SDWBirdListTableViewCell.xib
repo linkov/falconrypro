@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,15 +20,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ifL-DY-DfJ">
-                        <rect key="frame" x="8" y="8" width="94" height="78"/>
+                        <rect key="frame" x="28" y="8" width="78" height="78"/>
                         <color key="backgroundColor" red="0.14659907061263405" green="0.0" blue="0.31853141191709844" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="78" id="HPg-h9-kh6"/>
-                            <constraint firstAttribute="width" constant="94" id="ye6-My-Gjj"/>
+                            <constraint firstAttribute="width" constant="78" id="ye6-My-Gjj"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Byi-yZ-dvr">
-                        <rect key="frame" x="117" y="8" width="42" height="21"/>
+                        <rect key="frame" x="121" y="8" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -44,8 +44,8 @@
                     <constraint firstItem="Byi-yZ-dvr" firstAttribute="leading" secondItem="ifL-DY-DfJ" secondAttribute="trailing" constant="15" id="8vY-GL-UeQ"/>
                     <constraint firstItem="twv-tA-Hze" firstAttribute="top" secondItem="Byi-yZ-dvr" secondAttribute="bottom" constant="8" id="9e3-Mb-oc0"/>
                     <constraint firstItem="Byi-yZ-dvr" firstAttribute="top" secondItem="ifL-DY-DfJ" secondAttribute="top" id="Plp-G1-l9s"/>
-                    <constraint firstAttribute="leadingMargin" secondItem="ifL-DY-DfJ" secondAttribute="leading" id="YlK-76-Hhc"/>
-                    <constraint firstItem="twv-tA-Hze" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="109" id="jDd-OO-9R9"/>
+                    <constraint firstItem="twv-tA-Hze" firstAttribute="leading" secondItem="ifL-DY-DfJ" secondAttribute="trailing" constant="15" id="Q3y-t2-S05"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="ifL-DY-DfJ" secondAttribute="leading" constant="-20" id="YlK-76-Hhc"/>
                     <constraint firstItem="ifL-DY-DfJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="uql-qo-cMh"/>
                 </constraints>
             </tableViewCellContentView>

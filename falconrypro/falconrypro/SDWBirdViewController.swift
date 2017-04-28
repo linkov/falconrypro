@@ -18,6 +18,8 @@ class SDWBirdViewController: FormViewController {
     let networking = Networking(baseURL: Constants.server.BASEURL)
     var bird:ListDisplayItem?
     var birdtypes = [TypeDisplayItem]()
+    var birthdayDateFormatter = DateFormatter()
+    var weightFormatter = NumberFormatter()
     
     var currentBirdImage:UIImage?
     
@@ -45,7 +47,12 @@ class SDWBirdViewController: FormViewController {
                 
             }
         }
+        
+        birthdayDateFormatter.dateStyle = .none
+        birthdayDateFormatter.dateFormat = "yyyy-MM"
 
+        weightFormatter.locale = Locale.current
+        weightFormatter.numberStyle = .none
 
         
         self.navigationItem.rightBarButtonItem = addButton
@@ -59,12 +66,11 @@ class SDWBirdViewController: FormViewController {
                 +++  Section()
                 <<< ImageRow() {
                     $0.tag = "pic"
-                    $0.title = "Bird photo"
+                    $0.title = "Update bird photo"
                     $0.sourceTypes = .PhotoLibrary
                     $0.clearAction = .no
                     }
                     .cellUpdate { cell, row in
-                        row.value = ((self.currentBirdImage != nil) ? self.currentBirdImage : row.value)
                         row.reload()
                         cell.accessoryView?.layer.cornerRadius = 17
                         cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
@@ -76,8 +82,9 @@ class SDWBirdViewController: FormViewController {
                     row.tag = "name"
                     row.title = "Name"
                 }
-                <<< DateRow(){
+                <<< DateInlineRow(){
                     $0.tag = "bday"
+                    $0.dateFormatter = birthdayDateFormatter
                     $0.title = "Birthdate"
                     $0.value = bird?.model?["birthday"] as? Date
                     $0.value = Date()
@@ -92,26 +99,25 @@ class SDWBirdViewController: FormViewController {
                     $0.options = ["Male","Female"]
                 }
                 
-                <<< DecimalRow(){ row in
+                <<< IntRow(){ row in
                     row.tag = "fweight"
-                    row.value = bird?.model?["fat_weight"] as? Double
+                    row.value = bird?.model?["fat_weight"] as? Int
                     row.title = "Fat Weight"
+                    row.placeholder = "weight in gramms"
+                    row.formatter = self.weightFormatter
+                    
                 }
-                <<< DecimalRow(){
-                    $0.value = bird?.model?["hunting_weight"] as? Double
+                <<< IntRow(){
+                    $0.value = bird?.model?["hunting_weight"] as? Int
                     $0.tag = "hweight"
                     $0.title = "Hunting Weight"
-                }
-                
-                <<< TextRow(){
-                    $0.value = bird?.model?["code"] as? String
-                    $0.tag = "code"
-                    $0.title = "Bird code"
+                    $0.placeholder = "weight in gramms"
+                    $0.formatter = self.weightFormatter
                 }
                 
                 
-                <<< PushRow<TypeDisplayItem> {
-                    $0.baseValue =  self.currentBirdType
+                <<< SearchablePushRow<TypeDisplayItem>("name") {
+                    $0.baseValue = self.currentBirdType
                     $0.tag = "species"
                     $0.title = "Species"
                     $0.displayValueFor = { value in
@@ -144,8 +150,9 @@ class SDWBirdViewController: FormViewController {
                     row.tag = "name"
                     row.title = "Name"
                 }
-                <<< DateRow(){
+                <<< DateInlineRow(){
                     $0.tag = "bday"
+                    $0.dateFormatter = birthdayDateFormatter
                     $0.title = "Birthdate"
                     $0.value = Date()
                 }
@@ -158,22 +165,20 @@ class SDWBirdViewController: FormViewController {
                     $0.options = ["Male","Female"]
                 }
                 
-                <<< DecimalRow(){ row in
+                <<< IntRow(){ row in
                     row.tag = "fweight"
                     row.title = "Fat Weight"
+                    row.placeholder = "weight in gramms"
+                    row.formatter = self.weightFormatter
                 }
-                <<< DecimalRow(){
+                <<< IntRow(){
+                    $0.formatter = self.weightFormatter
                     $0.tag = "hweight"
                     $0.title = "Hunting Weight"
-                }
+                    $0.placeholder = "weight in gramms"
+                    }
                 
-                <<< TextRow(){
-                    $0.tag = "code"
-                    $0.title = "Bird code"
-                }
-                
-                
-                <<< PushRow<TypeDisplayItem> {
+                <<< SearchablePushRow<TypeDisplayItem>("name") {
                     $0.tag = "species"
                     $0.title = "Species"
                     $0.displayValueFor = { value in
@@ -182,7 +187,7 @@ class SDWBirdViewController: FormViewController {
                     
                     }.cellUpdate { cell, row in
                         row.options = self.birdtypes
-            }
+                    }
 
         }
 
@@ -241,19 +246,13 @@ class SDWBirdViewController: FormViewController {
     func updateBird() {
         PKHUD.sharedHUD.show()
         let name: TextRow? = form.rowBy(tag: "name")
-        let fweight: DecimalRow? = form.rowBy(tag: "fweight")
-        let hweight: DecimalRow? = form.rowBy(tag: "hweight")
-        let bday: DateRow? = form.rowBy(tag: "bday")
+        let fweight: IntRow? = form.rowBy(tag: "fweight")
+        let hweight: IntRow? = form.rowBy(tag: "hweight")
+        let bday: DateInlineRow? = form.rowBy(tag: "bday")
         
         let sex: ActionSheetRow<String>! = form.rowBy(tag:"sex")
         let bird_type = form.rowBy(tag:"species")?.baseValue as! TypeDisplayItem
         let bird_type_id = bird_type.model?["id"]
-        
-        let photoRow: ImageRow? = form.rowBy(tag: "pic")
-        let photoRowValue:UIImage = (photoRow?.value)!
-//        let imageData = UIImagePNGRepresentation(photoRowValue)!
-        let imageData:NSData = UIImagePNGRepresentation(photoRowValue)! as NSData
-        let dataImage = imageData.base64EncodedString(options: .lineLength64Characters)
 
 
 
@@ -266,8 +265,7 @@ class SDWBirdViewController: FormViewController {
             "fat_weight": (fweight?.value)!,
             "hunting_weight": (hweight?.value)!,
             "birthday": (bday?.value)!.toString(),
-            "bird_type_id": bird_type_id!,
-            "birdimage":dataImage
+            "bird_type_id": bird_type_id!
         
         ]
         
@@ -280,8 +278,7 @@ class SDWBirdViewController: FormViewController {
                 switch result {
                 case .success(let response):
                      print(response.dictionaryBody)
-//                    self.uploadImage()
-                    self.dismiss(animated: true, completion: nil)
+                    self.uploadImage()
                     
                 case .failure(let response):
                     print(response.dictionaryBody)
@@ -294,10 +291,12 @@ class SDWBirdViewController: FormViewController {
                 PKHUD.sharedHUD.hide()
                 switch result {
                 case .success(let response):
+                    self.bird = ListDisplayItem()
                     self.bird?.model = response.dictionaryBody
-                    
                     print(response)
-                    self.dismiss(animated: true, completion: nil)
+                    self.uploadImage()
+                    
+                    
                     
                 case .failure(let response):
                     print(response.dictionaryBody)
@@ -312,13 +311,18 @@ class SDWBirdViewController: FormViewController {
     
     func uploadImage() {
         
+        let photoRow: ImageRow? = form.rowBy(tag: "pic")
+        if (photoRow?.value == nil) {
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+        
         PKHUD.sharedHUD.show()
         
         let bird_id = self.bird?.model?["id"] as! String
         
-        let photoRow: ImageRow? = form.rowBy(tag: "pic")
+        
         let photoRowValue:UIImage = (photoRow?.value)!
-//        let imageData = UIImagePNGRepresentation(photoRowValue)!
         
         let dict: [String: String] = [:]
         
@@ -351,7 +355,9 @@ class SDWBirdViewController: FormViewController {
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
             if let responseJSON = responseJSON as? [String: Any] {
+                
                 print(responseJSON)
+                self.dismiss(animated: true, completion: nil)
             }
         }
         
@@ -386,7 +392,7 @@ class SDWBirdViewController: FormViewController {
         }
         
         body.appendString(boundaryPrefix)
-        body.appendString("Content-Disposition: form-data; name=\"file\"; filename=\"\(filename)\"\r\n")
+        body.appendString("Content-Disposition: form-data; name=\"bird[birdimage]\"; filename=\"\(filename)\"\r\n")
         body.appendString("Content-Type: \(mimeType)\r\n\r\n")
         body.append(data)
         body.appendString("\r\n")

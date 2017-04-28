@@ -16,6 +16,7 @@ target 'falconrypro' do
   pod 'SDWebImage', '~>4.0'
   pod 'Reveal-SDK', :configurations => ['Debug']
   pod "Sparrow/Modules/RequestPermission", :git => "https://github.com/IvanVorobei/Sparrow.git"
+  pod 'UIEmptyState'
 
   target 'falconryproTests' do
     inherit! :search_paths

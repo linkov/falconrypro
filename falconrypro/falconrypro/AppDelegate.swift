@@ -21,7 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     public func application(_ application: UIApplication,  didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         // Override point for customization after application launch.
         Fabric.with([Crashlytics.self])
-
+        UINavigationBar.appearance().tintColor = UIColor.black
+        UISearchBar.appearance().tintColor = UIColor.black
+        UINavigationBar.appearance().backgroundColor = UIColor.white
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
