@@ -48,8 +48,6 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
     
     override func viewDidAppear(_ animated: Bool) {
         
-        self.reloadEmptyState(forTableView: self.tableView)
-        
         if ((UserDefaults.standard.value(forKey: "access-token")) != nil) {
             
             self.loadBirds()
@@ -102,8 +100,8 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
                     
                     let object = ListDisplayItem()
                     object.first = item["name"] as? String
-                    let dict = item["bird_type"] as! NSDictionary
-                    object.sub = dict["name"] as? String
+                    let arr = item["type_name"] as? Array<String>
+                    object.sub = arr?.joined(separator: ", ")
                     object.imageURL = item["thumb"] as? String
                     object.model = item
                     
@@ -127,7 +125,7 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 164
+        return 170
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -168,9 +166,13 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
         let bird = objects[indexPath.row]
        
         
-        let controller:SDWHomeTBC = storyboard?.instantiateViewController(withIdentifier: "SDWHomeTBC") as! SDWHomeTBC
+        let controller:SDWHomeViewController = storyboard?.instantiateViewController(withIdentifier: "SDWHomeViewController") as! SDWHomeViewController
         controller.bird = bird
         self.navigationController?.pushViewController(controller, animated: true)
+        
+//        let controller:SDWHomeTBC = storyboard?.instantiateViewController(withIdentifier: "SDWHomeTBC") as! SDWHomeTBC
+//        controller.bird = bird
+//        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     
@@ -183,6 +185,11 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
     var emptyStateImage: UIImage? {
 
         return #imageLiteral(resourceName: "tint-logo")
+    }
+    
+    
+    var emptyStateViewAdjustsToFitBars: Bool {
+        return false
     }
     
     

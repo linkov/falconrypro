@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class SDWHomeTBC: UITabBarController {
     
     var bird:ListDisplayItem?
@@ -21,7 +22,9 @@ class SDWHomeTBC: UITabBarController {
         
         let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(edit(_:)))
         editButton.tintColor = UIColor.black
-        self.navigationItem.rightBarButtonItem = editButton    }
+        self.navigationItem.rightBarButtonItem = editButton
+    
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

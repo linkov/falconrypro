@@ -17,6 +17,7 @@ target 'falconrypro' do
   pod 'Reveal-SDK', :configurations => ['Debug']
   pod "Sparrow/Modules/RequestPermission", :git => "https://github.com/IvanVorobei/Sparrow.git"
   pod 'UIEmptyState'
+  pod 'MiniTabBar'
 
   target 'falconryproTests' do
     inherit! :search_paths
