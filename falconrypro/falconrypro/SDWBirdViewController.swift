@@ -83,7 +83,6 @@ class SDWBirdViewController: FormViewController {
                     $0.clearAction = .no
                     }
                     .cellUpdate { cell, row in
-                        row.reload()
                         cell.accessoryView?.layer.cornerRadius = 17
                         cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
                 }
@@ -103,7 +102,7 @@ class SDWBirdViewController: FormViewController {
                 <<< ActionSheetRow<String>() {
                     $0.tag = "sex"
                     $0.title = "Sex"
-                    $0.selectorTitle = "Pick a sex"
+                    $0.selectorTitle = "Pick the sex"
                     $0.value =  (bird?.model != nil) ? ((bird?.model?["sex"] as! Bool == true ? "Male" : "Female")) as String : ""
                     $0.options = ["Male","Female"]
                 }

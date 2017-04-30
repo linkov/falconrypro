@@ -60,7 +60,7 @@
         <scene sceneID="KKZ-G3-6nO">
             <objects>
                 <navigationController storyboardIdentifier="BirdProfileEdit" id="tcw-iN-XCI" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Ihw-4v-V0x">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ihw-4v-V0x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -142,7 +142,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1If-tc-kSX">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -150,7 +150,7 @@
                         <constraints>
                             <constraint firstItem="1If-tc-kSX" firstAttribute="leading" secondItem="Xaa-ow-Tm1" secondAttribute="leading" id="ThD-Zl-54T"/>
                             <constraint firstAttribute="trailing" secondItem="1If-tc-kSX" secondAttribute="trailing" id="ba7-eP-gcP"/>
-                            <constraint firstItem="1If-tc-kSX" firstAttribute="top" secondItem="w2I-qZ-nYG" secondAttribute="bottom" id="sHt-da-XiW"/>
+                            <constraint firstItem="1If-tc-kSX" firstAttribute="top" secondItem="w2I-qZ-nYG" secondAttribute="bottom" constant="-64" id="sHt-da-XiW"/>
                             <constraint firstItem="gbj-0N-6cX" firstAttribute="top" secondItem="1If-tc-kSX" secondAttribute="bottom" id="w56-9V-j88"/>
                         </constraints>
                     </view>
@@ -167,7 +167,7 @@
         <scene sceneID="mez-yv-6Lp">
             <objects>
                 <navigationController storyboardIdentifier="DiaryEdit" id="OR4-BL-Wa8" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="G8K-6b-VsS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="G8K-6b-VsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -198,7 +198,7 @@
         <scene sceneID="Q5G-4v-8Lt">
             <objects>
                 <navigationController id="Apd-Xo-FPZ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8Mv-GK-ohS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Mv-GK-ohS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

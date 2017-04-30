@@ -19,6 +19,7 @@ class SDWDiaryItemViewController: FormViewController {
     
     let networking = Networking(baseURL: Constants.server.BASEURL)
     var bird:ListDisplayItem?
+    var diaryItem:DiaryListDisplayItem?
     var foods = [TypeDisplayItem]()
     var weightFormatter = NumberFormatter()
 
@@ -28,9 +29,15 @@ class SDWDiaryItemViewController: FormViewController {
         PKHUD.sharedHUD.contentView = PKHUDProgressView()
         self.loadFoods();
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy" //Your New Date format as per requirement change it own
+        dateFormatter.dateFormat = "MMM d yyyy" //Your New Date format as per requirement change it own
         let newDate = dateFormatter.string(from: Date())
-        self.title = newDate
+        
+        if(self.diaryItem != nil) {
+            self.title = self.diaryItem?.created
+        } else {
+            self.title = newDate
+        }
+        
         
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(finish(_:)))
@@ -50,6 +57,8 @@ class SDWDiaryItemViewController: FormViewController {
             +++ Section("Diary entry")
             
             <<< IntRow(){ row in
+                
+                row.value = diaryItem?.model?["weight"] as? Int
                 row.tag = "weight"
                 row.title = "Weight"
                 row.placeholder = "weight in gramms"
@@ -58,6 +67,7 @@ class SDWDiaryItemViewController: FormViewController {
             }
             
             <<< IntRow(){ row in
+                row.value = diaryItem?.model?["diet_offered"] as? Int
                 row.tag = "d_offered"
                 row.title = "Diet offered"
                 row.placeholder = "weight in gramms"
@@ -66,6 +76,7 @@ class SDWDiaryItemViewController: FormViewController {
             }
             
             <<< IntRow(){
+                $0.value = diaryItem?.model?["diet_eaten"] as? Int
                 $0.tag = "d_eaten"
                 $0.title = "Diet eaten"
                 $0.placeholder = "weight in gramms"
@@ -73,6 +84,7 @@ class SDWDiaryItemViewController: FormViewController {
             }
         
             <<< SearchablePushRow<TypeDisplayItem>("name") {
+                $0.baseValue = diaryItem?.foodDisplayItem
                 $0.tag = "food"
                 $0.title = "Food eaten"
                 $0.displayValueFor = { value in
@@ -85,6 +97,7 @@ class SDWDiaryItemViewController: FormViewController {
         
         
             <<< TextAreaRow(){ row in
+                row.value = diaryItem?.note
                 row.placeholder = "Notes"
                 row.tag = "note"
                 row.title = "Notes"
@@ -165,13 +178,16 @@ class SDWDiaryItemViewController: FormViewController {
         
         PKHUD.sharedHUD.show()
         
-
-            networking.post("/diary_items", parameters: ["diary_item":dict])  { result in
+        let model_id = self.diaryItem?.model!["id"] as! String
+        
+        if (self.diaryItem != nil) {
+            
+            networking.put("/diary_items/"+model_id, parameters: ["diary_item":dict])  { result in
                 PKHUD.sharedHUD.hide()
                 switch result {
                 case .success(let response):
                     print(response)
-                     self.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
                     
                     
                     
@@ -180,6 +196,28 @@ class SDWDiaryItemViewController: FormViewController {
                 }
                 
             }
+            
+        } else {
+            
+            networking.post("/diary_items", parameters: ["diary_item":dict])  { result in
+                PKHUD.sharedHUD.hide()
+                switch result {
+                case .success(let response):
+                    print(response)
+                    self.dismiss(animated: true, completion: nil)
+                    
+                    
+                    
+                case .failure(let response):
+                    print(response.dictionaryBody)
+                }
+                
+            }
+            
+        }
+        
+
+
         
         
         

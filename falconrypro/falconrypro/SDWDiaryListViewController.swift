@@ -31,7 +31,6 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         // Optionally remove seperator lines from empty cells
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.tableView.tableHeaderView = UIView(frame: CGRect.zero)
-        self.tableView.allowsSelection = false
         self.tableView.reloadData()
         self.reloadEmptyState(forTableView: self.tableView)
         
@@ -85,7 +84,18 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        var object:DiaryListDisplayItem
+        
+        
+        object = objects[indexPath.row]
 
+        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "DiaryEdit") as! UINavigationController
+        let diaryController = controller.viewControllers[0] as! SDWDiaryItemViewController
+        diaryController.bird = bird
+        diaryController.diaryItem = object
+        self.present(controller, animated: true, completion: nil)
     }
     
     
@@ -116,7 +126,6 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     func loadItems() {
         
         
-        PKHUD.sharedHUD.show()
         
         let networking = Networking(baseURL: Constants.server.BASEURL)
         
@@ -131,7 +140,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         let bird_id = self.bird?.model?["id"] as! String
         
         networking.get("/diary_items?bird_id="+bird_id)  { result in
-            PKHUD.sharedHUD.hide()
+       
             switch result {
             case .success(let response):
 
@@ -143,6 +152,14 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
                     object.offered = item["offered"] as? String
                     object.food = item["food_name"] as? String
                     object.created = item["created"] as? String
+                    object.note = item["note"] as? String
+                    
+                    let dict:Dictionary<String,Any> = (item["food"] as? Dictionary)!
+                    let itm:TypeDisplayItem = TypeDisplayItem()
+                    itm.name = dict["name"] as? String
+                    itm.model = dict
+                    object.foodDisplayItem = itm
+                    
                     object.model = item
                     
                     array.append(object)

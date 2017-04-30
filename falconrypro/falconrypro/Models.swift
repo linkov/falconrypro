@@ -14,7 +14,9 @@ class DiaryListDisplayItem: NSObject {
     var weight:String?
     var offered:String?
     var eaten:String?
+    var note:String?
     var food:String?
+    var foodDisplayItem:TypeDisplayItem?
     var created:String?
     var model:Dictionary<String,Any>?
     
