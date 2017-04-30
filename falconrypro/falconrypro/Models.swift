@@ -8,6 +8,22 @@
 
 import UIKit
 
+
+class DiaryListDisplayItem: NSObject {
+    
+    var weight:String?
+    var offered:String?
+    var eaten:String?
+    var food:String?
+    var created:String?
+    var model:Dictionary<String,Any>?
+    
+    override init() {
+        super.init()
+        
+    }
+}
+
 class ListDisplayItem: NSObject {
     
     var first:String?

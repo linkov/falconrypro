@@ -56,6 +56,7 @@ open class _SearchableViewController<T: Equatable, Row: SelectableRowType, TOrig
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tableView?.backgroundColor = UIColor.white
 
     }
     

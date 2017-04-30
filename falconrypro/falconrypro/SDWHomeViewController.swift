@@ -65,6 +65,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         
         if (index == 0) {
             let vc:SDWDiaryListViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryListViewController") as! SDWDiaryListViewController
+            vc.bird = self.bird
             self.addChildViewController(vc)
             vc.view.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height-44)
             self.view.insertSubview(vc.view, at: 0)
@@ -77,7 +78,11 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     }
     
     @objc private func customButtonTapped() {
-        print("Custom button tapped")
+        
+        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "DiaryEdit") as! UINavigationController
+        let birdController = controller.viewControllers[0] as! SDWDiaryItemViewController
+        birdController.bird = bird
+        self.present(controller, animated: true, completion: nil)
     }
     
     func edit(_ sender: Any) {
