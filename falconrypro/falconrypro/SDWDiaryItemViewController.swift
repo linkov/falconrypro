@@ -30,12 +30,11 @@ class SDWDiaryItemViewController: FormViewController {
         self.loadFoods();
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d yyyy" //Your New Date format as per requirement change it own
-        let newDate = dateFormatter.string(from: Date())
         
         if(self.diaryItem != nil) {
             self.title = self.diaryItem?.created
         } else {
-            self.title = newDate
+            self.title = "Today"
         }
         
         
@@ -43,11 +42,11 @@ class SDWDiaryItemViewController: FormViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(finish(_:)))
         addButton.tintColor = UIColor.black
         
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
-        cancelButton.tintColor = UIColor.black
+//        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
+//        cancelButton.tintColor = UIColor.black
         
         self.navigationItem.rightBarButtonItem = addButton
-        self.navigationItem.leftBarButtonItem = cancelButton
+//        self.navigationItem.leftBarButtonItem = cancelButton
         
         weightFormatter.locale = Locale.current
         weightFormatter.numberStyle = .none

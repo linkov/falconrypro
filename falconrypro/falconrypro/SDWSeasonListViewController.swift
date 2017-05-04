@@ -19,18 +19,30 @@ class SDWSeasonListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        self.title = "Seasons"
+        
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         addButton.tintColor = UIColor.black
         self.navigationItem.rightBarButtonItem = addButton
+        
+        
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         let bird_id = self.bird?.model?["id"] as! String
         self.loadSeasonsForBird(bird_id: bird_id)
-        
-        
     }
     
     func insertNewObject(_ sender: Any) {
         
         let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "SeasonEdit") as! UINavigationController
+        let seasonVC:SDWSeasonViewController = controller.viewControllers[0] as! SDWSeasonViewController
+        seasonVC.bird = self.bird
         
         self.present(controller, animated: true, completion: nil)
     }
@@ -72,7 +84,7 @@ class SDWSeasonListViewController: UITableViewController {
         controller.bird = self.bird
         controller.season = season
         
-        self.navigationController?.pushViewController(controller, animated: true)
+        self.present(controller, animated: true, completion: nil)
         
     }
 

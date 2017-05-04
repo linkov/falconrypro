@@ -11,17 +11,14 @@ import MiniTabBar
 
 class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     
+    var diaryListNav :UINavigationController?
     var bird:ListDisplayItem?
     var season:ListDisplayItem?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = self.bird?.first
-        
-        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(edit(_:)))
-        editButton.tintColor = UIColor.black
-        self.navigationItem.rightBarButtonItem = editButton
+
         
         self.createCustomItemTabBar()
     }
@@ -65,13 +62,33 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     func tabSelected(_ index: Int) {
         
         if (index == 0) {
-            let vc:SDWDiaryListViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryListViewController") as! SDWDiaryListViewController
+            
+           self.diaryListNav = storyboard?.instantiateViewController(withIdentifier: "DiaryListNav") as? UINavigationController
+            
+
+            
+            let vc:SDWDiaryListViewController = self.diaryListNav!.viewControllers[0] as! SDWDiaryListViewController
             vc.bird = self.bird
-            self.addChildViewController(vc)
-            vc.view.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height-44)
-            self.view.insertSubview(vc.view, at: 0)
+            
+            
+            vc.title = self.bird?.first
+            
+            //        let editTodayButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editToday(_:)))
+            let editTodayButton = UIBarButtonItem(title: "Today+", style: .done, target: self, action: #selector(editToday(_:)))
+            editTodayButton.tintColor = UIColor.black
+            vc.navigationItem.rightBarButtonItem = editTodayButton
+            
+            
+            let  backButton = UIBarButtonItem(title: "Setup", style: .plain, target: self, action: #selector(back(_:)))
+            backButton.tintColor = UIColor.black
+            vc.navigationItem.leftBarButtonItem = backButton
+            
+            
+            self.addChildViewController(self.diaryListNav!)
+            self.diaryListNav!.view.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height-44)
+            self.view.insertSubview(self.diaryListNav!.view, at: 0)
             self.view.bringSubview(toFront: self.view)
-            vc.didMove(toParentViewController: self)
+            self.diaryListNav!.didMove(toParentViewController: self)
             
         } else {
             
@@ -80,18 +97,29 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     
     @objc private func customButtonTapped() {
         
-        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "DiaryEdit") as! UINavigationController
-        let birdController = controller.viewControllers[0] as! SDWDiaryItemViewController
-        birdController.bird = bird
-        self.present(controller, animated: true, completion: nil)
+//        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "DiaryEdit") as! UINavigationController
+//        let birdController = controller.viewControllers[0] as! SDWDiaryItemViewController
+//        birdController.bird = bird
+//        self.present(controller, animated: true, completion: nil)
     }
     
-    func edit(_ sender: Any) {
+    func back(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
         
-        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "BirdProfileEdit") as! UINavigationController
-        let birdController = controller.viewControllers[0] as! SDWBirdViewController
-        birdController.bird = bird
-        self.present(controller, animated: true, completion: nil)
+    }
+
+    
+    func editToday(_ sender: Any) {
+        
+        
+        let controller:SDWDiaryItemViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemViewController") as! SDWDiaryItemViewController
+        controller.bird = bird
+        self.diaryListNav?.pushViewController(controller, animated: true)
+        
+//        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "BirdProfileEdit") as! UINavigationController
+//        let birdController = controller.viewControllers[0] as! SDWBirdViewController
+//        birdController.bird = bird
+//        self.present(controller, animated: true, completion: nil)
     }
 
 }

@@ -112,8 +112,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="69C-mM-jtS" kind="show" id="dRS-E1-mWZ"/>
                         <segue destination="zCa-tB-QhU" kind="show" id="7UI-S7-Vm8"/>
+                        <segue destination="Tfa-Zx-mvt" kind="show" id="H7E-Wm-ifS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KfY-u9-zzv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -172,7 +172,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKT-ZL-xGt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6364" y="-544"/>
+            <point key="canvasLocation" x="6417" y="-546"/>
         </scene>
         <!--Stats-->
         <scene sceneID="Ku9-Cq-KZv">
@@ -191,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Cw-It-awL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4508" y="188"/>
+            <point key="canvasLocation" x="4641" y="186"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DNh-Vd-Iq3">
@@ -209,6 +209,22 @@
             </objects>
             <point key="canvasLocation" x="2894" y="549"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="O9E-Ha-nUf">
+            <objects>
+                <navigationController storyboardIdentifier="DiaryListNav" id="Tfa-Zx-mvt" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eIf-l0-Qvs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="69C-mM-jtS" kind="relationship" relationship="rootViewController" id="r4E-Hf-M7C"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rh5-A3-CVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4642" y="-546"/>
+        </scene>
         <!--Diary-->
         <scene sceneID="kde-wF-9HW">
             <objects>
@@ -222,7 +238,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1If-tc-kSX">
-                                <rect key="frame" x="0.0" y="-44" width="375" height="711"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -235,30 +251,15 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Diary" id="But-CU-6be"/>
+                    <navigationItem key="navigationItem" id="mHI-aC-Nca"/>
                     <connections>
                         <outlet property="tableView" destination="1If-tc-kSX" id="Hiy-D4-Ihe"/>
-                        <segue destination="OR4-BL-Wa8" kind="showDetail" id="DsK-TH-n3p"/>
+                        <segue destination="hGL-1i-q5P" kind="showDetail" id="XOp-La-Pa0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v8O-0x-9c4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4508" y="-545"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="mez-yv-6Lp">
-            <objects>
-                <navigationController storyboardIdentifier="DiaryEdit" id="OR4-BL-Wa8" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="G8K-6b-VsS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="hGL-1i-q5P" kind="relationship" relationship="rootViewController" id="cVx-qD-Yx9"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LHo-Ds-NMV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5311" y="-545"/>
+            <point key="canvasLocation" x="5506" y="-546"/>
         </scene>
         <!--HomeTBC-->
         <scene sceneID="Eey-6A-tU9">

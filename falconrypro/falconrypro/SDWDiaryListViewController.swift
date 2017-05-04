@@ -91,11 +91,12 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         
         object = objects[indexPath.row]
 
-        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "DiaryEdit") as! UINavigationController
-        let diaryController = controller.viewControllers[0] as! SDWDiaryItemViewController
+        let diaryController:SDWDiaryItemViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemViewController") as! SDWDiaryItemViewController
+
         diaryController.bird = bird
         diaryController.diaryItem = object
-        self.present(controller, animated: true, completion: nil)
+        
+        self.navigationController?.pushViewController(diaryController, animated: true)
     }
     
     

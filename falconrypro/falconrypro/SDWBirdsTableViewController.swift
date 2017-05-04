@@ -47,6 +47,7 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         if ((UserDefaults.standard.value(forKey: "access-token")) != nil) {
             
