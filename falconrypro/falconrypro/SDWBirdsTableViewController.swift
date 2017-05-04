@@ -166,9 +166,13 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
         let bird = objects[indexPath.row]
        
         
-        let controller:SDWHomeViewController = storyboard?.instantiateViewController(withIdentifier: "SDWHomeViewController") as! SDWHomeViewController
+        let controller:SDWSeasonListViewController = storyboard?.instantiateViewController(withIdentifier: "SDWSeasonListViewController") as! SDWSeasonListViewController
         controller.bird = bird
         self.navigationController?.pushViewController(controller, animated: true)
+        
+//        let controller:SDWHomeViewController = storyboard?.instantiateViewController(withIdentifier: "SDWHomeViewController") as! SDWHomeViewController
+//        controller.bird = bird
+//        self.navigationController?.pushViewController(controller, animated: true)
         
 //        let controller:SDWHomeTBC = storyboard?.instantiateViewController(withIdentifier: "SDWHomeTBC") as! SDWHomeTBC
 //        controller.bird = bird

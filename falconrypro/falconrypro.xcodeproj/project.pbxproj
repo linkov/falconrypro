@@ -10,6 +10,8 @@
 		D7B21088DAAB20DA280DD182 /* Pods_falconrypro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15045DAE0FFDE292FB29065 /* Pods_falconrypro.framework */; };
 		DFBFC8248F3526A15DE9AB3F /* Pods_falconryproTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5C3730AAC0E46D0A22F7AF1 /* Pods_falconryproTests.framework */; };
 		F1026AAE1E9D818D00A89821 /* SDWLoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1026AAD1E9D818D00A89821 /* SDWLoginCoordinator.swift */; };
+		F10E12FE1EBB417A0044802C /* SDWSeasonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10E12FD1EBB417A0044802C /* SDWSeasonListViewController.swift */; };
+		F10E13001EBB418E0044802C /* SDWSeasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10E12FF1EBB418E0044802C /* SDWSeasonViewController.swift */; };
 		F12550621EA2D034004122D4 /* SDWDiaryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */; };
 		F140C5E41EA149A10099C592 /* SDWBirdListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F140C5E21EA149A10099C592 /* SDWBirdListTableViewCell.swift */; };
 		F140C5E51EA149A10099C592 /* SDWBirdListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */; };
@@ -61,6 +63,8 @@
 		E5C3730AAC0E46D0A22F7AF1 /* Pods_falconryproTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_falconryproTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECFDFFD9EB6FBDB9478BE8F4 /* Pods_falconryproUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_falconryproUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1026AAD1E9D818D00A89821 /* SDWLoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWLoginCoordinator.swift; sourceTree = "<group>"; };
+		F10E12FD1EBB417A0044802C /* SDWSeasonListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWSeasonListViewController.swift; sourceTree = "<group>"; };
+		F10E12FF1EBB418E0044802C /* SDWSeasonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWSeasonViewController.swift; sourceTree = "<group>"; };
 		F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDiaryListViewController.swift; sourceTree = "<group>"; };
 		F140C5E21EA149A10099C592 /* SDWBirdListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdListTableViewCell.swift; sourceTree = "<group>"; };
 		F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWBirdListTableViewCell.xib; sourceTree = "<group>"; };
@@ -177,6 +181,8 @@
 				F140C5E61EA2509C0099C592 /* SDWHomeTBC.swift */,
 				F1D2608C1EB3BF3E006D1BE9 /* SDWHomeViewController.swift */,
 				F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */,
+				F10E12FD1EBB417A0044802C /* SDWSeasonListViewController.swift */,
+				F10E12FF1EBB418E0044802C /* SDWSeasonViewController.swift */,
 				F1FBC2201EB54DA400D57ED0 /* SDWDiaryListTableViewCell.swift */,
 				F1FBC2211EB54DA400D57ED0 /* SDWDiaryListTableViewCell.xib */,
 				F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */,
@@ -508,6 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1AD8B711E9EA18A006B2EB1 /* SDWBirdViewController.swift in Sources */,
+				F10E12FE1EBB417A0044802C /* SDWSeasonListViewController.swift in Sources */,
 				F1CB9CC51E9905C900A90363 /* AppDelegate.swift in Sources */,
 				F1026AAE1E9D818D00A89821 /* SDWLoginCoordinator.swift in Sources */,
 				F1AD8B761EA0410B006B2EB1 /* Constants.swift in Sources */,
@@ -520,6 +527,7 @@
 				F1D2608D1EB3BF3E006D1BE9 /* SDWHomeViewController.swift in Sources */,
 				F1AD8B731E9EA518006B2EB1 /* Models.swift in Sources */,
 				F140C5E41EA149A10099C592 /* SDWBirdListTableViewCell.swift in Sources */,
+				F10E13001EBB418E0044802C /* SDWSeasonViewController.swift in Sources */,
 				F140C5E71EA2509C0099C592 /* SDWHomeTBC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

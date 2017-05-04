@@ -12,6 +12,7 @@ import MiniTabBar
 class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     
     var bird:ListDisplayItem?
+    var season:ListDisplayItem?
 
     override func viewDidLoad() {
         super.viewDidLoad()
