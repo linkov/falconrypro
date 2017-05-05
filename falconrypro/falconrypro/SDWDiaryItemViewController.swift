@@ -177,9 +177,11 @@ class SDWDiaryItemViewController: FormViewController {
         
         PKHUD.sharedHUD.show()
         
-        let model_id = self.diaryItem?.model!["id"] as! String
         
         if (self.diaryItem != nil) {
+            
+            let model_id = self.diaryItem?.model!["id"] as! String
+
             
             networking.put("/diary_items/"+model_id, parameters: ["diary_item":dict])  { result in
                 PKHUD.sharedHUD.hide()
@@ -224,7 +226,7 @@ class SDWDiaryItemViewController: FormViewController {
     
     
     func cancel(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func finish(_ sender: Any) {

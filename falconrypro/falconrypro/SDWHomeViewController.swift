@@ -14,7 +14,8 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     var diaryListNav :UINavigationController?
     var bird:ListDisplayItem?
     var season:ListDisplayItem?
-
+    var diaryListVC:SDWDiaryListViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -67,21 +68,21 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
             
 
             
-            let vc:SDWDiaryListViewController = self.diaryListNav!.viewControllers[0] as! SDWDiaryListViewController
-            vc.bird = self.bird
+            self.diaryListVC = self.diaryListNav!.viewControllers[0] as! SDWDiaryListViewController
+            self.diaryListVC?.bird = self.bird
             
             
-            vc.title = self.bird?.first
+            self.diaryListVC?.title = self.bird?.first
             
             //        let editTodayButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editToday(_:)))
-            let editTodayButton = UIBarButtonItem(title: "Today+", style: .done, target: self, action: #selector(editToday(_:)))
+            let editTodayButton = UIBarButtonItem(title: "Today", style: .done, target: self, action: #selector(editToday(_:)))
             editTodayButton.tintColor = UIColor.black
-            vc.navigationItem.rightBarButtonItem = editTodayButton
+            self.diaryListVC?.navigationItem.rightBarButtonItem = editTodayButton
             
             
             let  backButton = UIBarButtonItem(title: "Setup", style: .plain, target: self, action: #selector(back(_:)))
             backButton.tintColor = UIColor.black
-            vc.navigationItem.leftBarButtonItem = backButton
+            self.diaryListVC?.navigationItem.leftBarButtonItem = backButton
             
             
             self.addChildViewController(self.diaryListNav!)
@@ -114,6 +115,9 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         
         let controller:SDWDiaryItemViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemViewController") as! SDWDiaryItemViewController
         controller.bird = bird
+        if (self.diaryListVC?.existingTodayItem != nil) {
+            controller.diaryItem = self.diaryListVC?.existingTodayItem
+        }
         self.diaryListNav?.pushViewController(controller, animated: true)
         
 //        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "BirdProfileEdit") as! UINavigationController

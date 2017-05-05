@@ -15,6 +15,8 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     
     var objects = [DiaryListDisplayItem]()
     var bird:ListDisplayItem?
+    var existingTodayItem:DiaryListDisplayItem?
+    
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,11 +72,6 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         
         
         object = objects[indexPath.row]
-        
-        cell.weight.text = object.weight
-        cell.offered.text = object.offered
-        cell.eaten.text = object.eaten
-        cell.food.text = object.food
 
         cell.time.text =  object.created
 
@@ -148,10 +145,6 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
                 for item in response.arrayBody {
                     
                     let object = DiaryListDisplayItem()
-                    object.weight = item["weight_s"] as? String
-                    object.eaten = item["eaten"] as? String
-                    object.offered = item["offered"] as? String
-                    object.food = item["food_name"] as? String
                     object.created = item["created"] as? String
                     object.note = item["note"] as? String
                     
@@ -168,6 +161,13 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
                     
                 }
                 self.objects = array
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MMM d yyyy" //Your New Date format as per requirement change it own
+                let dateString = dateFormatter.string(from: Date())
+                
+                self.existingTodayItem = self.objects.first{$0.created == dateString}
+                
+                
                 self.tableView.reloadData()
                 self.reloadEmptyState(forTableView: self.tableView)
                 
