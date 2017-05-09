@@ -20,8 +20,9 @@
 		F19FEDC71EB380ED00996B40 /* searchable_push_row.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */; };
 		F1AD8B6F1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */; };
 		F1AD8B711E9EA18A006B2EB1 /* SDWBirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */; };
-		F1AD8B731E9EA518006B2EB1 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B721E9EA518006B2EB1 /* Models.swift */; };
+		F1AD8B731E9EA518006B2EB1 /* DisplayModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B721E9EA518006B2EB1 /* DisplayModels.swift */; };
 		F1AD8B761EA0410B006B2EB1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B751EA0410B006B2EB1 /* Constants.swift */; };
+		F1CB316D1EBFB590004C7342 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB316C1EBFB590004C7342 /* NetworkManager.swift */; };
 		F1CB9CC51E9905C900A90363 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB9CC41E9905C900A90363 /* AppDelegate.swift */; };
 		F1CB9CCA1E9905C900A90363 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1CB9CC81E9905C900A90363 /* Main.storyboard */; };
 		F1CB9CCC1E9905C900A90363 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1CB9CCB1E9905C900A90363 /* Assets.xcassets */; };
@@ -29,6 +30,49 @@
 		F1CB9CDA1E9905C900A90363 /* falconryproTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB9CD91E9905C900A90363 /* falconryproTests.swift */; };
 		F1CB9CE51E9905C900A90363 /* falconryproUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB9CE41E9905C900A90363 /* falconryproUITests.swift */; };
 		F1D2608D1EB3BF3E006D1BE9 /* SDWHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2608C1EB3BF3E006D1BE9 /* SDWHomeViewController.swift */; };
+		F1FA3A961EBFFE4300355507 /* DataModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3A951EBFFE4300355507 /* DataModelManager.swift */; };
+		F1FA3AA21EC0863900355507 /* SDWDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AA11EC0863900355507 /* SDWDataStore.swift */; };
+		F1FA3AAF1EC0899800355507 /* SDWBirdType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AA31EC0899800355507 /* SDWBirdType+CoreDataClass.swift */; };
+		F1FA3AB01EC0899800355507 /* SDWBirdType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AA41EC0899800355507 /* SDWBirdType+CoreDataProperties.swift */; };
+		F1FA3AB11EC0899800355507 /* SDWSeason+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AA51EC0899800355507 /* SDWSeason+CoreDataClass.swift */; };
+		F1FA3AB21EC0899800355507 /* SDWSeason+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AA61EC0899800355507 /* SDWSeason+CoreDataProperties.swift */; };
+		F1FA3AB31EC0899800355507 /* SDWFood+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AA71EC0899800355507 /* SDWFood+CoreDataClass.swift */; };
+		F1FA3AB41EC0899800355507 /* SDWFood+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AA81EC0899800355507 /* SDWFood+CoreDataProperties.swift */; };
+		F1FA3AB51EC0899800355507 /* SDWDiaryItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AA91EC0899800355507 /* SDWDiaryItem+CoreDataClass.swift */; };
+		F1FA3AB61EC0899800355507 /* SDWDiaryItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AAA1EC0899800355507 /* SDWDiaryItem+CoreDataProperties.swift */; };
+		F1FA3AB71EC0899800355507 /* SDWUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AAB1EC0899800355507 /* SDWUser+CoreDataClass.swift */; };
+		F1FA3AB81EC0899800355507 /* SDWUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AAC1EC0899800355507 /* SDWUser+CoreDataProperties.swift */; };
+		F1FA3AB91EC0899800355507 /* SDWBird+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AAD1EC0899800355507 /* SDWBird+CoreDataClass.swift */; };
+		F1FA3ABA1EC0899800355507 /* SDWBird+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AAE1EC0899800355507 /* SDWBird+CoreDataProperties.swift */; };
+		F1FA3ABB1EC08C6700355507 /* DataModel.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = F1FA3A9E1EC070FB00355507 /* DataModel.xcdatamodeld */; };
+		F1FA3AE31EC0A4E100355507 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AE21EC0A4E100355507 /* Protocols.swift */; };
+		F1FA3AE61EC0A5F900355507 /* SDWMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AE51EC0A5F900355507 /* SDWMapper.swift */; };
+		F1FA3AE91EC0B55400355507 /* FEMAttribute+listsAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AE81EC0B55400355507 /* FEMAttribute+listsAttributes.m */; };
+		F1FA3B0A1EC219E700355507 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = F1FA3AEE1EC219E700355507 /* .gitkeep */; };
+		F1FA3B0B1EC219E700355507 /* InitialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1FA3AEF1EC219E700355507 /* InitialViewController.xib */; };
+		F1FA3B0C1EC219E700355507 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1FA3AF01EC219E700355507 /* LoginViewController.xib */; };
+		F1FA3B0D1EC219E700355507 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1FA3AF11EC219E700355507 /* Media.xcassets */; };
+		F1FA3B0E1EC219E700355507 /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1FA3AF21EC219E700355507 /* Montserrat-Light.otf */; };
+		F1FA3B0F1EC219E700355507 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1FA3AF31EC219E700355507 /* Montserrat-Regular.ttf */; };
+		F1FA3B101EC219E700355507 /* PasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1FA3AF41EC219E700355507 /* PasswordViewController.xib */; };
+		F1FA3B111EC219E700355507 /* SignupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1FA3AF51EC219E700355507 /* SignupViewController.xib */; };
+		F1FA3B121EC219E700355507 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = F1FA3AF71EC219E700355507 /* .gitkeep */; };
+		F1FA3B131EC219E700355507 /* BackgroundMover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AF81EC219E700355507 /* BackgroundMover.swift */; };
+		F1FA3B141EC219E700355507 /* Buttn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AF91EC219E700355507 /* Buttn.swift */; };
+		F1FA3B151EC219E700355507 /* CrossDissolveAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AFA1EC219E700355507 /* CrossDissolveAnimation.swift */; };
+		F1FA3B161EC219E700355507 /* FacebookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AFB1EC219E700355507 /* FacebookService.swift */; };
+		F1FA3B171EC219E700355507 /* GradientImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AFC1EC219E700355507 /* GradientImageView.swift */; };
+		F1FA3B181EC219E700355507 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AFD1EC219E700355507 /* InitialViewController.swift */; };
+		F1FA3B191EC219E700355507 /* KeyboardMover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AFE1EC219E700355507 /* KeyboardMover.swift */; };
+		F1FA3B1A1EC219E700355507 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AFF1EC219E700355507 /* LoginCoordinator.swift */; };
+		F1FA3B1B1EC219E700355507 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3B001EC219E700355507 /* LoginViewController.swift */; };
+		F1FA3B1C1EC219E700355507 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3B011EC219E700355507 /* PasswordViewController.swift */; };
+		F1FA3B1D1EC219E700355507 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3B021EC219E700355507 /* SignupViewController.swift */; };
+		F1FA3B1E1EC219E700355507 /* SkyFloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3B051EC219E700355507 /* SkyFloatingLabelTextField.swift */; };
+		F1FA3B1F1EC219E700355507 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3B061EC219E700355507 /* SkyFloatingLabelTextFieldWithIcon.swift */; };
+		F1FA3B201EC219E700355507 /* UITextField+fixCaretPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3B071EC219E700355507 /* UITextField+fixCaretPosition.swift */; };
+		F1FA3B211EC219E700355507 /* UIViewController+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3B081EC219E700355507 /* UIViewController+Nib.swift */; };
+		F1FA3B221EC219E700355507 /* ValidatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3B091EC219E700355507 /* ValidatorService.swift */; };
 		F1FBC21F1EB53AA900D57ED0 /* SDWDiaryItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FBC21E1EB53AA900D57ED0 /* SDWDiaryItemViewController.swift */; };
 		F1FBC2221EB54DA500D57ED0 /* SDWDiaryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FBC2201EB54DA400D57ED0 /* SDWDiaryListTableViewCell.swift */; };
 		F1FBC2231EB54DA500D57ED0 /* SDWDiaryListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1FBC2211EB54DA400D57ED0 /* SDWDiaryListTableViewCell.xib */; };
@@ -73,8 +117,9 @@
 		F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchable_push_row.swift; sourceTree = "<group>"; };
 		F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdsTableViewController.swift; sourceTree = "<group>"; };
 		F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdViewController.swift; sourceTree = "<group>"; };
-		F1AD8B721E9EA518006B2EB1 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		F1AD8B721E9EA518006B2EB1 /* DisplayModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayModels.swift; sourceTree = "<group>"; };
 		F1AD8B751EA0410B006B2EB1 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F1CB316C1EBFB590004C7342 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		F1CB9CC11E9905C900A90363 /* falconrypro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = falconrypro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1CB9CC41E9905C900A90363 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1CB9CC91E9905C900A90363 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,6 +133,51 @@
 		F1CB9CE41E9905C900A90363 /* falconryproUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = falconryproUITests.swift; sourceTree = "<group>"; };
 		F1CB9CE61E9905C900A90363 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1D2608C1EB3BF3E006D1BE9 /* SDWHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWHomeViewController.swift; sourceTree = "<group>"; };
+		F1FA3A951EBFFE4300355507 /* DataModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModelManager.swift; sourceTree = "<group>"; };
+		F1FA3A9F1EC070FB00355507 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		F1FA3AA11EC0863900355507 /* SDWDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDataStore.swift; sourceTree = "<group>"; };
+		F1FA3AA31EC0899800355507 /* SDWBirdType+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWBirdType+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F1FA3AA41EC0899800355507 /* SDWBirdType+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWBirdType+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F1FA3AA51EC0899800355507 /* SDWSeason+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWSeason+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F1FA3AA61EC0899800355507 /* SDWSeason+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWSeason+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F1FA3AA71EC0899800355507 /* SDWFood+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWFood+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F1FA3AA81EC0899800355507 /* SDWFood+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWFood+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F1FA3AA91EC0899800355507 /* SDWDiaryItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWDiaryItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F1FA3AAA1EC0899800355507 /* SDWDiaryItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWDiaryItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F1FA3AAB1EC0899800355507 /* SDWUser+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWUser+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F1FA3AAC1EC0899800355507 /* SDWUser+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F1FA3AAD1EC0899800355507 /* SDWBird+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWBird+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F1FA3AAE1EC0899800355507 /* SDWBird+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWBird+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F1FA3AE21EC0A4E100355507 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		F1FA3AE51EC0A5F900355507 /* SDWMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWMapper.swift; sourceTree = "<group>"; };
+		F1FA3AE71EC0B55400355507 /* FEMAttribute+listsAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FEMAttribute+listsAttributes.h"; sourceTree = "<group>"; };
+		F1FA3AE81EC0B55400355507 /* FEMAttribute+listsAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FEMAttribute+listsAttributes.m"; sourceTree = "<group>"; };
+		F1FA3AEA1EC0B56D00355507 /* falconrypro-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "falconrypro-Bridging-Header.h"; sourceTree = "<group>"; };
+		F1FA3AEE1EC219E700355507 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		F1FA3AEF1EC219E700355507 /* InitialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InitialViewController.xib; sourceTree = "<group>"; };
+		F1FA3AF01EC219E700355507 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		F1FA3AF11EC219E700355507 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		F1FA3AF21EC219E700355507 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.otf"; sourceTree = "<group>"; };
+		F1FA3AF31EC219E700355507 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		F1FA3AF41EC219E700355507 /* PasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordViewController.xib; sourceTree = "<group>"; };
+		F1FA3AF51EC219E700355507 /* SignupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupViewController.xib; sourceTree = "<group>"; };
+		F1FA3AF71EC219E700355507 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		F1FA3AF81EC219E700355507 /* BackgroundMover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundMover.swift; sourceTree = "<group>"; };
+		F1FA3AF91EC219E700355507 /* Buttn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttn.swift; sourceTree = "<group>"; };
+		F1FA3AFA1EC219E700355507 /* CrossDissolveAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossDissolveAnimation.swift; sourceTree = "<group>"; };
+		F1FA3AFB1EC219E700355507 /* FacebookService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookService.swift; sourceTree = "<group>"; };
+		F1FA3AFC1EC219E700355507 /* GradientImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientImageView.swift; sourceTree = "<group>"; };
+		F1FA3AFD1EC219E700355507 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		F1FA3AFE1EC219E700355507 /* KeyboardMover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardMover.swift; sourceTree = "<group>"; };
+		F1FA3AFF1EC219E700355507 /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		F1FA3B001EC219E700355507 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F1FA3B011EC219E700355507 /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		F1FA3B021EC219E700355507 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		F1FA3B051EC219E700355507 /* SkyFloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextField.swift; sourceTree = "<group>"; };
+		F1FA3B061EC219E700355507 /* SkyFloatingLabelTextFieldWithIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextFieldWithIcon.swift; sourceTree = "<group>"; };
+		F1FA3B071EC219E700355507 /* UITextField+fixCaretPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+fixCaretPosition.swift"; sourceTree = "<group>"; };
+		F1FA3B081EC219E700355507 /* UIViewController+Nib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Nib.swift"; sourceTree = "<group>"; };
+		F1FA3B091EC219E700355507 /* ValidatorService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatorService.swift; sourceTree = "<group>"; };
 		F1FBC21E1EB53AA900D57ED0 /* SDWDiaryItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDiaryItemViewController.swift; sourceTree = "<group>"; };
 		F1FBC2201EB54DA400D57ED0 /* SDWDiaryListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDiaryListTableViewCell.swift; sourceTree = "<group>"; };
 		F1FBC2211EB54DA400D57ED0 /* SDWDiaryListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWDiaryListTableViewCell.xib; sourceTree = "<group>"; };
@@ -147,6 +237,8 @@
 		F1CB9CB81E9905C900A90363 = {
 			isa = PBXGroup;
 			children = (
+				F1FA3AEA1EC0B56D00355507 /* falconrypro-Bridging-Header.h */,
+				F1FA3AEB1EC219E700355507 /* Vendor */,
 				F1CB9CC31E9905C900A90363 /* falconrypro */,
 				F1CB9CD81E9905C900A90363 /* falconryproTests */,
 				F1CB9CE31E9905C900A90363 /* falconryproUITests */,
@@ -169,24 +261,17 @@
 		F1CB9CC31E9905C900A90363 /* falconrypro */ = {
 			isa = PBXGroup;
 			children = (
+				F1FA3AE41EC0A5D400355507 /* Mapping */,
+				F1FA3AE11EC0A4C900355507 /* Protocols */,
+				F1FA3ADF1EC094FF00355507 /* DisplayModel */,
 				F1CB9CC41E9905C900A90363 /* AppDelegate.swift */,
-				F1AD8B751EA0410B006B2EB1 /* Constants.swift */,
-				F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */,
-				F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */,
-				F1FBC21E1EB53AA900D57ED0 /* SDWDiaryItemViewController.swift */,
-				F1AD8B721E9EA518006B2EB1 /* Models.swift */,
-				F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */,
-				F140C5E81EA25C6F0099C592 /* Extensions.swift */,
-				F140C5E21EA149A10099C592 /* SDWBirdListTableViewCell.swift */,
-				F140C5E61EA2509C0099C592 /* SDWHomeTBC.swift */,
-				F1D2608C1EB3BF3E006D1BE9 /* SDWHomeViewController.swift */,
-				F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */,
-				F10E12FD1EBB417A0044802C /* SDWSeasonListViewController.swift */,
-				F10E12FF1EBB418E0044802C /* SDWSeasonViewController.swift */,
-				F1FBC2201EB54DA400D57ED0 /* SDWDiaryListTableViewCell.swift */,
-				F1FBC2211EB54DA400D57ED0 /* SDWDiaryListTableViewCell.xib */,
-				F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */,
-				F1026AAD1E9D818D00A89821 /* SDWLoginCoordinator.swift */,
+				F1FA3A991EC0709D00355507 /* Utilities */,
+				F1FA3A981EC0706B00355507 /* Setup Flow */,
+				F1FA3A971EC0704A00355507 /* Diary Flow */,
+				F1FA3A9D1EC070E400355507 /* DataModel */,
+				F1FA3A9C1EC070D000355507 /* Managers */,
+				F1FA3A9A1EC070BC00355507 /* Home Flow */,
+				F1FA3A9B1EC070C600355507 /* Auth Flow */,
 				F1CB9CC81E9905C900A90363 /* Main.storyboard */,
 				F1CB9CCB1E9905C900A90363 /* Assets.xcassets */,
 				F1CB9CCD1E9905C900A90363 /* LaunchScreen.storyboard */,
@@ -211,6 +296,185 @@
 				F1CB9CE61E9905C900A90363 /* Info.plist */,
 			);
 			path = falconryproUITests;
+			sourceTree = "<group>";
+		};
+		F1FA3A971EC0704A00355507 /* Diary Flow */ = {
+			isa = PBXGroup;
+			children = (
+				F1FBC21E1EB53AA900D57ED0 /* SDWDiaryItemViewController.swift */,
+				F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */,
+				F1FBC2201EB54DA400D57ED0 /* SDWDiaryListTableViewCell.swift */,
+				F1FBC2211EB54DA400D57ED0 /* SDWDiaryListTableViewCell.xib */,
+			);
+			name = "Diary Flow";
+			sourceTree = "<group>";
+		};
+		F1FA3A981EC0706B00355507 /* Setup Flow */ = {
+			isa = PBXGroup;
+			children = (
+				F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */,
+				F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */,
+				F140C5E21EA149A10099C592 /* SDWBirdListTableViewCell.swift */,
+				F10E12FD1EBB417A0044802C /* SDWSeasonListViewController.swift */,
+				F10E12FF1EBB418E0044802C /* SDWSeasonViewController.swift */,
+				F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */,
+			);
+			name = "Setup Flow";
+			sourceTree = "<group>";
+		};
+		F1FA3A991EC0709D00355507 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F140C5E81EA25C6F0099C592 /* Extensions.swift */,
+				F1AD8B751EA0410B006B2EB1 /* Constants.swift */,
+				F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		F1FA3A9A1EC070BC00355507 /* Home Flow */ = {
+			isa = PBXGroup;
+			children = (
+				F140C5E61EA2509C0099C592 /* SDWHomeTBC.swift */,
+				F1D2608C1EB3BF3E006D1BE9 /* SDWHomeViewController.swift */,
+			);
+			name = "Home Flow";
+			sourceTree = "<group>";
+		};
+		F1FA3A9B1EC070C600355507 /* Auth Flow */ = {
+			isa = PBXGroup;
+			children = (
+				F1026AAD1E9D818D00A89821 /* SDWLoginCoordinator.swift */,
+			);
+			name = "Auth Flow";
+			sourceTree = "<group>";
+		};
+		F1FA3A9C1EC070D000355507 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F1CB316C1EBFB590004C7342 /* NetworkManager.swift */,
+				F1FA3AA11EC0863900355507 /* SDWDataStore.swift */,
+				F1FA3A951EBFFE4300355507 /* DataModelManager.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		F1FA3A9D1EC070E400355507 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				F1FA3AA31EC0899800355507 /* SDWBirdType+CoreDataClass.swift */,
+				F1FA3AA41EC0899800355507 /* SDWBirdType+CoreDataProperties.swift */,
+				F1FA3AA51EC0899800355507 /* SDWSeason+CoreDataClass.swift */,
+				F1FA3AA61EC0899800355507 /* SDWSeason+CoreDataProperties.swift */,
+				F1FA3AA71EC0899800355507 /* SDWFood+CoreDataClass.swift */,
+				F1FA3AA81EC0899800355507 /* SDWFood+CoreDataProperties.swift */,
+				F1FA3AA91EC0899800355507 /* SDWDiaryItem+CoreDataClass.swift */,
+				F1FA3AAA1EC0899800355507 /* SDWDiaryItem+CoreDataProperties.swift */,
+				F1FA3AAB1EC0899800355507 /* SDWUser+CoreDataClass.swift */,
+				F1FA3AAC1EC0899800355507 /* SDWUser+CoreDataProperties.swift */,
+				F1FA3AAD1EC0899800355507 /* SDWBird+CoreDataClass.swift */,
+				F1FA3AAE1EC0899800355507 /* SDWBird+CoreDataProperties.swift */,
+				F1FA3A9E1EC070FB00355507 /* DataModel.xcdatamodeld */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
+		F1FA3ADF1EC094FF00355507 /* DisplayModel */ = {
+			isa = PBXGroup;
+			children = (
+				F1AD8B721E9EA518006B2EB1 /* DisplayModels.swift */,
+			);
+			name = DisplayModel;
+			sourceTree = "<group>";
+		};
+		F1FA3AE11EC0A4C900355507 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F1FA3AE21EC0A4E100355507 /* Protocols.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		F1FA3AE41EC0A5D400355507 /* Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				F1FA3AE71EC0B55400355507 /* FEMAttribute+listsAttributes.h */,
+				F1FA3AE81EC0B55400355507 /* FEMAttribute+listsAttributes.m */,
+				F1FA3AE51EC0A5F900355507 /* SDWMapper.swift */,
+			);
+			name = Mapping;
+			sourceTree = "<group>";
+		};
+		F1FA3AEB1EC219E700355507 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				F1FA3AEC1EC219E700355507 /* LoginKit */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		F1FA3AEC1EC219E700355507 /* LoginKit */ = {
+			isa = PBXGroup;
+			children = (
+				F1FA3AED1EC219E700355507 /* Assets */,
+				F1FA3AF61EC219E700355507 /* Classes */,
+			);
+			path = LoginKit;
+			sourceTree = "<group>";
+		};
+		F1FA3AED1EC219E700355507 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F1FA3AEE1EC219E700355507 /* .gitkeep */,
+				F1FA3AEF1EC219E700355507 /* InitialViewController.xib */,
+				F1FA3AF01EC219E700355507 /* LoginViewController.xib */,
+				F1FA3AF11EC219E700355507 /* Media.xcassets */,
+				F1FA3AF21EC219E700355507 /* Montserrat-Light.otf */,
+				F1FA3AF31EC219E700355507 /* Montserrat-Regular.ttf */,
+				F1FA3AF41EC219E700355507 /* PasswordViewController.xib */,
+				F1FA3AF51EC219E700355507 /* SignupViewController.xib */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		F1FA3AF61EC219E700355507 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F1FA3AF71EC219E700355507 /* .gitkeep */,
+				F1FA3AF81EC219E700355507 /* BackgroundMover.swift */,
+				F1FA3AF91EC219E700355507 /* Buttn.swift */,
+				F1FA3AFA1EC219E700355507 /* CrossDissolveAnimation.swift */,
+				F1FA3AFB1EC219E700355507 /* FacebookService.swift */,
+				F1FA3AFC1EC219E700355507 /* GradientImageView.swift */,
+				F1FA3AFD1EC219E700355507 /* InitialViewController.swift */,
+				F1FA3AFE1EC219E700355507 /* KeyboardMover.swift */,
+				F1FA3AFF1EC219E700355507 /* LoginCoordinator.swift */,
+				F1FA3B001EC219E700355507 /* LoginViewController.swift */,
+				F1FA3B011EC219E700355507 /* PasswordViewController.swift */,
+				F1FA3B021EC219E700355507 /* SignupViewController.swift */,
+				F1FA3B031EC219E700355507 /* Third Party */,
+				F1FA3B081EC219E700355507 /* UIViewController+Nib.swift */,
+				F1FA3B091EC219E700355507 /* ValidatorService.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F1FA3B031EC219E700355507 /* Third Party */ = {
+			isa = PBXGroup;
+			children = (
+				F1FA3B041EC219E700355507 /* Skyscanner:SkyFloatingLabelTextField */,
+			);
+			path = "Third Party";
+			sourceTree = "<group>";
+		};
+		F1FA3B041EC219E700355507 /* Skyscanner:SkyFloatingLabelTextField */ = {
+			isa = PBXGroup;
+			children = (
+				F1FA3B051EC219E700355507 /* SkyFloatingLabelTextField.swift */,
+				F1FA3B061EC219E700355507 /* SkyFloatingLabelTextFieldWithIcon.swift */,
+				F1FA3B071EC219E700355507 /* UITextField+fixCaretPosition.swift */,
+			);
+			path = "Skyscanner:SkyFloatingLabelTextField";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,11 +597,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1FA3B0F1EC219E700355507 /* Montserrat-Regular.ttf in Resources */,
+				F1FA3B101EC219E700355507 /* PasswordViewController.xib in Resources */,
+				F1FA3B0E1EC219E700355507 /* Montserrat-Light.otf in Resources */,
+				F1FA3B0D1EC219E700355507 /* Media.xcassets in Resources */,
+				F1FA3ABB1EC08C6700355507 /* DataModel.xcdatamodeld in Resources */,
 				F1CB9CCF1E9905C900A90363 /* LaunchScreen.storyboard in Resources */,
 				F1CB9CCC1E9905C900A90363 /* Assets.xcassets in Resources */,
+				F1FA3B0B1EC219E700355507 /* InitialViewController.xib in Resources */,
 				F1CB9CCA1E9905C900A90363 /* Main.storyboard in Resources */,
 				F140C5E51EA149A10099C592 /* SDWBirdListTableViewCell.xib in Resources */,
 				F1FBC2231EB54DA500D57ED0 /* SDWDiaryListTableViewCell.xib in Resources */,
+				F1FA3B0A1EC219E700355507 /* .gitkeep in Resources */,
+				F1FA3B121EC219E700355507 /* .gitkeep in Resources */,
+				F1FA3B111EC219E700355507 /* SignupViewController.xib in Resources */,
+				F1FA3B0C1EC219E700355507 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,22 +787,56 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1FA3B131EC219E700355507 /* BackgroundMover.swift in Sources */,
+				F1FA3AB41EC0899800355507 /* SDWFood+CoreDataProperties.swift in Sources */,
 				F1AD8B711E9EA18A006B2EB1 /* SDWBirdViewController.swift in Sources */,
 				F10E12FE1EBB417A0044802C /* SDWSeasonListViewController.swift in Sources */,
 				F1CB9CC51E9905C900A90363 /* AppDelegate.swift in Sources */,
+				F1FA3B161EC219E700355507 /* FacebookService.swift in Sources */,
+				F1FA3B221EC219E700355507 /* ValidatorService.swift in Sources */,
 				F1026AAE1E9D818D00A89821 /* SDWLoginCoordinator.swift in Sources */,
+				F1FA3AAF1EC0899800355507 /* SDWBirdType+CoreDataClass.swift in Sources */,
 				F1AD8B761EA0410B006B2EB1 /* Constants.swift in Sources */,
 				F140C5E91EA25C6F0099C592 /* Extensions.swift in Sources */,
+				F1FA3AB91EC0899800355507 /* SDWBird+CoreDataClass.swift in Sources */,
+				F1FA3B191EC219E700355507 /* KeyboardMover.swift in Sources */,
 				F1AD8B6F1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift in Sources */,
+				F1FA3ABA1EC0899800355507 /* SDWBird+CoreDataProperties.swift in Sources */,
+				F1FA3AB61EC0899800355507 /* SDWDiaryItem+CoreDataProperties.swift in Sources */,
+				F1FA3AB81EC0899800355507 /* SDWUser+CoreDataProperties.swift in Sources */,
+				F1FA3B181EC219E700355507 /* InitialViewController.swift in Sources */,
+				F1FA3B211EC219E700355507 /* UIViewController+Nib.swift in Sources */,
+				F1FA3A961EBFFE4300355507 /* DataModelManager.swift in Sources */,
+				F1FA3B201EC219E700355507 /* UITextField+fixCaretPosition.swift in Sources */,
+				F1FA3AE91EC0B55400355507 /* FEMAttribute+listsAttributes.m in Sources */,
 				F1FBC2221EB54DA500D57ED0 /* SDWDiaryListTableViewCell.swift in Sources */,
+				F1FA3AE31EC0A4E100355507 /* Protocols.swift in Sources */,
+				F1FA3AB71EC0899800355507 /* SDWUser+CoreDataClass.swift in Sources */,
 				F1FBC21F1EB53AA900D57ED0 /* SDWDiaryItemViewController.swift in Sources */,
 				F12550621EA2D034004122D4 /* SDWDiaryListViewController.swift in Sources */,
+				F1CB316D1EBFB590004C7342 /* NetworkManager.swift in Sources */,
+				F1FA3B1C1EC219E700355507 /* PasswordViewController.swift in Sources */,
+				F1FA3AB31EC0899800355507 /* SDWFood+CoreDataClass.swift in Sources */,
+				F1FA3B1D1EC219E700355507 /* SignupViewController.swift in Sources */,
+				F1FA3B1E1EC219E700355507 /* SkyFloatingLabelTextField.swift in Sources */,
+				F1FA3AE61EC0A5F900355507 /* SDWMapper.swift in Sources */,
+				F1FA3AB01EC0899800355507 /* SDWBirdType+CoreDataProperties.swift in Sources */,
 				F19FEDC71EB380ED00996B40 /* searchable_push_row.swift in Sources */,
 				F1D2608D1EB3BF3E006D1BE9 /* SDWHomeViewController.swift in Sources */,
-				F1AD8B731E9EA518006B2EB1 /* Models.swift in Sources */,
+				F1FA3B1A1EC219E700355507 /* LoginCoordinator.swift in Sources */,
+				F1FA3AA21EC0863900355507 /* SDWDataStore.swift in Sources */,
+				F1FA3AB51EC0899800355507 /* SDWDiaryItem+CoreDataClass.swift in Sources */,
+				F1AD8B731E9EA518006B2EB1 /* DisplayModels.swift in Sources */,
+				F1FA3B1B1EC219E700355507 /* LoginViewController.swift in Sources */,
 				F140C5E41EA149A10099C592 /* SDWBirdListTableViewCell.swift in Sources */,
+				F1FA3B141EC219E700355507 /* Buttn.swift in Sources */,
+				F1FA3B1F1EC219E700355507 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
+				F1FA3AB21EC0899800355507 /* SDWSeason+CoreDataProperties.swift in Sources */,
+				F1FA3AB11EC0899800355507 /* SDWSeason+CoreDataClass.swift in Sources */,
+				F1FA3B151EC219E700355507 /* CrossDissolveAnimation.swift in Sources */,
 				F10E13001EBB418E0044802C /* SDWSeasonViewController.swift in Sources */,
 				F140C5E71EA2509C0099C592 /* SDWHomeTBC.swift in Sources */,
+				F1FA3B171EC219E700355507 /* GradientImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,6 +1000,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5af0b21d-8dfc-4b0e-a386-36e5c72163b7";
 				PROVISIONING_PROFILE_SPECIFIER = "Falconry AdHoc";
+				SWIFT_OBJC_BRIDGING_HEADER = "falconrypro-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -712,6 +1021,7 @@
 				PROVISIONING_PROFILE = "5af0b21d-8dfc-4b0e-a386-36e5c72163b7";
 				PROVISIONING_PROFILE_SPECIFIER = "Falconry AdHoc";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "\"-D\" \"PROD\"";
+				SWIFT_OBJC_BRIDGING_HEADER = "falconrypro-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -819,6 +1129,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F1FA3A9E1EC070FB00355507 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F1FA3A9F1EC070FB00355507 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = F1FA3A9F1EC070FB00355507 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F1CB9CB91E9905C900A90363 /* Project object */;
 }

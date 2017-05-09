@@ -1,0 +1,66 @@
+//
+//  SDWBird+CoreDataProperties.swift
+//  falconrypro
+//
+//  Created by Alex Linkov on 5/8/17.
+//  Copyright © 2017 SDWR. All rights reserved.
+//
+
+import Foundation
+import CoreData
+
+
+extension SDWBird {
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<SDWBird> {
+        return NSFetchRequest<SDWBird>(entityName: "SDWBird")
+    }
+
+    @NSManaged public var name: String?
+    @NSManaged public var isMale: Bool
+    @NSManaged public var birthday: NSDate?
+    @NSManaged public var fatWeight: Int16
+    @NSManaged public var huntingWeight: Int16
+    @NSManaged public var imageURL: String?
+    @NSManaged public var thumbURL: String?
+    @NSManaged public var code: String?
+    @NSManaged public var remoteID: String?
+    @NSManaged public var owner: SDWUser?
+    @NSManaged public var types: NSSet?
+    @NSManaged public var diaryItems: NSSet?
+
+}
+
+// MARK: Generated accessors for types
+extension SDWBird {
+
+    @objc(addTypesObject:)
+    @NSManaged public func addToTypes(_ value: SDWBird)
+
+    @objc(removeTypesObject:)
+    @NSManaged public func removeFromTypes(_ value: SDWBird)
+
+    @objc(addTypes:)
+    @NSManaged public func addToTypes(_ values: NSSet)
+
+    @objc(removeTypes:)
+    @NSManaged public func removeFromTypes(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for diaryItems
+extension SDWBird {
+
+    @objc(addDiaryItemsObject:)
+    @NSManaged public func addToDiaryItems(_ value: SDWDiaryItem)
+
+    @objc(removeDiaryItemsObject:)
+    @NSManaged public func removeFromDiaryItems(_ value: SDWDiaryItem)
+
+    @objc(addDiaryItems:)
+    @NSManaged public func addToDiaryItems(_ values: NSSet)
+
+    @objc(removeDiaryItems:)
+    @NSManaged public func removeFromDiaryItems(_ values: NSSet)
+
+}

@@ -8,15 +8,17 @@
 
 import UIKit
 import Foundation
-import ILLoginKit
+
 import Networking
 import PKHUD
 
 
-class SDWLoginCoordinator: ILLoginKit.LoginCoordinator {
+class SDWLoginCoordinator: LoginCoordinator {
 
     // MARK: - LoginCoordinator
     var networking:Networking = Networking(baseURL: Constants.server.BASEURL)
+    let networkManager = NetworkManager.sharedInstance
+    let dataStore:SDWDataStore = SDWDataStore.sharedInstance
     
     override func start() {
         super.start()
@@ -60,45 +62,47 @@ class SDWLoginCoordinator: ILLoginKit.LoginCoordinator {
         PKHUD.sharedHUD.show()
         // Handle login via your API
         
-        networking.post("/auth/sign_in",parameters: ["email" : email, "password" : password])  { result in
+        dataStore.pullUserWith(email: email, password: password) { (result, error) in
             
             PKHUD.sharedHUD.hide()
-            
-            switch result {
-            case .success(let response):
-                print(response)
-                self.configureHeaders(json: response.headers as NSDictionary)
-                self.finish()
-                
-                
-            case .failure(let response):
-                print(response)
-            }
+            self.finish()
             
         }
+        
+//        networking.post("/auth/sign_in",parameters: ["email" : email, "password" : password])  { result in
+//            
+//            PKHUD.sharedHUD.hide()
+//            
+//            switch result {
+//            case .success(let response):
+//                print(response)
+//                self.configureHeaders(json: response.headers as NSDictionary)
+//                self.finish()
+//                
+//                
+//            case .failure(let response):
+//                print(response)
+//            }
+//            
+//        }
     }
     
-    override func signup(name: String, email: String, password: String) {
+    override func signup(email: String, password: String) {
         // Handle signup via your API
         PKHUD.sharedHUD.show()
         
-        networking.post("/auth",parameters: ["email" : email, "password" : password, "password_confirmation":password])  { result in
+        dataStore.pushUserWith(email: email, password: password) { (result, error) in
+            
             PKHUD.sharedHUD.hide()
-            switch result {
-            case .success(let response):
-                let json = response.headers
-                self.configureHeaders(json: json as NSDictionary)
-                
+            
+            if (error == nil) {
                 self.login(email: email, password: password)
-                
-                
-                
-                
-            case .failure(let response):
-                 print(response)
+            } else {
+                print(error?.localizedDescription ?? "No data")
             }
-
         }
+
+        
     }
     
     func configureHeaders(json: NSDictionary, isFacebook: Bool? = false) {

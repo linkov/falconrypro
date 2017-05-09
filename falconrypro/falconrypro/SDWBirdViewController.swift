@@ -16,8 +16,10 @@ import PKHUD
 class SDWBirdViewController: FormViewController {
     
     let networking = Networking(baseURL: Constants.server.BASEURL)
+    let dataStore:SDWDataStore = SDWDataStore.sharedInstance
+    
     var bird:ListDisplayItem?
-    var birdtypes = [TypeDisplayItem]()
+    var birdtypes = [BirdTypeDisplayItem]()
     var birthdayDateFormatter = DateFormatter()
     var weightFormatter = NumberFormatter()
     
@@ -45,7 +47,17 @@ class SDWBirdViewController: FormViewController {
             self.title = "New bird"
         }
         
-        self.loadBirdTypes()
+        self.dataStore.pullAllBirdTypes(currentData: { (objects, error) in
+            
+            self.birdtypes = objects as! [BirdTypeDisplayItem]
+            self.form.sectionBy(tag:"species")?.reload()
+            
+        }, fetchedData: {(objects, error) in
+            
+            self.birdtypes = objects as! [BirdTypeDisplayItem]
+            self.form.sectionBy(tag:"species")?.reload()
+        })
+        
         let addButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(finish(_:)))
         addButton.tintColor = UIColor.black
         
@@ -139,7 +151,7 @@ class SDWBirdViewController: FormViewController {
                     })
                 
                 
-                <<< SearchablePushRow<TypeDisplayItem>("name") {
+                <<< SearchablePushRow<BirdTypeDisplayItem>("name") {
                     $0.hidden = "$segment_row != 'Pure'"
                     $0.tag = "species_pure"
                     $0.baseValue = (self.currentBirdType.name != nil) ? self.currentBirdType : nil
@@ -151,7 +163,7 @@ class SDWBirdViewController: FormViewController {
                     }.cellUpdate { cell, row in
                         row.options = self.birdtypes
                 }
-                <<< SearchablePushRow<TypeDisplayItem>("name") {
+                <<< SearchablePushRow<BirdTypeDisplayItem>("name") {
                     $0.hidden = "$segment_row != 'Hybrid 2'"
                     $0.tag = "species_h2_1"
                     $0.baseValue = (self.currentBirdTypeH2_1.name != nil) ? self.currentBirdTypeH2_1 : nil
@@ -163,7 +175,7 @@ class SDWBirdViewController: FormViewController {
                     }.cellUpdate { cell, row in
                         row.options = self.birdtypes
                 }
-                <<< SearchablePushRow<TypeDisplayItem>("name") {
+                <<< SearchablePushRow<BirdTypeDisplayItem>("name") {
                     $0.hidden = "$segment_row != 'Hybrid 2'"
                     $0.tag = "species_h2_2"
                     $0.baseValue = (self.currentBirdTypeH2_2.name != nil) ? self.currentBirdTypeH2_2 : nil
@@ -175,7 +187,7 @@ class SDWBirdViewController: FormViewController {
                     }.cellUpdate { cell, row in
                         row.options = self.birdtypes
                 }
-                <<< SearchablePushRow<TypeDisplayItem>("name") {
+                <<< SearchablePushRow<BirdTypeDisplayItem>("name") {
                     $0.hidden = "$segment_row != 'Hybrid 4'"
                     $0.tag = "species_h4_1"
                     $0.baseValue =  (self.currentBirdTypeH4_1.name != nil) ? self.currentBirdTypeH4_1 : nil
@@ -187,7 +199,7 @@ class SDWBirdViewController: FormViewController {
                     }.cellUpdate { cell, row in
                         row.options = self.birdtypes
                 }
-                <<< SearchablePushRow<TypeDisplayItem>("name") {
+                <<< SearchablePushRow<BirdTypeDisplayItem>("name") {
                     $0.hidden = "$segment_row != 'Hybrid 4'"
                     $0.tag = "species_h4_2"
                     $0.baseValue = (self.currentBirdTypeH4_2.name != nil) ? self.currentBirdTypeH4_2 : nil
@@ -199,7 +211,7 @@ class SDWBirdViewController: FormViewController {
                     }.cellUpdate { cell, row in
                         row.options = self.birdtypes
                 }
-                <<< SearchablePushRow<TypeDisplayItem>("name") {
+                <<< SearchablePushRow<BirdTypeDisplayItem>("name") {
                     $0.hidden = "$segment_row != 'Hybrid 4'"
                     $0.tag = "species_h4_3"
                     $0.baseValue = (self.currentBirdTypeH4_3.name != nil) ? self.currentBirdTypeH4_3 : nil
@@ -211,7 +223,7 @@ class SDWBirdViewController: FormViewController {
                     }.cellUpdate { cell, row in
                         row.options = self.birdtypes
                 }
-                <<< SearchablePushRow<TypeDisplayItem>("name") {
+                <<< SearchablePushRow<BirdTypeDisplayItem>("name") {
                     $0.hidden = "$segment_row != 'Hybrid 4'"
                     $0.tag = "species_h4_4"
                     $0.baseValue = (self.currentBirdTypeH4_4.name != nil) ? self.currentBirdTypeH4_4 : nil
@@ -422,45 +434,45 @@ class SDWBirdViewController: FormViewController {
         
     }
     
-    func loadBirdTypes() {
-        
-        let token = UserDefaults.standard.value(forKey: "access-token")
-        let expires = UserDefaults.standard.value(forKey: "expiry")
-        let client = UserDefaults.standard.value(forKey: "client")
-        let uid = UserDefaults.standard.value(forKey: "uid")
-        
-        var array = [TypeDisplayItem]()
-        
-        networking.headerFields = ["access-token": token as! String,"client":client as! String,"uid":uid as! String,"expiry":expires as! String]
-        
-        
-        networking.get("/bird_types")  { result in
-          
-            switch result {
-            case .success(let response):
-
-                for item in response.arrayBody {
-                    
-                    let object = TypeDisplayItem()
-                    object.name = item["name"] as? String
-                    object.latin = item["latin"] as? String
-                    object.model = item
-        
-                    
-                    array.append(object)
-                    
-                    
-                }
-                self.birdtypes = array
-                self.form.sectionBy(tag:"species")?.reload()
-                
-            case .failure(let response):
-                print(response)
-            }
-            
-        }
-        
-    }
+//    func loadBirdTypes() {
+//        
+//        let token = UserDefaults.standard.value(forKey: "access-token")
+//        let expires = UserDefaults.standard.value(forKey: "expiry")
+//        let client = UserDefaults.standard.value(forKey: "client")
+//        let uid = UserDefaults.standard.value(forKey: "uid")
+//        
+//        var array = [TypeDisplayItem]()
+//        
+//        networking.headerFields = ["access-token": token as! String,"client":client as! String,"uid":uid as! String,"expiry":expires as! String]
+//        
+//        
+//        networking.get("/bird_types")  { result in
+//          
+//            switch result {
+//            case .success(let response):
+//
+//                for item in response.arrayBody {
+//                    
+//                    let object = TypeDisplayItem()
+//                    object.name = item["name"] as? String
+//                    object.latin = item["latin"] as? String
+//                    object.model = item
+//        
+//                    
+//                    array.append(object)
+//                    
+//                    
+//                }
+//                self.birdtypes = array
+//                self.form.sectionBy(tag:"species")?.reload()
+//                
+//            case .failure(let response):
+//                print(response)
+//            }
+//            
+//        }
+//        
+//    }
     
     func updateBird() {
         
@@ -472,7 +484,7 @@ class SDWBirdViewController: FormViewController {
         let sex: ActionSheetRow<String>! = form.rowBy(tag:"sex")
         let birdTypes = self.selectedBirdTypes()
         
-        let sexbool = ((sex?.value) == "Male" ? 1 : 0)
+        let sexbool = ((sex?.value) == "Male" ? true : false)
         
         var dict: [String: Any] = [
             "name": (name?.value)!,
@@ -512,22 +524,13 @@ class SDWBirdViewController: FormViewController {
             }
             
         } else {
-            networking.post("/birds", parameters: ["bird":dict])  { result in
-                PKHUD.sharedHUD.hide()
-                switch result {
-                case .success(let response):
-                    self.bird = ListDisplayItem()
-                    self.bird?.model = response.dictionaryBody
-                    print(response)
-                    self.uploadImage()
-                    
-                    
-                    
-                case .failure(let response):
-                    print(response.dictionaryBody)
-                }
+            
+            dataStore.pushBirdWith(code: nil, sex: sexbool, name: (name?.value)!, birthday: (bday?.value)!, fatWeight: (fweight?.value)!, huntingWeight: (hweight?.value)!, image: nil, completion: { (result, error) in
                 
-            }
+                PKHUD.sharedHUD.hide()
+                
+            })
+
         }
         
 

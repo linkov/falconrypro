@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ILLoginKit
+
 import Networking
 import PKHUD
 import SDWebImage
@@ -15,6 +15,9 @@ import UIEmptyState
 
 class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStateDelegate {
     
+    let dataModelManager = DataModelManager.sharedInstance
+    let networkManager = NetworkManager.sharedInstance
+    let dataStore = SDWDataStore.sharedInstance
     var objects = [ListDisplayItem]()
     
     lazy var loginCoordinator: SDWLoginCoordinator = {
@@ -79,46 +82,52 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
     
     func loadBirds() {
         
-        let networking = Networking(baseURL: Constants.server.BASEURL)
         
-        let token = UserDefaults.standard.value(forKey: "access-token")
-        let expires = UserDefaults.standard.value(forKey: "expiry")
-        let client = UserDefaults.standard.value(forKey: "client")
-        let uid = UserDefaults.standard.value(forKey: "uid")
+        dataStore.pullAllBirds(currentData: { (objects, error) in
         
-        var array = [ListDisplayItem]()
-
-        networking.headerFields = ["access-token": token as! String,"client":client as! String,"uid":uid as! String,"expiry":expires as! String]
+            print(objects ?? "No objects")
+            print(error ?? "")
         
-        
-        networking.get("/birds")  { result in
-            PKHUD.sharedHUD.hide()
-            switch result {
-            case .success(let response):
-                print(response)
-                print(response.arrayBody)
-                for item in response.arrayBody {
-                    
-                    let object = ListDisplayItem()
-                    object.first = item["name"] as? String
-                    let arr = item["type_name"] as? Array<String>
-                    object.sub = arr?.joined(separator: ", ")
-                    object.imageURL = item["thumb"] as? String
-                    object.model = item
-                    
-                    array.append(object)
-                    
-                    
-                }
-                 self.objects = array
-                 self.tableView.reloadData()
-                 self.reloadEmptyState(forTableView: self.tableView)
-                
-            case .failure(let response):
-                print(response)
-            }
+        }) { (fetched, error) in
+            
+            print(fetched ?? "No objects")
+            print(error ?? "")
             
         }
+        
+        
+//        networkManager.fetchBirds { (result, error) in
+//            
+//            
+//            guard let data = result, error == nil else {
+//                
+//                print(error?.localizedDescription ?? "No data")
+//                return
+//            }
+//            
+//            var array = [ListDisplayItem]()
+//            
+//            for item in data as! Array<Dictionary<AnyHashable, Any>> {
+//                
+//                let object = ListDisplayItem()
+//                object.first = item["name"] as? String
+//                let arr = item["type_name"] as? Array<String>
+//                object.sub = arr?.joined(separator: ", ")
+//                object.imageURL = item["thumb"] as? String
+//                object.model = item as? Dictionary<String, Any>
+//                
+//                array.append(object)
+//                
+//                
+//            }
+//            self.objects = array
+//            self.tableView.reloadData()
+//            self.reloadEmptyState(forTableView: self.tableView)
+//            
+//        }
+        
+       
+
         
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -211,19 +220,19 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
         return NSAttributedString(string: "No birds yet", attributes: attrs)
     }
     
-//    var emptyStateButtonSize: CGSize? {
-//        return CGSize.init(width: 40, height: 40)
-//    }
-//    
-//    var emptyStateButtonImage: UIImage? {
-//        return #imageLiteral(resourceName: "f1")
-//    }
+    var emptyStateButtonSize: CGSize? {
+        return CGSize.init(width: 40, height: 40)
+    }
     
-//    var emptyStateButtonTitle: NSAttributedString? {
-//        let attrs = [NSForegroundColorAttributeName: UIColor.black,
-//                     NSFontAttributeName: UIFont.systemFont(ofSize: 26)]
-//        return NSAttributedString(string: "Add", attributes: attrs)
-//    }
+    var emptyStateButtonImage: UIImage? {
+        return #imageLiteral(resourceName: "f1")
+    }
+    
+    var emptyStateButtonTitle: NSAttributedString? {
+        let attrs = [NSForegroundColorAttributeName: UIColor.black,
+                     NSFontAttributeName: UIFont.systemFont(ofSize: 26)]
+        return NSAttributedString(string: "Add", attributes: attrs)
+    }
 
     
     // MARK: - Empty State Delegate
