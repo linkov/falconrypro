@@ -2,7 +2,7 @@
 //  SDWBird+CoreDataProperties.swift
 //  falconrypro
 //
-//  Created by Alex Linkov on 5/8/17.
+//  Created by Alex Linkov on 5/10/17.
 //  Copyright © 2017 SDWR. All rights reserved.
 //
 
@@ -28,6 +28,7 @@ extension SDWBird {
     @NSManaged public var owner: SDWUser?
     @NSManaged public var types: NSSet?
     @NSManaged public var diaryItems: NSSet?
+    @NSManaged public var seasons: NSSet?
 
 }
 
@@ -35,10 +36,10 @@ extension SDWBird {
 extension SDWBird {
 
     @objc(addTypesObject:)
-    @NSManaged public func addToTypes(_ value: SDWBird)
+    @NSManaged public func addToTypes(_ value: SDWBirdType)
 
     @objc(removeTypesObject:)
-    @NSManaged public func removeFromTypes(_ value: SDWBird)
+    @NSManaged public func removeFromTypes(_ value: SDWBirdType)
 
     @objc(addTypes:)
     @NSManaged public func addToTypes(_ values: NSSet)
@@ -62,5 +63,22 @@ extension SDWBird {
 
     @objc(removeDiaryItems:)
     @NSManaged public func removeFromDiaryItems(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for seasons
+extension SDWBird {
+
+    @objc(addSeasonsObject:)
+    @NSManaged public func addToSeasons(_ value: SDWSeason)
+
+    @objc(removeSeasonsObject:)
+    @NSManaged public func removeFromSeasons(_ value: SDWSeason)
+
+    @objc(addSeasons:)
+    @NSManaged public func addToSeasons(_ values: NSSet)
+
+    @objc(removeSeasons:)
+    @NSManaged public func removeFromSeasons(_ values: NSSet)
 
 }

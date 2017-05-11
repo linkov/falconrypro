@@ -20,6 +20,8 @@ target 'falconrypro' do
   pod 'FastEasyMapping', '~> 1.1'
   pod 'Validator', '~> 2.1.1'
   pod 'FBSDKLoginKit', '4.18.0'
+  pod 'Charts'
+  pod 'RoundedSwitch'
 
   target 'falconryproTests' do
     inherit! :search_paths

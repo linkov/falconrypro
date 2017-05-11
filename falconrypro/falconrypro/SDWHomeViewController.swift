@@ -12,9 +12,12 @@ import MiniTabBar
 class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     
     var diaryListNav :UINavigationController?
-    var bird:ListDisplayItem?
-    var season:ListDisplayItem?
+    var statsListNav :UINavigationController?
+    
+    var bird:BirdDisplayItem?
+    var season:SeasonDisplayItem?
     var diaryListVC:SDWDiaryListViewController?
+    var statsVC:SDWStatsViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,15 +67,22 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         
         if (index == 0) {
             
+            if ((self.statsListNav) != nil) {
+                self.statsVC?.removeFromParentViewController()
+                self.statsListNav?.willMove(toParentViewController: self)
+                self.statsListNav?.view.removeFromSuperview()
+                self.statsListNav?.removeFromParentViewController()
+            }
+            
            self.diaryListNav = storyboard?.instantiateViewController(withIdentifier: "DiaryListNav") as? UINavigationController
+    
             
-
-            
-            self.diaryListVC = self.diaryListNav!.viewControllers[0] as! SDWDiaryListViewController
+            self.diaryListVC = self.diaryListNav!.viewControllers[0] as? SDWDiaryListViewController
             self.diaryListVC?.bird = self.bird
+            self.diaryListVC?.season = self.season
             
             
-            self.diaryListVC?.title = self.bird?.first
+            self.diaryListVC?.title = self.bird?.name
             
             //        let editTodayButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editToday(_:)))
             let editTodayButton = UIBarButtonItem(title: "Today", style: .done, target: self, action: #selector(editToday(_:)))
@@ -93,6 +103,29 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
             
         } else {
             
+            self.diaryListNav?.willMove(toParentViewController: self)
+            self.diaryListNav?.view.removeFromSuperview()
+            self.diaryListNav?.removeFromParentViewController()
+            
+            
+            
+            self.statsListNav = storyboard?.instantiateViewController(withIdentifier: "StatsListNav") as? UINavigationController
+            
+            
+            self.statsVC = self.statsListNav!.viewControllers[0] as? SDWStatsViewController
+            self.statsVC?.bird = self.bird
+            self.statsVC?.season = self.season
+            
+            
+            
+            self.addChildViewController(self.statsListNav!)
+            self.statsListNav!.view.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height-44)
+            self.view.insertSubview(self.statsListNav!.view, at: 0)
+            self.view.bringSubview(toFront: self.view)
+            self.statsListNav!.didMove(toParentViewController: self)
+
+            
+
         }
     }
     
@@ -119,11 +152,8 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
             controller.diaryItem = self.diaryListVC?.existingTodayItem
         }
         self.diaryListNav?.pushViewController(controller, animated: true)
-        
-//        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "BirdProfileEdit") as! UINavigationController
-//        let birdController = controller.viewControllers[0] as! SDWBirdViewController
-//        birdController.bird = bird
-//        self.present(controller, animated: true, completion: nil)
+//
+
     }
 
 }

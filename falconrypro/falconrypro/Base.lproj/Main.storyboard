@@ -112,8 +112,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="zCa-tB-QhU" kind="show" id="7UI-S7-Vm8"/>
                         <segue destination="Tfa-Zx-mvt" kind="show" id="H7E-Wm-ifS"/>
+                        <segue destination="CVg-zS-hJg" kind="showDetail" id="wjQ-Gg-AZv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KfY-u9-zzv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -174,10 +174,26 @@
             </objects>
             <point key="canvasLocation" x="6417" y="-546"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="E4h-4l-11o">
+            <objects>
+                <navigationController storyboardIdentifier="StatsListNav" id="CVg-zS-hJg" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="TiM-Xd-QpX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="zCa-tB-QhU" kind="relationship" relationship="rootViewController" id="7dI-Lz-GpV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zVI-8M-iJq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4641" y="141"/>
+        </scene>
         <!--Stats-->
         <scene sceneID="Ku9-Cq-KZv">
             <objects>
-                <viewController id="zCa-tB-QhU" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SDWStatsViewController" id="zCa-tB-QhU" customClass="SDWStatsViewController" customModule="falconrypro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nlc-Ib-h01"/>
                         <viewControllerLayoutGuide type="bottom" id="SZc-Li-Avn"/>
@@ -185,13 +201,46 @@
                     <view key="view" contentMode="scaleToFill" id="f3h-bR-5nm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MTa-3R-cvE">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="MTa-3R-cvE" secondAttribute="trailing" id="TJC-qY-v7d"/>
+                            <constraint firstItem="MTa-3R-cvE" firstAttribute="top" secondItem="Nlc-Ib-h01" secondAttribute="bottom" constant="-64" id="WPe-Pa-Hmu"/>
+                            <constraint firstItem="SZc-Li-Avn" firstAttribute="top" secondItem="MTa-3R-cvE" secondAttribute="bottom" id="bKl-Wb-gg9"/>
+                            <constraint firstItem="MTa-3R-cvE" firstAttribute="leading" secondItem="f3h-bR-5nm" secondAttribute="leading" id="rBK-iQ-ftQ"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Stats" id="zfL-BR-FfQ"/>
+                    <navigationItem key="navigationItem" id="lnl-M6-AfL">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="QoP-5l-0Dy" customClass="Switch" customModule="RoundedSwitch">
+                            <rect key="frame" x="112.5" y="10.5" width="150" height="23"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="0.0" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="leftText" value="sample"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="rightText" value="actual"/>
+                                <userDefinedRuntimeAttribute type="color" keyPath="disabledColor">
+                                    <color key="value" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dataSwitch" destination="QoP-5l-0Dy" id="jdQ-VA-q45"/>
+                        <outlet property="tableView" destination="MTa-3R-cvE" id="Hmo-Bh-6HR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Cw-It-awL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4641" y="186"/>
+            <point key="canvasLocation" x="5504.8000000000002" y="151.57421289355324"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DNh-Vd-Iq3">

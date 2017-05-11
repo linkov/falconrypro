@@ -14,8 +14,8 @@ import UIEmptyState
 
 class SDWSeasonListViewController: UITableViewController {
     
-    var objects = [ListDisplayItem]()
-    var bird:ListDisplayItem?
+    var objects = [SeasonDisplayItem]()
+    var bird:BirdDisplayItem?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +25,7 @@ class SDWSeasonListViewController: UITableViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         addButton.tintColor = UIColor.black
         self.navigationItem.rightBarButtonItem = addButton
-        
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         
         
@@ -34,17 +34,19 @@ class SDWSeasonListViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let bird_id = self.bird?.model?["id"] as! String
-        self.loadSeasonsForBird(bird_id: bird_id)
+        
+        self.objects = self.bird?.seasons ?? []
+        self.tableView.reloadData()
+        
     }
     
     func insertNewObject(_ sender: Any) {
         
-        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "SeasonEdit") as! UINavigationController
-        let seasonVC:SDWSeasonViewController = controller.viewControllers[0] as! SDWSeasonViewController
-        seasonVC.bird = self.bird
-        
-        self.present(controller, animated: true, completion: nil)
+//        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "SeasonEdit") as! UINavigationController
+//        let seasonVC:SDWSeasonViewController = controller.viewControllers[0] as! SDWSeasonViewController
+//        seasonVC.bird = self.bird
+//        
+//        self.present(controller, animated: true, completion: nil)
     }
     
     
@@ -67,9 +69,9 @@ class SDWSeasonListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "SeasonCell")!
         
-        let object:ListDisplayItem = objects[indexPath.row]
-        cell.textLabel?.text = object.first
-        cell.detailTextLabel?.text = object.sub
+        let object:SeasonDisplayItem = objects[indexPath.row]
+        cell.textLabel?.text = "Hunting season"
+        cell.detailTextLabel?.text = object.startDateString! + " - " + object.endDateString!
         
         
         
@@ -89,51 +91,6 @@ class SDWSeasonListViewController: UITableViewController {
     }
 
     
-    
-    // Network
-    func loadSeasonsForBird(bird_id:String) {
-        
-        let networking = Networking(baseURL: Constants.server.BASEURL)
-        
-        let token = UserDefaults.standard.value(forKey: "access-token")
-        let expires = UserDefaults.standard.value(forKey: "expiry")
-        let client = UserDefaults.standard.value(forKey: "client")
-        let uid = UserDefaults.standard.value(forKey: "uid")
-        
-        var array = [ListDisplayItem]()
-        
-        networking.headerFields = ["access-token": token as! String,"client":client as! String,"uid":uid as! String,"expiry":expires as! String]
-        
-        
-        networking.get("/seasons?bird_id="+bird_id)  { result in
-            PKHUD.sharedHUD.hide()
-            switch result {
-            case .success(let response):
-                print(response)
-                print(response.arrayBody)
-                for item in response.arrayBody {
-                    
-                    let object = ListDisplayItem()
-                    var subString:String = item["start_date"] as! String
-                    subString += " - "
-                    subString += (item["end_date"] as? String)!
-                    object.first = "Hunting Season"
-                    object.sub = subString
-                    object.model = item
-                    
-                    array.append(object)
-                    
-                    
-                }
-                self.objects = array
-                self.tableView.reloadData()
-                
-            case .failure(let response):
-                print(response)
-            }
-            
-        }
-        
-    }
+
 
 }

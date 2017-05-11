@@ -2,7 +2,7 @@
 //  SDWBirdType+CoreDataProperties.swift
 //  falconrypro
 //
-//  Created by Alex Linkov on 5/8/17.
+//  Created by Alex Linkov on 5/10/17.
 //  Copyright © 2017 SDWR. All rights reserved.
 //
 

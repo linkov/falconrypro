@@ -13,8 +13,10 @@ import FastEasyMapping
 class SDWMapper: NSObject {
     
     class func ez_arrayOfObjects(withClass:SDWObjectMapping.Type, fromJSON:Array<Any>, context:NSManagedObjectContext) -> Array<Any> {
+        
+        let interimArray:Array =  [FEMDeserializer.collection(fromRepresentation: fromJSON, mapping: withClass.defaultMapping(), context: context)]
 
-        return [FEMDeserializer.collection(fromRepresentation: fromJSON, mapping: withClass.defaultMapping(), context: context)]
+        return interimArray[0]
     }
     
     

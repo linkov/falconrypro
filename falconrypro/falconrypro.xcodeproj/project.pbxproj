@@ -73,6 +73,13 @@
 		F1FA3B201EC219E700355507 /* UITextField+fixCaretPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3B071EC219E700355507 /* UITextField+fixCaretPosition.swift */; };
 		F1FA3B211EC219E700355507 /* UIViewController+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3B081EC219E700355507 /* UIViewController+Nib.swift */; };
 		F1FA3B221EC219E700355507 /* ValidatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3B091EC219E700355507 /* ValidatorService.swift */; };
+		F1FA3B271EC3B8E600355507 /* SDWDiaryWeight+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3B231EC3B8E600355507 /* SDWDiaryWeight+CoreDataClass.swift */; };
+		F1FA3B281EC3B8E600355507 /* SDWDiaryWeight+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3B241EC3B8E600355507 /* SDWDiaryWeight+CoreDataProperties.swift */; };
+		F1FA3B291EC3B8E600355507 /* SDWDiaryFood+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3B251EC3B8E600355507 /* SDWDiaryFood+CoreDataClass.swift */; };
+		F1FA3B2A1EC3B8E600355507 /* SDWDiaryFood+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3B261EC3B8E600355507 /* SDWDiaryFood+CoreDataProperties.swift */; };
+		F1FA3B2E1EC43CEE00355507 /* SDWStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3B2D1EC43CEE00355507 /* SDWStatsViewController.swift */; };
+		F1FA3B311EC43E5800355507 /* SDWStatsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3B2F1EC43E5800355507 /* SDWStatsItemCell.swift */; };
+		F1FA3B321EC43E5800355507 /* SDWStatsItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1FA3B301EC43E5800355507 /* SDWStatsItemCell.xib */; };
 		F1FBC21F1EB53AA900D57ED0 /* SDWDiaryItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FBC21E1EB53AA900D57ED0 /* SDWDiaryItemViewController.swift */; };
 		F1FBC2221EB54DA500D57ED0 /* SDWDiaryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FBC2201EB54DA400D57ED0 /* SDWDiaryListTableViewCell.swift */; };
 		F1FBC2231EB54DA500D57ED0 /* SDWDiaryListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1FBC2211EB54DA400D57ED0 /* SDWDiaryListTableViewCell.xib */; };
@@ -178,6 +185,13 @@
 		F1FA3B071EC219E700355507 /* UITextField+fixCaretPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+fixCaretPosition.swift"; sourceTree = "<group>"; };
 		F1FA3B081EC219E700355507 /* UIViewController+Nib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Nib.swift"; sourceTree = "<group>"; };
 		F1FA3B091EC219E700355507 /* ValidatorService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatorService.swift; sourceTree = "<group>"; };
+		F1FA3B231EC3B8E600355507 /* SDWDiaryWeight+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWDiaryWeight+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F1FA3B241EC3B8E600355507 /* SDWDiaryWeight+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWDiaryWeight+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F1FA3B251EC3B8E600355507 /* SDWDiaryFood+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWDiaryFood+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F1FA3B261EC3B8E600355507 /* SDWDiaryFood+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWDiaryFood+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F1FA3B2D1EC43CEE00355507 /* SDWStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWStatsViewController.swift; sourceTree = "<group>"; };
+		F1FA3B2F1EC43E5800355507 /* SDWStatsItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWStatsItemCell.swift; sourceTree = "<group>"; };
+		F1FA3B301EC43E5800355507 /* SDWStatsItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWStatsItemCell.xib; sourceTree = "<group>"; };
 		F1FBC21E1EB53AA900D57ED0 /* SDWDiaryItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDiaryItemViewController.swift; sourceTree = "<group>"; };
 		F1FBC2201EB54DA400D57ED0 /* SDWDiaryListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDiaryListTableViewCell.swift; sourceTree = "<group>"; };
 		F1FBC2211EB54DA400D57ED0 /* SDWDiaryListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWDiaryListTableViewCell.xib; sourceTree = "<group>"; };
@@ -261,6 +275,7 @@
 		F1CB9CC31E9905C900A90363 /* falconrypro */ = {
 			isa = PBXGroup;
 			children = (
+				F1FA3B2C1EC43CC100355507 /* Stats Flow */,
 				F1FA3AE41EC0A5D400355507 /* Mapping */,
 				F1FA3AE11EC0A4C900355507 /* Protocols */,
 				F1FA3ADF1EC094FF00355507 /* DisplayModel */,
@@ -362,6 +377,10 @@
 		F1FA3A9D1EC070E400355507 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				F1FA3B231EC3B8E600355507 /* SDWDiaryWeight+CoreDataClass.swift */,
+				F1FA3B241EC3B8E600355507 /* SDWDiaryWeight+CoreDataProperties.swift */,
+				F1FA3B251EC3B8E600355507 /* SDWDiaryFood+CoreDataClass.swift */,
+				F1FA3B261EC3B8E600355507 /* SDWDiaryFood+CoreDataProperties.swift */,
 				F1FA3AA31EC0899800355507 /* SDWBirdType+CoreDataClass.swift */,
 				F1FA3AA41EC0899800355507 /* SDWBirdType+CoreDataProperties.swift */,
 				F1FA3AA51EC0899800355507 /* SDWSeason+CoreDataClass.swift */,
@@ -475,6 +494,16 @@
 				F1FA3B071EC219E700355507 /* UITextField+fixCaretPosition.swift */,
 			);
 			path = "Skyscanner:SkyFloatingLabelTextField";
+			sourceTree = "<group>";
+		};
+		F1FA3B2C1EC43CC100355507 /* Stats Flow */ = {
+			isa = PBXGroup;
+			children = (
+				F1FA3B2D1EC43CEE00355507 /* SDWStatsViewController.swift */,
+				F1FA3B2F1EC43E5800355507 /* SDWStatsItemCell.swift */,
+				F1FA3B301EC43E5800355507 /* SDWStatsItemCell.xib */,
+			);
+			name = "Stats Flow";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -598,6 +627,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1FA3B0F1EC219E700355507 /* Montserrat-Regular.ttf in Resources */,
+				F1FA3B321EC43E5800355507 /* SDWStatsItemCell.xib in Resources */,
 				F1FA3B101EC219E700355507 /* PasswordViewController.xib in Resources */,
 				F1FA3B0E1EC219E700355507 /* Montserrat-Light.otf in Resources */,
 				F1FA3B0D1EC219E700355507 /* Media.xcassets in Resources */,
@@ -799,6 +829,7 @@
 				F1AD8B761EA0410B006B2EB1 /* Constants.swift in Sources */,
 				F140C5E91EA25C6F0099C592 /* Extensions.swift in Sources */,
 				F1FA3AB91EC0899800355507 /* SDWBird+CoreDataClass.swift in Sources */,
+				F1FA3B291EC3B8E600355507 /* SDWDiaryFood+CoreDataClass.swift in Sources */,
 				F1FA3B191EC219E700355507 /* KeyboardMover.swift in Sources */,
 				F1AD8B6F1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift in Sources */,
 				F1FA3ABA1EC0899800355507 /* SDWBird+CoreDataProperties.swift in Sources */,
@@ -810,9 +841,11 @@
 				F1FA3B201EC219E700355507 /* UITextField+fixCaretPosition.swift in Sources */,
 				F1FA3AE91EC0B55400355507 /* FEMAttribute+listsAttributes.m in Sources */,
 				F1FBC2221EB54DA500D57ED0 /* SDWDiaryListTableViewCell.swift in Sources */,
+				F1FA3B2E1EC43CEE00355507 /* SDWStatsViewController.swift in Sources */,
 				F1FA3AE31EC0A4E100355507 /* Protocols.swift in Sources */,
 				F1FA3AB71EC0899800355507 /* SDWUser+CoreDataClass.swift in Sources */,
 				F1FBC21F1EB53AA900D57ED0 /* SDWDiaryItemViewController.swift in Sources */,
+				F1FA3B271EC3B8E600355507 /* SDWDiaryWeight+CoreDataClass.swift in Sources */,
 				F12550621EA2D034004122D4 /* SDWDiaryListViewController.swift in Sources */,
 				F1CB316D1EBFB590004C7342 /* NetworkManager.swift in Sources */,
 				F1FA3B1C1EC219E700355507 /* PasswordViewController.swift in Sources */,
@@ -823,9 +856,11 @@
 				F1FA3AB01EC0899800355507 /* SDWBirdType+CoreDataProperties.swift in Sources */,
 				F19FEDC71EB380ED00996B40 /* searchable_push_row.swift in Sources */,
 				F1D2608D1EB3BF3E006D1BE9 /* SDWHomeViewController.swift in Sources */,
+				F1FA3B2A1EC3B8E600355507 /* SDWDiaryFood+CoreDataProperties.swift in Sources */,
 				F1FA3B1A1EC219E700355507 /* LoginCoordinator.swift in Sources */,
 				F1FA3AA21EC0863900355507 /* SDWDataStore.swift in Sources */,
 				F1FA3AB51EC0899800355507 /* SDWDiaryItem+CoreDataClass.swift in Sources */,
+				F1FA3B281EC3B8E600355507 /* SDWDiaryWeight+CoreDataProperties.swift in Sources */,
 				F1AD8B731E9EA518006B2EB1 /* DisplayModels.swift in Sources */,
 				F1FA3B1B1EC219E700355507 /* LoginViewController.swift in Sources */,
 				F140C5E41EA149A10099C592 /* SDWBirdListTableViewCell.swift in Sources */,
@@ -835,6 +870,7 @@
 				F1FA3AB11EC0899800355507 /* SDWSeason+CoreDataClass.swift in Sources */,
 				F1FA3B151EC219E700355507 /* CrossDissolveAnimation.swift in Sources */,
 				F10E13001EBB418E0044802C /* SDWSeasonViewController.swift in Sources */,
+				F1FA3B311EC43E5800355507 /* SDWStatsItemCell.swift in Sources */,
 				F140C5E71EA2509C0099C592 /* SDWHomeTBC.swift in Sources */,
 				F1FA3B171EC219E700355507 /* GradientImageView.swift in Sources */,
 			);

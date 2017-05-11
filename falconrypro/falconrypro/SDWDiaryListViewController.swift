@@ -13,9 +13,14 @@ import PKHUD
 
 class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEmptyStateDelegate, UITableViewDataSource, UITableViewDelegate {
     
-    var objects = [DiaryListDisplayItem]()
-    var bird:ListDisplayItem?
-    var existingTodayItem:DiaryListDisplayItem?
+    var objects = [DiaryItemDisplayItem]()
+    let dataStore:SDWDataStore = SDWDataStore.sharedInstance
+    
+    var bird:BirdDisplayItem?
+    var season:SeasonDisplayItem?
+    var existingTodayItem:DiaryItemDisplayItem?
+    
+    
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -44,8 +49,8 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.loadItems()
 
         
@@ -68,11 +73,10 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:SDWDiaryListTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DCell", for: indexPath) as! SDWDiaryListTableViewCell
         
-        var object:DiaryListDisplayItem
+        var object:DiaryItemDisplayItem
         
         
         object = objects[indexPath.row]
-
         cell.time.text =  object.created
 
         
@@ -83,7 +87,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
-        var object:DiaryListDisplayItem
+        var object:DiaryItemDisplayItem
         
         
         object = objects[indexPath.row]
@@ -124,58 +128,35 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     func loadItems() {
         
         
-        
-        let networking = Networking(baseURL: Constants.server.BASEURL)
-        
-        let token = UserDefaults.standard.value(forKey: "access-token")
-        let expires = UserDefaults.standard.value(forKey: "expiry")
-        let client = UserDefaults.standard.value(forKey: "client")
-        let uid = UserDefaults.standard.value(forKey: "uid")
-        
-        var array = [DiaryListDisplayItem]()
-        
-        networking.headerFields = ["access-token": token as! String,"client":client as! String,"uid":uid as! String,"expiry":expires as! String]
-        let bird_id = self.bird?.model?["id"] as! String
-        
-        networking.get("/diary_items?bird_id="+bird_id)  { result in
-       
-            switch result {
-            case .success(let response):
-
-                for item in response.arrayBody {
-                    
-                    let object = DiaryListDisplayItem()
-                    object.created = item["created"] as? String
-                    object.note = item["note"] as? String
-                    
-                    let dict:Dictionary<String,Any> = (item["food"] as? Dictionary)!
-                    let itm:TypeDisplayItem = TypeDisplayItem()
-                    itm.name = dict["name"] as? String
-                    itm.model = dict
-                    object.foodDisplayItem = itm
-                    
-                    object.model = item
-                    
-                    array.append(object)
-                    
-                    
-                }
-                self.objects = array
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "MMM d yyyy" //Your New Date format as per requirement change it own
-                let dateString = dateFormatter.string(from: Date())
-                
-                self.existingTodayItem = self.objects.first{$0.created == dateString}
-                
-                
-                self.tableView.reloadData()
-                self.reloadEmptyState(forTableView: self.tableView)
-                
-            case .failure(let response):
-                print(response)
+        self.dataStore.pullAllDiaryItemsForSeason(seasonID: (self.season?.remoteID)!, currentData: { (objects, error) in
+            
+            
+            guard let data = objects, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
             }
             
+            
+            
+            self.objects = data as! [DiaryItemDisplayItem]
+            self.tableView.reloadData()
+            self.reloadEmptyState(forTableView: self.tableView)
+            
+        }) { (fetched, error) in
+            
+            
+            
+            guard let data = fetched, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            
+            self.objects = data as! [DiaryItemDisplayItem]
+            self.tableView.reloadData()
+            self.reloadEmptyState(forTableView: self.tableView)
+            
         }
+
         
     }
 

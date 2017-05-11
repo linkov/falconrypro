@@ -12,7 +12,8 @@
         <attribute name="thumbURL" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="diaryItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWDiaryItem" inverseName="bird" inverseEntity="SDWDiaryItem" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWUser" inverseName="birds" inverseEntity="SDWUser" syncable="YES"/>
-        <relationship name="types" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWBird" inverseName="types" inverseEntity="SDWBird" syncable="YES"/>
+        <relationship name="seasons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWSeason" inverseName="bird" inverseEntity="SDWSeason" syncable="YES"/>
+        <relationship name="types" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWBirdType" inverseName="birds" inverseEntity="SDWBirdType" syncable="YES"/>
     </entity>
     <entity name="SDWBirdType" representedClassName="SDWBirdType" syncable="YES" codeGenerationType="class">
         <attribute name="isPopular" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -20,7 +21,14 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="birds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWBird" syncable="YES"/>
+        <relationship name="birds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWBird" inverseName="types" inverseEntity="SDWBird" syncable="YES"/>
+    </entity>
+    <entity name="SDWDiaryFood" representedClassName="SDWDiaryFood" syncable="YES" codeGenerationType="class">
+        <attribute name="amountEaten" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="diaryItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWDiaryItem" inverseName="foods" inverseEntity="SDWDiaryItem" syncable="YES"/>
+        <relationship name="food" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWFood" inverseName="diaryFoods" inverseEntity="SDWFood" syncable="YES"/>
     </entity>
     <entity name="SDWDiaryItem" representedClassName="SDWDiaryItem" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -28,16 +36,30 @@
         <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="bird" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWBird" inverseName="diaryItems" inverseEntity="SDWBird" syncable="YES"/>
+        <relationship name="foods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWDiaryFood" inverseName="diaryItem" inverseEntity="SDWDiaryFood" syncable="YES"/>
+        <relationship name="season" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWSeason" inverseName="items" inverseEntity="SDWSeason" syncable="YES"/>
+        <relationship name="weights" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWDiaryWeight" inverseName="diaryItem" inverseEntity="SDWDiaryWeight" syncable="YES"/>
+    </entity>
+    <entity name="SDWDiaryWeight" representedClassName="SDWDiaryWeight" syncable="YES" codeGenerationType="class">
+        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="diaryItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWDiaryItem" inverseName="weights" inverseEntity="SDWDiaryItem" syncable="YES"/>
     </entity>
     <entity name="SDWFood" representedClassName="SDWFood" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="diaryFoods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWDiaryFood" inverseName="food" inverseEntity="SDWDiaryFood" syncable="YES"/>
     </entity>
     <entity name="SDWSeason" representedClassName="SDWSeason" syncable="YES" codeGenerationType="class">
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="endDateString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isBetweenSeason" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="startDateString" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="bird" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWBird" inverseName="seasons" inverseEntity="SDWBird" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWDiaryItem" inverseName="season" inverseEntity="SDWDiaryItem" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWUser" inverseName="seasons" inverseEntity="SDWUser" syncable="YES"/>
     </entity>
     <entity name="SDWUser" representedClassName="SDWUser" syncable="YES" codeGenerationType="class">
@@ -49,10 +71,12 @@
     </entity>
     <elements>
         <element name="SDWUser" positionX="-63" positionY="-18" width="128" height="120"/>
-        <element name="SDWBird" positionX="-54" positionY="9" width="128" height="225"/>
+        <element name="SDWBird" positionX="-54" positionY="9" width="128" height="240"/>
         <element name="SDWBirdType" positionX="-36" positionY="36" width="128" height="135"/>
-        <element name="SDWFood" positionX="-27" positionY="81" width="128" height="75"/>
-        <element name="SDWSeason" positionX="-18" positionY="90" width="128" height="120"/>
-        <element name="SDWDiaryItem" positionX="0" positionY="108" width="128" height="120"/>
+        <element name="SDWFood" positionX="-27" positionY="81" width="128" height="90"/>
+        <element name="SDWSeason" positionX="-18" positionY="90" width="128" height="180"/>
+        <element name="SDWDiaryItem" positionX="0" positionY="108" width="128" height="165"/>
+        <element name="SDWDiaryFood" positionX="18" positionY="162" width="128" height="120"/>
+        <element name="SDWDiaryWeight" positionX="-27" positionY="108" width="128" height="105"/>
     </elements>
 </model>

@@ -18,8 +18,8 @@ class SDWDiaryItemViewController: FormViewController {
     
     
     let networking = Networking(baseURL: Constants.server.BASEURL)
-    var bird:ListDisplayItem?
-    var diaryItem:DiaryListDisplayItem?
+    var bird:BirdDisplayItem?
+    var diaryItem:DiaryItemDisplayItem?
     var foods = [TypeDisplayItem]()
     var weightFormatter = NumberFormatter()
 
@@ -55,44 +55,44 @@ class SDWDiaryItemViewController: FormViewController {
             
             +++ Section("Diary entry")
             
-            <<< IntRow(){ row in
-                
-                row.value = diaryItem?.model?["weight"] as? Int
-                row.tag = "weight"
-                row.title = "Weight"
-                row.placeholder = "weight in gramms"
-                row.formatter = self.weightFormatter
-                
-            }
-            
-            <<< IntRow(){ row in
-                row.value = diaryItem?.model?["diet_offered"] as? Int
-                row.tag = "d_offered"
-                row.title = "Diet offered"
-                row.placeholder = "weight in gramms"
-                row.formatter = self.weightFormatter
-                
-            }
-            
-            <<< IntRow(){
-                $0.value = diaryItem?.model?["diet_eaten"] as? Int
-                $0.tag = "d_eaten"
-                $0.title = "Diet eaten"
-                $0.placeholder = "weight in gramms"
-                $0.formatter = self.weightFormatter
-            }
-        
-            <<< SearchablePushRow<TypeDisplayItem>("name") {
-                $0.baseValue = diaryItem?.foodDisplayItem
-                $0.tag = "food"
-                $0.title = "Food eaten"
-                $0.displayValueFor = { value in
-                    return value?.name
-                }
-                
-                }.cellUpdate { cell, row in
-                    row.options = self.foods
-        }
+//            <<< IntRow(){ row in
+//                
+//                row.value = diaryItem?.model?["weight"] as? Int
+//                row.tag = "weight"
+//                row.title = "Weight"
+//                row.placeholder = "weight in gramms"
+//                row.formatter = self.weightFormatter
+//                
+//            }
+//            
+//            <<< IntRow(){ row in
+//                row.value = diaryItem?.model?["diet_offered"] as? Int
+//                row.tag = "d_offered"
+//                row.title = "Diet offered"
+//                row.placeholder = "weight in gramms"
+//                row.formatter = self.weightFormatter
+//                
+//            }
+//            
+//            <<< IntRow(){
+//                $0.value = diaryItem?.model?["diet_eaten"] as? Int
+//                $0.tag = "d_eaten"
+//                $0.title = "Diet eaten"
+//                $0.placeholder = "weight in gramms"
+//                $0.formatter = self.weightFormatter
+//            }
+//        
+//            <<< SearchablePushRow<TypeDisplayItem>("name") {
+//                $0.baseValue = diaryItem?.foodDisplayItem
+//                $0.tag = "food"
+//                $0.title = "Food eaten"
+//                $0.displayValueFor = { value in
+//                    return value?.name
+//                }
+//                
+//                }.cellUpdate { cell, row in
+//                    row.options = self.foods
+//        }
         
         
             <<< TextAreaRow(){ row in
@@ -102,6 +102,17 @@ class SDWDiaryItemViewController: FormViewController {
                 row.title = "Notes"
         }
         
+//        for foodItem in self.diaryItem?.foods {
+//            form.last! <<< IntRow(){ row in
+//                
+//                row.value = foodItem.weight as? Int
+//                row.tag = "weight"
+//                row.title = "Weight"
+//                row.placeholder = "weight in gramms"
+//                
+//            }
+//            
+//        }
 
         self.tableView?.backgroundColor = UIColor.white
     
@@ -109,41 +120,41 @@ class SDWDiaryItemViewController: FormViewController {
     
     func loadFoods() {
 
-        let token = UserDefaults.standard.value(forKey: "access-token")
-        let expires = UserDefaults.standard.value(forKey: "expiry")
-        let client = UserDefaults.standard.value(forKey: "client")
-        let uid = UserDefaults.standard.value(forKey: "uid")
-        
-        var array = [TypeDisplayItem]()
-        
-        networking.headerFields = ["access-token": token as! String,"client":client as! String,"uid":uid as! String,"expiry":expires as! String]
-        
-        
-        networking.get("/foods")  { result in
-            
-            switch result {
-            case .success(let response):
-                
-                for item in response.arrayBody {
-                    
-                    let object = TypeDisplayItem()
-                    object.name = item["name"] as? String
-                    object.model = item
-                    
-                    
-                    array.append(object)
-                    
-                    
-                }
-                self.foods = array
-                self.form.rowBy(tag:"food")?.reload()
-                
-            case .failure(let response):
-                print(response)
-            }
-            
-        }
-        
+//        let token = UserDefaults.standard.value(forKey: "access-token")
+//        let expires = UserDefaults.standard.value(forKey: "expiry")
+//        let client = UserDefaults.standard.value(forKey: "client")
+//        let uid = UserDefaults.standard.value(forKey: "uid")
+//        
+//        var array = [TypeDisplayItem]()
+//        
+//        networking.headerFields = ["access-token": token as! String,"client":client as! String,"uid":uid as! String,"expiry":expires as! String]
+//        
+//        
+//        networking.get("/foods")  { result in
+//            
+//            switch result {
+//            case .success(let response):
+//                
+//                for item in response.arrayBody {
+//                    
+//                    let object = TypeDisplayItem()
+//                    object.name = item["name"] as? String
+//                    object.model = item
+//                    
+//                    
+//                    array.append(object)
+//                    
+//                    
+//                }
+//                self.foods = array
+//                self.form.rowBy(tag:"food")?.reload()
+//                
+//            case .failure(let response):
+//                print(response)
+//            }
+//            
+//        }
+//        
     }
     
     
@@ -154,7 +165,7 @@ class SDWDiaryItemViewController: FormViewController {
         let d_offered: IntRow? = form.rowBy(tag: "d_offered")
         let d_eaten: IntRow? = form.rowBy(tag: "d_eaten")
 
-        let bird_id = self.bird?.model?["id"] as! String
+        let bird_id = self.bird?.remoteID
         
         var dict: [String: Any] = [
             "note": (note?.value != nil) ? note?.value as! String : nil,
@@ -180,10 +191,10 @@ class SDWDiaryItemViewController: FormViewController {
         
         if (self.diaryItem != nil) {
             
-            let model_id = self.diaryItem?.model!["id"] as! String
+            let model_id = self.diaryItem?.remoteID
 
             
-            networking.put("/diary_items/"+model_id, parameters: ["diary_item":dict])  { result in
+            networking.put("/diary_items/"+model_id!, parameters: ["diary_item":dict])  { result in
                 PKHUD.sharedHUD.hide()
                 switch result {
                 case .success(let response):
@@ -230,7 +241,7 @@ class SDWDiaryItemViewController: FormViewController {
     }
     
     func finish(_ sender: Any) {
-        self.updateDiaryItem()
+//        self.updateDiaryItem()
 
         
     }

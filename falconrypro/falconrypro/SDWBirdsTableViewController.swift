@@ -18,7 +18,7 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
     let dataModelManager = DataModelManager.sharedInstance
     let networkManager = NetworkManager.sharedInstance
     let dataStore = SDWDataStore.sharedInstance
-    var objects = [ListDisplayItem]()
+    var objects = [BirdDisplayItem]()
     
     lazy var loginCoordinator: SDWLoginCoordinator = {
         return SDWLoginCoordinator(rootViewController: self)
@@ -84,14 +84,31 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
         
         
         dataStore.pullAllBirds(currentData: { (objects, error) in
+            
+            
+            guard let data = objects, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            
+            
         
-            print(objects ?? "No objects")
-            print(error ?? "")
+            self.objects = data as! [BirdDisplayItem]
+            self.tableView.reloadData()
+            self.reloadEmptyState(forTableView: self.tableView)
         
         }) { (fetched, error) in
             
-            print(fetched ?? "No objects")
-            print(error ?? "")
+            
+            
+            guard let data = fetched, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            
+            self.objects = data as! [BirdDisplayItem]
+            self.tableView.reloadData()
+            self.reloadEmptyState(forTableView: self.tableView)
             
         }
         
@@ -146,17 +163,15 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:SDWBirdListTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SDWBirdListTableViewCell
 
-        var object:ListDisplayItem
         
-        
-        object = objects[indexPath.row]
-        let string = object.first
+        let object = objects[indexPath.row]
+        let string = object.name
         cell.mainLabel!.text = string
         
         cell.birdImage.layer.cornerRadius = cell.birdImage.frame.size.width/2
         cell.birdImage.clipsToBounds = true
         
-        
+
         if let image = object.imageURL {
             cell.birdImage.sd_setImage(with: URL(string:image),
                          placeholderImage: nil,
@@ -168,25 +183,19 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
 
         
         
-        cell.subLabel?.text = object.sub
+        cell.subLabel?.text = object.birdTypesString
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let bird = objects[indexPath.row]
+        let birdDisplayItem = objects[indexPath.row]
        
         
         let controller:SDWSeasonListViewController = storyboard?.instantiateViewController(withIdentifier: "SDWSeasonListViewController") as! SDWSeasonListViewController
-        controller.bird = bird
+        controller.bird = birdDisplayItem
         self.navigationController?.pushViewController(controller, animated: true)
         
-//        let controller:SDWHomeViewController = storyboard?.instantiateViewController(withIdentifier: "SDWHomeViewController") as! SDWHomeViewController
-//        controller.bird = bird
-//        self.navigationController?.pushViewController(controller, animated: true)
-        
-//        let controller:SDWHomeTBC = storyboard?.instantiateViewController(withIdentifier: "SDWHomeTBC") as! SDWHomeTBC
-//        controller.bird = bird
-//        self.navigationController?.pushViewController(controller, animated: true)
+
     }
     
     

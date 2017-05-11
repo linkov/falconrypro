@@ -24,13 +24,13 @@ public class SDWBird: NSManagedObject, SDWObjectMapping {
         mapping.primaryKey = "remoteID";
         mapping.addAttribute(FEMAttribute.falconryID())
         mapping.addAttribute(withProperty: "name", keyPath: "name")
-        mapping.addAttribute(withProperty: "sex", keyPath: "sex")
+        mapping.addAttribute(withProperty: "isMale", keyPath: "sex")
         mapping.addAttribute(withProperty: "code", keyPath: "code")
-        mapping.addAttribute(withProperty: "imageUrl", keyPath: "pic")
+        mapping.addAttribute(withProperty: "imageURL", keyPath: "pic")
         mapping.addAttribute(withProperty: "thumbURL", keyPath: "thumb")
         mapping.addAttribute(withProperty: "fatWeight", keyPath: "fat_weight")
         mapping.addAttribute(withProperty: "huntingWeight", keyPath: "hunting_weight")
-        mapping.addAttribute(FEMAttribute.dateAttribute(withProperty: "birthday", keyPath: "birthday"))
+        mapping.addAttribute(FEMAttribute.bdayDateAttribute(withProperty: "birthday", keyPath: "birthday"))
         
         let userMapping:FEMMapping = FEMMapping(entityName: "SDWUser")
         userMapping.primaryKey = "remoteID"
@@ -39,6 +39,9 @@ public class SDWBird: NSManagedObject, SDWObjectMapping {
         let userRelationshipMapping:FEMRelationship = FEMRelationship(property: "owner", keyPath: "owner", mapping: SDWUser.defaultMapping())
         userRelationshipMapping.weak = true
         mapping.addRelationship(userRelationshipMapping)
+        
+        mapping.add(toManyRelationshipMapping: SDWBirdType.defaultMapping(), forProperty: "types", keyPath: "bird_types")
+        mapping.add(toManyRelationshipMapping: SDWSeason.defaultMapping(), forProperty: "seasons", keyPath: "seasons")
 
         
         return mapping

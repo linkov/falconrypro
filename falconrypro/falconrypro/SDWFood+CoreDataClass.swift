@@ -8,8 +8,24 @@
 
 import Foundation
 import CoreData
+import FastEasyMapping
 
 @objc(SDWFood)
-public class SDWFood: NSManagedObject {
+public class SDWFood: NSManagedObject, SDWObjectMapping {
+    
+    class func entityName() -> String {
+        return "SDWFood"
+    }
+    
+    class func defaultMapping() -> FEMMapping {
+        
+        
+        let mapping:FEMMapping = FEMMapping(entityName: "SDWFood")
+        mapping.primaryKey = "remoteID";
+        mapping.addAttribute(FEMAttribute.falconryID())
+        mapping.addAttribute(withProperty: "name", keyPath: "name")
+        
+        return mapping
+    }
 
 }

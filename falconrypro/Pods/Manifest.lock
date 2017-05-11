@@ -5,6 +5,9 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - Charts (3.0.2):
+    - Charts/Core (= 3.0.2)
+  - Charts/Core (3.0.2)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Eureka (2.0.1)
@@ -20,6 +23,7 @@ PODS:
   - Networking (3.0.3)
   - PKHUD (4.2.1)
   - Reveal-SDK (8)
+  - RoundedSwitch (2.0.1)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
@@ -30,6 +34,7 @@ PODS:
   - Validator (2.1.1)
 
 DEPENDENCIES:
+  - Charts
   - Crashlytics
   - Eureka (~> 2.0)
   - Fabric
@@ -40,6 +45,7 @@ DEPENDENCIES:
   - Networking
   - PKHUD (~> 4.0)
   - Reveal-SDK
+  - RoundedSwitch
   - SDWebImage (~> 4.0)
   - Sparrow/Modules/RequestPermission (from `https://github.com/IvanVorobei/Sparrow.git`)
   - UIEmptyState
@@ -56,6 +62,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Eureka: ae837bb1dfae0c07bc1bda7aeef87876eeb537c2
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
@@ -67,11 +74,12 @@ SPEC CHECKSUMS:
   Networking: e2c42013296d093e4249f8247acb08e36958a11a
   PKHUD: 957ce2a68b3c97a51839b30216120c1dbc0c3a78
   Reveal-SDK: 43be4e662864e937960d0d04d005135e29c4e53b
+  RoundedSwitch: 85ea55811bbeb5747dd99e2c2290c86e820decb5
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   Sparrow: 4b7826e69656f4745b0b4f74afadefa4f19cb9ee
   UIEmptyState: b81840468b03d7be5b02114c239f5ac097dc935a
   Validator: b1793fbfd0046097551d0edd18e2c30792d69ef5
 
-PODFILE CHECKSUM: 909184a564888fd837219927ca70d768090c211d
+PODFILE CHECKSUM: 3cbc66d82466a81c712f423c1e0521c104ffb67d
 
 COCOAPODS: 1.2.1

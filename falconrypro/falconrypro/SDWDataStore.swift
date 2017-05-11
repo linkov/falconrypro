@@ -79,9 +79,16 @@ class SDWDataStore: NSObject {
                              fatWeight:Int,
                              huntingWeight:Int,
                              image:NSData?,
+                             birdTypes:Array<BirdTypeDisplayItem>,
                              completion:@escaping sdw_id_error_block) {
         
-        self.networkManager.createBirdWith(code: code, sex: sex, name: name, birthday: birthday, fatWeight: fatWeight, huntingWeight: huntingWeight, image: image, completion: {(object, error) in
+
+        
+        let birdTypeIDs = birdTypes.map({ (item: BirdTypeDisplayItem) -> String in
+            item.remoteID
+        })
+        
+        self.networkManager.createBirdWith(birdTypeIDs:birdTypeIDs, code: code, sex: sex, name: name, birthday: birthday, fatWeight: fatWeight, huntingWeight: huntingWeight, image: image, completion: {(object, error) in
             
             
             guard let data = object, error == nil else {
@@ -114,7 +121,7 @@ class SDWDataStore: NSObject {
             }
             
             
-            let arr:Array<SDWBird> = data as! Array
+            let arr:Array<SDWBirdType> = data as! Array
             var displayItemsArray = [BirdTypeDisplayItem]()
             
             
@@ -143,7 +150,7 @@ class SDWDataStore: NSObject {
                 
                 
                 for obj in mappedObjects {
-                    let displayItem:BirdTypeDisplayItem = BirdTypeDisplayItem(model: obj as! SDWBird)
+                    let displayItem:BirdTypeDisplayItem = BirdTypeDisplayItem(model: obj as! SDWBirdType)
                     displayItemsArray.append(displayItem)
                 }
                 
@@ -161,7 +168,6 @@ class SDWDataStore: NSObject {
     
     public func pullAllBirds(currentData:sdw_id_error_block,fetchedData:@escaping sdw_id_error_block) {
         
-
         
         self.dataModelManager.fetchAll(entityName:SDWBird.entityName(), predicate: nil, context: self.dataModelManager.viewContext) { (objects, error) in
             
@@ -173,13 +179,18 @@ class SDWDataStore: NSObject {
             }
             
             
-            let arr:Array<NSManagedObject> = data as! Array
+            let arr:Array<SDWBird> = data as! Array
+            var displayItemsArray = [BirdDisplayItem]()
             
-            currentData(arr,nil)
             
             for obj in arr {
-                print(obj)
+                let displayItem:BirdDisplayItem = BirdDisplayItem(model: obj )
+                displayItemsArray.append(displayItem)
             }
+            
+            currentData(displayItemsArray,nil)
+            
+
             
             self.networkManager.fetchBirds(completion: { (objects, error) in
                 
@@ -191,12 +202,139 @@ class SDWDataStore: NSObject {
                 }
                 
                 
-               let mappedObjects = SDWMapper.ez_arrayOfObjects(withClass: type(of: SDWUser()) as SDWObjectMapping.Type, fromJSON: data as! Array<Any>, context: self.dataModelManager.viewContext)
+               let mappedObjects = SDWMapper.ez_arrayOfObjects(withClass: type(of: SDWBird()) as SDWObjectMapping.Type, fromJSON: data as! Array<Any>, context: self.dataModelManager.viewContext)
+                
+                
+                var displayItemsArray = [BirdDisplayItem]()
+                
+                
+                for obj in mappedObjects {
+                    let displayItem:BirdDisplayItem = BirdDisplayItem(model: obj as! SDWBird )
+                    displayItemsArray.append(displayItem)
+                }
+                
+                
+                fetchedData(displayItemsArray,nil)
                 
                 
                 
                 
-                fetchedData(mappedObjects,nil)
+            })
+            
+            
+        }
+    }
+    
+    public func pullAllFoods(currentData:sdw_id_error_block,fetchedData:@escaping sdw_id_error_block) {
+        
+        
+        self.dataModelManager.fetchAll(entityName:SDWFood.entityName(), predicate: nil, context: self.dataModelManager.viewContext) { (objects, error) in
+            
+            
+            guard let data = objects, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                currentData(nil,error)
+                return
+            }
+            
+            
+            let arr:Array<SDWBird> = data as! Array
+            var displayItemsArray = [BirdDisplayItem]()
+            
+            
+            for obj in arr {
+                let displayItem:BirdDisplayItem = BirdDisplayItem(model: obj )
+                displayItemsArray.append(displayItem)
+            }
+            
+            currentData(displayItemsArray,nil)
+            
+            
+            
+            self.networkManager.fetchBirds(completion: { (objects, error) in
+                
+                
+                guard let data = objects, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    fetchedData(nil,error)
+                    return
+                }
+                
+                
+                let mappedObjects = SDWMapper.ez_arrayOfObjects(withClass: type(of: SDWBird()) as SDWObjectMapping.Type, fromJSON: data as! Array<Any>, context: self.dataModelManager.viewContext)
+                
+                
+                var displayItemsArray = [BirdDisplayItem]()
+                
+                
+                for obj in mappedObjects {
+                    let displayItem:BirdDisplayItem = BirdDisplayItem(model: obj as! SDWBird )
+                    displayItemsArray.append(displayItem)
+                }
+                
+                
+                fetchedData(displayItemsArray,nil)
+                
+                
+                
+                
+            })
+            
+            
+        }
+    }
+    
+    public func pullAllDiaryItemsForSeason(seasonID:String, currentData:sdw_id_error_block,fetchedData:@escaping sdw_id_error_block) {
+        
+
+        let predicate = NSPredicate(format: "season.remoteID == %@",seasonID)
+        
+        self.dataModelManager.fetchAll(entityName:SDWDiaryItem.entityName(), predicate: predicate, context: self.dataModelManager.viewContext) { (objects, error) in
+            
+            
+            guard let data = objects, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                currentData(nil,error)
+                return
+            }
+            
+            
+            let arr:Array<SDWDiaryItem> = data as! Array
+            var displayItemsArray = [DiaryItemDisplayItem]()
+            
+            
+            for obj in arr {
+                let displayItem:DiaryItemDisplayItem = DiaryItemDisplayItem(model: obj )
+                displayItemsArray.append(displayItem)
+            }
+            
+            currentData(displayItemsArray,nil)
+            
+            
+            
+            self.networkManager.fetchDiaryItemsForSeason(seasonID: seasonID, completion: { (objects, error) in
+                
+                
+                guard let data = objects, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    fetchedData(nil,error)
+                    return
+                }
+                
+                
+                let mappedObjects = SDWMapper.ez_arrayOfObjects(withClass: type(of: SDWDiaryItem()) as SDWObjectMapping.Type, fromJSON: data as! Array<Any>, context: self.dataModelManager.viewContext)
+                
+                
+                var displayItemsArray = [DiaryItemDisplayItem]()
+                
+                
+                for obj in mappedObjects {
+                    let displayItem:DiaryItemDisplayItem = DiaryItemDisplayItem(model: obj as! SDWDiaryItem )
+                    displayItemsArray.append(displayItem)
+                }
+                
+                
+                fetchedData(displayItemsArray,nil)
                 
                 
                 

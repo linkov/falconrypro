@@ -79,7 +79,8 @@ class NetworkManager: NSObject {
     }
     
     
-    public func createBirdWith(code:String?,
+    public func createBirdWith(birdTypeIDs:Array<String>,
+                               code:String?,
                              sex:Bool,
                              name:String,
                              birthday:Date,
@@ -95,6 +96,7 @@ class NetworkManager: NSObject {
             "fat_weight": fatWeight,
             "hunting_weight": huntingWeight,
             "birthday": birthday.toString(),
+            "bird_type_ids":birdTypeIDs
             
             ]
         
@@ -143,6 +145,28 @@ class NetworkManager: NSObject {
                 print(response.arrayBody)
                 completion(response.arrayBody,nil)
 
+                
+            case .failure(let response):
+                completion(nil,response.error)
+                print(response)
+            }
+            
+        }
+        
+    }
+    
+    public func fetchDiaryItemsForSeason(seasonID:String, completion:@escaping sdw_id_error_block) {
+        
+        self.setupRequestHeaders()
+        
+        self.networking.get("/diary_items?season_id="+seasonID)  { result in
+            
+            switch result {
+            case .success(let response):
+                print(response)
+                print(response.arrayBody)
+                completion(response.arrayBody,nil)
+                
                 
             case .failure(let response):
                 completion(nil,response.error)
