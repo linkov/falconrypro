@@ -192,6 +192,8 @@ class SDWDataStore: NSObject {
     public func updateDiaryItemWith(itemID:String,
                                   note:String?,
                                   quarryTypes:[QuarryTypeDisplayItem]?,
+                                  foodItems:[DiaryFoodItemDisplayItem]?,
+                                  weightItems:[DiaryWeightItemDisplayItem]?,
                                   completion:@escaping sdw_id_error_block) {
         
         
@@ -203,7 +205,8 @@ class SDWDataStore: NSObject {
         }
         
         
-        self.networkManager.updateDiaryItemWith(itemID:itemID, quarryTypeIDs:quarryTypeIDs, note:note, completion: {(object, error) in
+        
+        self.networkManager.updateDiaryItemWith(foodItems:foodItems,weightItems:weightItems, itemID:itemID, quarryTypeIDs:quarryTypeIDs, note:note, completion: {(object, error) in
             
             
             guard let data = object, error == nil else {
@@ -225,6 +228,8 @@ class SDWDataStore: NSObject {
     public func pushDiaryItemWith(birdID:String,
                                   note:String?,
                                   quarryTypes:[QuarryTypeDisplayItem]?,
+                                  foodItems:[DiaryFoodItemDisplayItem]?,
+                                  weightItems:[DiaryWeightItemDisplayItem]?,
                                   completion:@escaping sdw_id_error_block) {
         
         
@@ -236,7 +241,7 @@ class SDWDataStore: NSObject {
         }
 
         
-        self.networkManager.createDiaryItemWith(birdID:birdID, quarryTypeIDs:quarryTypeIDs, note:note, completion: {(object, error) in
+        self.networkManager.createDiaryItemWith(foodItems:foodItems,weightItems:weightItems,birdID:birdID, quarryTypeIDs:quarryTypeIDs, note:note, completion: {(object, error) in
             
             
             guard let data = object, error == nil else {

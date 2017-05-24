@@ -24,6 +24,19 @@ class SDWMapper: NSObject {
         
         return [FEMDeserializer.object(fromRepresentation: fromJSON, mapping: withClass.defaultMapping(), context: context)];
     }
+    
+    
+    class func ez_serializeObjects(withClass:SDWObjectMapping.Type, fromArray:Array<Any>, context:NSManagedObjectContext) -> Array<Any> {
+        
+        let interimArray:Array =  [FEMSerializer .serializeCollection(fromArray, using: withClass.defaultMapping())]
+        return interimArray
+    }
+    
+    
+    class func ez_serializeObject(withClass:SDWObjectMapping.Type, fromObject:Any, context:NSManagedObjectContext) -> Any {
+        
+        return [FEMSerializer .serializeObject(fromObject, using: withClass.defaultMapping())]
+    }
 
 
 

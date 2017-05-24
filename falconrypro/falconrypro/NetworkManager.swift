@@ -78,9 +78,8 @@ class NetworkManager: NSObject {
         }
     }
     
-    public func createDiaryItemWith(birdID:String, quarryTypeIDs:Array<String>?,note:String?,
+    public func createDiaryItemWith(foodItems:Array<DiaryFoodItemDisplayItem>?,weightItems:Array<DiaryWeightItemDisplayItem>?,birdID:String, quarryTypeIDs:Array<String>?,note:String?,
                                     completion:@escaping sdw_id_error_block) {
-        touch tmp/restart.txt
         self.setupRequestHeaders()
         
         var dict: [String: Any] = [
@@ -95,6 +94,16 @@ class NetworkManager: NSObject {
         if let note = note {
             dict["note"] = note
         }
+        
+        
+        if let foods = foodItems {
+            dict["diary_foods_attributes"] = foods
+        }
+        
+        if let weights = weightItems {
+            dict["diary_weights_attributes"] = weights
+        }
+        
         
         networking.post("/diary_items", parameters: ["diary_item":dict])  { result in
             
@@ -115,7 +124,7 @@ class NetworkManager: NSObject {
         
     }
     
-    public func updateDiaryItemWith(itemID:String, quarryTypeIDs:Array<String>?,note:String?,
+    public func updateDiaryItemWith(foodItems:Array<DiaryFoodItemDisplayItem>?,weightItems:Array<DiaryWeightItemDisplayItem>?,itemID:String, quarryTypeIDs:Array<String>?,note:String?,
                                     completion:@escaping sdw_id_error_block) {
         
         self.setupRequestHeaders()
@@ -130,7 +139,29 @@ class NetworkManager: NSObject {
             dict["note"] = note
         }
         
-        networking.put("/diary_items/?id="+itemID, parameters: ["diary_item":dict])  { result in
+        if let foods = foodItems {
+            
+            var arrFood = [Dictionary<String,Any>]()
+            for ff in foods {
+                let itm = ff.serialization()
+                arrFood.append(itm)
+            }
+            
+            dict["diary_foods_attributes"] = arrFood
+        }
+        
+        if let weights = weightItems {
+            
+            var arrWeight = [Dictionary<String,Any>]()
+            for ff in weights {
+                let itm = ff.serialization()
+                arrWeight.append(itm)
+            }
+            
+            dict["diary_weights_attributes"] = arrWeight
+        }
+        
+        networking.put("/diary_items/"+itemID, parameters: ["diary_item":dict])  { result in
             
             switch result {
             case .success(let response):
@@ -356,4 +387,4 @@ class NetworkManager: NSObject {
         
     }
 }
-reqiest
+

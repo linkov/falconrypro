@@ -39,7 +39,6 @@ public class SDWDiaryItem: NSManagedObject, SDWObjectMapping {
         let birdMapping:FEMMapping = FEMMapping(entityName: "SDWBird")
         birdMapping.primaryKey = "remoteID"
         birdMapping.addAttribute(withProperty: "remoteID", keyPath: nil)
-        birdMapping.weak = true
         
         let birdRelationshipMapping:FEMRelationship = FEMRelationship(property: "bird", keyPath: "bird", mapping: birdMapping)
         birdRelationshipMapping.weak = true

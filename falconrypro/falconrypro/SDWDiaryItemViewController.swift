@@ -27,7 +27,7 @@ class SDWDiaryItemViewController: FormViewController {
         super.viewDidLoad()
         
         PKHUD.sharedHUD.contentView = PKHUDProgressView()
-        self.loadFoods();
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d yyyy" //Your New Date format as per requirement change it own
         
@@ -53,7 +53,7 @@ class SDWDiaryItemViewController: FormViewController {
 
         form
             
-            +++ Section("Diary entry")
+            +++ Section("Notes")
             
 //            <<< IntRow(){ row in
 //                
@@ -101,6 +101,85 @@ class SDWDiaryItemViewController: FormViewController {
                 row.tag = "note"
                 row.title = "Notes"
         }
+            
+            +++
+            
+            MultivaluedSection(multivaluedOptions: [.Insert, .Delete],
+                               header: "Weight measurements",
+                               footer: "") { section in
+                                section.tag = "weightitem"
+                                section.multivaluedRowToInsertAt = { index in
+                                    return SDWWeightItemRow(){
+                                        $0.tag = "\(index+1)_newweightitem"
+                                        $0.title = "Weight"
+                                        $0.displayValueFor = { value in
+                                            return  "\(value?.timeString ?? "")"
+
+                                        }
+                                        
+                                    }
+                                }
+                                if(self.diaryItem != nil && (self.diaryItem?.weights!.count)! > 0) {
+                                    
+                                    
+                                    for (index, weightItem) in (self.diaryItem?.weights)!.enumerated() {
+                                        
+                                        
+                                        section <<< SDWWeightItemRow() {
+                                            $0.tag = "\(index+1)_weightitem"
+                                            $0.value = weightItem
+                                            $0.title = "Weight"
+                                            $0.displayValueFor = { value in
+                                                return  "\(value?.timeString ?? "")"
+                                            }
+                                            
+                                        }
+                                        
+                                    }
+                                }
+                                
+                                
+                                
+            }
+        
+        +++
+            
+            MultivaluedSection(multivaluedOptions: [.Insert, .Delete],
+                               header: "Food given",
+                               footer: "") { section in
+                                section.tag = "fooditem"
+                                section.multivaluedRowToInsertAt = { index in
+                                    return SDWFoodItemRow(){
+                                        $0.tag = "\(index+1)_newfooditem"
+                                        $0.title = "Food"
+                                        $0.displayValueFor = { value in
+                                            return value?.timeString
+                                        }
+
+                                    }
+                                }
+                                if(self.diaryItem != nil && (self.diaryItem?.quarryTypes!.count)! > 0) {
+                                    
+                                    
+                                    for (index, foodItem) in (self.diaryItem?.foods)!.enumerated() {
+                                        
+                                        
+                                        section <<< SDWFoodItemRow() {
+                                            $0.tag = "\(index+1)_fooditem"
+                                            $0.value = foodItem
+                                            $0.title = "Food"
+                                            $0.displayValueFor = { value in
+                                                return  value?.timeString
+                                            }
+                                            
+                                            }
+                                        
+                                    }
+                                }
+                                
+                                
+                                
+        }
         
         +++
             
@@ -143,29 +222,7 @@ class SDWDiaryItemViewController: FormViewController {
                             
             }
         
-        
 
-        
-
-//        +++ MultivaluedSection(multivaluedOptions: [.Insert, .Delete, .Reorder],
-//                           header: "Multivalued Push Selector example",
-//                           footer: "") {
-//                            $0.multivaluedRowToInsertAt = { index in
-//                                return SearchablePushRow<QuarryTypeDisplayItem>("name") {
-//                                    $0.title = "Quarry caught"
-//                                    $0.displayValueFor = { value in
-//                                        return value?.name
-//                                    }
-//
-//                                    }.cellUpdate { cell, row in
-//                                        row.options = self.dataStore.allQuarryTypes()
-//                                }
-//
-//                            }
-//        }
-        
-//        }
-//        
 
         self.tableView?.backgroundColor = UIColor.white
     
@@ -173,41 +230,7 @@ class SDWDiaryItemViewController: FormViewController {
     
     func loadFoods() {
 
-//        let token = UserDefaults.standard.value(forKey: "access-token")
-//        let expires = UserDefaults.standard.value(forKey: "expiry")
-//        let client = UserDefaults.standard.value(forKey: "client")
-//        let uid = UserDefaults.standard.value(forKey: "uid")
-//        
-//        var array = [TypeDisplayItem]()
-//        
-//        networking.headerFields = ["access-token": token as! String,"client":client as! String,"uid":uid as! String,"expiry":expires as! String]
-//        
-//        
-//        networking.get("/foods")  { result in
-//
-//            switch result {
-//            case .success(let response):
-//                
-//                for item in response.arrayBody {
-//                    
-//                    let object = TypeDisplayItem()
-//                    object.name = item["name"] as? String
-//                    object.model = item
-//                    
-//                    
-//                    array.append(object)
-//                    
-//                    
-//                }
-//                self.foods = array
-//                self.form.rowBy(tag:"food")?.reload()
-//                
-//            case .failure(let response):
-//                print(response)
-//            }
-//            
-//        }
-//        
+
     }
     
     
@@ -228,9 +251,30 @@ class SDWDiaryItemViewController: FormViewController {
             
         }
         
+        var foodItems = [DiaryFoodItemDisplayItem]()
+        
+        for (key, value) in valuesDictionary {
+            if(key.hasSuffix("fooditem")) {
+                let item:DiaryFoodItemDisplayItem = value as! DiaryFoodItemDisplayItem
+                foodItems.append(item)
+            }
+            
+        }
+        
+        var weightItems = [DiaryWeightItemDisplayItem]()
+        
+        for (key, value) in valuesDictionary {
+            if(key.hasSuffix("weightitem")) {
+                let item:DiaryWeightItemDisplayItem = value as! DiaryWeightItemDisplayItem
+                weightItems.append(item)
+            }
+            
+        }
+        
+        
         if (self.diaryItem != nil) {
             
-            self.dataStore.updateDiaryItemWith(itemID:self.diaryItem!.remoteID, note: note?.value, quarryTypes: quarry) { (object, error) in
+            self.dataStore.updateDiaryItemWith(itemID:self.diaryItem!.remoteID, note: note?.value, quarryTypes: quarry,foodItems:foodItems,weightItems:weightItems) { (object, error) in
                 
                 if (error == nil) {
                     self.navigationController?.popViewController(animated: true)
@@ -239,7 +283,7 @@ class SDWDiaryItemViewController: FormViewController {
             
         } else {
             
-            self.dataStore.pushDiaryItemWith(birdID:bird_id!, note: note?.value, quarryTypes: quarry) { (object, error) in
+            self.dataStore.pushDiaryItemWith(birdID:bird_id!, note: note?.value, quarryTypes: quarry,foodItems:foodItems,weightItems:weightItems) { (object, error) in
                 
                 if (error == nil) {
                     self.navigationController?.popViewController(animated: true)

@@ -10,6 +10,10 @@
 		D7B21088DAAB20DA280DD182 /* Pods_falconrypro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15045DAE0FFDE292FB29065 /* Pods_falconrypro.framework */; };
 		DFBFC8248F3526A15DE9AB3F /* Pods_falconryproTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5C3730AAC0E46D0A22F7AF1 /* Pods_falconryproTests.framework */; };
 		F1026AAE1E9D818D00A89821 /* SDWLoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1026AAD1E9D818D00A89821 /* SDWLoginCoordinator.swift */; };
+		F10417971ED5634C00D2F3B1 /* SDWFoodItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10417961ED5634C00D2F3B1 /* SDWFoodItemViewController.swift */; };
+		F10417991ED563CF00D2F3B1 /* SDWFoodItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10417981ED563CF00D2F3B1 /* SDWFoodItemRow.swift */; };
+		F104179B1ED5C81100D2F3B1 /* SDWWeightItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F104179A1ED5C81100D2F3B1 /* SDWWeightItemViewController.swift */; };
+		F104179D1ED5C82D00D2F3B1 /* SDWWeightItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F104179C1ED5C82D00D2F3B1 /* SDWWeightItemRow.swift */; };
 		F10E12FE1EBB417A0044802C /* SDWSeasonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10E12FD1EBB417A0044802C /* SDWSeasonListViewController.swift */; };
 		F10E13001EBB418E0044802C /* SDWSeasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10E12FF1EBB418E0044802C /* SDWSeasonViewController.swift */; };
 		F12550621EA2D034004122D4 /* SDWDiaryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */; };
@@ -116,6 +120,10 @@
 		E5C3730AAC0E46D0A22F7AF1 /* Pods_falconryproTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_falconryproTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECFDFFD9EB6FBDB9478BE8F4 /* Pods_falconryproUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_falconryproUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1026AAD1E9D818D00A89821 /* SDWLoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWLoginCoordinator.swift; sourceTree = "<group>"; };
+		F10417961ED5634C00D2F3B1 /* SDWFoodItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWFoodItemViewController.swift; sourceTree = "<group>"; };
+		F10417981ED563CF00D2F3B1 /* SDWFoodItemRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWFoodItemRow.swift; sourceTree = "<group>"; };
+		F104179A1ED5C81100D2F3B1 /* SDWWeightItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWWeightItemViewController.swift; sourceTree = "<group>"; };
+		F104179C1ED5C82D00D2F3B1 /* SDWWeightItemRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWWeightItemRow.swift; sourceTree = "<group>"; };
 		F10E12FD1EBB417A0044802C /* SDWSeasonListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWSeasonListViewController.swift; sourceTree = "<group>"; };
 		F10E12FF1EBB418E0044802C /* SDWSeasonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWSeasonViewController.swift; sourceTree = "<group>"; };
 		F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDiaryListViewController.swift; sourceTree = "<group>"; };
@@ -321,6 +329,10 @@
 			isa = PBXGroup;
 			children = (
 				F1FBC21E1EB53AA900D57ED0 /* SDWDiaryItemViewController.swift */,
+				F10417961ED5634C00D2F3B1 /* SDWFoodItemViewController.swift */,
+				F104179A1ED5C81100D2F3B1 /* SDWWeightItemViewController.swift */,
+				F10417981ED563CF00D2F3B1 /* SDWFoodItemRow.swift */,
+				F104179C1ED5C82D00D2F3B1 /* SDWWeightItemRow.swift */,
 				F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */,
 				F1FBC2201EB54DA400D57ED0 /* SDWDiaryListTableViewCell.swift */,
 				F1FBC2211EB54DA400D57ED0 /* SDWDiaryListTableViewCell.xib */,
@@ -823,6 +835,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F104179B1ED5C81100D2F3B1 /* SDWWeightItemViewController.swift in Sources */,
 				F1FA3B131EC219E700355507 /* BackgroundMover.swift in Sources */,
 				F1FA3AB41EC0899800355507 /* SDWFood+CoreDataProperties.swift in Sources */,
 				F1AD8B711E9EA18A006B2EB1 /* SDWBirdViewController.swift in Sources */,
@@ -851,6 +864,7 @@
 				F1FA3AE31EC0A4E100355507 /* Protocols.swift in Sources */,
 				F1FA3AB71EC0899800355507 /* SDWUser+CoreDataClass.swift in Sources */,
 				F1FBC21F1EB53AA900D57ED0 /* SDWDiaryItemViewController.swift in Sources */,
+				F10417991ED563CF00D2F3B1 /* SDWFoodItemRow.swift in Sources */,
 				F1FA3B271EC3B8E600355507 /* SDWDiaryWeight+CoreDataClass.swift in Sources */,
 				F12550621EA2D034004122D4 /* SDWDiaryListViewController.swift in Sources */,
 				F1CB316D1EBFB590004C7342 /* NetworkManager.swift in Sources */,
@@ -863,6 +877,7 @@
 				F19FEDC71EB380ED00996B40 /* searchable_push_row.swift in Sources */,
 				F1D2608D1EB3BF3E006D1BE9 /* SDWHomeViewController.swift in Sources */,
 				F1EE1F241EC5B70E00917993 /* SDWQuarryType+CoreDataClass.swift in Sources */,
+				F104179D1ED5C82D00D2F3B1 /* SDWWeightItemRow.swift in Sources */,
 				F1FA3B2A1EC3B8E600355507 /* SDWDiaryFood+CoreDataProperties.swift in Sources */,
 				F1FA3B1A1EC219E700355507 /* LoginCoordinator.swift in Sources */,
 				F1FA3AA21EC0863900355507 /* SDWDataStore.swift in Sources */,
@@ -879,6 +894,7 @@
 				F1FA3B151EC219E700355507 /* CrossDissolveAnimation.swift in Sources */,
 				F10E13001EBB418E0044802C /* SDWSeasonViewController.swift in Sources */,
 				F1FA3B311EC43E5800355507 /* SDWStatsItemCell.swift in Sources */,
+				F10417971ED5634C00D2F3B1 /* SDWFoodItemViewController.swift in Sources */,
 				F140C5E71EA2509C0099C592 /* SDWHomeTBC.swift in Sources */,
 				F1FA3B171EC219E700355507 /* GradientImageView.swift in Sources */,
 			);

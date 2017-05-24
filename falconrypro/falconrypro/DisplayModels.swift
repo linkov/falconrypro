@@ -10,53 +10,115 @@ import UIKit
 
 
 class DiaryWeightItemDisplayItem: NSObject {
-    var remoteID:String
+    var remoteID:String?
     var time:Date?
     var weight:Int16?
+    var timeFormatter = DateFormatter()
+    var timeString:String?
     
+    public private(set) var model:SDWDiaryWeight?
     
-    public private(set) var model:SDWDiaryWeight
+    init(weight:Int16,time:Date) {
+        self.weight = weight
+        self.time = time
+        timeFormatter.dateStyle = .none
+        timeFormatter.timeStyle = .medium
+        self.timeString = timeFormatter.string(from: self.time!)
+    }
     
     init(model:SDWDiaryWeight) {
         self.model = model
-        self.weight = self.model.weight
-        self.time = self.model.time! as Date
-        self.remoteID = self.model.remoteID!
+        self.weight = self.model?.weight
+        self.time = self.model?.time! as! Date
+        self.remoteID = self.model?.remoteID!
+        
+        timeFormatter.dateStyle = .none
+        timeFormatter.timeStyle = .medium
+        self.timeString = timeFormatter.string(from: self.time!)
+    }
+    
+    func serialization() -> Dictionary<String, Any> {
+        
+        if (self.remoteID != nil) {
+            return ["id":self.remoteID, "time":timeFormatter.string(from: self.time!),"weight":self.weight]
+        }
+        
+        return ["time":timeFormatter.string(from: self.time!),"weight":self.weight]
     }
     
 }
 
 class DiaryFoodItemDisplayItem: NSObject {
-    var remoteID:String
+    var remoteID:String?
     var time:Date?
     var food:FoodDisplayItem?
     var amountEaten:Int16?
+    var timeFormatter = DateFormatter()
+    var timeString:String?
     
-    public private(set) var model:SDWDiaryFood
+    public private(set) var model:SDWDiaryFood?
+    
+    init(amount:Int16,food:FoodDisplayItem,time:Date) {
+        self.amountEaten = amount
+        self.food = food
+        self.time = time
+        timeFormatter.dateStyle = .none
+        timeFormatter.timeStyle = .medium
+        self.timeString = timeFormatter.string(from: self.time!)
+    }
     
     init(model:SDWDiaryFood) {
         self.model = model
-        self.amountEaten = self.model.amountEaten
-        if (self.model.food != nil) {
-            self.food = FoodDisplayItem(model: self.model.food!)
+        self.amountEaten = self.model?.amountEaten
+        if (self.model?.food != nil) {
+            self.food = FoodDisplayItem(model: (self.model?.food!)!)
         }
         
-        self.time = self.model.time! as Date
-        self.remoteID = self.model.remoteID!
+        timeFormatter.dateStyle = .none
+        timeFormatter.timeStyle = .medium
+        
+        self.time = self.model?.time! as! Date
+        self.timeString = timeFormatter.string(from: self.time!)
+        
+        self.remoteID = self.model?.remoteID!
+    }
+    
+    
+    func serialization() -> Dictionary<String, Any> {
+        
+         if (self.remoteID != nil) {
+            
+            return ["id":self.remoteID,"time":timeFormatter.string(from: self.time!),"eaten":self.amountEaten,"food_id":self.food?.remoteID]
+        }
+        return ["time":timeFormatter.string(from: self.time!),"eaten":self.amountEaten,"food_id":self.food?.remoteID]
+        
     }
     
 }
 
-class FoodDisplayItem: NSObject {
+class FoodDisplayItem: NSObject, SearchableItem {
     var remoteID:String
     var name:String?
     public private(set) var model:SDWFood
+    
+    
+    override var description: String {
+        return name!
+    }
     
     init(model:SDWFood) {
         self.model = model
         self.name = self.model.name
         self.remoteID = self.model.remoteID!
     }
+    
+    func matchesSearchQuery(_ query: String) -> Bool {
+        
+        let tmp: String = name!
+        let range = tmp.range(of: query, options: NSString.CompareOptions.caseInsensitive)
+        return range?.isEmpty == false
+    }
+    
     
 }
 
