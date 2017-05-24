@@ -50,6 +50,21 @@ class DataModelManager: NSObject {
         }
     }
     
+    func deleteAllEntitiesWithName(name:String) {
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: name)
+        
+        // Create Batch Delete Request
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try self.viewContext.execute(batchDeleteRequest)
+            
+        } catch {
+            // Error Handling
+        }
+    }
+    
   
     func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
         self.persistentContainer.performBackgroundTask(block)
@@ -100,6 +115,31 @@ class DataModelManager: NSObject {
         
         
     }
+    
+    public func fetchAll(entityName:String,
+                         predicate:NSPredicate?,
+                         context:NSManagedObjectContext) -> [NSManagedObject] {
+        
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        fetchRequest.predicate = predicate
+        
+        var results = [NSManagedObject]()
+        do {
+            results = try context.fetch(fetchRequest)  as! [NSManagedObject]
+            return results
+        } catch {
+            
+            return []
+
+        }
+        
+        return []
+        
+        
+        
+    }
+
     
     
     public func fetchAll(entityName:String,

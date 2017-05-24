@@ -10,15 +10,13 @@ PODS:
   - Charts/Core (3.0.2)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
-  - Eureka (2.0.1)
+  - Eureka (3.0.0)
   - Fabric (1.6.11)
   - FastEasyMapping (1.1.2)
   - FBSDKCoreKit (4.21.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.18.0):
     - FBSDKCoreKit
-  - ImageRow (1.0.0):
-    - Eureka (~> 2.0.0-beta.1)
   - MiniTabBar (1.0.2)
   - Networking (3.0.3)
   - PKHUD (4.2.1)
@@ -36,11 +34,10 @@ PODS:
 DEPENDENCIES:
   - Charts
   - Crashlytics
-  - Eureka (~> 2.0)
+  - Eureka (from `https://github.com/xmartlabs/Eureka.git`)
   - Fabric
   - FastEasyMapping (~> 1.1)
   - FBSDKLoginKit (= 4.18.0)
-  - ImageRow (~> 1.0)
   - MiniTabBar
   - Networking
   - PKHUD (~> 4.0)
@@ -52,10 +49,15 @@ DEPENDENCIES:
   - Validator (~> 2.1.1)
 
 EXTERNAL SOURCES:
+  Eureka:
+    :git: https://github.com/xmartlabs/Eureka.git
   Sparrow:
     :git: https://github.com/IvanVorobei/Sparrow.git
 
 CHECKOUT OPTIONS:
+  Eureka:
+    :commit: 77cb04f587a4e83f28ad5f3174f6f8f6c086b524
+    :git: https://github.com/xmartlabs/Eureka.git
   Sparrow:
     :commit: f5354738460f009a22aa24ed34029846df05ba23
     :git: https://github.com/IvanVorobei/Sparrow.git
@@ -64,12 +66,11 @@ SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
-  Eureka: ae837bb1dfae0c07bc1bda7aeef87876eeb537c2
+  Eureka: 5b9418d7bfdc21ca977d69d124a6409f3e9af2c7
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FastEasyMapping: fe654d4b8d3c5650f41da1563a4385c6a19adea3
   FBSDKCoreKit: 8a372ab194b5c7c26355c1920ef52dbeb44bc222
   FBSDKLoginKit: 6773073e970b2b15fb12e451ce7f11da0532b880
-  ImageRow: 1e37db26f61a0c4ad3bc9a3a803c32d968782857
   MiniTabBar: 331db203a8d6b4b3c504f0978224f36f60125efc
   Networking: e2c42013296d093e4249f8247acb08e36958a11a
   PKHUD: 957ce2a68b3c97a51839b30216120c1dbc0c3a78
@@ -80,6 +81,6 @@ SPEC CHECKSUMS:
   UIEmptyState: b81840468b03d7be5b02114c239f5ac097dc935a
   Validator: b1793fbfd0046097551d0edd18e2c30792d69ef5
 
-PODFILE CHECKSUM: 3cbc66d82466a81c712f423c1e0521c104ffb67d
+PODFILE CHECKSUM: ee4328660d6379e7d499f60c58ff0785479a50cd
 
 COCOAPODS: 1.2.1

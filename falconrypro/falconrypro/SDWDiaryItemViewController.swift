@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ImageRow
 import Eureka
 import Networking
 import SDWebImage
@@ -18,6 +17,7 @@ class SDWDiaryItemViewController: FormViewController {
     
     
     let networking = Networking(baseURL: Constants.server.BASEURL)
+    let dataStore:SDWDataStore = SDWDataStore.sharedInstance
     var bird:BirdDisplayItem?
     var diaryItem:DiaryItemDisplayItem?
     var foods = [TypeDisplayItem]()
@@ -102,17 +102,70 @@ class SDWDiaryItemViewController: FormViewController {
                 row.title = "Notes"
         }
         
-//        for foodItem in self.diaryItem?.foods {
-//            form.last! <<< IntRow(){ row in
-//                
-//                row.value = foodItem.weight as? Int
-//                row.tag = "weight"
-//                row.title = "Weight"
-//                row.placeholder = "weight in gramms"
-//                
-//            }
-//            
+        +++
+            
+        MultivaluedSection(multivaluedOptions: [.Insert, .Delete],
+                           header: "Quarry caught",
+                           footer: "") { section in
+                            section.tag = "quarry"
+                            section.multivaluedRowToInsertAt = { index in
+                                return SearchablePushRow<QuarryTypeDisplayItem>(){
+                                    $0.tag = "\(index+1)_newquarry"
+                                    $0.title = "Quarry"
+                                    $0.displayValueFor = { value in
+                                        return value?.name
+                                    }
+                                    $0.options = self.dataStore.allQuarryTypes()
+                                }
+                            }
+                            if(self.diaryItem != nil && (self.diaryItem?.quarryTypes!.count)! > 0) {
+
+                                
+                                for (index, quarry) in (self.diaryItem?.quarryTypes)!.enumerated() {
+                                    
+                                    
+                                     section <<< SearchablePushRow<QuarryTypeDisplayItem>() {
+                                        $0.tag = "\(index+1)_quarry"
+                                        $0.value = quarry
+                                        $0.title = "Quarry"
+                                        $0.displayValueFor = { value in
+                                            return value?.name
+                                        }
+                                        
+                                        }.cellUpdate { cell, row in
+                                            row.options = self.dataStore.allQuarryTypes()
+                                    }
+                                    
+                                }
+                            }
+
+
+                            
+            }
+        
+        
+
+        
+
+//        +++ MultivaluedSection(multivaluedOptions: [.Insert, .Delete, .Reorder],
+//                           header: "Multivalued Push Selector example",
+//                           footer: "") {
+//                            $0.multivaluedRowToInsertAt = { index in
+//                                return SearchablePushRow<QuarryTypeDisplayItem>("name") {
+//                                    $0.title = "Quarry caught"
+//                                    $0.displayValueFor = { value in
+//                                        return value?.name
+//                                    }
+//
+//                                    }.cellUpdate { cell, row in
+//                                        row.options = self.dataStore.allQuarryTypes()
+//                                }
+//
+//                            }
 //        }
+        
+//        }
+//        
 
         self.tableView?.backgroundColor = UIColor.white
     
@@ -131,7 +184,7 @@ class SDWDiaryItemViewController: FormViewController {
 //        
 //        
 //        networking.get("/foods")  { result in
-//            
+//
 //            switch result {
 //            case .success(let response):
 //                
@@ -161,76 +214,41 @@ class SDWDiaryItemViewController: FormViewController {
     func updateDiaryItem() {
         
         let note: TextAreaRow? = form.rowBy(tag: "note")
-        let weight: IntRow? = form.rowBy(tag: "weight")
-        let d_offered: IntRow? = form.rowBy(tag: "d_offered")
-        let d_eaten: IntRow? = form.rowBy(tag: "d_eaten")
-
         let bird_id = self.bird?.remoteID
         
-        var dict: [String: Any] = [
-            "note": (note?.value != nil) ? note?.value as! String : nil,
-            "weight": (weight?.value)!,
-            "diet_offered": (d_offered?.value)!,
-            "diet_eaten": (d_eaten?.value)!,
-            "bird_id": bird_id
+
+        let valuesDictionary = form.values()
+        var quarry = [QuarryTypeDisplayItem]()
+        
+        for (key, value) in valuesDictionary {
+            if(key.hasSuffix("quarry")) {
+                let item:QuarryTypeDisplayItem = value as! QuarryTypeDisplayItem
+                quarry.append(item)
+            }
             
-            ]
-        
-
-        if let food_type_p = form.rowBy(tag:"food")?.baseValue {
-            let food_type_id_p = (food_type_p as! TypeDisplayItem).model?["id"] as! String
-            dict["food_id"] = food_type_id_p
-
         }
-        
-        
-        
-        
-        PKHUD.sharedHUD.show()
-        
         
         if (self.diaryItem != nil) {
             
-            let model_id = self.diaryItem?.remoteID
-
-            
-            networking.put("/diary_items/"+model_id!, parameters: ["diary_item":dict])  { result in
-                PKHUD.sharedHUD.hide()
-                switch result {
-                case .success(let response):
-                    print(response)
-                    self.dismiss(animated: true, completion: nil)
-                    
-                    
-                    
-                case .failure(let response):
-                    print(response.dictionaryBody)
-                }
+            self.dataStore.updateDiaryItemWith(itemID:self.diaryItem!.remoteID, note: note?.value, quarryTypes: quarry) { (object, error) in
                 
+                if (error == nil) {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
             
         } else {
             
-            networking.post("/diary_items", parameters: ["diary_item":dict])  { result in
-                PKHUD.sharedHUD.hide()
-                switch result {
-                case .success(let response):
-                    print(response)
-                    self.dismiss(animated: true, completion: nil)
-                    
-                    
-                    
-                case .failure(let response):
-                    print(response.dictionaryBody)
-                }
+            self.dataStore.pushDiaryItemWith(birdID:bird_id!, note: note?.value, quarryTypes: quarry) { (object, error) in
                 
+                if (error == nil) {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
-            
         }
         
 
 
-        
         
         
     }
@@ -241,7 +259,7 @@ class SDWDiaryItemViewController: FormViewController {
     }
     
     func finish(_ sender: Any) {
-//        self.updateDiaryItem()
+        self.updateDiaryItem()
 
         
     }

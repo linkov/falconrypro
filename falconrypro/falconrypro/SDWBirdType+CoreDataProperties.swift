@@ -2,7 +2,7 @@
 //  SDWBirdType+CoreDataProperties.swift
 //  falconrypro
 //
-//  Created by Alex Linkov on 5/10/17.
+//  Created by Alex Linkov on 5/12/17.
 //  Copyright © 2017 SDWR. All rights reserved.
 //
 
@@ -16,9 +16,9 @@ extension SDWBirdType {
         return NSFetchRequest<SDWBirdType>(entityName: "SDWBirdType")
     }
 
-    @NSManaged public var name: String?
-    @NSManaged public var latin: String?
     @NSManaged public var isPopular: Bool
+    @NSManaged public var latin: String?
+    @NSManaged public var name: String?
     @NSManaged public var order: Int32
     @NSManaged public var remoteID: String?
     @NSManaged public var birds: NSSet?

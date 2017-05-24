@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ImageRow
 import Eureka
 import Networking
 import SDWebImage
@@ -88,16 +87,16 @@ class SDWBirdViewController: FormViewController {
                 
                 +++ Section("Basic information")
                 
-                <<< ImageRow() {
-                    $0.tag = "pic"
-                    $0.title = "Update bird photo"
-                    $0.sourceTypes = .PhotoLibrary
-                    $0.clearAction = .no
-                    }
-                    .cellUpdate { cell, row in
-                        cell.accessoryView?.layer.cornerRadius = 17
-                        cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
-                }
+//                <<< ImageRow() {
+//                    $0.tag = "pic"
+//                    $0.title = "Update bird photo"
+//                    $0.sourceTypes = .PhotoLibrary
+//                    $0.clearAction = .no
+//                    }
+//                    .cellUpdate { cell, row in
+//                        cell.accessoryView?.layer.cornerRadius = 17
+//                        cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+//                }
                 <<< TextRow(){ row in
                     row.value = bird?.model?["name"] as? String
                     row.tag = "name"
@@ -525,58 +524,58 @@ class SDWBirdViewController: FormViewController {
     
     func uploadImage() {
         
-        let photoRow: ImageRow? = form.rowBy(tag: "pic")
-        if (photoRow?.value == nil) {
-            self.dismiss(animated: true, completion: nil)
-            return
-        }
-        
-        PKHUD.sharedHUD.show()
-        
-        let bird_id = self.bird?.model?["id"] as! String
-        
-        
-        let photoRowValue:UIImage = (photoRow?.value)!
-        
-        let dict: [String: String] = [:]
-        
-        var r  = URLRequest(url: URL(string: Constants.server.BASEURL+"/birds/"+bird_id)!)
-        r.httpMethod = "PUT"
-        let boundary = "Boundary-\(UUID().uuidString)"
-        
-        let token = UserDefaults.standard.value(forKey: "access-token")
-        let expires = UserDefaults.standard.value(forKey: "expiry")
-        let client = UserDefaults.standard.value(forKey: "client")
-        let uid = UserDefaults.standard.value(forKey: "uid")
-        
-        r.setValue(token as? String, forHTTPHeaderField: "access-token")
-        r.setValue(expires as? String, forHTTPHeaderField: "expiry")
-        r.setValue(client as? String, forHTTPHeaderField: "client")
-        r.setValue(uid as? String, forHTTPHeaderField: "uid")
-        
-        r.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        
-        r.httpBody = createBody(parameters: dict,
-                                boundary: boundary,
-                                data: UIImageJPEGRepresentation(photoRowValue, 0.7)!,
-                                mimeType: "image/jpg",
-                                filename: "bird.jpg")
-        
-        let task = URLSession.shared.dataTask(with: r) { data, response, error in
-            guard let data = data, error == nil else {
-                PKHUD.sharedHUD.hide()
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String: Any] {
-                PKHUD.sharedHUD.hide()
-                print(responseJSON)
-                self.dismiss(animated: true, completion: nil)
-            }
-        }
-        
-        task.resume()
+//        let photoRow: ImageRow? = form.rowBy(tag: "pic")
+//        if (photoRow?.value == nil) {
+//            self.dismiss(animated: true, completion: nil)
+//            return
+//        }
+//        
+//        PKHUD.sharedHUD.show()
+//        
+//        let bird_id = self.bird?.model?["id"] as! String
+//        
+//        
+//        let photoRowValue:UIImage = (photoRow?.value)!
+//        
+//        let dict: [String: String] = [:]
+//        
+//        var r  = URLRequest(url: URL(string: Constants.server.BASEURL+"/birds/"+bird_id)!)
+//        r.httpMethod = "PUT"
+//        let boundary = "Boundary-\(UUID().uuidString)"
+//        
+//        let token = UserDefaults.standard.value(forKey: "access-token")
+//        let expires = UserDefaults.standard.value(forKey: "expiry")
+//        let client = UserDefaults.standard.value(forKey: "client")
+//        let uid = UserDefaults.standard.value(forKey: "uid")
+//        
+//        r.setValue(token as? String, forHTTPHeaderField: "access-token")
+//        r.setValue(expires as? String, forHTTPHeaderField: "expiry")
+//        r.setValue(client as? String, forHTTPHeaderField: "client")
+//        r.setValue(uid as? String, forHTTPHeaderField: "uid")
+//        
+//        r.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+//        
+//        r.httpBody = createBody(parameters: dict,
+//                                boundary: boundary,
+//                                data: UIImageJPEGRepresentation(photoRowValue, 0.7)!,
+//                                mimeType: "image/jpg",
+//                                filename: "bird.jpg")
+//        
+//        let task = URLSession.shared.dataTask(with: r) { data, response, error in
+//            guard let data = data, error == nil else {
+//                PKHUD.sharedHUD.hide()
+//                print(error?.localizedDescription ?? "No data")
+//                return
+//            }
+//            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+//            if let responseJSON = responseJSON as? [String: Any] {
+//                PKHUD.sharedHUD.hide()
+//                print(responseJSON)
+//                self.dismiss(animated: true, completion: nil)
+//            }
+//        }
+//        
+//        task.resume()
         
         
     }

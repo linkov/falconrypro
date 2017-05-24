@@ -1,8 +1,8 @@
 //
-//  SDWBirdType+CoreDataClass.swift
+//  SDWQuarryType+CoreDataClass.swift
 //  falconrypro
 //
-//  Created by Alex Linkov on 5/8/17.
+//  Created by Alex Linkov on 5/12/17.
 //  Copyright © 2017 SDWR. All rights reserved.
 //
 
@@ -11,23 +11,25 @@ import CoreData
 import FastEasyMapping
 
 
-@objc(SDWBirdType)
-public class SDWBirdType: NSManagedObject, SDWObjectMapping {
-
+@objc(SDWQuarryType)
+public class SDWQuarryType: NSManagedObject, SDWObjectMapping {
+    
+    
     class func entityName() -> String {
-        return "SDWBirdType"
+        return "SDWQuarryType"
     }
     
     class func defaultMapping() -> FEMMapping {
         
         
-        let mapping:FEMMapping = FEMMapping(entityName: "SDWBirdType")
+        let mapping:FEMMapping = FEMMapping(entityName: "SDWQuarryType")
         mapping.primaryKey = "remoteID";
         mapping.addAttribute(FEMAttribute.falconryID())
         mapping.addAttribute(withProperty: "name", keyPath: "name")
-        mapping.addAttribute(withProperty: "isPopular", keyPath: "popular")
-        mapping.addAttribute(withProperty: "latin", keyPath: "latin")
+        
+        
         
         return mapping
     }
+
 }

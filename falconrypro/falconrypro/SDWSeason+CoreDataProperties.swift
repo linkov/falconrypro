@@ -2,7 +2,7 @@
 //  SDWSeason+CoreDataProperties.swift
 //  falconrypro
 //
-//  Created by Alex Linkov on 5/10/17.
+//  Created by Alex Linkov on 5/12/17.
 //  Copyright © 2017 SDWR. All rights reserved.
 //
 
@@ -16,15 +16,15 @@ extension SDWSeason {
         return NSFetchRequest<SDWSeason>(entityName: "SDWSeason")
     }
 
-    @NSManaged public var startDate: NSDate?
     @NSManaged public var endDate: NSDate?
+    @NSManaged public var endDateString: String?
     @NSManaged public var isBetweenSeason: Bool
     @NSManaged public var remoteID: String?
+    @NSManaged public var startDate: NSDate?
     @NSManaged public var startDateString: String?
-    @NSManaged public var endDateString: String?
-    @NSManaged public var user: SDWUser?
     @NSManaged public var bird: SDWBird?
     @NSManaged public var items: NSSet?
+    @NSManaged public var user: SDWUser?
 
 }
 

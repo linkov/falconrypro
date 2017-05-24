@@ -23,10 +23,20 @@ class SDWLoginCoordinator: LoginCoordinator {
     override func start() {
         super.start()
         configureAppearance()
+        
+
     }
     
     override func finish() {
-        super.finish()
+        
+         PKHUD.sharedHUD.show()
+        self.dataStore.prefetchData { (objects, error) in
+             PKHUD.sharedHUD.hide()
+            if (error == nil) {
+                super.finish()
+            }
+        }
+        
     }
     
     // MARK: - Setup
@@ -68,23 +78,7 @@ class SDWLoginCoordinator: LoginCoordinator {
             self.finish()
             
         }
-        
-//        networking.post("/auth/sign_in",parameters: ["email" : email, "password" : password])  { result in
-//            
-//            PKHUD.sharedHUD.hide()
-//            
-//            switch result {
-//            case .success(let response):
-//                print(response)
-//                self.configureHeaders(json: response.headers as NSDictionary)
-//                self.finish()
-//                
-//                
-//            case .failure(let response):
-//                print(response)
-//            }
-//            
-//        }
+
     }
     
     override func signup(email: String, password: String) {
@@ -104,50 +98,7 @@ class SDWLoginCoordinator: LoginCoordinator {
 
         
     }
-    
-    func configureHeaders(json: NSDictionary, isFacebook: Bool? = false) {
-        
-        var token:Any
-        var expires:Any
-        var client:Any
-        var uid:Any
-        
-        if (Constants.server.BASEURL == Constants.server.PROD) {
-            token = json["access-token"]!
-            expires = json["expiry"]!
-            client = json["client"]!
-            uid = json["uid"]!
-        } else {
-            
-            if (isFacebook == true) {
-                token = json["access-token"]!
-                expires = json["expiry"]!
-                client = json["client"]!
-                uid = json["uid"]!
-            } else {
-                token = json["Access-Token"]!
-                expires = json["Expiry"]!
-                client = json["Client"]!
-                uid = json["Uid"]!
-            }
 
-            
-
-        }
-        
-
-        
-        networking.setAuthorizationHeader(headerKey: "access-token", headerValue:token as! String)
-        networking.setAuthorizationHeader(headerKey: "client", headerValue:client as! String)
-        networking.setAuthorizationHeader(headerKey: "uid", headerValue:uid as! String)
-        networking.setAuthorizationHeader(headerKey: "expiry", headerValue:expires as! String)
-        
-        UserDefaults.standard.setValue(token, forKey: "access-token")
-        UserDefaults.standard.setValue(expires, forKey: "expiry")
-        UserDefaults.standard.setValue(client, forKey: "client")
-        UserDefaults.standard.setValue(uid, forKey: "uid")
-
-    }
     
     override func enterWithFacebook(profile: FacebookProfile) {
         // Handle Facebook login/signup via your API
@@ -163,7 +114,7 @@ class SDWLoginCoordinator: LoginCoordinator {
                 let json = response.dictionaryBody
                 print(json)
                 
-                self.configureHeaders(json: json as NSDictionary,isFacebook:true)
+                self.networkManager.configureHeaders(json: json as NSDictionary,isFacebook:true)
                 
                 self.finish()
                 

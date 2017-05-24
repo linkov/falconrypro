@@ -2,7 +2,7 @@
 //  SDWDiaryItem+CoreDataProperties.swift
 //  falconrypro
 //
-//  Created by Alex Linkov on 5/10/17.
+//  Created by Alex Linkov on 5/12/17.
 //  Copyright © 2017 SDWR. All rights reserved.
 //
 
@@ -16,13 +16,14 @@ extension SDWDiaryItem {
         return NSFetchRequest<SDWDiaryItem>(entityName: "SDWDiaryItem")
     }
 
-    @NSManaged public var note: String?
     @NSManaged public var createdAt: NSDate?
-    @NSManaged public var updatedAt: NSDate?
+    @NSManaged public var note: String?
     @NSManaged public var remoteID: String?
+    @NSManaged public var updatedAt: NSDate?
     @NSManaged public var bird: SDWBird?
-    @NSManaged public var season: SDWSeason?
     @NSManaged public var foods: NSSet?
+    @NSManaged public var quarryTypes: NSSet?
+    @NSManaged public var season: SDWSeason?
     @NSManaged public var weights: NSSet?
 
 }
@@ -41,6 +42,23 @@ extension SDWDiaryItem {
 
     @objc(removeFoods:)
     @NSManaged public func removeFromFoods(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for quarryTypes
+extension SDWDiaryItem {
+
+    @objc(addQuarryTypesObject:)
+    @NSManaged public func addToQuarryTypes(_ value: SDWQuarryType)
+
+    @objc(removeQuarryTypesObject:)
+    @NSManaged public func removeFromQuarryTypes(_ value: SDWQuarryType)
+
+    @objc(addQuarryTypes:)
+    @NSManaged public func addToQuarryTypes(_ values: NSSet)
+
+    @objc(removeQuarryTypes:)
+    @NSManaged public func removeFromQuarryTypes(_ values: NSSet)
 
 }
 

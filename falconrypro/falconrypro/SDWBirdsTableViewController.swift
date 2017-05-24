@@ -72,10 +72,7 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
     
     func logout(_ sender: Any) {
         
-        UserDefaults.standard.removeObject(forKey: "access-token")
-        UserDefaults.standard.removeObject(forKey: "expiry")
-        UserDefaults.standard.removeObject(forKey: "client")
-        UserDefaults.standard.removeObject(forKey: "uid")
+        self.dataStore.logout()
         loginCoordinator.start()
     }
     
@@ -113,37 +110,6 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
         }
         
         
-//        networkManager.fetchBirds { (result, error) in
-//            
-//            
-//            guard let data = result, error == nil else {
-//                
-//                print(error?.localizedDescription ?? "No data")
-//                return
-//            }
-//            
-//            var array = [ListDisplayItem]()
-//            
-//            for item in data as! Array<Dictionary<AnyHashable, Any>> {
-//                
-//                let object = ListDisplayItem()
-//                object.first = item["name"] as? String
-//                let arr = item["type_name"] as? Array<String>
-//                object.sub = arr?.joined(separator: ", ")
-//                object.imageURL = item["thumb"] as? String
-//                object.model = item as? Dictionary<String, Any>
-//                
-//                array.append(object)
-//                
-//                
-//            }
-//            self.objects = array
-//            self.tableView.reloadData()
-//            self.reloadEmptyState(forTableView: self.tableView)
-//            
-//        }
-        
-       
 
         
     }
@@ -177,6 +143,8 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
                          placeholderImage: nil,
                          options: [],
                          completed: nil)
+        } else {
+            cell.birdImage.image = nil
         }
         
         

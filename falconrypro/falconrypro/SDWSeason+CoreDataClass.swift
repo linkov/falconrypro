@@ -29,6 +29,14 @@ public class SDWSeason: NSManagedObject, SDWObjectMapping {
         mapping.addAttribute(FEMAttribute.bdayDateAttribute(withProperty: "startDate", keyPath: "start"))
         mapping.addAttribute(FEMAttribute.bdayDateAttribute(withProperty: "endDate", keyPath: "end"))
         
+        let birdMapping:FEMMapping = FEMMapping(entityName: "SDWBird")
+        birdMapping.primaryKey = "remoteID"
+        birdMapping.addAttribute(withProperty: "remoteID", keyPath: nil)
+        
+        let birdRelationshipMapping:FEMRelationship = FEMRelationship(property: "bird", keyPath: "bird", mapping: birdMapping)
+        birdRelationshipMapping.weak = true
+        mapping.addRelationship(birdRelationshipMapping)
+        
         return mapping
     }
 

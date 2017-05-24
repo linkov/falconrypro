@@ -30,6 +30,8 @@
 		F1CB9CDA1E9905C900A90363 /* falconryproTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB9CD91E9905C900A90363 /* falconryproTests.swift */; };
 		F1CB9CE51E9905C900A90363 /* falconryproUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB9CE41E9905C900A90363 /* falconryproUITests.swift */; };
 		F1D2608D1EB3BF3E006D1BE9 /* SDWHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2608C1EB3BF3E006D1BE9 /* SDWHomeViewController.swift */; };
+		F1EE1F241EC5B70E00917993 /* SDWQuarryType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EE1F221EC5B70E00917993 /* SDWQuarryType+CoreDataClass.swift */; };
+		F1EE1F251EC5B70E00917993 /* SDWQuarryType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EE1F231EC5B70E00917993 /* SDWQuarryType+CoreDataProperties.swift */; };
 		F1FA3A961EBFFE4300355507 /* DataModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3A951EBFFE4300355507 /* DataModelManager.swift */; };
 		F1FA3AA21EC0863900355507 /* SDWDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AA11EC0863900355507 /* SDWDataStore.swift */; };
 		F1FA3AAF1EC0899800355507 /* SDWBirdType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AA31EC0899800355507 /* SDWBirdType+CoreDataClass.swift */; };
@@ -140,6 +142,8 @@
 		F1CB9CE41E9905C900A90363 /* falconryproUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = falconryproUITests.swift; sourceTree = "<group>"; };
 		F1CB9CE61E9905C900A90363 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1D2608C1EB3BF3E006D1BE9 /* SDWHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWHomeViewController.swift; sourceTree = "<group>"; };
+		F1EE1F221EC5B70E00917993 /* SDWQuarryType+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWQuarryType+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F1EE1F231EC5B70E00917993 /* SDWQuarryType+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWQuarryType+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F1FA3A951EBFFE4300355507 /* DataModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModelManager.swift; sourceTree = "<group>"; };
 		F1FA3A9F1EC070FB00355507 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		F1FA3AA11EC0863900355507 /* SDWDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDataStore.swift; sourceTree = "<group>"; };
@@ -377,6 +381,8 @@
 		F1FA3A9D1EC070E400355507 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				F1EE1F221EC5B70E00917993 /* SDWQuarryType+CoreDataClass.swift */,
+				F1EE1F231EC5B70E00917993 /* SDWQuarryType+CoreDataProperties.swift */,
 				F1FA3B231EC3B8E600355507 /* SDWDiaryWeight+CoreDataClass.swift */,
 				F1FA3B241EC3B8E600355507 /* SDWDiaryWeight+CoreDataProperties.swift */,
 				F1FA3B251EC3B8E600355507 /* SDWDiaryFood+CoreDataClass.swift */,
@@ -856,10 +862,12 @@
 				F1FA3AB01EC0899800355507 /* SDWBirdType+CoreDataProperties.swift in Sources */,
 				F19FEDC71EB380ED00996B40 /* searchable_push_row.swift in Sources */,
 				F1D2608D1EB3BF3E006D1BE9 /* SDWHomeViewController.swift in Sources */,
+				F1EE1F241EC5B70E00917993 /* SDWQuarryType+CoreDataClass.swift in Sources */,
 				F1FA3B2A1EC3B8E600355507 /* SDWDiaryFood+CoreDataProperties.swift in Sources */,
 				F1FA3B1A1EC219E700355507 /* LoginCoordinator.swift in Sources */,
 				F1FA3AA21EC0863900355507 /* SDWDataStore.swift in Sources */,
 				F1FA3AB51EC0899800355507 /* SDWDiaryItem+CoreDataClass.swift in Sources */,
+				F1EE1F251EC5B70E00917993 /* SDWQuarryType+CoreDataProperties.swift in Sources */,
 				F1FA3B281EC3B8E600355507 /* SDWDiaryWeight+CoreDataProperties.swift in Sources */,
 				F1AD8B731E9EA518006B2EB1 /* DisplayModels.swift in Sources */,
 				F1FA3B1B1EC219E700355507 /* LoginViewController.swift in Sources */,

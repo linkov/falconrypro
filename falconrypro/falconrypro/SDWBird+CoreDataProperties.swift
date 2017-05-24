@@ -2,7 +2,7 @@
 //  SDWBird+CoreDataProperties.swift
 //  falconrypro
 //
-//  Created by Alex Linkov on 5/10/17.
+//  Created by Alex Linkov on 5/12/17.
 //  Copyright © 2017 SDWR. All rights reserved.
 //
 
@@ -16,36 +16,19 @@ extension SDWBird {
         return NSFetchRequest<SDWBird>(entityName: "SDWBird")
     }
 
-    @NSManaged public var name: String?
-    @NSManaged public var isMale: Bool
     @NSManaged public var birthday: NSDate?
+    @NSManaged public var code: String?
     @NSManaged public var fatWeight: Int16
     @NSManaged public var huntingWeight: Int16
     @NSManaged public var imageURL: String?
-    @NSManaged public var thumbURL: String?
-    @NSManaged public var code: String?
+    @NSManaged public var isMale: Bool
+    @NSManaged public var name: String?
     @NSManaged public var remoteID: String?
-    @NSManaged public var owner: SDWUser?
-    @NSManaged public var types: NSSet?
+    @NSManaged public var thumbURL: String?
     @NSManaged public var diaryItems: NSSet?
+    @NSManaged public var owner: SDWUser?
     @NSManaged public var seasons: NSSet?
-
-}
-
-// MARK: Generated accessors for types
-extension SDWBird {
-
-    @objc(addTypesObject:)
-    @NSManaged public func addToTypes(_ value: SDWBirdType)
-
-    @objc(removeTypesObject:)
-    @NSManaged public func removeFromTypes(_ value: SDWBirdType)
-
-    @objc(addTypes:)
-    @NSManaged public func addToTypes(_ values: NSSet)
-
-    @objc(removeTypes:)
-    @NSManaged public func removeFromTypes(_ values: NSSet)
+    @NSManaged public var types: NSSet?
 
 }
 
@@ -80,5 +63,22 @@ extension SDWBird {
 
     @objc(removeSeasons:)
     @NSManaged public func removeFromSeasons(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for types
+extension SDWBird {
+
+    @objc(addTypesObject:)
+    @NSManaged public func addToTypes(_ value: SDWBirdType)
+
+    @objc(removeTypesObject:)
+    @NSManaged public func removeFromTypes(_ value: SDWBirdType)
+
+    @objc(addTypes:)
+    @NSManaged public func addToTypes(_ values: NSSet)
+
+    @objc(removeTypes:)
+    @NSManaged public func removeFromTypes(_ values: NSSet)
 
 }

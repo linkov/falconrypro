@@ -10,8 +10,7 @@ target 'falconrypro' do
   pod 'Crashlytics'
   pod 'Networking'
   pod 'PKHUD', '~> 4.0'
-  pod 'Eureka', '~> 2.0'
-  pod 'ImageRow', '~> 1.0'
+  pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka.git'
   pod 'SDWebImage', '~>4.0'
   pod 'Reveal-SDK', :configurations => ['Debug']
   pod "Sparrow/Modules/RequestPermission", :git => "https://github.com/IvanVorobei/Sparrow.git"

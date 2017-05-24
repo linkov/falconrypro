@@ -29,6 +29,22 @@ public class SDWDiaryItem: NSManagedObject, SDWObjectMapping {
         mapping.add(toManyRelationshipMapping: SDWDiaryWeight.defaultMapping(), forProperty: "weights", keyPath: "diary_weights")
         mapping.add(toManyRelationshipMapping: SDWDiaryFood.defaultMapping(), forProperty: "foods", keyPath: "diary_foods")
         
+        
+        let quarryRelationshipMapping:FEMRelationship = FEMRelationship(property: "quarryTypes", keyPath: "quarry_types", mapping: SDWQuarryType.defaultMapping())
+        quarryRelationshipMapping.weak = true
+        quarryRelationshipMapping.isToMany = true
+        mapping.addRelationship(quarryRelationshipMapping)
+        
+        
+        let birdMapping:FEMMapping = FEMMapping(entityName: "SDWBird")
+        birdMapping.primaryKey = "remoteID"
+        birdMapping.addAttribute(withProperty: "remoteID", keyPath: nil)
+        birdMapping.weak = true
+        
+        let birdRelationshipMapping:FEMRelationship = FEMRelationship(property: "bird", keyPath: "bird", mapping: birdMapping)
+        birdRelationshipMapping.weak = true
+        mapping.addRelationship(birdRelationshipMapping)
+        
         return mapping
     }
     

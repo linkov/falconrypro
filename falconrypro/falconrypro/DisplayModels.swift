@@ -41,7 +41,7 @@ class DiaryFoodItemDisplayItem: NSObject {
             self.food = FoodDisplayItem(model: self.model.food!)
         }
         
-        self.time = self.model.time as! Date
+        self.time = self.model.time! as Date
         self.remoteID = self.model.remoteID!
     }
     
@@ -56,6 +56,32 @@ class FoodDisplayItem: NSObject {
         self.model = model
         self.name = self.model.name
         self.remoteID = self.model.remoteID!
+    }
+    
+}
+
+
+class QuarryTypeDisplayItem: NSObject, SearchableItem {
+    var remoteID:String
+    var name:String?
+    public private(set) var model:SDWQuarryType
+    
+    override var description: String {
+        return name!
+    }
+    
+    init(model:SDWQuarryType) {
+        self.model = model
+        self.name = self.model.name
+        self.remoteID = self.model.remoteID!
+    }
+    
+    func matchesSearchQuery(_ query: String) -> Bool {
+        
+        let tmp: String = name!
+        let range = tmp.range(of: query, options: NSString.CompareOptions.caseInsensitive)
+        return range?.isEmpty == false
+        
     }
     
 }
@@ -129,6 +155,7 @@ class BirdTypeDisplayItem: NSObject, SearchableItem {
     
     var name:String?
     var remoteID:String
+    var isPopular:Bool
     
     public private(set) var model:SDWBirdType
     
@@ -150,7 +177,7 @@ class BirdTypeDisplayItem: NSObject, SearchableItem {
         self.model = model
         self.remoteID = model.remoteID!
         self.name = model.name
-        
+        self.isPopular = model.isPopular
         
         
         
@@ -204,6 +231,7 @@ class DiaryItemDisplayItem: NSObject {
     var remoteID:String
     var foods:Array<DiaryFoodItemDisplayItem>?
     var weights:Array<DiaryWeightItemDisplayItem>?
+    var quarryTypes:Array<QuarryTypeDisplayItem>?
     
     public private(set) var model:SDWDiaryItem
     
@@ -221,17 +249,21 @@ class DiaryItemDisplayItem: NSObject {
         self.created = self.dateFormatter.string(from: self.model.createdAt! as Date)
         
         let foodsArr:Array<SDWDiaryFood> = self.model.foods?.allObjects as! Array<SDWDiaryFood>
-        
         let foods:Array = foodsArr.map({ (item: SDWDiaryFood) -> DiaryFoodItemDisplayItem in
             DiaryFoodItemDisplayItem(model: item)
         })
         
         let weightsArr:Array<SDWDiaryWeight> = self.model.weights?.allObjects as! Array<SDWDiaryWeight>
-        
         let weights:Array = weightsArr.map({ (item: SDWDiaryWeight) -> DiaryWeightItemDisplayItem in
             DiaryWeightItemDisplayItem(model: item)
         })
         
+        let quarryArr:Array<SDWQuarryType> = self.model.quarryTypes?.allObjects as! Array<SDWQuarryType>
+        let quarry:Array = quarryArr.map({ (item: SDWQuarryType) -> QuarryTypeDisplayItem in
+            QuarryTypeDisplayItem(model: item)
+        })
+        
+        self.quarryTypes = quarry
         self.foods = foods
         self.weights = weights
         

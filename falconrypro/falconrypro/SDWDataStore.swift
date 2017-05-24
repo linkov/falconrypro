@@ -22,6 +22,122 @@ class SDWDataStore: NSObject {
     }()
     
     
+    public func allQuarryTypes() -> [QuarryTypeDisplayItem] {
+        let quarryTypes = self.dataModelManager.fetchAll(entityName: SDWQuarryType.entityName(), predicate: nil, context: self.dataModelManager.viewContext) as! [SDWQuarryType]
+        let quarryDisplayItems = quarryTypes.map({ (item: SDWQuarryType) -> QuarryTypeDisplayItem in
+            QuarryTypeDisplayItem(model: item)
+        })
+        return quarryDisplayItems
+    }
+    
+    public func allFoods() -> [FoodDisplayItem] {
+        let quarryTypes = self.dataModelManager.fetchAll(entityName: SDWFood.entityName(), predicate: nil, context: self.dataModelManager.viewContext) as! [SDWFood]
+        let quarryDisplayItems = quarryTypes.map({ (item: SDWFood) -> FoodDisplayItem in
+            FoodDisplayItem(model: item)
+        })
+        return quarryDisplayItems
+    }
+
+    
+    public func prefetchData(completion:@escaping sdw_id_error_block) {
+        
+        self.pullAllFoods(currentData: { (objects, error) in
+     
+            guard let _ = objects, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                completion(nil,error)
+                return
+            }
+            
+        }) { (objects, error) in
+            
+            guard let _ = objects, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                completion(nil,error)
+                return
+            }
+            
+            self.pullAllQuarryTypes(currentData: { (objects, error) in
+                
+                guard let _ = objects, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    completion(nil,error)
+                    return
+                }
+                
+            }) { (objects, error) in
+                
+                guard let _ = objects, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    completion(nil,error)
+                    return
+                }
+                
+                self.pullAllBirdTypes(currentData: { (objects, error) in
+                    
+                    guard let _ = objects, error == nil else {
+                        print(error?.localizedDescription ?? "No data")
+                        completion(nil,error)
+                        return
+                    }
+                    
+                    
+                }, fetchedData: { (objects, error) in
+                    
+                    
+                    guard let data = objects, error == nil else {
+                        print(error?.localizedDescription ?? "No data")
+                        completion(nil,error)
+                        return
+                    }
+                    self.dataModelManager.saveContext()
+                    completion(data,nil)
+                    
+                })
+                
+  
+                
+            }
+            
+        }
+        
+
+    }
+    
+    public func logout() {
+        
+        UserDefaults.standard.removeObject(forKey: "access-token")
+        UserDefaults.standard.removeObject(forKey: "expiry")
+        UserDefaults.standard.removeObject(forKey: "client")
+        UserDefaults.standard.removeObject(forKey: "uid")
+        
+        
+        self.dataModelManager.fetch(entityDescription: SDWUser.entity(), predicate: nil, context: self.dataModelManager.viewContext) { (user, error) in
+            
+//            let birds = (user as! SDWUser).birds
+//            let seasons = (user as! SDWUser).seasons
+//            
+//            for bird in birds! {
+//                self.dataModelManager.viewContext.delete(bird as! NSManagedObject)
+//            }
+//            
+//            
+//            for season in seasons! {
+//                self.dataModelManager.viewContext.delete(season as! NSManagedObject)
+//            }
+//            
+            self.dataModelManager.viewContext.delete(user as! NSManagedObject)
+            self.dataModelManager.viewContext.processPendingChanges()
+            
+            
+            
+            self.dataModelManager.saveContext()
+        }
+        
+        
+    }
+    
+    
     public func pullUserWith(email:String,password:String,completion:@escaping sdw_id_error_block) {
         
         self.networkManager .signInWith(email: email, password: password) { (object, error) in
@@ -70,6 +186,73 @@ class SDWDataStore: NSObject {
             self.dataModelManager.viewContext.delete(bird)
         }
 
+    }
+    
+    
+    public func updateDiaryItemWith(itemID:String,
+                                  note:String?,
+                                  quarryTypes:[QuarryTypeDisplayItem]?,
+                                  completion:@escaping sdw_id_error_block) {
+        
+        
+        var quarryTypeIDs = [String]()
+        if let quarry = quarryTypes {
+            quarryTypeIDs = quarry.map({ (item: QuarryTypeDisplayItem) -> String in
+                item.remoteID
+            })
+        }
+        
+        
+        self.networkManager.updateDiaryItemWith(itemID:itemID, quarryTypeIDs:quarryTypeIDs, note:note, completion: {(object, error) in
+            
+            
+            guard let data = object, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                completion(nil,error)
+                return
+            }
+            
+            
+            let mappedObject = SDWMapper.ez_object(withClass: type(of: SDWDiaryItem()) as SDWObjectMapping.Type, fromJSON: data as! Dictionary<AnyHashable, Any>, context: self.dataModelManager.viewContext)
+            self.dataModelManager.saveContext()
+            
+            completion(mappedObject,nil)
+            
+        })
+        
+    }
+    
+    public func pushDiaryItemWith(birdID:String,
+                                  note:String?,
+                                  quarryTypes:[QuarryTypeDisplayItem]?,
+                                  completion:@escaping sdw_id_error_block) {
+        
+        
+        var quarryTypeIDs = [String]()
+        if let quarry = quarryTypes {
+            quarryTypeIDs = quarry.map({ (item: QuarryTypeDisplayItem) -> String in
+                item.remoteID
+            })
+        }
+
+        
+        self.networkManager.createDiaryItemWith(birdID:birdID, quarryTypeIDs:quarryTypeIDs, note:note, completion: {(object, error) in
+            
+            
+            guard let data = object, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                completion(nil,error)
+                return
+            }
+            
+            
+            let mappedObject = SDWMapper.ez_object(withClass: type(of: SDWDiaryItem()) as SDWObjectMapping.Type, fromJSON: data as! Dictionary<AnyHashable, Any>, context: self.dataModelManager.viewContext)
+            self.dataModelManager.saveContext()
+            
+            completion(mappedObject,nil)
+            
+        })
+        
     }
 
     public func pushBirdWith(code:String?,
@@ -213,6 +396,7 @@ class SDWDataStore: NSObject {
                     displayItemsArray.append(displayItem)
                 }
                 
+                self.dataModelManager.saveContext()
                 
                 fetchedData(displayItemsArray,nil)
                 
@@ -238,12 +422,12 @@ class SDWDataStore: NSObject {
             }
             
             
-            let arr:Array<SDWBird> = data as! Array
-            var displayItemsArray = [BirdDisplayItem]()
+            let arr:Array<SDWFood> = data as! Array
+            var displayItemsArray = [FoodDisplayItem]()
             
             
             for obj in arr {
-                let displayItem:BirdDisplayItem = BirdDisplayItem(model: obj )
+                let displayItem:FoodDisplayItem = FoodDisplayItem(model: obj )
                 displayItemsArray.append(displayItem)
             }
             
@@ -251,7 +435,7 @@ class SDWDataStore: NSObject {
             
             
             
-            self.networkManager.fetchBirds(completion: { (objects, error) in
+            self.networkManager.fetchFoods(completion: { (objects, error) in
                 
                 
                 guard let data = objects, error == nil else {
@@ -261,14 +445,74 @@ class SDWDataStore: NSObject {
                 }
                 
                 
-                let mappedObjects = SDWMapper.ez_arrayOfObjects(withClass: type(of: SDWBird()) as SDWObjectMapping.Type, fromJSON: data as! Array<Any>, context: self.dataModelManager.viewContext)
+                let mappedObjects = SDWMapper.ez_arrayOfObjects(withClass: type(of: SDWFood()) as SDWObjectMapping.Type, fromJSON: data as! Array<Any>, context: self.dataModelManager.viewContext)
                 
                 
-                var displayItemsArray = [BirdDisplayItem]()
+                var displayItemsArray = [FoodDisplayItem]()
                 
                 
                 for obj in mappedObjects {
-                    let displayItem:BirdDisplayItem = BirdDisplayItem(model: obj as! SDWBird )
+                    let displayItem:FoodDisplayItem = FoodDisplayItem(model: obj as! SDWFood )
+                    displayItemsArray.append(displayItem)
+                }
+                
+                
+                fetchedData(displayItemsArray,nil)
+                
+                
+                
+                
+            })
+            
+            
+        }
+    }
+    
+    
+    public func pullAllQuarryTypes(currentData:sdw_id_error_block,fetchedData:@escaping sdw_id_error_block) {
+        
+        
+        self.dataModelManager.fetchAll(entityName:SDWQuarryType.entityName(), predicate: nil, context: self.dataModelManager.viewContext) { (objects, error) in
+            
+            
+            guard let data = objects, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                currentData(nil,error)
+                return
+            }
+            
+            
+            let arr:Array<SDWQuarryType> = data as! Array
+            var displayItemsArray = [QuarryTypeDisplayItem]()
+            
+            
+            for obj in arr {
+                let displayItem:QuarryTypeDisplayItem = QuarryTypeDisplayItem(model: obj )
+                displayItemsArray.append(displayItem)
+            }
+            
+            currentData(displayItemsArray,nil)
+            
+            
+            
+            self.networkManager.fetchQuarryTypes(completion: { (objects, error) in
+                
+                
+                guard let data = objects, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    fetchedData(nil,error)
+                    return
+                }
+                
+                
+                let mappedObjects = SDWMapper.ez_arrayOfObjects(withClass: type(of: SDWQuarryType()) as SDWObjectMapping.Type, fromJSON: data as! Array<Any>, context: self.dataModelManager.viewContext)
+                
+                
+                var displayItemsArray = [QuarryTypeDisplayItem]()
+                
+                
+                for obj in mappedObjects {
+                    let displayItem:QuarryTypeDisplayItem = QuarryTypeDisplayItem(model: obj as! SDWQuarryType )
                     displayItemsArray.append(displayItem)
                 }
                 
@@ -333,7 +577,7 @@ class SDWDataStore: NSObject {
                     displayItemsArray.append(displayItem)
                 }
                 
-                
+                self.dataModelManager.saveContext()
                 fetchedData(displayItemsArray,nil)
                 
                 

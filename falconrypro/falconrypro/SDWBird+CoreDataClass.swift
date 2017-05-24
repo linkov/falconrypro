@@ -36,7 +36,7 @@ public class SDWBird: NSManagedObject, SDWObjectMapping {
         userMapping.primaryKey = "remoteID"
         userMapping.addAttribute(withProperty: "remoteID", keyPath: nil)
         
-        let userRelationshipMapping:FEMRelationship = FEMRelationship(property: "owner", keyPath: "owner", mapping: SDWUser.defaultMapping())
+        let userRelationshipMapping:FEMRelationship = FEMRelationship(property: "owner", keyPath: "owner", mapping: userMapping)
         userRelationshipMapping.weak = true
         mapping.addRelationship(userRelationshipMapping)
         

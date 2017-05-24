@@ -78,6 +78,77 @@ class NetworkManager: NSObject {
         }
     }
     
+    public func createDiaryItemWith(birdID:String, quarryTypeIDs:Array<String>?,note:String?,
+                                    completion:@escaping sdw_id_error_block) {
+        touch tmp/restart.txt
+        self.setupRequestHeaders()
+        
+        var dict: [String: Any] = [
+            "bird_id": birdID,
+            
+        ]
+        
+        if let quarry = quarryTypeIDs {
+            dict["quarry_type_ids"] = quarry
+        }
+        
+        if let note = note {
+            dict["note"] = note
+        }
+        
+        networking.post("/diary_items", parameters: ["diary_item":dict])  { result in
+            
+            switch result {
+            case .success(let response):
+                print(response)
+                completion(response.dictionaryBody,nil)
+                
+                
+                
+                
+            case .failure(let response):
+                print(response.dictionaryBody)
+                completion(nil,response.error)
+            }
+            
+        }
+        
+    }
+    
+    public func updateDiaryItemWith(itemID:String, quarryTypeIDs:Array<String>?,note:String?,
+                                    completion:@escaping sdw_id_error_block) {
+        
+        self.setupRequestHeaders()
+        
+        var dict: [String: Any] = [:]
+        
+        if let quarry = quarryTypeIDs {
+            dict["quarry_type_ids"] = quarry
+        }
+        
+        if let note = note {
+            dict["note"] = note
+        }
+        
+        networking.put("/diary_items/?id="+itemID, parameters: ["diary_item":dict])  { result in
+            
+            switch result {
+            case .success(let response):
+                print(response)
+                completion(response.dictionaryBody,nil)
+                
+                
+                
+                
+            case .failure(let response):
+                print(response.dictionaryBody)
+                completion(nil,response.error)
+            }
+            
+        }
+        
+    }
+    
     
     public func createBirdWith(birdTypeIDs:Array<String>,
                                code:String?,
@@ -145,6 +216,50 @@ class NetworkManager: NSObject {
                 print(response.arrayBody)
                 completion(response.arrayBody,nil)
 
+                
+            case .failure(let response):
+                completion(nil,response.error)
+                print(response)
+            }
+            
+        }
+        
+    }
+    
+    public func fetchFoods(completion:@escaping sdw_id_error_block) {
+        
+        self.setupRequestHeaders()
+        
+        self.networking.get("/foods")  { result in
+            
+            switch result {
+            case .success(let response):
+                print(response)
+                print(response.arrayBody)
+                completion(response.arrayBody,nil)
+                
+                
+            case .failure(let response):
+                completion(nil,response.error)
+                print(response)
+            }
+            
+        }
+        
+    }
+    
+    public func fetchQuarryTypes(completion:@escaping sdw_id_error_block) {
+        
+        self.setupRequestHeaders()
+        
+        self.networking.get("/quarry_types")  { result in
+            
+            switch result {
+            case .success(let response):
+                print(response)
+                print(response.arrayBody)
+                completion(response.arrayBody,nil)
+                
                 
             case .failure(let response):
                 completion(nil,response.error)
@@ -241,3 +356,4 @@ class NetworkManager: NSObject {
         
     }
 }
+reqiest
