@@ -152,6 +152,7 @@ class BirdDisplayItem: NSObject {
     
     var remoteID:String
     var sex:Bool?
+    var current:Bool?
     var name:String?
     var birthdayString:String?
     var birdTypesString:String?
@@ -202,6 +203,7 @@ class BirdDisplayItem: NSObject {
         self.huntingWeight = model.huntingWeight
         self.imageURL = model.imageURL
         self.thumbURL = model.thumbURL
+        self.current = self.model.current
         self.name = model.name
         self.gender = (self.sex == true) ? "Male" : "Female"
         self.birthdayString = self.birthdayDateFormatter.string(from: self.birthday!)
@@ -209,6 +211,16 @@ class BirdDisplayItem: NSObject {
         
         
         
+    }
+    
+    
+    public func currentSeasons() -> [SeasonDisplayItem] {
+        let seasonArr:Array<SDWSeason> = self.model.seasons?.allObjects as! Array<SDWSeason>
+        
+        let seasonItems:Array = seasonArr.map({ (item: SDWSeason) -> SeasonDisplayItem in
+            SeasonDisplayItem(model: item)
+        })
+        return seasonItems
     }
 }
 
@@ -252,6 +264,7 @@ class SeasonDisplayItem: NSObject {
 
     
     var isBetweenSeason:Bool?
+    var current:Bool?
     var startDateString:String?
     var endDateString:String?
     var start:Date?
@@ -272,6 +285,7 @@ class SeasonDisplayItem: NSObject {
         
         self.start = self.model.startDate as Date?
         self.end = self.model.endDate as Date?
+        self.current = self.model.current
         
         self.isBetweenSeason = self.model.isBetweenSeason
         

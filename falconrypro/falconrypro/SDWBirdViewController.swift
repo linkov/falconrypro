@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ImageRow
 import Eureka
 import Networking
 import SDWebImage
@@ -17,7 +18,7 @@ class SDWBirdViewController: FormViewController {
     let networking = Networking(baseURL: Constants.server.BASEURL)
     let dataStore:SDWDataStore = SDWDataStore.sharedInstance
     
-    var bird:ListDisplayItem?
+    var bird:BirdDisplayItem?
     var birdtypes = [BirdTypeDisplayItem]()
     var birthdayDateFormatter = DateFormatter()
     var weightFormatter = NumberFormatter()
@@ -41,7 +42,7 @@ class SDWBirdViewController: FormViewController {
         
         if (self.bird != nil) {
             self.setupCurrentBirdTypes(bird: self.bird!)
-            self.title = self.bird?.first
+            self.title = self.bird!.name
         } else {
             self.title = "New bird"
         }
@@ -63,14 +64,7 @@ class SDWBirdViewController: FormViewController {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
         cancelButton.tintColor = UIColor.black
         
-        if((self.bird) != nil && bird?.imageURL != nil ) {
-            let manager:SDWebImageManager = SDWebImageManager.shared()
-            manager.loadImage(with: URL(string:(bird?.imageURL!)!), options: [], progress: nil) { (image, data, error, cashType, done, url) in
-                self.currentBirdImage = image
-                self.form.rowBy(tag: "pic")?.reload()
-                
-            }
-        }
+
         
         birthdayDateFormatter.dateStyle = .none
         birthdayDateFormatter.dateFormat = "yyyy-mm-dd"
@@ -87,18 +81,18 @@ class SDWBirdViewController: FormViewController {
                 
                 +++ Section("Basic information")
                 
-//                <<< ImageRow() {
-//                    $0.tag = "pic"
-//                    $0.title = "Update bird photo"
-//                    $0.sourceTypes = .PhotoLibrary
-//                    $0.clearAction = .no
-//                    }
-//                    .cellUpdate { cell, row in
-//                        cell.accessoryView?.layer.cornerRadius = 17
-//                        cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
-//                }
+                <<< ImageRow() {
+                    $0.tag = "pic"
+                    $0.title = "Bird photo"
+                    $0.sourceTypes = .PhotoLibrary
+                    $0.clearAction = .no
+                    }
+                    .cellUpdate { cell, row in
+                        cell.accessoryView?.layer.cornerRadius = 17
+                        cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+                }
                 <<< TextRow(){ row in
-                    row.value = bird?.model?["name"] as? String
+                    row.value = bird?.name
                     row.tag = "name"
                     row.title = "Name"
                 }
@@ -106,7 +100,7 @@ class SDWBirdViewController: FormViewController {
                     $0.tag = "bday"
                     $0.dateFormatter = birthdayDateFormatter
                     $0.title = "Birthday"
-                    $0.value = (bird?.model?["birthday"] != nil) ? birthdayDateFormatter.date(from: bird?.model?["birthday"] as! String) : Date()
+                    $0.value = (bird?.birthday != nil) ? bird?.birthday! : Date()
                 }
                 
                 
@@ -114,20 +108,20 @@ class SDWBirdViewController: FormViewController {
                     $0.tag = "sex"
                     $0.title = "Sex"
                     $0.selectorTitle = "Pick the sex"
-                    $0.value =  (bird?.model != nil) ? ((bird?.model?["sex"] as! Bool == true ? "Male" : "Female")) as String : ""
+                    $0.value =  (bird?.model != nil) ? ((bird?.sex! == true ? "Male" : "Female")) as String : ""
                     $0.options = ["Male","Female"]
                 }
                 
                 <<< IntRow(){ row in
                     row.tag = "fweight"
-                    row.value = bird?.model?["fat_weight"] as? Int
+                    row.value = Int((bird?.fatWeight)!)
                     row.title = "Fat Weight"
                     row.placeholder = "weight in gramms"
                     row.formatter = self.weightFormatter
                     
                 }
                 <<< IntRow(){
-                    $0.value = bird?.model?["hunting_weight"] as? Int
+                    $0.value = Int((bird?.huntingWeight)!)
                     $0.tag = "hweight"
                     $0.title = "Hunting Weight"
                     $0.placeholder = "weight in gramms"
@@ -153,7 +147,7 @@ class SDWBirdViewController: FormViewController {
                 <<< SearchablePushRow<BirdTypeDisplayItem>("name") {
                     $0.hidden = "$segment_row != 'Pure'"
                     $0.tag = "species_pure"
-//                    $0.baseValue = (self.currentBirdType.name != nil) ? self.currentBirdType : nil
+                    $0.baseValue = (self.currentBirdType?.name != nil) ? self.currentBirdType : nil
                     $0.title = "Species"
                     $0.displayValueFor = { value in
                         return value?.name
@@ -165,7 +159,7 @@ class SDWBirdViewController: FormViewController {
                 <<< SearchablePushRow<BirdTypeDisplayItem>("name") {
                     $0.hidden = "$segment_row != 'Hybrid 2'"
                     $0.tag = "species_h2_1"
-//                    $0.baseValue = (self.currentBirdTypeH2_1.name != nil) ? self.currentBirdTypeH2_1 : nil
+                    $0.baseValue = (self.currentBirdTypeH2_1?.name != nil) ? self.currentBirdTypeH2_1 : nil
                     $0.title = "Species"
                     $0.displayValueFor = { value in
                         return value?.name
@@ -177,7 +171,7 @@ class SDWBirdViewController: FormViewController {
                 <<< SearchablePushRow<BirdTypeDisplayItem>("name") {
                     $0.hidden = "$segment_row != 'Hybrid 2'"
                     $0.tag = "species_h2_2"
-//                    $0.baseValue = (self.currentBirdTypeH2_2.name != nil) ? self.currentBirdTypeH2_2 : nil
+                    $0.baseValue = (self.currentBirdTypeH2_2?.name != nil) ? self.currentBirdTypeH2_2 : nil
                     $0.title = "Species"
                     $0.displayValueFor = { value in
                         return value?.name
@@ -189,7 +183,7 @@ class SDWBirdViewController: FormViewController {
                 <<< SearchablePushRow<BirdTypeDisplayItem>("name") {
                     $0.hidden = "$segment_row != 'Hybrid 4'"
                     $0.tag = "species_h4_1"
-//                    $0.baseValue =  (self.currentBirdTypeH4_1.name != nil) ? self.currentBirdTypeH4_1 : nil
+                    $0.baseValue =  (self.currentBirdTypeH4_1?.name != nil) ? self.currentBirdTypeH4_1 : nil
                     $0.title = "Species"
                     $0.displayValueFor = { value in
                         return value?.name
@@ -201,7 +195,7 @@ class SDWBirdViewController: FormViewController {
                 <<< SearchablePushRow<BirdTypeDisplayItem>("name") {
                     $0.hidden = "$segment_row != 'Hybrid 4'"
                     $0.tag = "species_h4_2"
-//                    $0.baseValue = (self.currentBirdTypeH4_2.name != nil) ? self.currentBirdTypeH4_2 : nil
+                    $0.baseValue = (self.currentBirdTypeH4_2?.name != nil) ? self.currentBirdTypeH4_2 : nil
                     $0.title = "Species"
                     $0.displayValueFor = { value in
                         return value?.name
@@ -213,7 +207,7 @@ class SDWBirdViewController: FormViewController {
                 <<< SearchablePushRow<BirdTypeDisplayItem>("name") {
                     $0.hidden = "$segment_row != 'Hybrid 4'"
                     $0.tag = "species_h4_3"
-//                    $0.baseValue = (self.currentBirdTypeH4_3.name != nil) ? self.currentBirdTypeH4_3 : nil
+                    $0.baseValue = (self.currentBirdTypeH4_3?.name != nil) ? self.currentBirdTypeH4_3 : nil
                     $0.title = "Species"
                     $0.displayValueFor = { value in
                         return value?.name
@@ -225,7 +219,7 @@ class SDWBirdViewController: FormViewController {
                 <<< SearchablePushRow<BirdTypeDisplayItem>("name") {
                     $0.hidden = "$segment_row != 'Hybrid 4'"
                     $0.tag = "species_h4_4"
-//                    $0.baseValue = (self.currentBirdTypeH4_4.name != nil) ? self.currentBirdTypeH4_4 : nil
+                    $0.baseValue = (self.currentBirdTypeH4_4?.name != nil) ? self.currentBirdTypeH4_4 : nil
                     $0.title = "Species"
                     $0.displayValueFor = { value in
                         return value?.name
@@ -236,6 +230,7 @@ class SDWBirdViewController: FormViewController {
                         }
 
              self.selectSegmentForBirdtypes()
+            self.updateImageRow()
         
         
         
@@ -246,65 +241,74 @@ class SDWBirdViewController: FormViewController {
     
     }
     
-    func selectSegmentForBirdtypes() {
+    func updateImageRow() {
         
-//        let row: SegmentedRow<String> = form.rowBy(tag: "segment_row")! as SegmentedRow<String>
-//
-//        if (self.currentBirdType.name != nil) {
-//            
-//            row.value = "Pure"
-//            
-//        } else if (self.currentBirdTypeH2_1.name != nil) {
-//            row.value = "Hybrid 2"
-//            
-//        } else if (self.currentBirdTypeH4_1.name != nil) {
-//            row.value = "Hybrid 4"
-//        } else {
-//            row.value = "Pure"
-//        }
+        if((self.bird) != nil && bird?.thumbURL != nil ) {
+            let manager:SDWebImageManager = SDWebImageManager.shared()
+            manager.loadImage(with: URL(string:(bird?.thumbURL!)!), options: [], progress: nil) { (image, data, error, cashType, done, url) in
+                self.currentBirdImage = image
+                let imgRow:ImageRow = self.form.rowBy(tag: "pic")!
+                imgRow.value = image
+                imgRow.reload()
+                
+            }
+        }
         
     }
     
-    func setupCurrentBirdTypes(bird :ListDisplayItem) {
+    func selectSegmentForBirdtypes() {
         
-//        let birdTypes:Array<Any> = bird.model?["bird_types"] as! Array<Any>
-//        
-//        if (birdTypes.count == 1) {
-//            
-//            let dict = birdTypes[0] as? Dictionary<String, Any>
-//            self.currentBirdType.name = dict?["name"] as? String
-//            self.currentBirdType.model = dict
-//            
-//        } else if (birdTypes.count == 2) {
-//            
-//            
-//            let dict = birdTypes[0] as? Dictionary<String, Any>
-//            self.currentBirdTypeH2_1.name = dict?["name"] as? String
-//            self.currentBirdTypeH2_1.model = dict
-//            
-//            let dict1 = birdTypes[1] as? Dictionary<String, Any>
-//            self.currentBirdTypeH2_2.name = dict1?["name"] as? String
-//            self.currentBirdTypeH2_2.model = dict1
-//            
-//        } else if (birdTypes.count == 4) {
-//            
-//            let dict = birdTypes[0] as? Dictionary<String, Any>
-//            self.currentBirdTypeH4_1.name = dict?["name"] as? String
-//            self.currentBirdTypeH4_1.model = dict
-//            
-//            let dict1 = birdTypes[1] as? Dictionary<String, Any>
-//            self.currentBirdTypeH4_2.name = dict1?["name"] as? String
-//            self.currentBirdTypeH4_2.model = dict1
-//            
-//            let dict2 = birdTypes[2] as? Dictionary<String, Any>
-//            self.currentBirdTypeH4_3.name = dict2?["name"] as? String
-//            self.currentBirdTypeH4_3.model = dict2
-//            
-//            let dict3 = birdTypes[3] as? Dictionary<String, Any>
-//            self.currentBirdTypeH4_4.name = dict3?["name"] as? String
-//            self.currentBirdTypeH4_4.model = dict3
-//        }
-//        
+        if (self.bird == nil) {
+            return
+        }
+        
+        let row: SegmentedRow<String> = form.rowBy(tag: "segment_row")! as SegmentedRow<String>
+        
+        if (self.bird?.birdTypes?.count == 1) {
+            row.value = "Pure"
+        } else if (self.bird?.birdTypes?.count == 2) {
+            row.value = "Hybrid 2"
+        } else if (self.bird?.birdTypes?.count == 4) {
+            row.value = "Hybrid 4"
+        } else {
+            row.value = "Pure"
+        }
+    }
+    
+    func setupCurrentBirdTypes(bird :BirdDisplayItem) {
+        
+
+        
+  
+        if (bird.birdTypes?.count == 1) {
+            
+            let dict = bird.birdTypes?[0]
+            self.currentBirdType = dict
+            
+        } else if (bird.birdTypes?.count == 2) {
+            
+            
+            let dict = bird.birdTypes?[0]
+            self.currentBirdTypeH2_1 = dict
+            
+            let dict1 = bird.birdTypes?[1]
+            self.currentBirdTypeH2_2 = dict1
+            
+        } else if (bird.birdTypes?.count == 4) {
+            
+            let dict = bird.birdTypes?[0]
+            self.currentBirdTypeH4_1 = dict
+            
+            let dict1 = bird.birdTypes?[1]
+            self.currentBirdTypeH4_2 = dict1
+            
+            let dict2 = bird.birdTypes?[2]
+            self.currentBirdTypeH4_3 = dict2
+            
+            let dict3 = bird.birdTypes?[3]
+            self.currentBirdTypeH4_4 = dict3
+        }
+        
 
     }
     
@@ -413,11 +417,7 @@ class SDWBirdViewController: FormViewController {
 
     }
     
-    func loadCurrentBird() {
-        self.bird = UserDefaults.standard.value(forKey: "bird") as? ListDisplayItem
-        
-        
-    }
+
     
 //    func loadBirdTypes() {
 //        
@@ -493,26 +493,23 @@ class SDWBirdViewController: FormViewController {
         
         if((self.bird) != nil) {
             
-            let bird_id = self.bird?.model?["id"] as! String
-            
-            networking.put("/birds/"+bird_id, parameters: ["bird":dict])  { result in
-                PKHUD.sharedHUD.hide()
-                switch result {
-                case .success(let response):
-                     print(response.dictionaryBody)
-                    self.uploadImage()
-                    
-                case .failure(let response):
-                    print(response.dictionaryBody)
-                }
+            dataStore.pushBirdWith(bird_id:self.bird?.remoteID, code: nil, sex: sexbool, name: (name?.value)!, birthday: (bday?.value)!, fatWeight: (fweight?.value)!, huntingWeight: (hweight?.value)!, image: nil, birdTypes: self.selectedBirdTypes(), completion: { (result, error) in
                 
-            }
-            
+                PKHUD.sharedHUD.hide()
+                
+                let birdItem:BirdDisplayItem = result as! BirdDisplayItem
+                self.uploadImage(bird_id: birdItem.remoteID)
+                
+            })
         } else {
             
-            dataStore.pushBirdWith(code: nil, sex: sexbool, name: (name?.value)!, birthday: (bday?.value)!, fatWeight: (fweight?.value)!, huntingWeight: (hweight?.value)!, image: nil, birdTypes: self.selectedBirdTypes(), completion: { (result, error) in
+            dataStore.pushBirdWith(bird_id:nil, code: nil, sex: sexbool, name: (name?.value)!, birthday: (bday?.value)!, fatWeight: (fweight?.value)!, huntingWeight: (hweight?.value)!, image: nil, birdTypes: self.selectedBirdTypes(), completion: { (result, error) in
                 
                 PKHUD.sharedHUD.hide()
+                
+                let birdItem:BirdDisplayItem = result as! BirdDisplayItem
+                self.uploadImage(bird_id: birdItem.remoteID)
+
                 
             })
 
@@ -522,60 +519,62 @@ class SDWBirdViewController: FormViewController {
         
     }
     
-    func uploadImage() {
+    func uploadImage(bird_id:String) {
         
-//        let photoRow: ImageRow? = form.rowBy(tag: "pic")
-//        if (photoRow?.value == nil) {
-//            self.dismiss(animated: true, completion: nil)
-//            return
-//        }
-//        
-//        PKHUD.sharedHUD.show()
-//        
-//        let bird_id = self.bird?.model?["id"] as! String
-//        
-//        
-//        let photoRowValue:UIImage = (photoRow?.value)!
-//        
-//        let dict: [String: String] = [:]
-//        
-//        var r  = URLRequest(url: URL(string: Constants.server.BASEURL+"/birds/"+bird_id)!)
-//        r.httpMethod = "PUT"
-//        let boundary = "Boundary-\(UUID().uuidString)"
-//        
-//        let token = UserDefaults.standard.value(forKey: "access-token")
-//        let expires = UserDefaults.standard.value(forKey: "expiry")
-//        let client = UserDefaults.standard.value(forKey: "client")
-//        let uid = UserDefaults.standard.value(forKey: "uid")
-//        
-//        r.setValue(token as? String, forHTTPHeaderField: "access-token")
-//        r.setValue(expires as? String, forHTTPHeaderField: "expiry")
-//        r.setValue(client as? String, forHTTPHeaderField: "client")
-//        r.setValue(uid as? String, forHTTPHeaderField: "uid")
-//        
-//        r.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-//        
-//        r.httpBody = createBody(parameters: dict,
-//                                boundary: boundary,
-//                                data: UIImageJPEGRepresentation(photoRowValue, 0.7)!,
-//                                mimeType: "image/jpg",
-//                                filename: "bird.jpg")
-//        
-//        let task = URLSession.shared.dataTask(with: r) { data, response, error in
-//            guard let data = data, error == nil else {
-//                PKHUD.sharedHUD.hide()
-//                print(error?.localizedDescription ?? "No data")
-//                return
-//            }
-//            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-//            if let responseJSON = responseJSON as? [String: Any] {
-//                PKHUD.sharedHUD.hide()
-//                print(responseJSON)
-//                self.dismiss(animated: true, completion: nil)
-//            }
-//        }
-//        
-//        task.resume()
+        PKHUD.sharedHUD.show()
+        
+        let photoRow: ImageRow? = form.rowBy(tag: "pic")
+        if (photoRow?.value == nil) {
+            PKHUD.sharedHUD.hide()
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        
+        
+        
+        
+        let photoRowValue:UIImage = (photoRow?.value)!
+        
+        let dict: [String: String] = [:]
+        
+        var r  = URLRequest(url: URL(string: Constants.server.BASEURL+"/birds/"+bird_id)!)
+        r.httpMethod = "PUT"
+        let boundary = "Boundary-\(UUID().uuidString)"
+        
+        let token = UserDefaults.standard.value(forKey: "access-token")
+        let expires = UserDefaults.standard.value(forKey: "expiry")
+        let client = UserDefaults.standard.value(forKey: "client")
+        let uid = UserDefaults.standard.value(forKey: "uid")
+        
+        r.setValue(token as? String, forHTTPHeaderField: "access-token")
+        r.setValue(expires as? String, forHTTPHeaderField: "expiry")
+        r.setValue(client as? String, forHTTPHeaderField: "client")
+        r.setValue(uid as? String, forHTTPHeaderField: "uid")
+        
+        r.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        r.httpBody = createBody(parameters: dict,
+                                boundary: boundary,
+                                data: UIImageJPEGRepresentation(photoRowValue, 0.7)!,
+                                mimeType: "image/jpg",
+                                filename: "bird.jpg")
+        
+        let task = URLSession.shared.dataTask(with: r) { data, response, error in
+            guard let data = data, error == nil else {
+                PKHUD.sharedHUD.hide()
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                PKHUD.sharedHUD.hide()
+                print(responseJSON)
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        
+        task.resume()
         
         
     }

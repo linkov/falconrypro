@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Apd-Xo-FPZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Apd-Xo-FPZ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -64,6 +64,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Kz5-PJ-mPi" kind="presentation" identifier="seasonEditSegue" trigger="accessoryAction" id="feE-TD-lRL"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -300,8 +303,19 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Diary" id="But-CU-6be"/>
-                    <navigationItem key="navigationItem" id="mHI-aC-Nca"/>
+                    <navigationItem key="navigationItem" id="mHI-aC-Nca">
+                        <nil key="title"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nLh-HF-kUP">
+                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="didTapBirdEdit:" destination="69C-mM-jtS" eventType="touchUpInside" id="cPt-6d-N25"/>
+                            </connections>
+                        </button>
+                    </navigationItem>
                     <connections>
+                        <outlet property="birdEditButton" destination="nLh-HF-kUP" id="K8z-5M-Utg"/>
                         <outlet property="tableView" destination="1If-tc-kSX" id="Hiy-D4-Ihe"/>
                         <segue destination="hGL-1i-q5P" kind="showDetail" id="XOp-La-Pa0"/>
                     </connections>
@@ -342,4 +356,7 @@
             <point key="canvasLocation" x="1228" y="-309"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="feE-TD-lRL"/>
+    </inferredMetricsTieBreakers>
 </document>

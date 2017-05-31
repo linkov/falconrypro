@@ -2,7 +2,7 @@
 //  SDWBird+CoreDataProperties.swift
 //  falconrypro
 //
-//  Created by Alex Linkov on 5/12/17.
+//  Created by Alex Linkov on 5/30/17.
 //  Copyright © 2017 SDWR. All rights reserved.
 //
 
@@ -25,6 +25,7 @@ extension SDWBird {
     @NSManaged public var name: String?
     @NSManaged public var remoteID: String?
     @NSManaged public var thumbURL: String?
+    @NSManaged public var current: Bool
     @NSManaged public var diaryItems: NSSet?
     @NSManaged public var owner: SDWUser?
     @NSManaged public var seasons: NSSet?

@@ -46,6 +46,15 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
         // Optionally remove seperator lines from empty cells
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         
+        let currentBird = self.dataStore.currentBird()
+        
+        if (currentBird != nil) {
+            
+            let controller:SDWSeasonListViewController = storyboard?.instantiateViewController(withIdentifier: "SDWSeasonListViewController") as! SDWSeasonListViewController
+            controller.bird = currentBird
+            self.navigationController?.pushViewController(controller, animated: false)
+        }
+        
         
     }
     
@@ -158,6 +167,7 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let birdDisplayItem = objects[indexPath.row]
        
+        self.dataStore.setupCurrentBird(remoteID: birdDisplayItem.remoteID)
         
         let controller:SDWSeasonListViewController = storyboard?.instantiateViewController(withIdentifier: "SDWSeasonListViewController") as! SDWSeasonListViewController
         controller.bird = birdDisplayItem

@@ -13,8 +13,9 @@ import SDWebImage
 import PKHUD
 
 class SDWSeasonViewController: FormViewController {
-    var season:ListDisplayItem?
-    var bird:ListDisplayItem?
+    var season:SeasonDisplayItem?
+    var bird:BirdDisplayItem?
+    let dataStore = SDWDataStore.sharedInstance
     let networking = Networking(baseURL: Constants.server.BASEURL)
     
     override func viewDidLoad() {
@@ -41,19 +42,19 @@ class SDWSeasonViewController: FormViewController {
             <<< DateInlineRow(){
                 $0.tag = "start"
                 $0.title = "Start"
-                $0.value = (season?.model?["start"] != nil) ?  (season?.model?["start"] as! Date) : Date()
+                $0.value = (season?.start != nil) ?  (season?.start as! Date) : Date()
             }
             
             <<< DateInlineRow(){
                 $0.tag = "end"
                 $0.title = "End"
-                $0.value = (season?.model?["end"] != nil) ?  (season?.model?["end"] as! Date) : Date()
+                $0.value = (season?.end != nil) ?  (season?.end as! Date) : Date()
             }
         
             <<< SwitchRow() {
                 $0.tag = "between"
                 $0.title = "In-between season"
-                $0.value =  (season?.model?["between"] != nil) ?  (season?.model?["end"] as! Bool) : false
+                $0.value =  (season?.isBetweenSeason != nil) ?  (season?.isBetweenSeason as! Bool) : false
         }
         
 
@@ -77,6 +78,7 @@ class SDWSeasonViewController: FormViewController {
 
         let start: DateInlineRow? = form.rowBy(tag: "start")
         let end: DateInlineRow? = form.rowBy(tag: "end")
+        let between: SwitchRow? = form.rowBy(tag: "between")
         
         
         
@@ -103,42 +105,46 @@ class SDWSeasonViewController: FormViewController {
         PKHUD.sharedHUD.show()
         
         
-        let bird_id = self.bird?.model?["id"] as! String
+        let bird_id:String = (self.bird?.remoteID)!
 
         if((self.season) != nil) {
             
-            let season_id = self.season?.model?["id"] as! String
+            let season_id:String = (self.season?.remoteID)!
             
-            networking.put("/seasons/"+season_id+"?bird_id="+bird_id, parameters: ["season":dict])  { result in
+            self.dataStore.pushSeasonWith(season_id:season_id, bird_id: bird_id, start: (start?.value)!, end: (end?.value)!, isBetween: (between?.value)!, completion: { (object, error) in
+                
                 PKHUD.sharedHUD.hide()
-                switch result {
-                case .success(let response):
-                    print(response.dictionaryBody)
+                
+                if (error == nil) {
                     self.dismiss(animated: true, completion: nil)
-                    
-                case .failure(let response):
-                    print(response.dictionaryBody)
                 }
                 
-            }
+            })
+            
+//            networking.put("/seasons/"+season_id+"?bird_id="+bird_id, parameters: ["season":dict])  { result in
+//                PKHUD.sharedHUD.hide()
+//                switch result {
+//                case .success(let response):
+//                    print(response.dictionaryBody)
+//                    self.dismiss(animated: true, completion: nil)
+//                    
+//                case .failure(let response):
+//                    print(response.dictionaryBody)
+//                }
+//                
+//            }
             
         } else {
-            networking.post("/seasons?bird_id="+bird_id, parameters: ["season":dict])  { result in
+            self.dataStore.pushSeasonWith(season_id:nil, bird_id: bird_id, start: (start?.value)!, end: (end?.value)!, isBetween: (between?.value)!, completion: { (object, error) in
+                
                 PKHUD.sharedHUD.hide()
-                switch result {
-                case .success(let response):
-                    self.season = ListDisplayItem()
-                    self.season?.model = response.dictionaryBody
-                    print(response)
+                
+                if (error == nil) {
                     self.dismiss(animated: true, completion: nil)
-                    
-                    
-                    
-                case .failure(let response):
-                    print(response.dictionaryBody)
                 }
                 
-            }
+            })
+            
         }
         
         

@@ -116,6 +116,31 @@ class DataModelManager: NSObject {
         
     }
     
+    public func fetch(entityName:String,
+                      predicate:NSPredicate?,
+                      context:NSManagedObjectContext) -> NSManagedObject? {
+        
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        fetchRequest.predicate = predicate
+        
+        var results = [NSManagedObject]()
+        do {
+            results = try context.fetch(fetchRequest) as! [NSManagedObject]
+            return results.first
+        } catch {
+            let nserror = error as NSError
+            print(nserror)
+            return nil
+            
+
+            
+        }
+    
+        
+        
+    }
+    
     public func fetchAll(entityName:String,
                          predicate:NSPredicate?,
                          context:NSManagedObjectContext) -> [NSManagedObject] {
@@ -133,9 +158,7 @@ class DataModelManager: NSObject {
             return []
 
         }
-        
-        return []
-        
+                
         
         
     }

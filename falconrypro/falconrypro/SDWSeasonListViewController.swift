@@ -14,6 +14,7 @@ import UIEmptyState
 
 class SDWSeasonListViewController: UITableViewController {
     
+    let dataStore:SDWDataStore = SDWDataStore.sharedInstance
     var objects = [SeasonDisplayItem]()
     var bird:BirdDisplayItem?
     override func viewDidLoad() {
@@ -28,6 +29,15 @@ class SDWSeasonListViewController: UITableViewController {
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         
+        let season = self.dataStore.currentSeason()
+        
+        if (season != nil) {
+            let controller:SDWHomeViewController = storyboard?.instantiateViewController(withIdentifier: "SDWHomeViewController") as! SDWHomeViewController
+            controller.bird = self.bird
+            controller.season = season
+            self.present(controller, animated: false, completion: nil)
+        }
+        
         
     }
     
@@ -35,20 +45,38 @@ class SDWSeasonListViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         
-        self.objects = self.bird?.seasons ?? []
+        self.objects = self.bird?.currentSeasons() ?? []
         self.tableView.reloadData()
         
     }
     
     func insertNewObject(_ sender: Any) {
         
-//        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "SeasonEdit") as! UINavigationController
-//        let seasonVC:SDWSeasonViewController = controller.viewControllers[0] as! SDWSeasonViewController
-//        seasonVC.bird = self.bird
-//        
-//        self.present(controller, animated: true, completion: nil)
+        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "SeasonEdit") as! UINavigationController
+        let seasonVC:SDWSeasonViewController = controller.viewControllers[0] as! SDWSeasonViewController
+        seasonVC.bird = self.bird
+        
+        self.present(controller, animated: true, completion: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let cell:UITableViewCell = sender as! UITableViewCell
+        
+        let indexPath = self.tableView.indexPath(for: cell)
+        
+        if (segue.identifier == "seasonEditSegue" && indexPath != nil) {
+            
+            //prepare for segue to the details view controller
+            let controller:UINavigationController = segue.destination as! UINavigationController
+            let seasonVC:SDWSeasonViewController = controller.viewControllers[0] as! SDWSeasonViewController
+            seasonVC.bird = self.bird
+            
+            
+            seasonVC.season = self.objects[indexPath!.row]
+            
+        }
+    }
     
     
     // Table
@@ -70,7 +98,13 @@ class SDWSeasonListViewController: UITableViewController {
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "SeasonCell")!
         
         let object:SeasonDisplayItem = objects[indexPath.row]
-        cell.textLabel?.text = "Hunting season"
+        
+        if (object.isBetweenSeason == false) {
+            cell.textLabel?.text = "Hunting season" + ((object.current == true) ? " active" : "")
+        } else{
+            cell.textLabel?.text = "In Between season" + ((object.current == true) ? " active" : "")
+        }
+        
         cell.detailTextLabel?.text = object.startDateString! + " - " + object.endDateString!
         
         
@@ -85,6 +119,8 @@ class SDWSeasonListViewController: UITableViewController {
         let controller:SDWHomeViewController = storyboard?.instantiateViewController(withIdentifier: "SDWHomeViewController") as! SDWHomeViewController
         controller.bird = self.bird
         controller.season = season
+        
+        self.dataStore.setupCurrentSeason(remoteID: season.remoteID)
         
         self.present(controller, animated: true, completion: nil)
         

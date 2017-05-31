@@ -2,7 +2,7 @@
 //  SDWSeason+CoreDataProperties.swift
 //  falconrypro
 //
-//  Created by Alex Linkov on 5/12/17.
+//  Created by Alex Linkov on 5/30/17.
 //  Copyright © 2017 SDWR. All rights reserved.
 //
 
@@ -22,6 +22,7 @@ extension SDWSeason {
     @NSManaged public var remoteID: String?
     @NSManaged public var startDate: NSDate?
     @NSManaged public var startDateString: String?
+    @NSManaged public var current: Bool
     @NSManaged public var bird: SDWBird?
     @NSManaged public var items: NSSet?
     @NSManaged public var user: SDWUser?

@@ -43,7 +43,8 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         customButton.layer.borderWidth = 1;
         customButton.layer.borderColor = UIColor.black.cgColor
         customButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
-        customButton.setImage(#imageLiteral(resourceName: "add_diary_item1"), for: UIControlState.normal)
+        customButton.setTitle("HM", for: .normal)
+        customButton.setTitleColor(UIColor.black, for: .normal)
         customButton.imageView?.contentMode = .scaleAspectFit
         customButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         let customItem = MiniTabBarItem(customView: customButton, offset: UIOffset(horizontal: 0, vertical: -10))
@@ -90,7 +91,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
             self.diaryListVC?.navigationItem.rightBarButtonItem = editTodayButton
             
             
-            let  backButton = UIBarButtonItem(title: "Setup", style: .plain, target: self, action: #selector(back(_:)))
+            let  backButton = UIBarButtonItem(title: "Seasons", style: .plain, target: self, action: #selector(back(_:)))
             backButton.tintColor = UIColor.black
             self.diaryListVC?.navigationItem.leftBarButtonItem = backButton
             

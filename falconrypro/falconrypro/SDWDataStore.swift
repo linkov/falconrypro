@@ -21,6 +21,80 @@ class SDWDataStore: NSObject {
         return instance
     }()
     
+    public func currentBird() -> BirdDisplayItem? {
+        let predicate = NSPredicate(format: "%K = %@", "current", NSNumber(booleanLiteral: true))
+        
+        let currentBird = self.dataModelManager.fetch(entityName: SDWBird.entityName(), predicate: predicate, context: self.dataModelManager.viewContext) as? SDWBird
+        
+        if let bird = currentBird {
+            let currentBirdItem = BirdDisplayItem(model: bird)
+            return currentBirdItem
+        }
+        
+        return nil
+        
+    }
+    
+    public func setupCurrentBird(remoteID:String) {
+        
+        
+        
+        let birds:[SDWBird] = self.dataModelManager.fetchAll(entityName: SDWBird.entityName(), predicate: nil, context: self.dataModelManager.viewContext) as! [SDWBird]
+        
+        for b:SDWBird in birds {
+            b.current = false
+        }
+        
+        
+        let predicate = NSPredicate(format: "%K = %@", "remoteID", remoteID)
+        let bird:SDWBird = self.dataModelManager.fetch(entityName: SDWBird.entityName(), predicate: predicate, context: self.dataModelManager.viewContext) as! SDWBird
+        
+        bird.current = true
+
+        self.dataModelManager.saveContext()
+        
+    }
+    
+    
+    public func currentSeason() -> SeasonDisplayItem? {
+        let predicate = NSPredicate(format: "%K = %@", "current", NSNumber(booleanLiteral: true))
+        
+        let currentSeason = self.dataModelManager.fetch(entityName: SDWSeason.entityName(), predicate: predicate, context: self.dataModelManager.viewContext) as? SDWSeason
+        
+        if let season = currentSeason {
+            let currentSeasonItem = SeasonDisplayItem(model: season)
+            return currentSeasonItem
+        }
+        
+        return nil
+        
+    }
+    
+    
+    public func setupCurrentSeason(remoteID:String) {
+        
+        let predicate = NSPredicate(format: "%K = %@", "current", NSNumber(booleanLiteral: true))
+        
+        let currentBird = self.dataModelManager.fetch(entityName: SDWBird.entityName(), predicate: predicate, context: self.dataModelManager.viewContext) as? SDWBird
+        
+        let birdSeasons:[SDWSeason] = currentBird?.seasons?.allObjects as! [SDWSeason]
+        
+        for se:SDWSeason in birdSeasons {
+            se.current = false
+        }
+        
+        let seasonPredicate = NSPredicate(format: "%K = %@", "remoteID", remoteID)
+        let season:SDWSeason = self.dataModelManager.fetch(entityName: SDWSeason.entityName(), predicate: seasonPredicate, context: self.dataModelManager.viewContext) as! SDWSeason
+        
+        season.current = true
+        
+        self.dataModelManager.saveContext()
+        
+        
+        
+    }
+    
+    
     
     public func allQuarryTypes() -> [QuarryTypeDisplayItem] {
         let quarryTypes = self.dataModelManager.fetchAll(entityName: SDWQuarryType.entityName(), predicate: nil, context: self.dataModelManager.viewContext) as! [SDWQuarryType]
@@ -125,7 +199,9 @@ class SDWDataStore: NSObject {
 //            for season in seasons! {
 //                self.dataModelManager.viewContext.delete(season as! NSManagedObject)
 //            }
-//            
+//         
+            
+            self.dataModelManager.deleteAllEntitiesWithName(name: "SDWSeason")
             self.dataModelManager.viewContext.delete(user as! NSManagedObject)
             self.dataModelManager.viewContext.processPendingChanges()
             
@@ -259,8 +335,61 @@ class SDWDataStore: NSObject {
         })
         
     }
+    
+    
+    public func pushSeasonWith(season_id:String?, bird_id:String,
+                             start:Date,
+                             end:Date,
+                             isBetween:Bool,
+                             completion:@escaping sdw_id_error_block) {
+        
+        
+        
+        if (season_id != nil) {
+            
+            
+            self.networkManager.updateSeasonWith(season_id:season_id!, bird_id:bird_id,start:start,end:end,isBetween:isBetween, completion: {(object, error) in
+                
+                
+                guard let data = object, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    completion(nil,error)
+                    return
+                }
+                
+                
+                let mappedObject = SDWMapper.ez_object(withClass: type(of: SDWSeason()) as SDWObjectMapping.Type, fromJSON: data as! Dictionary<AnyHashable, Any>, context: self.dataModelManager.viewContext)
+                self.dataModelManager.saveContext()
+                
+                completion(mappedObject,nil)
+                
+            })
+            
+        } else {
+            self.networkManager.createSeasonWith(bird_id:bird_id,start:start,end:end,isBetween:isBetween, completion: {(object, error) in
+                
+                
+                guard let data = object, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    completion(nil,error)
+                    return
+                }
+                
+                
+                let mappedObject = SDWMapper.ez_object(withClass: type(of: SDWSeason()) as SDWObjectMapping.Type, fromJSON: data as! Dictionary<AnyHashable, Any>, context: self.dataModelManager.viewContext)
+                self.dataModelManager.saveContext()
+                
+                completion(mappedObject,nil)
+                
+            })
+        }
+        
 
-    public func pushBirdWith(code:String?,
+        
+    }
+
+    public func pushBirdWith(bird_id:String?,
+                             code:String?,
                              sex:Bool,
                              name:String,
                              birthday:Date,
@@ -276,22 +405,46 @@ class SDWDataStore: NSObject {
             item.remoteID
         })
         
-        self.networkManager.createBirdWith(birdTypeIDs:birdTypeIDs, code: code, sex: sex, name: name, birthday: birthday, fatWeight: fatWeight, huntingWeight: huntingWeight, image: image, completion: {(object, error) in
+        
+        if( bird_id != nil ) {
             
+            self.networkManager.updateBirdWith(bird_id:bird_id!, birdTypeIDs:birdTypeIDs, code: code, sex: sex, name: name, birthday: birthday, fatWeight: fatWeight, huntingWeight: huntingWeight, image: image, completion: {(object, error) in
+                
+                
+                guard let data = object, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    completion(nil,error)
+                    return
+                }
+                
+                
+                let mappedObject = SDWMapper.ez_object(withClass: type(of: SDWBird()) as SDWObjectMapping.Type, fromJSON: data as! Dictionary<AnyHashable, Any>, context: self.dataModelManager.viewContext)
+                self.dataModelManager.saveContext()
+                
+                completion(BirdDisplayItem.init(model: mappedObject as! SDWBird),nil)
+                
+            })
             
-            guard let data = object, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                completion(nil,error)
-                return
-            }
-            
-            
-            let mappedObject = SDWMapper.ez_object(withClass: type(of: SDWBird()) as SDWObjectMapping.Type, fromJSON: data as! Dictionary<AnyHashable, Any>, context: self.dataModelManager.viewContext)
-            self.dataModelManager.saveContext()
-            
-            completion(mappedObject,nil)
-            
-        })
+        } else {
+            self.networkManager.createBirdWith(birdTypeIDs:birdTypeIDs, code: code, sex: sex, name: name, birthday: birthday, fatWeight: fatWeight, huntingWeight: huntingWeight, image: image, completion: {(object, error) in
+                
+                
+                guard let data = object, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    completion(nil,error)
+                    return
+                }
+                
+                
+                let mappedObject:SDWBird = SDWMapper.ez_object(withClass: type(of: SDWBird()) as SDWObjectMapping.Type, fromJSON: data as! Dictionary<AnyHashable, Any>, context: self.dataModelManager.viewContext) as! SDWBird
+                self.dataModelManager.saveContext()
+                
+                completion(BirdDisplayItem.init(model: mappedObject),nil)
+                
+            })
+        }
+        
+
         
     }
     

@@ -22,7 +22,7 @@ class SDWMapper: NSObject {
     
     class func ez_object(withClass:SDWObjectMapping.Type, fromJSON:Dictionary<AnyHashable, Any>, context:NSManagedObjectContext) -> Any {
         
-        return [FEMDeserializer.object(fromRepresentation: fromJSON, mapping: withClass.defaultMapping(), context: context)];
+        return [FEMDeserializer.object(fromRepresentation: fromJSON, mapping: withClass.defaultMapping(), context: context)].first ?? [FEMDeserializer.object(fromRepresentation: fromJSON, mapping: withClass.defaultMapping(), context: context)];
     }
     
     

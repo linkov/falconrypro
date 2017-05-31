@@ -20,6 +20,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     var season:SeasonDisplayItem?
     var existingTodayItem:DiaryItemDisplayItem?
     
+    @IBOutlet weak var birdEditButton: UIButton!
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -51,6 +52,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.birdEditButton.setTitle(self.title, for: .normal)
         self.loadItems()
 
         
@@ -160,5 +162,13 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         
     }
 
+    @IBAction func didTapBirdEdit(_ sender: Any) {
+        
+        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "BirdProfileEdit") as! UINavigationController
+        let birdEditVC = controller.viewControllers[0] as? SDWBirdViewController
+        birdEditVC?.bird = self.dataStore.currentBird()
+        
+        self.present(controller, animated: true, completion: nil)
+    }
 
 }

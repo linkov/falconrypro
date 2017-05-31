@@ -222,7 +222,8 @@ class NetworkManager: NSObject {
     }
     
     
-    public func updateBirdWith(code:String?,
+    public func updateBirdWith(bird_id:String, birdTypeIDs:Array<String>,
+                               code:String?,
                                sex:Bool,
                                name:String,
                                birthday:Date,
@@ -230,7 +231,95 @@ class NetworkManager: NSObject {
                                huntingWeight:Int,
                                image:NSData?, completion:@escaping sdw_id_error_block) {
         
+        self.setupRequestHeaders()
         
+        let dict: [String: Any] = [
+            "name": name,
+            "sex": sex,
+            "fat_weight": fatWeight,
+            "hunting_weight": huntingWeight,
+            "birthday": birthday.toString(),
+            "bird_type_ids":birdTypeIDs
+            
+        ]
+        
+        networking.put("/birds/"+bird_id, parameters: ["bird":dict])  { result in
+            
+            switch result {
+            case .success(let response):
+                print(response)
+                completion(response.dictionaryBody,nil)
+                
+                
+                
+                
+            case .failure(let response):
+                print(response.dictionaryBody)
+                completion(nil,response.error)
+            }
+            
+        }
+        
+    }
+    
+    public func createSeasonWith(bird_id:String, start:Date,end:Date,isBetween:Bool,completion:@escaping sdw_id_error_block) {
+        
+        self.setupRequestHeaders()
+        
+        let dict: [String: Any] = [
+            "start": start.toString(),
+            "end": end.toString(),
+            "between": isBetween
+            
+        ]
+        
+        networking.post("/seasons?bird_id="+bird_id, parameters: ["season":dict])  { result in
+            
+            switch result {
+            case .success(let response):
+                print(response)
+                completion(response.dictionaryBody,nil)
+                
+                
+                
+                
+            case .failure(let response):
+                print(response.dictionaryBody)
+                completion(nil,response.error)
+            }
+            
+        }
+        
+    }
+    
+    
+    public func updateSeasonWith(season_id:String, bird_id:String, start:Date,end:Date,isBetween:Bool,completion:@escaping sdw_id_error_block) {
+        
+        self.setupRequestHeaders()
+        
+        let dict: [String: Any] = [
+            "start": start.toString(),
+            "end": end.toString(),
+            "between": isBetween
+            
+        ]
+        
+        networking.put("/seasons/"+season_id+"?bird_id="+bird_id, parameters: ["season":dict])  { result in
+            
+            switch result {
+            case .success(let response):
+                print(response)
+                completion(response.dictionaryBody,nil)
+                
+                
+                
+                
+            case .failure(let response):
+                print(response.dictionaryBody)
+                completion(nil,response.error)
+            }
+            
+        }
         
     }
     
@@ -384,6 +473,7 @@ class NetworkManager: NSObject {
         UserDefaults.standard.setValue(expires, forKey: "expiry")
         UserDefaults.standard.setValue(client, forKey: "client")
         UserDefaults.standard.setValue(uid, forKey: "uid")
+        UserDefaults.standard.synchronize()
         
     }
 }

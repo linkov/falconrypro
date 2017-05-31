@@ -34,10 +34,10 @@ class SDWHomeTBC: UITabBarController {
     
     func edit(_ sender: Any) {
         
-        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "BirdProfileEdit") as! UINavigationController
-        let birdController = controller.viewControllers[0] as! SDWBirdViewController
-        birdController.bird = bird
-        self.present(controller, animated: true, completion: nil)
+//        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "BirdProfileEdit") as! UINavigationController
+//        let birdController = controller.viewControllers[0] as! SDWBirdViewController
+//        birdController.bird = bird
+//        self.present(controller, animated: true, completion: nil)
     }
     
     /*
