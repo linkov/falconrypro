@@ -10,11 +10,13 @@ import UIKit
 import Charts
 
 enum CellChartType: Int {
-    case WeightChart = 1, QuerryChart
+    case WeightChart = 1,FoodWeight, QuerryChart
 }
 
 class SDWStatsItemCell: UITableViewCell {
     
+    
+    let dataStore:SDWDataStore = SDWDataStore.sharedInstance
     var dataSets:Array<Any>?
     @IBOutlet weak var mainTitleLabel: UILabel!
     @IBOutlet weak var chartViewLineHorizontal: LineChartView!
@@ -36,8 +38,12 @@ class SDWStatsItemCell: UITableViewCell {
         
         switch type {
         case .WeightChart:
-            self.setupWithLineChart(dataPoints: dataPoints)
+            self.setupWithWeightChart(dataPoints: dataPoints)
         break
+            
+        case .FoodWeight:
+            self.setupWithFoodWeightChart(dataPoints: dataPoints)
+            break
             
         case .QuerryChart:
             self.setupWithBarChart(dataPoints: dataPoints)
@@ -49,7 +55,7 @@ class SDWStatsItemCell: UITableViewCell {
     }
     
     
-    func setupWithLineChart(dataPoints:[ChartDataEntry]) {
+    func setupWithWeightChart(dataPoints:[ChartDataEntry]) {
         
         self.contentView.sendSubview(toBack: self.chartViewBarHorizontal)
         
@@ -77,14 +83,61 @@ class SDWStatsItemCell: UITableViewCell {
         dataset.lineWidth = 2.5;
         dataset.circleRadius = 4.0;
         dataset.circleHoleRadius = 2.0;
+        dataset.mode = .cubicBezier
         dataset.setColor(UIColor.black)
         dataset.setCircleColor(UIColor.black)
         
         
-        let data:LineChartData = LineChartData(dataSets: [dataset])
+        let hWeght = Double((self.dataStore.currentBird()?.huntingWeight)!)
+        let fWeght = Double((self.dataStore.currentBird()?.fatWeight)!)
+        let deadWeight = hWeght * 0.66
+        
+        let mdataPoint10:ChartDataEntry = ChartDataEntry(x: 1, y: hWeght)
+        let mdataPoint20:ChartDataEntry = ChartDataEntry(x: 30, y: hWeght)
+
+        
+        let medianDataset:LineChartDataSet = LineChartDataSet(values: [mdataPoint10,mdataPoint20], label:"median")
+        medianDataset.lineWidth = 1.5;
+        medianDataset.circleRadius = 0.0;
+        medianDataset.circleHoleRadius = 0.0;
+        medianDataset.setColor( UIColor.blue.withAlphaComponent(0.5))
+        medianDataset.setCircleColor(UIColor.blue)
+        
+        
+        
+        
+        let deadPoint10:ChartDataEntry = ChartDataEntry(x: 1, y: deadWeight)
+        let deadPoint20:ChartDataEntry = ChartDataEntry(x: 30, y: deadWeight)
+        
+        let deadDataset:LineChartDataSet = LineChartDataSet(values: [deadPoint10,deadPoint20], label:"median")
+        deadDataset.lineWidth = 1.0;
+        deadDataset.circleRadius = 0.0;
+        deadDataset.circleHoleRadius = 0.0;
+        deadDataset.setColor( UIColor.red.withAlphaComponent(0.5))
+        deadDataset.fillAlpha = 0.4
+        deadDataset.fill = Fill.fillWithColor(UIColor.red)
+        deadDataset.drawFilledEnabled = true;
+        
+        
+        
+        let fatPoint10:ChartDataEntry = ChartDataEntry(x: 1, y: fWeght)
+        let fatPoint20:ChartDataEntry = ChartDataEntry(x: 30, y: fWeght)
+        
+        let fatDataset:LineChartDataSet = LineChartDataSet(values: [fatPoint10,fatPoint20], label:"median")
+        fatDataset.lineWidth = 1.0;
+        fatDataset.circleRadius = 0.0;
+        fatDataset.circleHoleRadius = 0.0;
+        fatDataset.setColor( UIColor.green.withAlphaComponent(0.5))
+
+        
+        
+        let data:LineChartData = LineChartData(dataSets: [dataset,medianDataset,deadDataset,fatDataset])
         self.chartViewLineHorizontal.data = data
 
 
+    }
+    
+    func setupWithFoodWeightChart(dataPoints:[ChartDataEntry]) {
     }
     
     func setupWithBarChart(dataPoints:[ChartDataEntry]) {

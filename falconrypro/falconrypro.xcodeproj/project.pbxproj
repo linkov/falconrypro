@@ -21,6 +21,8 @@
 		F140C5E51EA149A10099C592 /* SDWBirdListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */; };
 		F140C5E71EA2509C0099C592 /* SDWHomeTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F140C5E61EA2509C0099C592 /* SDWHomeTBC.swift */; };
 		F140C5E91EA25C6F0099C592 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F140C5E81EA25C6F0099C592 /* Extensions.swift */; };
+		F162E3AE1EDF40B100732195 /* SDWStatsListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3AD1EDF40B100732195 /* SDWStatsListHeaderView.swift */; };
+		F162E3B01EDF40C200732195 /* SDWStatsListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F162E3AF1EDF40C200732195 /* SDWStatsListHeaderView.xib */; };
 		F19FEDC71EB380ED00996B40 /* searchable_push_row.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */; };
 		F1AD8B6F1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */; };
 		F1AD8B711E9EA18A006B2EB1 /* SDWBirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */; };
@@ -131,6 +133,8 @@
 		F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWBirdListTableViewCell.xib; sourceTree = "<group>"; };
 		F140C5E61EA2509C0099C592 /* SDWHomeTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWHomeTBC.swift; sourceTree = "<group>"; };
 		F140C5E81EA25C6F0099C592 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F162E3AD1EDF40B100732195 /* SDWStatsListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWStatsListHeaderView.swift; sourceTree = "<group>"; };
+		F162E3AF1EDF40C200732195 /* SDWStatsListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWStatsListHeaderView.xib; sourceTree = "<group>"; };
 		F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchable_push_row.swift; sourceTree = "<group>"; };
 		F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdsTableViewController.swift; sourceTree = "<group>"; };
 		F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdViewController.swift; sourceTree = "<group>"; };
@@ -518,6 +522,8 @@
 			isa = PBXGroup;
 			children = (
 				F1FA3B2D1EC43CEE00355507 /* SDWStatsViewController.swift */,
+				F162E3AD1EDF40B100732195 /* SDWStatsListHeaderView.swift */,
+				F162E3AF1EDF40C200732195 /* SDWStatsListHeaderView.xib */,
 				F1FA3B2F1EC43E5800355507 /* SDWStatsItemCell.swift */,
 				F1FA3B301EC43E5800355507 /* SDWStatsItemCell.xib */,
 			);
@@ -655,6 +661,7 @@
 				F1FA3B0B1EC219E700355507 /* InitialViewController.xib in Resources */,
 				F1CB9CCA1E9905C900A90363 /* Main.storyboard in Resources */,
 				F140C5E51EA149A10099C592 /* SDWBirdListTableViewCell.xib in Resources */,
+				F162E3B01EDF40C200732195 /* SDWStatsListHeaderView.xib in Resources */,
 				F1FBC2231EB54DA500D57ED0 /* SDWDiaryListTableViewCell.xib in Resources */,
 				F1FA3B0A1EC219E700355507 /* .gitkeep in Resources */,
 				F1FA3B121EC219E700355507 /* .gitkeep in Resources */,
@@ -850,6 +857,7 @@
 				F1FA3AB91EC0899800355507 /* SDWBird+CoreDataClass.swift in Sources */,
 				F1FA3B291EC3B8E600355507 /* SDWDiaryFood+CoreDataClass.swift in Sources */,
 				F1FA3B191EC219E700355507 /* KeyboardMover.swift in Sources */,
+				F162E3AE1EDF40B100732195 /* SDWStatsListHeaderView.swift in Sources */,
 				F1AD8B6F1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift in Sources */,
 				F1FA3ABA1EC0899800355507 /* SDWBird+CoreDataProperties.swift in Sources */,
 				F1FA3AB61EC0899800355507 /* SDWDiaryItem+CoreDataProperties.swift in Sources */,

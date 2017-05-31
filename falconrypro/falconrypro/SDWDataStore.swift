@@ -55,6 +55,34 @@ class SDWDataStore: NSObject {
         
     }
     
+    public func currentTodayItem() -> DiaryItemDisplayItem? {
+        
+        
+        var calendar = Calendar.current
+        calendar.timeZone = NSTimeZone.local
+        
+        // Get today's beginning & end
+        let dateFrom = calendar.startOfDay(for: Date()) // eg. 2016-10-10 00:00:00
+        var components = calendar.dateComponents([.year, .month, .day, .hour, .minute],from: dateFrom)
+        components.day! += 1
+        let dateTo = calendar.date(from: components)! // eg. 2016-10-11 00:00:00
+        // Note: Times are printed in UTC. Depending on where you live it won't print 00:00:00 but it will work with UTC times which can be converted to local time
+
+        
+        let datePredicate = NSPredicate(format: "(%@ <= createdAt) AND (createdAt < %@)", argumentArray: [dateFrom, dateTo])
+        
+
+        
+        let currentItem = self.dataModelManager.fetch(entityName: SDWDiaryItem.entityName(), predicate: datePredicate, context: self.dataModelManager.viewContext) as? SDWDiaryItem
+        
+        if let item = currentItem {
+            return DiaryItemDisplayItem(model: item)
+        }
+        
+        return nil
+        
+    }
+    
     
     public func currentSeason() -> SeasonDisplayItem? {
         let predicate = NSPredicate(format: "%K = %@", "current", NSNumber(booleanLiteral: true))
@@ -317,7 +345,7 @@ class SDWDataStore: NSObject {
         }
 
         
-        self.networkManager.createDiaryItemWith(foodItems:foodItems,weightItems:weightItems,birdID:birdID, quarryTypeIDs:quarryTypeIDs, note:note, completion: {(object, error) in
+        self.networkManager.createDiaryItemWith(season_id:self.currentSeason()!.remoteID, foodItems:foodItems,weightItems:weightItems,birdID:birdID, quarryTypeIDs:quarryTypeIDs, note:note, completion: {(object, error) in
             
             
             guard let data = object, error == nil else {

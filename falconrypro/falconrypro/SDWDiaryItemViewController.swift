@@ -158,7 +158,7 @@ class SDWDiaryItemViewController: FormViewController {
 
                                     }
                                 }
-                                if(self.diaryItem != nil && (self.diaryItem?.quarryTypes!.count)! > 0) {
+                                if(self.diaryItem != nil && (self.diaryItem?.foods!.count)! > 0) {
                                     
                                     
                                     for (index, foodItem) in (self.diaryItem?.foods)!.enumerated() {

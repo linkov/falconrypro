@@ -18,6 +18,7 @@ class SDWStatsViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var dataSwitch: Switch!
     var bird:BirdDisplayItem?
     var season:SeasonDisplayItem?
+    var headerView:SDWStatsListHeaderView?
 
 
     @IBOutlet weak var tableView: UITableView!
@@ -30,6 +31,11 @@ class SDWStatsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         self.tableView.dataSource = self;
         self.tableView.delegate = self;
+        
+        headerView = SDWStatsListHeaderView.loadFromXib()
+        headerView?.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300)
+            
+        self.tableView.tableHeaderView = self.headerView
         
 
     }
@@ -71,19 +77,26 @@ class SDWStatsViewController: UIViewController, UITableViewDataSource, UITableVi
            
         } else if (indexPath.row == 1) {
             
-            let dataPoint10:ChartDataEntry = ChartDataEntry(x: 1, y: 3)
-            let dataPoint20:ChartDataEntry = ChartDataEntry(x: 15, y: 6)
-            let dataPoint30:ChartDataEntry = ChartDataEntry(x: 30, y: 8)
+//            let items = self.dataStore.currentBird()?.currentDiaryItems()
+//            
+//            for itm:DiaryItemDisplayItem in items {
+//                
+//                
+//            }
             
-             cell.setupWithChartType(type: .WeightChart,label: "Fat weight", dataPoints: [dataPoint10,dataPoint20,dataPoint30])
+            let dataPoint10:ChartDataEntry = ChartDataEntry(x: 1, y: 100)
+            let dataPoint20:ChartDataEntry = ChartDataEntry(x: 15, y: 168)
+            let dataPoint30:ChartDataEntry = ChartDataEntry(x: 30, y: 190)
+            
+             cell.setupWithChartType(type: .WeightChart,label: "Weight", dataPoints: [dataPoint10,dataPoint20,dataPoint30])
             
         } else if (indexPath.row == 2) {
             
             let dataPoint1:ChartDataEntry = ChartDataEntry(x: 1, y: 2)
             let dataPoint2:ChartDataEntry = ChartDataEntry(x: 15, y: 4)
             let dataPoint3:ChartDataEntry = ChartDataEntry(x: 30, y: 10)
-            cell.setupWithChartType(type: .WeightChart,label: "Hunting weight", dataPoints: [dataPoint1,dataPoint2,dataPoint3])
-
+            cell.setupWithChartType(type: .FoodWeight,label: "Food + Weight", dataPoints: [dataPoint1,dataPoint2,dataPoint3])
+ 
         }
         
         

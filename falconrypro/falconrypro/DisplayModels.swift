@@ -222,6 +222,15 @@ class BirdDisplayItem: NSObject {
         })
         return seasonItems
     }
+    
+    public func currentDiaryItems() -> [DiaryItemDisplayItem] {
+        let arr:Array<SDWDiaryItem> = self.model.diaryItems?.allObjects as! Array<SDWDiaryItem>
+        
+        let items:Array = arr.map({ (item: SDWDiaryItem) -> DiaryItemDisplayItem in
+            DiaryItemDisplayItem(model: item)
+        })
+        return items
+    }
 }
 
 class BirdTypeDisplayItem: NSObject, SearchableItem {
@@ -316,8 +325,8 @@ class DiaryItemDisplayItem: NSObject {
 
     init(model:SDWDiaryItem) {
         
-        dateFormatter.dateStyle = .none
-        dateFormatter.dateFormat = "yyyy-mm-dd"
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         
         self.model = model
         self.remoteID = model.remoteID!

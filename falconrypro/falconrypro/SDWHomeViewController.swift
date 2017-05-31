@@ -18,6 +18,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     var season:SeasonDisplayItem?
     var diaryListVC:SDWDiaryListViewController?
     var statsVC:SDWStatsViewController?
+    var hmButton:UIButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,18 +37,18 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         var items = [MiniTabBarItem]()
         items.append(MiniTabBarItem(title: "Diary", icon: #imageLiteral(resourceName: "diary")))
         
-        let customButton = UIButton()
-        customButton.backgroundColor = UIColor.white
-        customButton.layer.cornerRadius = 25
-        customButton.frame.size = CGSize(width: 50, height: 50)
-        customButton.layer.borderWidth = 1;
-        customButton.layer.borderColor = UIColor.black.cgColor
-        customButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
-        customButton.setTitle("HM", for: .normal)
-        customButton.setTitleColor(UIColor.black, for: .normal)
-        customButton.imageView?.contentMode = .scaleAspectFit
-        customButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        let customItem = MiniTabBarItem(customView: customButton, offset: UIOffset(horizontal: 0, vertical: -10))
+        
+        hmButton.backgroundColor = UIColor.white
+        hmButton.layer.cornerRadius = 25
+        hmButton.frame.size = CGSize(width: 50, height: 50)
+        hmButton.layer.borderWidth = 1;
+        hmButton.layer.borderColor = UIColor.black.cgColor
+        hmButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
+        hmButton.setTitle("HM", for: .normal)
+        hmButton.setTitleColor(UIColor.black, for: .normal)
+        hmButton.imageView?.contentMode = .scaleAspectFit
+        hmButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        let customItem = MiniTabBarItem(customView: hmButton, offset: UIOffset(horizontal: 0, vertical: -10))
         customItem.selectable = false
         items.append(customItem)
         
@@ -131,6 +132,16 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     }
     
     @objc private func customButtonTapped() {
+        
+        
+        if (hmButton.backgroundColor == UIColor.white) {
+            hmButton.backgroundColor = UIColor.black
+            hmButton.setTitleColor(UIColor.white, for: .normal)
+        } else {
+            hmButton.backgroundColor = UIColor.white
+            hmButton.setTitleColor(UIColor.black, for: .normal)
+        }
+        
         
 //        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "DiaryEdit") as! UINavigationController
 //        let birdController = controller.viewControllers[0] as! SDWDiaryItemViewController

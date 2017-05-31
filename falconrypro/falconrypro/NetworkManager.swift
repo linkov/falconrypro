@@ -78,12 +78,13 @@ class NetworkManager: NSObject {
         }
     }
     
-    public func createDiaryItemWith(foodItems:Array<DiaryFoodItemDisplayItem>?,weightItems:Array<DiaryWeightItemDisplayItem>?,birdID:String, quarryTypeIDs:Array<String>?,note:String?,
+    public func createDiaryItemWith(season_id:String, foodItems:Array<DiaryFoodItemDisplayItem>?,weightItems:Array<DiaryWeightItemDisplayItem>?,birdID:String, quarryTypeIDs:Array<String>?,note:String?,
                                     completion:@escaping sdw_id_error_block) {
         self.setupRequestHeaders()
         
         var dict: [String: Any] = [
             "bird_id": birdID,
+            "season_id":season_id
             
         ]
         
@@ -97,11 +98,25 @@ class NetworkManager: NSObject {
         
         
         if let foods = foodItems {
-            dict["diary_foods_attributes"] = foods
+            
+            var arrFood = [Dictionary<String,Any>]()
+            for ff in foods {
+                let itm = ff.serialization()
+                arrFood.append(itm)
+            }
+            
+            dict["diary_foods_attributes"] = arrFood
         }
         
         if let weights = weightItems {
-            dict["diary_weights_attributes"] = weights
+            
+            var arrWeight = [Dictionary<String,Any>]()
+            for ff in weights {
+                let itm = ff.serialization()
+                arrWeight.append(itm)
+            }
+            
+            dict["diary_weights_attributes"] = arrWeight
         }
         
         

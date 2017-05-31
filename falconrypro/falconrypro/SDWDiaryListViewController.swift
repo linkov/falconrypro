@@ -42,6 +42,16 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         self.tableView.reloadData()
         self.reloadEmptyState(forTableView: self.tableView)
         
+        self.existingTodayItem = self.dataStore.currentTodayItem()
+        
+        if (self.existingTodayItem != nil) {
+            let diaryController:SDWDiaryItemViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemViewController") as! SDWDiaryItemViewController
+            
+            diaryController.bird = self.bird
+            diaryController.diaryItem = self.existingTodayItem
+            
+            self.navigationController?.pushViewController(diaryController, animated: false)
+        }
         
     }
 
@@ -80,7 +90,21 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         
         object = objects[indexPath.row]
         cell.time.text =  object.created
-
+        
+        var totalFood = 0
+        for item:DiaryFoodItemDisplayItem in object.foods! {
+            totalFood += Int(item.amountEaten!)
+        }
+        
+        cell.eaten.text = String(totalFood)
+        
+        
+        var totalWeight = 0
+        for item:DiaryWeightItemDisplayItem in object.weights! {
+            totalWeight += Int(item.weight!)
+        }
+        
+        cell.weight.text = String(totalWeight)
         
     
         return cell

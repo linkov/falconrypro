@@ -12,7 +12,6 @@ class SDWDiaryListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var food: UILabel!
     @IBOutlet weak var eaten: UILabel!
-    @IBOutlet weak var offered: UILabel!
     @IBOutlet weak var weight: UILabel!
     @IBOutlet weak var time: UILabel!
     override func awakeFromNib() {
