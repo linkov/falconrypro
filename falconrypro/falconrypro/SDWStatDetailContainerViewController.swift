@@ -52,11 +52,6 @@ class SDWStatDetailContainerViewController: UIViewController, UIPageViewControll
         }
         
         
-        
-//        let dataPoint10:ChartDataEntry = ChartDataEntry(x: 1, y: 100)
-//        let dataPoint20:ChartDataEntry = ChartDataEntry(x: 15, y: 168)
-//        let dataPoint30:ChartDataEntry = ChartDataEntry(x: 30, y: 190)
-        
         self.lineChartVC?.setupWithChartType(type: .WeightChart,label: "Weight", dataPoints: points.sorted { $0.x < $1.x })
         
         

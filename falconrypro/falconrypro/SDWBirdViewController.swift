@@ -114,14 +114,14 @@ class SDWBirdViewController: FormViewController {
                 
                 <<< IntRow(){ row in
                     row.tag = "fweight"
-                    row.value = Int((bird?.fatWeight)!)
+                    row.value =  (bird?.model != nil) ? Int((bird?.fatWeight)!) : nil
                     row.title = "Fat Weight"
                     row.placeholder = "weight in gramms"
                     row.formatter = self.weightFormatter
                     
                 }
                 <<< IntRow(){
-                    $0.value = Int((bird?.huntingWeight)!)
+                    $0.value = (bird?.model != nil) ? Int((bird?.huntingWeight)!) : nil
                     $0.tag = "hweight"
                     $0.title = "Hunting Weight"
                     $0.placeholder = "weight in gramms"
