@@ -13,5 +13,6 @@
 + (FEMAttribute *)falconryIDAttribute;
 + (FEMAttribute *)dateAttributeWithProperty:(NSString *)property keyPath:(NSString *)keyPath;
 + (FEMAttribute *)bdayDateAttributeWithProperty:(NSString *)property keyPath:(NSString *)keyPath;
++ (FEMAttribute *)latlongAttributeWithProperty:(NSString *)property keyPath:(NSString *)keyPath;
 
 @end

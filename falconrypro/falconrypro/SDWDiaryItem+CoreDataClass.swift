@@ -29,6 +29,7 @@ public class SDWDiaryItem: NSManagedObject, SDWObjectMapping {
         mapping.add(toManyRelationshipMapping: SDWDiaryWeight.defaultMapping(), forProperty: "weights", keyPath: "diary_weights")
         mapping.add(toManyRelationshipMapping: SDWDiaryFood.defaultMapping(), forProperty: "foods", keyPath: "diary_foods")
         
+        mapping.add(toManyRelationshipMapping: SDWPinItem.defaultMapping(), forProperty: "pins", keyPath: "pin_items")
         
         let quarryRelationshipMapping:FEMRelationship = FEMRelationship(property: "quarryTypes", keyPath: "quarry_types", mapping: SDWQuarryType.defaultMapping())
         quarryRelationshipMapping.weak = true

@@ -19,6 +19,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     var bird:BirdDisplayItem?
     var season:SeasonDisplayItem?
     var existingTodayItem:DiaryItemDisplayItem?
+    var lastSelectedItem:DiaryItemDisplayItem?
     
     @IBOutlet weak var birdEditButton: UIButton!
     
@@ -62,6 +63,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.lastSelectedItem = nil
         self.birdEditButton.setTitle(self.title, for: .normal)
         self.loadItems()
 
@@ -121,6 +123,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
 
         diaryController.bird = bird
         diaryController.diaryItem = object
+        lastSelectedItem = object
         
         self.navigationController?.pushViewController(diaryController, animated: true)
     }

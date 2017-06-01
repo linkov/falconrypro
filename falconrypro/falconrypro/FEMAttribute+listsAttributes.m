@@ -63,6 +63,18 @@ static NSDateFormatter * birthdayMappingFormatter;
     return attribute;
 }
 
++ (FEMAttribute *)latlongAttributeWithProperty:(NSString *)property keyPath:(NSString *)keyPath {
+    FEMAttribute *attribute = [[FEMAttribute alloc] initWithProperty:property keyPath:keyPath map:^id(id value) {
+        if ([value isKindOfClass:[NSString class]]) {
+            return [NSDecimalNumber decimalNumberWithString:value];
+        }
+        return nil;
+    } reverseMap:^id(id value) {
+        return nil;
+    }];
+    return attribute;
+}
+
 + (FEMAttribute *)bdayDateAttributeWithProperty:(NSString *)property keyPath:(NSString *)keyPath {
     FEMAttribute *attribute = [[FEMAttribute alloc] initWithProperty:property keyPath:keyPath map:^id(id value) {
         if ([value isKindOfClass:[NSString class]]) {

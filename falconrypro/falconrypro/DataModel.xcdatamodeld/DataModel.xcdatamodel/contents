@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="SDWBird" representedClassName="SDWBird" syncable="YES" codeGenerationType="class">
         <attribute name="birthday" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
@@ -38,6 +38,7 @@
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="bird" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWBird" inverseName="diaryItems" inverseEntity="SDWBird" syncable="YES"/>
         <relationship name="foods" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SDWDiaryFood" inverseName="diaryItem" inverseEntity="SDWDiaryFood" syncable="YES"/>
+        <relationship name="pins" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SDWPinItem" inverseName="diaryItem" inverseEntity="SDWPinItem" syncable="YES"/>
         <relationship name="quarryTypes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWQuarryType" inverseName="diaryItems" inverseEntity="SDWQuarryType" syncable="YES"/>
         <relationship name="season" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWSeason" inverseName="items" inverseEntity="SDWSeason" syncable="YES"/>
         <relationship name="weights" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SDWDiaryWeight" inverseName="diaryItem" inverseEntity="SDWDiaryWeight" syncable="YES"/>
@@ -52,6 +53,16 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="diaryFoods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWDiaryFood" inverseName="food" inverseEntity="SDWDiaryFood" syncable="YES"/>
+    </entity>
+    <entity name="SDWPinItem" representedClassName="SDWPinItem" syncable="YES" codeGenerationType="class">
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lat" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="long" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pinTypeName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="diaryItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWDiaryItem" inverseName="pins" inverseEntity="SDWDiaryItem" syncable="YES"/>
     </entity>
     <entity name="SDWQuarryType" representedClassName="SDWQuarryType" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -81,11 +92,12 @@
         <element name="SDWBird" positionX="-54" positionY="9" width="128" height="255"/>
         <element name="SDWBirdType" positionX="-36" positionY="36" width="128" height="135"/>
         <element name="SDWDiaryFood" positionX="18" positionY="162" width="128" height="120"/>
-        <element name="SDWDiaryItem" positionX="0" positionY="108" width="128" height="180"/>
+        <element name="SDWDiaryItem" positionX="0" positionY="108" width="128" height="195"/>
         <element name="SDWDiaryWeight" positionX="-27" positionY="108" width="128" height="105"/>
         <element name="SDWFood" positionX="-27" positionY="81" width="128" height="90"/>
         <element name="SDWQuarryType" positionX="-27" positionY="117" width="128" height="90"/>
         <element name="SDWSeason" positionX="-18" positionY="90" width="128" height="195"/>
         <element name="SDWUser" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="SDWPinItem" positionX="-27" positionY="117" width="128" height="165"/>
     </elements>
 </model>

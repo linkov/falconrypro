@@ -2,7 +2,7 @@
 //  SDWDiaryItem+CoreDataProperties.swift
 //  falconrypro
 //
-//  Created by Alex Linkov on 5/12/17.
+//  Created by Alex Linkov on 6/1/17.
 //  Copyright © 2017 SDWR. All rights reserved.
 //
 
@@ -25,6 +25,7 @@ extension SDWDiaryItem {
     @NSManaged public var quarryTypes: NSSet?
     @NSManaged public var season: SDWSeason?
     @NSManaged public var weights: NSSet?
+    @NSManaged public var pins: NSSet?
 
 }
 
@@ -76,5 +77,22 @@ extension SDWDiaryItem {
 
     @objc(removeWeights:)
     @NSManaged public func removeFromWeights(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for pins
+extension SDWDiaryItem {
+
+    @objc(addPinsObject:)
+    @NSManaged public func addToPins(_ value: SDWPinItem)
+
+    @objc(removePinsObject:)
+    @NSManaged public func removeFromPins(_ value: SDWPinItem)
+
+    @objc(addPins:)
+    @NSManaged public func addToPins(_ values: NSSet)
+
+    @objc(removePins:)
+    @NSManaged public func removeFromPins(_ values: NSSet)
 
 }

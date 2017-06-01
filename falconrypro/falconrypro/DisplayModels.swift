@@ -123,6 +123,32 @@ class FoodDisplayItem: NSObject, SearchableItem {
 }
 
 
+class PinItemDisplayItem: NSObject {
+    var remoteID:String?
+    var note:String?
+    var typeName:String?
+    var lat:Double?
+    var long:Double?
+    var thumbURL:String?
+    var imageURL:String?
+    public private(set) var model:SDWPinItem
+
+    init(model:SDWPinItem) {
+        self.model = model
+        self.note = self.model.note
+        self.remoteID = self.model.remoteID!
+        self.imageURL = self.model.imageURL
+        self.thumbURL = self.model.thumbURL
+        self.lat = self.model.lat as? Double
+        self.long = self.model.long as? Double
+        self.typeName = self.model.pinTypeName
+    }
+    
+
+    
+}
+
+
 class QuarryTypeDisplayItem: NSObject, SearchableItem {
     var remoteID:String
     var name:String?
@@ -315,6 +341,7 @@ class DiaryItemDisplayItem: NSObject {
     var created:String
     var remoteID:String
     var foods:Array<DiaryFoodItemDisplayItem>?
+    var pins:Array<PinItemDisplayItem>?
     var weights:Array<DiaryWeightItemDisplayItem>?
     var quarryTypes:Array<QuarryTypeDisplayItem>?
     
@@ -347,6 +374,14 @@ class DiaryItemDisplayItem: NSObject {
         let quarry:Array = quarryArr.map({ (item: SDWQuarryType) -> QuarryTypeDisplayItem in
             QuarryTypeDisplayItem(model: item)
         })
+        
+        
+        let pinsArr:Array<SDWPinItem> = self.model.pins?.allObjects as! Array<SDWPinItem>
+        let pins:Array = pinsArr.map({ (item: SDWPinItem) -> PinItemDisplayItem in
+            PinItemDisplayItem(model: item)
+        })
+        
+        self.pins = pins
         
         self.quarryTypes = quarry
         self.foods = foods

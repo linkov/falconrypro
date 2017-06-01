@@ -15,6 +15,8 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     var statsListNav :UINavigationController?
     var mapNav :UINavigationController?
     
+    let dataStore:SDWDataStore = SDWDataStore.sharedInstance
+    
     @IBOutlet weak var hmModeViewBottomLayout: NSLayoutConstraint!
     var bird:BirdDisplayItem?
     var season:SeasonDisplayItem?
@@ -194,8 +196,14 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     
     @objc private func customButtonTapped() {
         
+        let currentItem = self.diaryListVC?.lastSelectedItem
+        if (currentItem == nil) {
+            
+            return
+        }
         
         UIView.animate(withDuration: 0.25) {
+            
             
             if (self.hmButton.backgroundColor == UIColor.white) {
                 self.hmButton.backgroundColor = UIColor.black
@@ -223,6 +231,23 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     
     func back(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func showMapForDiaryItem(_ sender: Any) {
+        
+        
+        let currentItem = self.diaryListVC?.lastSelectedItem
+        
+        if (currentItem != nil) {
+            
+            tabSelected(3)
+            self.mapVC?.title = currentItem?.created
+            self.mapVC?.pins = (currentItem?.pins)!
+            customButtonTapped()
+        }
+        
+
         
     }
 
