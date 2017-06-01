@@ -112,16 +112,52 @@
                     <view key="view" contentMode="scaleToFill" id="N3v-og-4WP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="czn-tB-2cF">
+                                <rect key="frame" x="0.0" y="631" width="375" height="36"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27W-Kv-LFK">
+                                        <rect key="frame" x="19" y="3" width="77" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="take photo">
+                                            <color key="titleColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SiX-Of-IN6">
+                                        <rect key="frame" x="281" y="3" width="72" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="create pin">
+                                            <color key="titleColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="SiX-Of-IN6" secondAttribute="trailing" constant="22" id="4os-rZ-C7N"/>
+                                    <constraint firstItem="27W-Kv-LFK" firstAttribute="centerY" secondItem="czn-tB-2cF" secondAttribute="centerY" id="K0e-Lz-63Y"/>
+                                    <constraint firstAttribute="height" constant="36" id="P6R-lO-z3P"/>
+                                    <constraint firstItem="SiX-Of-IN6" firstAttribute="centerY" secondItem="czn-tB-2cF" secondAttribute="centerY" id="Qzr-ya-I3B"/>
+                                    <constraint firstItem="27W-Kv-LFK" firstAttribute="leading" secondItem="czn-tB-2cF" secondAttribute="leading" constant="19" id="YYC-sm-axt"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="czn-tB-2cF" secondAttribute="trailing" id="Gq0-dM-xMC"/>
+                            <constraint firstItem="dLl-Jx-dYY" firstAttribute="top" secondItem="czn-tB-2cF" secondAttribute="bottom" id="Lf0-46-Tvh"/>
+                            <constraint firstItem="czn-tB-2cF" firstAttribute="leading" secondItem="N3v-og-4WP" secondAttribute="leading" id="PWX-mV-mXq"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="hmModeViewBottomLayout" destination="Lf0-46-Tvh" id="fga-xR-02h"/>
                         <segue destination="Tfa-Zx-mvt" kind="show" id="H7E-Wm-ifS"/>
                         <segue destination="CVg-zS-hJg" kind="showDetail" id="wjQ-Gg-AZv"/>
+                        <segue destination="BFc-Wv-AtJ" kind="showDetail" id="cYo-i0-wGh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KfY-u9-zzv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3718" y="-330"/>
+            <point key="canvasLocation" x="3717.5999999999999" y="-330.58470764617692"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KKZ-G3-6nO">
@@ -244,6 +280,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Cw-It-awL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5504.8000000000002" y="151.57421289355324"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="btS-vb-iMU">
+            <objects>
+                <navigationController storyboardIdentifier="MapNav" id="BFc-Wv-AtJ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Ief-A4-UvG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="pdf-7W-eE2" kind="relationship" relationship="rootViewController" id="i0Q-xR-EO2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3xS-qd-k4W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4612" y="871"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="J0y-Wm-egc">
+            <objects>
+                <viewController id="pdf-7W-eE2" customClass="SDWMapViewController" customModule="falconrypro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hN9-pT-VSb"/>
+                        <viewControllerLayoutGuide type="bottom" id="UBl-Ut-jPQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="B7Q-2l-GLJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZt-Gj-nfB" customClass="MGLMapView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="styleURL__" value="mapbox://styles/mapbox/dark-v9"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showsUserLocation" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UZt-Gj-nfB" firstAttribute="leading" secondItem="B7Q-2l-GLJ" secondAttribute="leading" id="Sri-sO-GJ9"/>
+                            <constraint firstItem="UZt-Gj-nfB" firstAttribute="trailing" secondItem="B7Q-2l-GLJ" secondAttribute="trailing" id="U6m-7X-nyj"/>
+                            <constraint firstItem="UZt-Gj-nfB" firstAttribute="top" secondItem="hN9-pT-VSb" secondAttribute="bottom" id="gVL-hs-8xK"/>
+                            <constraint firstItem="UBl-Ut-jPQ" firstAttribute="top" secondItem="UZt-Gj-nfB" secondAttribute="bottom" id="r80-mY-g2x"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="qaO-ge-B3c">
+                        <barButtonItem key="leftBarButtonItem" title="Filter" id="xzO-3J-Q6j"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="k9L-pD-9aC"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mgMapView" destination="UZt-Gj-nfB" id="gdk-fZ-9Pb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5i4-Mh-M8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5504.8000000000002" y="870.31484257871068"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DNh-Vd-Iq3">

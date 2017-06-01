@@ -23,6 +23,8 @@
 		F140C5E91EA25C6F0099C592 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F140C5E81EA25C6F0099C592 /* Extensions.swift */; };
 		F162E3AE1EDF40B100732195 /* SDWStatsListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3AD1EDF40B100732195 /* SDWStatsListHeaderView.swift */; };
 		F162E3B01EDF40C200732195 /* SDWStatsListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F162E3AF1EDF40C200732195 /* SDWStatsListHeaderView.xib */; };
+		F162E3B41EDF772B00732195 /* SDWMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3B31EDF772B00732195 /* SDWMapViewController.swift */; };
+		F162E3B61EDF7A4D00732195 /* SDWLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3B51EDF7A4D00732195 /* SDWLocationManager.swift */; };
 		F19FEDC71EB380ED00996B40 /* searchable_push_row.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */; };
 		F1AD8B6F1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */; };
 		F1AD8B711E9EA18A006B2EB1 /* SDWBirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */; };
@@ -135,6 +137,8 @@
 		F140C5E81EA25C6F0099C592 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F162E3AD1EDF40B100732195 /* SDWStatsListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWStatsListHeaderView.swift; sourceTree = "<group>"; };
 		F162E3AF1EDF40C200732195 /* SDWStatsListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWStatsListHeaderView.xib; sourceTree = "<group>"; };
+		F162E3B31EDF772B00732195 /* SDWMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWMapViewController.swift; sourceTree = "<group>"; };
+		F162E3B51EDF7A4D00732195 /* SDWLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWLocationManager.swift; sourceTree = "<group>"; };
 		F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchable_push_row.swift; sourceTree = "<group>"; };
 		F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdsTableViewController.swift; sourceTree = "<group>"; };
 		F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdViewController.swift; sourceTree = "<group>"; };
@@ -264,6 +268,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F162E3B21EDF771100732195 /* Map Flow */ = {
+			isa = PBXGroup;
+			children = (
+				F162E3B31EDF772B00732195 /* SDWMapViewController.swift */,
+			);
+			name = "Map Flow";
+			sourceTree = "<group>";
+		};
 		F1CB9CB81E9905C900A90363 = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +303,7 @@
 		F1CB9CC31E9905C900A90363 /* falconrypro */ = {
 			isa = PBXGroup;
 			children = (
+				F162E3B21EDF771100732195 /* Map Flow */,
 				F1FA3B2C1EC43CC100355507 /* Stats Flow */,
 				F1FA3AE41EC0A5D400355507 /* Mapping */,
 				F1FA3AE11EC0A4C900355507 /* Protocols */,
@@ -388,6 +401,7 @@
 			isa = PBXGroup;
 			children = (
 				F1CB316C1EBFB590004C7342 /* NetworkManager.swift */,
+				F162E3B51EDF7A4D00732195 /* SDWLocationManager.swift */,
 				F1FA3AA11EC0863900355507 /* SDWDataStore.swift */,
 				F1FA3A951EBFFE4300355507 /* DataModelManager.swift */,
 			);
@@ -842,6 +856,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F162E3B41EDF772B00732195 /* SDWMapViewController.swift in Sources */,
 				F104179B1ED5C81100D2F3B1 /* SDWWeightItemViewController.swift in Sources */,
 				F1FA3B131EC219E700355507 /* BackgroundMover.swift in Sources */,
 				F1FA3AB41EC0899800355507 /* SDWFood+CoreDataProperties.swift in Sources */,
@@ -856,6 +871,7 @@
 				F140C5E91EA25C6F0099C592 /* Extensions.swift in Sources */,
 				F1FA3AB91EC0899800355507 /* SDWBird+CoreDataClass.swift in Sources */,
 				F1FA3B291EC3B8E600355507 /* SDWDiaryFood+CoreDataClass.swift in Sources */,
+				F162E3B61EDF7A4D00732195 /* SDWLocationManager.swift in Sources */,
 				F1FA3B191EC219E700355507 /* KeyboardMover.swift in Sources */,
 				F162E3AE1EDF40B100732195 /* SDWStatsListHeaderView.swift in Sources */,
 				F1AD8B6F1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift in Sources */,

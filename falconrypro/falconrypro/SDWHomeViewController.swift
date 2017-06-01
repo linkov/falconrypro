@@ -13,11 +13,14 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     
     var diaryListNav :UINavigationController?
     var statsListNav :UINavigationController?
+    var mapNav :UINavigationController?
     
+    @IBOutlet weak var hmModeViewBottomLayout: NSLayoutConstraint!
     var bird:BirdDisplayItem?
     var season:SeasonDisplayItem?
     var diaryListVC:SDWDiaryListViewController?
     var statsVC:SDWStatsViewController?
+    var mapVC:SDWMapViewController?
     var hmButton:UIButton = UIButton()
     
     override func viewDidLoad() {
@@ -35,7 +38,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     
     private func createCustomItemTabBar() {
         var items = [MiniTabBarItem]()
-        items.append(MiniTabBarItem(title: "Diary", icon: #imageLiteral(resourceName: "diary")))
+        items.append(MiniTabBarItem(title: "Diary", icon: #imageLiteral(resourceName: "journal")))
         
         
         hmButton.backgroundColor = UIColor.white
@@ -50,9 +53,17 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         hmButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         let customItem = MiniTabBarItem(customView: hmButton, offset: UIOffset(horizontal: 0, vertical: -10))
         customItem.selectable = false
-        items.append(customItem)
+        
         
         items.append(MiniTabBarItem(title: "Stats", icon: #imageLiteral(resourceName: "stats")))
+        
+        items.append(customItem)
+        
+
+        
+        items.append(MiniTabBarItem(title: "Map", icon: #imageLiteral(resourceName: "map")))
+        items.append(MiniTabBarItem(title: "Photos", icon: #imageLiteral(resourceName: "gallery")))
+        
         let tabBar = MiniTabBar(items: items)
         tabBar.delegate = self
         tabBar.backgroundBlurEnabled = false
@@ -75,6 +86,13 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
                 self.statsListNav?.view.removeFromSuperview()
                 self.statsListNav?.removeFromParentViewController()
             }
+            
+            if ((self.mapNav) != nil) {
+                self.mapNav?.willMove(toParentViewController: self)
+                self.mapNav?.view.removeFromSuperview()
+                self.mapNav?.removeFromParentViewController()
+            }
+            
             
            self.diaryListNav = storyboard?.instantiateViewController(withIdentifier: "DiaryListNav") as? UINavigationController
     
@@ -103,7 +121,16 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
             self.view.bringSubview(toFront: self.view)
             self.diaryListNav!.didMove(toParentViewController: self)
             
-        } else {
+        } else if (index == 1) {
+            
+            
+            if ((self.mapNav) != nil) {
+                self.mapNav?.willMove(toParentViewController: self)
+                self.mapNav?.view.removeFromSuperview()
+                self.mapNav?.removeFromParentViewController()
+            }
+            
+            
             
             self.diaryListNav?.willMove(toParentViewController: self)
             self.diaryListNav?.view.removeFromSuperview()
@@ -128,19 +155,64 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
 
             
 
+        } else if (index == 3) {
+            
+            
+            if ((self.statsListNav) != nil) {
+                self.statsListNav?.willMove(toParentViewController: self)
+                self.statsListNav?.view.removeFromSuperview()
+                self.statsListNav?.removeFromParentViewController()
+            }
+            
+            if ((self.diaryListNav) != nil) {
+                self.diaryListNav?.willMove(toParentViewController: self)
+                self.diaryListNav?.view.removeFromSuperview()
+                self.diaryListNav?.removeFromParentViewController()
+            }
+            
+            
+            
+            self.mapNav = storyboard?.instantiateViewController(withIdentifier: "MapNav") as? UINavigationController
+            
+            
+            self.mapVC = self.mapNav!.viewControllers[0] as? SDWMapViewController
+            self.mapVC?.title = "All pins"
+            
+            
+            self.addChildViewController(self.mapNav!)
+            self.mapNav!.view.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+            self.view.insertSubview(self.mapNav!.view, at: 0)
+            self.view.bringSubview(toFront: self.view)
+            self.mapNav!.didMove(toParentViewController: self)
+
+            
+            
+            
+            
         }
     }
     
     @objc private func customButtonTapped() {
         
         
-        if (hmButton.backgroundColor == UIColor.white) {
-            hmButton.backgroundColor = UIColor.black
-            hmButton.setTitleColor(UIColor.white, for: .normal)
-        } else {
-            hmButton.backgroundColor = UIColor.white
-            hmButton.setTitleColor(UIColor.black, for: .normal)
+        UIView.animate(withDuration: 0.25) {
+            
+            if (self.hmButton.backgroundColor == UIColor.white) {
+                self.hmButton.backgroundColor = UIColor.black
+                self.hmButton.setTitleColor(UIColor.white, for: .normal)
+                self.hmButton.layer.borderColor = UIColor.white.cgColor
+                self.hmModeViewBottomLayout.constant = 40
+                self.view.layoutIfNeeded()
+            } else {
+                self.hmButton.backgroundColor = UIColor.white
+                self.hmButton.setTitleColor(UIColor.black, for: .normal)
+                self.hmButton.layer.borderColor = UIColor.black.cgColor
+                self.hmModeViewBottomLayout.constant = 0
+                self.view.layoutIfNeeded()
+            }
         }
+        
+
         
         
 //        let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "DiaryEdit") as! UINavigationController

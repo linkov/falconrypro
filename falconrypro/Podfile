@@ -23,6 +23,9 @@ target 'falconrypro' do
   pod 'RoundedSwitch'
   pod 'ImageRow', :git => 'https://github.com/EurekaCommunity/ImageRow.git'
 
+
+  pod 'Mapbox-iOS-SDK', '~> 3.5'
+
   target 'falconryproTests' do
     inherit! :search_paths
     # Pods for testing

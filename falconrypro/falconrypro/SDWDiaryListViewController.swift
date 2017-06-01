@@ -99,12 +99,11 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         cell.eaten.text = String(totalFood)
         
         
-        var totalWeight = 0
-        for item:DiaryWeightItemDisplayItem in object.weights! {
-            totalWeight += Int(item.weight!)
-        }
-        
-        cell.weight.text = String(totalWeight)
+        var lastWeight = 0
+        let lastItem = object.weights?.last
+        lastWeight = Int((lastItem?.weight)!)
+
+        cell.weight.text = String(lastWeight)
         
     
         return cell
