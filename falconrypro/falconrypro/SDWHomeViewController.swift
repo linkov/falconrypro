@@ -29,7 +29,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         super.viewDidLoad()
 
 
-        
+        AppUtility.lockOrientation(.portrait)
         self.createCustomItemTabBar()
     }
 
@@ -215,7 +215,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
                 self.hmButton.backgroundColor = UIColor.white
                 self.hmButton.setTitleColor(UIColor.black, for: .normal)
                 self.hmButton.layer.borderColor = UIColor.black.cgColor
-                self.hmModeViewBottomLayout.constant = 0
+                self.hmModeViewBottomLayout.constant = -40
                 self.view.layoutIfNeeded()
             }
         }
@@ -264,5 +264,6 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
 //
 
     }
+
 
 }

@@ -13,3 +13,7 @@ import FastEasyMapping
     static func defaultMapping() -> FEMMapping
     static func entityName() -> String
 }
+
+protocol SDWPageable {
+    var index:NSInteger { get }
+}

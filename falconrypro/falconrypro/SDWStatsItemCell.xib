@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="287" height="210"/>
+                <rect key="frame" x="0.0" y="0.0" width="287" height="209.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfd-Qz-ahx" userLabel="chartviewBarHorizontal" customClass="HorizontalBarChartView" customModule="Charts">
@@ -33,10 +33,18 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aap-i0-zIe">
+                        <rect key="frame" x="95" y="94" width="97" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="gfd-Qz-ahx" secondAttribute="bottom" id="5Py-7t-7md"/>
+                    <constraint firstItem="Aap-i0-zIe" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7Dl-CC-Wvm"/>
                     <constraint firstItem="JLc-Up-Sg5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="50" id="G2c-bU-bcj"/>
+                    <constraint firstItem="Aap-i0-zIe" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Joh-E3-5gu"/>
                     <constraint firstItem="JLc-Up-Sg5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="PCC-Yi-HEW"/>
                     <constraint firstAttribute="trailing" secondItem="JLc-Up-Sg5" secondAttribute="trailing" id="RNV-YD-zwg"/>
                     <constraint firstAttribute="trailing" secondItem="gfd-Qz-ahx" secondAttribute="trailing" id="T7a-jG-BOZ"/>
@@ -50,6 +58,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="centeredLabel" destination="Aap-i0-zIe" id="vNT-cO-Ipx"/>
                 <outlet property="chartViewBarHorizontal" destination="gfd-Qz-ahx" id="gQk-eA-UmJ"/>
                 <outlet property="chartViewLineHorizontal" destination="JLc-Up-Sg5" id="C3w-sd-BYV"/>
                 <outlet property="mainTitleLabel" destination="WYI-fp-eU3" id="jZx-2D-oGM"/>

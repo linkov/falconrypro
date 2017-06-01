@@ -230,6 +230,7 @@ class SDWDataStore: NSObject {
 //         
             
             self.dataModelManager.deleteAllEntitiesWithName(name: "SDWSeason")
+//            self.dataModelManager.deleteAllEntitiesWithName(name: "SDWDiaryItem")
             self.dataModelManager.viewContext.delete(user as! NSManagedObject)
             self.dataModelManager.viewContext.processPendingChanges()
             

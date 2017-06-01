@@ -27,6 +27,9 @@
 		F162E3B61EDF7A4D00732195 /* SDWLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3B51EDF7A4D00732195 /* SDWLocationManager.swift */; };
 		F162E3B91EDF9CB600732195 /* SDWPinItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3B71EDF9CB600732195 /* SDWPinItem+CoreDataClass.swift */; };
 		F162E3BA1EDF9CB600732195 /* SDWPinItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3B81EDF9CB600732195 /* SDWPinItem+CoreDataProperties.swift */; };
+		F162E3BC1EE025A800732195 /* SDWStatDetailContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3BB1EE025A800732195 /* SDWStatDetailContainerViewController.swift */; };
+		F162E3BE1EE025F700732195 /* SDWStatChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3BD1EE025F700732195 /* SDWStatChartViewController.swift */; };
+		F162E3C01EE03F8200732195 /* SDWChartDateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3BF1EE03F8200732195 /* SDWChartDateValueFormatter.swift */; };
 		F19FEDC71EB380ED00996B40 /* searchable_push_row.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */; };
 		F1AD8B6F1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */; };
 		F1AD8B711E9EA18A006B2EB1 /* SDWBirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */; };
@@ -143,6 +146,9 @@
 		F162E3B51EDF7A4D00732195 /* SDWLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWLocationManager.swift; sourceTree = "<group>"; };
 		F162E3B71EDF9CB600732195 /* SDWPinItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWPinItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F162E3B81EDF9CB600732195 /* SDWPinItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWPinItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F162E3BB1EE025A800732195 /* SDWStatDetailContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWStatDetailContainerViewController.swift; sourceTree = "<group>"; };
+		F162E3BD1EE025F700732195 /* SDWStatChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWStatChartViewController.swift; sourceTree = "<group>"; };
+		F162E3BF1EE03F8200732195 /* SDWChartDateValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWChartDateValueFormatter.swift; sourceTree = "<group>"; };
 		F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchable_push_row.swift; sourceTree = "<group>"; };
 		F1AD8B6E1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdsTableViewController.swift; sourceTree = "<group>"; };
 		F1AD8B701E9EA18A006B2EB1 /* SDWBirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdViewController.swift; sourceTree = "<group>"; };
@@ -378,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				F140C5E81EA25C6F0099C592 /* Extensions.swift */,
+				F162E3BF1EE03F8200732195 /* SDWChartDateValueFormatter.swift */,
 				F1AD8B751EA0410B006B2EB1 /* Constants.swift */,
 				F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */,
 			);
@@ -542,6 +549,8 @@
 			isa = PBXGroup;
 			children = (
 				F1FA3B2D1EC43CEE00355507 /* SDWStatsViewController.swift */,
+				F162E3BB1EE025A800732195 /* SDWStatDetailContainerViewController.swift */,
+				F162E3BD1EE025F700732195 /* SDWStatChartViewController.swift */,
 				F162E3AD1EDF40B100732195 /* SDWStatsListHeaderView.swift */,
 				F162E3AF1EDF40C200732195 /* SDWStatsListHeaderView.xib */,
 				F1FA3B2F1EC43E5800355507 /* SDWStatsItemCell.swift */,
@@ -884,6 +893,7 @@
 				F1FA3ABA1EC0899800355507 /* SDWBird+CoreDataProperties.swift in Sources */,
 				F1FA3AB61EC0899800355507 /* SDWDiaryItem+CoreDataProperties.swift in Sources */,
 				F1FA3AB81EC0899800355507 /* SDWUser+CoreDataProperties.swift in Sources */,
+				F162E3BE1EE025F700732195 /* SDWStatChartViewController.swift in Sources */,
 				F1FA3B181EC219E700355507 /* InitialViewController.swift in Sources */,
 				F1FA3B211EC219E700355507 /* UIViewController+Nib.swift in Sources */,
 				F1FA3A961EBFFE4300355507 /* DataModelManager.swift in Sources */,
@@ -891,6 +901,7 @@
 				F1FA3AE91EC0B55400355507 /* FEMAttribute+listsAttributes.m in Sources */,
 				F1FBC2221EB54DA500D57ED0 /* SDWDiaryListTableViewCell.swift in Sources */,
 				F1FA3B2E1EC43CEE00355507 /* SDWStatsViewController.swift in Sources */,
+				F162E3C01EE03F8200732195 /* SDWChartDateValueFormatter.swift in Sources */,
 				F1FA3AE31EC0A4E100355507 /* Protocols.swift in Sources */,
 				F1FA3AB71EC0899800355507 /* SDWUser+CoreDataClass.swift in Sources */,
 				F1FBC21F1EB53AA900D57ED0 /* SDWDiaryItemViewController.swift in Sources */,
@@ -922,6 +933,7 @@
 				F1FA3B1F1EC219E700355507 /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
 				F1FA3AB21EC0899800355507 /* SDWSeason+CoreDataProperties.swift in Sources */,
 				F162E3BA1EDF9CB600732195 /* SDWPinItem+CoreDataProperties.swift in Sources */,
+				F162E3BC1EE025A800732195 /* SDWStatDetailContainerViewController.swift in Sources */,
 				F1FA3AB11EC0899800355507 /* SDWSeason+CoreDataClass.swift in Sources */,
 				F1FA3B151EC219E700355507 /* CrossDissolveAnimation.swift in Sources */,
 				F10E13001EBB418E0044802C /* SDWSeasonViewController.swift in Sources */,

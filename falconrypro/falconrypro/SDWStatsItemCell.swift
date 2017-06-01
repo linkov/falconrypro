@@ -16,6 +16,7 @@ enum CellChartType: Int {
 class SDWStatsItemCell: UITableViewCell {
     
     
+    @IBOutlet weak var centeredLabel: UILabel!
     let dataStore:SDWDataStore = SDWDataStore.sharedInstance
     var dataSets:Array<Any>?
     @IBOutlet weak var mainTitleLabel: UILabel!
@@ -32,9 +33,20 @@ class SDWStatsItemCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
+    public func setupWithLink(text:String) {
+        self.centeredLabel.isHidden = false
+        self.centeredLabel.text = text
+        
+        self.mainTitleLabel.isHidden = true
+        self.chartViewBarHorizontal.isHidden = true
+        self.chartViewLineHorizontal.isHidden = true
+    }
+    
     public func setupWithChartType(type:CellChartType, label:String,dataPoints:[ChartDataEntry]) {
     
         self.mainTitleLabel.text = label
+        self.centeredLabel.isHidden = true
         
         switch type {
         case .WeightChart:

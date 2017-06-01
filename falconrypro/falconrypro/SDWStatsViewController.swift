@@ -36,6 +36,7 @@ class SDWStatsViewController: UIViewController, UITableViewDataSource, UITableVi
         headerView?.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300)
             
         self.tableView.tableHeaderView = self.headerView
+        self.tableView.backgroundColor = UIColor.groupTableViewBackground
         
 
     }
@@ -56,7 +57,7 @@ class SDWStatsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 3
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -65,38 +66,35 @@ class SDWStatsViewController: UIViewController, UITableViewDataSource, UITableVi
         if (indexPath.row == 0) {
             
 
+            cell.setupWithLink(text: "Show detailed stats")
+           
+        } else if (indexPath.row == 1) {
+            
             
             let bar1:BarChartDataEntry = BarChartDataEntry(x: 10, y: 2)
             let bar2:BarChartDataEntry = BarChartDataEntry(x: 20, y: 4)
             let bar3:BarChartDataEntry = BarChartDataEntry(x: 30, y: 10)
             
             cell.setupWithChartType(type: .QuerryChart,label: "Top 3 kills", dataPoints: [bar1,bar2,bar3])
-            
 
             
-           
-        } else if (indexPath.row == 1) {
-            
-//            let items = self.dataStore.currentBird()?.currentDiaryItems()
-//            
-//            for itm:DiaryItemDisplayItem in items {
-//                
-//                
-//            }
+        } else if (indexPath.row == 2) {
             
             let dataPoint10:ChartDataEntry = ChartDataEntry(x: 1, y: 100)
             let dataPoint20:ChartDataEntry = ChartDataEntry(x: 15, y: 168)
             let dataPoint30:ChartDataEntry = ChartDataEntry(x: 30, y: 190)
             
-             cell.setupWithChartType(type: .WeightChart,label: "Weight", dataPoints: [dataPoint10,dataPoint20,dataPoint30])
+            cell.setupWithChartType(type: .WeightChart,label: "Weight", dataPoints: [dataPoint10,dataPoint20,dataPoint30])
+
+ 
+        } else  if (indexPath.row == 3) {
             
-        } else if (indexPath.row == 2) {
+            
             
             let dataPoint1:ChartDataEntry = ChartDataEntry(x: 1, y: 2)
             let dataPoint2:ChartDataEntry = ChartDataEntry(x: 15, y: 4)
             let dataPoint3:ChartDataEntry = ChartDataEntry(x: 30, y: 10)
             cell.setupWithChartType(type: .FoodWeight,label: "Food + Weight", dataPoints: [dataPoint1,dataPoint2,dataPoint3])
- 
         }
         
         
@@ -108,8 +106,16 @@ class SDWStatsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
+        if (indexPath.row == 0) {
+            
+            let controller:SDWStatDetailContainerViewController = storyboard?.instantiateViewController(withIdentifier: "SDWStatDetailContainerViewController") as! SDWStatDetailContainerViewController
+            
+            self.navigationController?.pushViewController(controller, animated: true)
+            
+        }
     }
+    
+
 
 
 }
