@@ -53,6 +53,86 @@ class SDWDiaryItemViewController: FormViewController {
 
         form
             
+            
+            +++
+            
+            MultivaluedSection(multivaluedOptions: [.Insert, .Delete],
+                               header: "Weight measurements",
+                               footer: "") { section in
+                                section.tag = "weightitem"
+                                section.multivaluedRowToInsertAt = { index in
+                                    return SDWWeightItemRow(){
+                                        $0.tag = "\(index+1)_newweightitem"
+                                        $0.title = "Weight"
+                                        $0.displayValueFor = { value in
+                                            return  "\(value?.timeString ?? "")"
+                                            
+                                        }
+                                        
+                                    }
+                                }
+                                if(self.diaryItem != nil && (self.diaryItem?.weights!.count)! > 0) {
+                                    
+                                    
+                                    for (index, weightItem) in (self.diaryItem?.weights)!.enumerated() {
+                                        
+                                        
+                                        section <<< SDWWeightItemRow() {
+                                            $0.tag = "\(index+1)_weightitem"
+                                            $0.value = weightItem
+                                            $0.title = "Weight"
+                                            $0.displayValueFor = { value in
+                                                return  "\(value?.timeString ?? "")"
+                                            }
+                                            
+                                        }
+                                        
+                                    }
+                                }
+                                
+                                
+                                
+            }
+            
+            +++
+            
+            MultivaluedSection(multivaluedOptions: [.Insert, .Delete],
+                               header: "Food given",
+                               footer: "") { section in
+                                section.tag = "fooditem"
+                                section.multivaluedRowToInsertAt = { index in
+                                    return SDWFoodItemRow(){
+                                        $0.tag = "\(index+1)_newfooditem"
+                                        $0.title = "Food"
+                                        $0.displayValueFor = { value in
+                                            return value?.timeString
+                                        }
+                                        
+                                    }
+                                }
+                                if(self.diaryItem != nil && (self.diaryItem?.foods!.count)! > 0) {
+                                    
+                                    
+                                    for (index, foodItem) in (self.diaryItem?.foods)!.enumerated() {
+                                        
+                                        
+                                        section <<< SDWFoodItemRow() {
+                                            $0.tag = "\(index+1)_fooditem"
+                                            $0.value = foodItem
+                                            $0.title = "Food"
+                                            $0.displayValueFor = { value in
+                                                return  value?.timeString
+                                            }
+                                            
+                                        }
+                                        
+                                    }
+                                }
+                                
+                                
+                                
+            }
+            
             +++ Section("Notes")
 
         
@@ -105,84 +185,7 @@ class SDWDiaryItemViewController: FormViewController {
             }
             
             
-            +++
-            
-            MultivaluedSection(multivaluedOptions: [.Insert, .Delete],
-                               header: "Weight measurements",
-                               footer: "") { section in
-                                section.tag = "weightitem"
-                                section.multivaluedRowToInsertAt = { index in
-                                    return SDWWeightItemRow(){
-                                        $0.tag = "\(index+1)_newweightitem"
-                                        $0.title = "Weight"
-                                        $0.displayValueFor = { value in
-                                            return  "\(value?.timeString ?? "")"
 
-                                        }
-                                        
-                                    }
-                                }
-                                if(self.diaryItem != nil && (self.diaryItem?.weights!.count)! > 0) {
-                                    
-                                    
-                                    for (index, weightItem) in (self.diaryItem?.weights)!.enumerated() {
-                                        
-                                        
-                                        section <<< SDWWeightItemRow() {
-                                            $0.tag = "\(index+1)_weightitem"
-                                            $0.value = weightItem
-                                            $0.title = "Weight"
-                                            $0.displayValueFor = { value in
-                                                return  "\(value?.timeString ?? "")"
-                                            }
-                                            
-                                        }
-                                        
-                                    }
-                                }
-                                
-                                
-                                
-            }
-        
-        +++
-            
-            MultivaluedSection(multivaluedOptions: [.Insert, .Delete],
-                               header: "Food given",
-                               footer: "") { section in
-                                section.tag = "fooditem"
-                                section.multivaluedRowToInsertAt = { index in
-                                    return SDWFoodItemRow(){
-                                        $0.tag = "\(index+1)_newfooditem"
-                                        $0.title = "Food"
-                                        $0.displayValueFor = { value in
-                                            return value?.timeString
-                                        }
-
-                                    }
-                                }
-                                if(self.diaryItem != nil && (self.diaryItem?.foods!.count)! > 0) {
-                                    
-                                    
-                                    for (index, foodItem) in (self.diaryItem?.foods)!.enumerated() {
-                                        
-                                        
-                                        section <<< SDWFoodItemRow() {
-                                            $0.tag = "\(index+1)_fooditem"
-                                            $0.value = foodItem
-                                            $0.title = "Food"
-                                            $0.displayValueFor = { value in
-                                                return  value?.timeString
-                                            }
-                                            
-                                            }
-                                        
-                                    }
-                                }
-                                
-                                
-                                
-        }
         
         +++
             
@@ -227,7 +230,6 @@ class SDWDiaryItemViewController: FormViewController {
         
 
 
-        self.tableView?.backgroundColor = UIColor.white
     
     }
     

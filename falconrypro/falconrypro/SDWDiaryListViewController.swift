@@ -38,8 +38,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         self.tableView.delegate = self;
         
         // Optionally remove seperator lines from empty cells
-        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        self.tableView.tableHeaderView = UIView(frame: CGRect.zero)
+//        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.tableView.reloadData()
         self.reloadEmptyState(forTableView: self.tableView)
         
@@ -68,6 +67,31 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         self.loadItems()
 
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        sizeHeaderToFit()
+    }
+    
+    func sizeHeaderToFit() {
+        
+        if (tableView.tableFooterView != nil) {
+            let headerView = tableView.tableFooterView!
+            tableView.tableFooterView = nil
+            
+            headerView.setNeedsLayout()
+            headerView.layoutIfNeeded()
+            
+            //        let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            var frame = headerView.frame
+            frame.size.height = 50
+            headerView.frame = frame
+            
+            tableView.tableHeaderView = headerView
+        }
+
+
     }
     
     
@@ -140,11 +164,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     
     
     
-    var emptyStateImage: UIImage? {
-        
-        return #imageLiteral(resourceName: "tint-logo")
-    }
-    
+
     
 
     var emptyStateTitle: NSAttributedString {

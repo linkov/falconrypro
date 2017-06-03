@@ -47,7 +47,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         
         
         hmButton.backgroundColor = UIColor.white
-        hmButton.layer.cornerRadius = 25
+        hmButton.layer.cornerRadius = 4
         hmButton.frame.size = CGSize(width: 50, height: 50)
         hmButton.layer.borderWidth = 1;
         hmButton.layer.borderColor = UIColor.black.cgColor

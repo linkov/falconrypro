@@ -251,6 +251,7 @@ class NetworkManager: NSObject {
         let dict: [String: Any] = [
             "name": name,
             "sex": sex,
+            "code": code,
             "fat_weight": fatWeight,
             "hunting_weight": huntingWeight,
             "birthday": birthday.toString(),
@@ -292,6 +293,7 @@ class NetworkManager: NSObject {
         let dict: [String: Any] = [
             "name": name,
             "sex": sex,
+            "code": code,
             "fat_weight": fatWeight,
             "hunting_weight": huntingWeight,
             "birthday": birthday.toString(),

@@ -183,10 +183,7 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
     
 
     
-    var emptyStateImage: UIImage? {
 
-        return #imageLiteral(resourceName: "tint-logo")
-    }
     
     
     var emptyStateViewAdjustsToFitBars: Bool {
@@ -211,9 +208,7 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
         return CGSize.init(width: 40, height: 40)
     }
     
-    var emptyStateButtonImage: UIImage? {
-        return #imageLiteral(resourceName: "f1")
-    }
+
     
     var emptyStateButtonTitle: NSAttributedString? {
         let attrs = [NSForegroundColorAttributeName: UIColor.black,

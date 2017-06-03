@@ -32,8 +32,7 @@ class SDWSeasonViewController: FormViewController {
         
         self.navigationItem.rightBarButtonItem = addButton
         self.navigationItem.leftBarButtonItem = cancelButton
-        
-        self.tableView?.backgroundColor = UIColor.white
+
         
         form
             

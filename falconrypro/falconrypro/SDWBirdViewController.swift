@@ -79,6 +79,17 @@ class SDWBirdViewController: FormViewController {
         
             form
                 
+                
+                
+                +++ Section(header: "Bird identifier", footer: "Enter your Bird ID provided by certification authority or other organization. Falconry Pro Bird ID was already setup automatically.")
+                
+                <<< TextRow(){ row in
+                    row.value = bird?.code
+                    row.tag = "code"
+                    row.title = "Bird ID"
+                }
+                
+                
                 +++ Section("Basic information")
                 
                 <<< ImageRow() {
@@ -127,7 +138,7 @@ class SDWBirdViewController: FormViewController {
                     $0.placeholder = "weight in gramms"
                     $0.formatter = self.weightFormatter
                 }
-                
+
                 
                 +++  Section("Species"){
                         $0.tag = "species"
@@ -234,7 +245,7 @@ class SDWBirdViewController: FormViewController {
         
         
         
-       self.tableView?.backgroundColor = UIColor.white
+//       self.tableView?.backgroundColor = UIColor.white
 
         
         
@@ -249,7 +260,7 @@ class SDWBirdViewController: FormViewController {
                 self.currentBirdImage = image
                 let imgRow:ImageRow = self.form.rowBy(tag: "pic")!
                 imgRow.value = image
-                imgRow.reload()
+//                imgRow.reload()
                 
             }
         }
@@ -462,6 +473,7 @@ class SDWBirdViewController: FormViewController {
     func updateBird() {
         
         let name: TextRow? = form.rowBy(tag: "name")
+        let code: TextRow? = form.rowBy(tag: "code")
         let fweight: IntRow? = form.rowBy(tag: "fweight")
         let hweight: IntRow? = form.rowBy(tag: "hweight")
         let bday: DateInlineRow? = form.rowBy(tag: "bday")
@@ -474,6 +486,7 @@ class SDWBirdViewController: FormViewController {
         var dict: [String: Any] = [
             "name": (name?.value)!,
             "sex": sexbool,
+            "code": code?.value,
             "fat_weight": (fweight?.value)!,
             "hunting_weight": (hweight?.value)!,
             "birthday": (bday?.value)!.toString(),
@@ -493,7 +506,7 @@ class SDWBirdViewController: FormViewController {
         
         if((self.bird) != nil) {
             
-            dataStore.pushBirdWith(bird_id:self.bird?.remoteID, code: nil, sex: sexbool, name: (name?.value)!, birthday: (bday?.value)!, fatWeight: (fweight?.value)!, huntingWeight: (hweight?.value)!, image: nil, birdTypes: self.selectedBirdTypes(), completion: { (result, error) in
+            dataStore.pushBirdWith(bird_id:self.bird?.remoteID, code: code?.value, sex: sexbool, name: (name?.value)!, birthday: (bday?.value)!, fatWeight: (fweight?.value)!, huntingWeight: (hweight?.value)!, image: nil, birdTypes: self.selectedBirdTypes(), completion: { (result, error) in
                 
                 PKHUD.sharedHUD.hide()
                 
@@ -503,7 +516,7 @@ class SDWBirdViewController: FormViewController {
             })
         } else {
             
-            dataStore.pushBirdWith(bird_id:nil, code: nil, sex: sexbool, name: (name?.value)!, birthday: (bday?.value)!, fatWeight: (fweight?.value)!, huntingWeight: (hweight?.value)!, image: nil, birdTypes: self.selectedBirdTypes(), completion: { (result, error) in
+            dataStore.pushBirdWith(bird_id:nil, code: code?.value, sex: sexbool, name: (name?.value)!, birthday: (bday?.value)!, fatWeight: (fweight?.value)!, huntingWeight: (hweight?.value)!, image: nil, birdTypes: self.selectedBirdTypes(), completion: { (result, error) in
                 
                 PKHUD.sharedHUD.hide()
                 

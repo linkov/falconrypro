@@ -16,7 +16,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JSn-fU-92P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <connections>
                             <outlet property="dataSource" destination="1sj-mz-z9I" id="dhw-kU-7ne"/>
@@ -39,7 +39,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8P0-qW-4gp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="SeasonCell" textLabel="v2U-Mq-bgI" detailTextLabel="8cN-Ah-IAX" style="IBUITableViewCellStyleSubtitle" id="22l-wL-Eoc">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -167,7 +167,7 @@
         <scene sceneID="KKZ-G3-6nO">
             <objects>
                 <navigationController storyboardIdentifier="BirdProfileEdit" id="tcw-iN-XCI" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Ihw-4v-V0x">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ihw-4v-V0x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -221,7 +221,7 @@
         <scene sceneID="E4h-4l-11o">
             <objects>
                 <navigationController storyboardIdentifier="StatsListNav" id="CVg-zS-hJg" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="TiM-Xd-QpX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TiM-Xd-QpX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -344,7 +344,7 @@
         <scene sceneID="btS-vb-iMU">
             <objects>
                 <navigationController storyboardIdentifier="MapNav" id="BFc-Wv-AtJ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Ief-A4-UvG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ief-A4-UvG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -401,7 +401,7 @@
         <scene sceneID="VFP-aU-MZG">
             <objects>
                 <navigationController storyboardIdentifier="SDWSettingsNav" id="L2q-7p-i72" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gy4-OZ-cNe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gy4-OZ-cNe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -436,7 +436,7 @@
         <scene sceneID="DNh-Vd-Iq3">
             <objects>
                 <navigationController storyboardIdentifier="SeasonEdit" id="Kz5-PJ-mPi" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="012-Jt-ciV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="012-Jt-ciV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -452,7 +452,7 @@
         <scene sceneID="O9E-Ha-nUf">
             <objects>
                 <navigationController storyboardIdentifier="DiaryListNav" id="Tfa-Zx-mvt" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eIf-l0-Qvs">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eIf-l0-Qvs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -478,7 +478,26 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1If-tc-kSX">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="bBc-EY-3r7">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                    <subviews>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="E9Z-hE-yS6">
+                                            <rect key="frame" x="118" y="8" width="139" height="29"/>
+                                            <segments>
+                                                <segment title="List"/>
+                                                <segment title="Calendar"/>
+                                            </segments>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </segmentedControl>
+                                    </subviews>
+                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="E9Z-hE-yS6" firstAttribute="centerX" secondItem="bBc-EY-3r7" secondAttribute="centerX" id="MS5-Tz-lmv"/>
+                                        <constraint firstItem="E9Z-hE-yS6" firstAttribute="centerY" secondItem="bBc-EY-3r7" secondAttribute="centerY" id="Z1n-4g-2AK"/>
+                                    </constraints>
+                                </view>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -530,7 +549,7 @@
         <scene sceneID="Q5G-4v-8Lt">
             <objects>
                 <navigationController id="Apd-Xo-FPZ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8Mv-GK-ohS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Mv-GK-ohS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

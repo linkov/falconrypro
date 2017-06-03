@@ -27,8 +27,6 @@ class SDWSettingsViewController: FormViewController {
             }
         
         
-        
-        self.tableView?.backgroundColor = UIColor.white
     
     
     }
