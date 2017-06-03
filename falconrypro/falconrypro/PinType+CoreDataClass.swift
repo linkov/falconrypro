@@ -1,8 +1,8 @@
 //
-//  SDWUser+CoreDataClass.swift
+//  PinType+CoreDataClass.swift
 //  falconrypro
 //
-//  Created by Alex Linkov on 5/8/17.
+//  Created by Alex Linkov on 6/2/17.
 //  Copyright © 2017 SDWR. All rights reserved.
 //
 
@@ -10,22 +10,21 @@ import Foundation
 import CoreData
 import FastEasyMapping
 
-@objc(SDWUser)
-public class SDWUser: NSManagedObject, SDWObjectMapping {
-    
-    
-    class func entityName() -> String {
-        return "SDWUser"
-    }
+@objc(PinType)
 
+public class PinType: NSManagedObject, SDWObjectMapping {
+
+    class func entityName() -> String {
+        return "PinType"
+    }
+    
     class func defaultMapping() -> FEMMapping {
         
         
-        let mapping:FEMMapping = FEMMapping(entityName: "SDWUser")
+        let mapping:FEMMapping = FEMMapping(entityName: "PinType")
         mapping.primaryKey = "remoteID";
         mapping.addAttribute(FEMAttribute.falconryID())
-        mapping.addAttribute(withProperty: "name", keyPath: "name")
-        mapping.addAttribute(withProperty: "email", keyPath: "email")
+        mapping.addAttribute(withProperty: "title", keyPath: "title")
         
         
         return mapping

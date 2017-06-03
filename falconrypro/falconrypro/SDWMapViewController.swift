@@ -14,6 +14,7 @@ class SDWMapViewController: UIViewController, MGLMapViewDelegate {
     
     var locationManager:SDWLocationManager = SDWLocationManager.shared
     let regionRadius: CLLocationDistance = 1000
+    let dataStore:SDWDataStore = SDWDataStore.sharedInstance
     var pins:[PinItemDisplayItem]?
     
     @IBOutlet weak var mgMapView: MGLMapView!
@@ -23,14 +24,14 @@ class SDWMapViewController: UIViewController, MGLMapViewDelegate {
 
         mgMapView.delegate = self
         
+        self.pins = self.dataStore.allPins()
+        
 
         
         locationManager.locate { result in
             switch result {
             case .Success():
                 if let location = self.locationManager.location {
-//                    self.mgMapView.latitude = location.coordinate.latitude
-//                    self.mgMapView.longitude = location.coordinate.longitude
                     self.mgMapView.setCenter(location.coordinate, zoomLevel: 15, animated: false)
                     let point = MGLPointAnnotation()
                     point.coordinate = location.coordinate

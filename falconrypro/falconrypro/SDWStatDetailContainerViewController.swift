@@ -52,21 +52,17 @@ class SDWStatDetailContainerViewController: UIViewController, UIPageViewControll
         }
         
         
-        self.lineChartVC?.setupWithChartType(type: .WeightChart,label: "Weight", dataPoints: points.sorted { $0.x < $1.x })
+        self.lineChartVC?.setupWithChartType(type: .WeightChart,label: "Bird weight dynamics (lifetime)", dataPoints: points.sorted { $0.x < $1.x })
         
+  
+        self.combinedLineChartVC?.setupWithChartType(type: .WeightChart,label: "Weight + Food", dataPoints: [])
         
-        let cdataPoint10:ChartDataEntry = ChartDataEntry(x: 1, y: 100)
-        let cdataPoint20:ChartDataEntry = ChartDataEntry(x: 15, y: 168)
-        let cdataPoint30:ChartDataEntry = ChartDataEntry(x: 30, y: 190)
-        
-        self.combinedLineChartVC?.setupWithChartType(type: .WeightChart,label: "Weight + Food", dataPoints: [cdataPoint10,cdataPoint20,cdataPoint30])
-        
-        
-        let bar1:BarChartDataEntry = BarChartDataEntry(x: 10, y: 2)
-        let bar2:BarChartDataEntry = BarChartDataEntry(x: 20, y: 4)
-        let bar3:BarChartDataEntry = BarChartDataEntry(x: 30, y: 10)
-        
-        self.barChartVC?.setupWithChartType(type: .QuerryChart,label: "Top 3 kills", dataPoints: [bar1,bar2,bar3])
+//        
+//        let bar1:BarChartDataEntry = BarChartDataEntry(x: 10, y: 2)
+//        let bar2:BarChartDataEntry = BarChartDataEntry(x: 20, y: 4)
+//        let bar3:BarChartDataEntry = BarChartDataEntry(x: 30, y: 10)
+//        
+//        self.barChartVC?.setupWithChartType(type: .QuerryChart,label: "Top 3 kills", dataPoints: [bar1,bar2,bar3])
         
         
         self.pageController?.setViewControllers([self.lineChartVC!], direction:.forward, animated: false, completion: nil)

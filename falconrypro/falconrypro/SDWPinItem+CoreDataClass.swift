@@ -33,6 +33,15 @@ public class SDWPinItem: NSManagedObject, SDWObjectMapping {
         mapping.addAttribute(withProperty: "thumbURL", keyPath: "photo.thumb.url")
         mapping.addAttribute(withProperty: "pinTypeName", keyPath: "pin_type_name")
         
+        
+        let typeMapping:FEMMapping = FEMMapping(entityName: "PinType")
+        typeMapping.primaryKey = "remoteID"
+        typeMapping.addAttribute(withProperty: "remoteID", keyPath: nil)
+        
+        let typeRelationshipMapping:FEMRelationship = FEMRelationship(property: "pintype", keyPath: "pin_type", mapping: typeMapping)
+        typeRelationshipMapping.weak = true
+        mapping.addRelationship(typeRelationshipMapping)
+        
         return mapping
     }
 }

@@ -123,28 +123,83 @@ class FoodDisplayItem: NSObject, SearchableItem {
 }
 
 
+class PinTypeDisplayItem: NSObject {
+    var remoteID:String?
+    var title:String?
+    public private(set) var model:PinType
+    
+    init(model:PinType) {
+        self.model = model
+        self.title = self.model.title
+        self.remoteID = self.model.remoteID!
+    }
+    
+    
+    
+}
+
+
+class UserDisplayItem: NSObject {
+    var remoteID:String?
+    var name:String?
+    var email:String?
+    public private(set) var model:SDWUser
+    
+    init(model:SDWUser) {
+        self.model = model
+        self.name = self.model.name
+        self.email = self.model.email
+        self.remoteID = self.model.remoteID!
+    }
+    
+    
+    
+}
+
+
 class PinItemDisplayItem: NSObject {
     var remoteID:String?
     var note:String?
+    var imageData:Data?
     var typeName:String?
     var lat:Double?
     var long:Double?
     var thumbURL:String?
     var imageURL:String?
-    public private(set) var model:SDWPinItem
+    var pintype: PinTypeDisplayItem?
+    public private(set) var model:SDWPinItem?
 
     init(model:SDWPinItem) {
         self.model = model
-        self.note = self.model.note
-        self.remoteID = self.model.remoteID!
-        self.imageURL = self.model.imageURL
-        self.thumbURL = self.model.thumbURL
-        self.lat = self.model.lat as? Double
-        self.long = self.model.long as? Double
-        self.typeName = self.model.pinTypeName
+        self.note = self.model?.note
+        self.remoteID = self.model?.remoteID!
+        self.imageURL = self.model?.imageURL
+        self.thumbURL = self.model?.thumbURL
+        self.lat = self.model?.lat as? Double
+        self.long = self.model?.long as? Double
+        self.typeName = self.model?.pinTypeName
+        if (self.model?.pintype != nil) {
+            self.pintype = PinTypeDisplayItem(model:(self.model?.pintype!)!)
+        }
+        
     }
     
-
+    init(note:String?,type:PinTypeDisplayItem,lat:Double, long:Double,imageData:Data?) {
+        self.note = note
+        self.pintype = type
+        self.long = long
+        self.lat = lat
+        self.imageData = imageData
+    }
+    
+    func serialization() -> Dictionary<String, Any> {
+        
+        if (self.remoteID != nil) {
+            return ["id":self.remoteID, "lat":self.lat,"long":self.long,"note":self.note, "pin_item_type_id":self.pintype?.remoteID]
+        }
+        
+        return ["lat":self.lat,"long":self.long,"note":self.note, "pin_item_type_id":self.pintype?.remoteID]
+    }
     
 }
 

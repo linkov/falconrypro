@@ -78,7 +78,24 @@ class NetworkManager: NSObject {
         }
     }
     
-    public func createDiaryItemWith(season_id:String, foodItems:Array<DiaryFoodItemDisplayItem>?,weightItems:Array<DiaryWeightItemDisplayItem>?,birdID:String, quarryTypeIDs:Array<String>?,note:String?,
+    public func fetchPinItemTypes(completion:@escaping sdw_id_error_block) {
+        
+        networking.get("/pin_item_types")  { result in
+            
+            switch result {
+            case .success(let response):
+                
+                completion(response.arrayBody,nil)
+                
+            case .failure(let response):
+                print(response)
+                completion(nil,response.error)
+            }
+            
+        }
+    }
+    
+    public func createDiaryItemWith(season_id:String, foodItems:Array<DiaryFoodItemDisplayItem>?,weightItems:Array<DiaryWeightItemDisplayItem>?,pinItems:Array<PinItemDisplayItem>?, birdID:String, quarryTypeIDs:Array<String>?,note:String?,
                                     completion:@escaping sdw_id_error_block) {
         self.setupRequestHeaders()
         
@@ -120,6 +137,18 @@ class NetworkManager: NSObject {
         }
         
         
+        if let pins = pinItems {
+            
+            var arrPin = [Dictionary<String,Any>]()
+            for ff in pins {
+                let itm = ff.serialization()
+                arrPin.append(itm)
+            }
+            
+            dict["pin_items_attributes"] = arrPin
+        }
+        
+        
         networking.post("/diary_items", parameters: ["diary_item":dict])  { result in
             
             switch result {
@@ -139,7 +168,7 @@ class NetworkManager: NSObject {
         
     }
     
-    public func updateDiaryItemWith(foodItems:Array<DiaryFoodItemDisplayItem>?,weightItems:Array<DiaryWeightItemDisplayItem>?,itemID:String, quarryTypeIDs:Array<String>?,note:String?,
+    public func updateDiaryItemWith(foodItems:Array<DiaryFoodItemDisplayItem>?,weightItems:Array<DiaryWeightItemDisplayItem>?,pinItems:Array<PinItemDisplayItem>?, itemID:String, quarryTypeIDs:Array<String>?,note:String?,
                                     completion:@escaping sdw_id_error_block) {
         
         self.setupRequestHeaders()
@@ -174,6 +203,18 @@ class NetworkManager: NSObject {
             }
             
             dict["diary_weights_attributes"] = arrWeight
+        }
+        
+        
+        if let pins = pinItems {
+            
+            var arrPin = [Dictionary<String,Any>]()
+            for ff in pins {
+                let itm = ff.serialization()
+                arrPin.append(itm)
+            }
+            
+            dict["pin_items_attributes"] = arrPin
         }
         
         networking.put("/diary_items/"+itemID, parameters: ["diary_item":dict])  { result in

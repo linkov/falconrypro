@@ -13,6 +13,8 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
 
     var index: NSInteger = 0
     
+    @IBOutlet weak var mainLabel: UILabel!
+    var mainLabelText:String?
     let dataStore:SDWDataStore = SDWDataStore.sharedInstance
     @IBOutlet weak var barChart: HorizontalBarChartView!
     @IBOutlet weak var lineChart: LineChartView!
@@ -27,9 +29,15 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.mainLabel.text = self.mainLabelText;
+    }
+    
     public func setupWithChartType(type:CellChartType, label:String,dataPoints:[ChartDataEntry]) {
         
-//        self.mainTitleLabel.text = label
+        self.mainLabelText = label
         
         switch type {
         case .WeightChart:
@@ -75,8 +83,11 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         self.lineChart.xAxis.valueFormatter = SDWChartDateValueFormatter()
         self.lineChart.xAxis.centerAxisLabelsEnabled = true
         self.lineChart.xAxis.granularity = 1
-        self.lineChart.xAxis.axisMinimum = (dataPoints.first?.x)!
-        self.lineChart.xAxis.axisMaximum = (dataPoints.last?.x)!
+        if(dataPoints.count > 0) {
+            self.lineChart.xAxis.axisMinimum = (dataPoints.first?.x)!
+            self.lineChart.xAxis.axisMaximum = (dataPoints.last?.x)!
+        }
+
         
         let dataset:LineChartDataSet = LineChartDataSet(values: dataPoints, label:"weight")
         dataset.lineWidth = 2.5;

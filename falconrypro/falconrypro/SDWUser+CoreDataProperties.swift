@@ -2,7 +2,7 @@
 //  SDWUser+CoreDataProperties.swift
 //  falconrypro
 //
-//  Created by Alex Linkov on 5/12/17.
+//  Created by Alex Linkov on 6/2/17.
 //  Copyright © 2017 SDWR. All rights reserved.
 //
 
@@ -19,6 +19,7 @@ extension SDWUser {
     @NSManaged public var isAdmin: Bool
     @NSManaged public var name: String?
     @NSManaged public var remoteID: String?
+    @NSManaged public var email: String?
     @NSManaged public var birds: NSSet?
     @NSManaged public var seasons: NSSet?
 

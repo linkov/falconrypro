@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="PinType" representedClassName="PinType" syncable="YES" codeGenerationType="class">
+        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="pins" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWPinItem" inverseName="pintype" inverseEntity="SDWPinItem" syncable="YES"/>
+    </entity>
     <entity name="SDWBird" representedClassName="SDWBird" syncable="YES" codeGenerationType="class">
         <attribute name="birthday" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
@@ -63,6 +68,7 @@
         <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbURL" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="diaryItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWDiaryItem" inverseName="pins" inverseEntity="SDWDiaryItem" syncable="YES"/>
+        <relationship name="pintype" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PinType" inverseName="pins" inverseEntity="PinType" syncable="YES"/>
     </entity>
     <entity name="SDWQuarryType" representedClassName="SDWQuarryType" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -82,6 +88,7 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWUser" inverseName="seasons" inverseEntity="SDWUser" syncable="YES"/>
     </entity>
     <entity name="SDWUser" representedClassName="SDWUser" syncable="YES" codeGenerationType="class">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isAdmin" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
@@ -95,9 +102,10 @@
         <element name="SDWDiaryItem" positionX="0" positionY="108" width="128" height="195"/>
         <element name="SDWDiaryWeight" positionX="-27" positionY="108" width="128" height="105"/>
         <element name="SDWFood" positionX="-27" positionY="81" width="128" height="90"/>
+        <element name="SDWPinItem" positionX="-27" positionY="117" width="128" height="180"/>
         <element name="SDWQuarryType" positionX="-27" positionY="117" width="128" height="90"/>
         <element name="SDWSeason" positionX="-18" positionY="90" width="128" height="195"/>
-        <element name="SDWUser" positionX="-63" positionY="-18" width="128" height="120"/>
-        <element name="SDWPinItem" positionX="-27" positionY="117" width="128" height="165"/>
+        <element name="SDWUser" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="PinType" positionX="-27" positionY="126" width="128" height="90"/>
     </elements>
 </model>

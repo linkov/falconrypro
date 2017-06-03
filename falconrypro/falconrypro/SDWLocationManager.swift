@@ -33,7 +33,11 @@ class SDWLocationManager: NSObject, CLLocationManagerDelegate {
     // MARK: - Authorization
     
     class func authorize() { shared.authorize() }
-    func authorize() { sharedLocationManager.requestWhenInUseAuthorization() }
+    func authorize() {
+        
+        sharedLocationManager.requestWhenInUseAuthorization()
+    
+    }
     
     // MARK: - Helpers
     

@@ -21,6 +21,21 @@ class SDWDataStore: NSObject {
         return instance
     }()
     
+    public func currentUser() -> UserDisplayItem? {
+        let predicate = NSPredicate(format: "%K = %@", "isAdmin", NSNumber(booleanLiteral: true))
+        
+        let currentModel = self.dataModelManager.fetch(entityName: SDWUser.entityName(), predicate: predicate, context: self.dataModelManager.viewContext) as? SDWUser
+        
+        if let model = currentModel {
+            let currentItem = UserDisplayItem(model: model)
+            return currentItem
+        }
+        
+        return nil
+        
+    }
+    
+    
     public func currentBird() -> BirdDisplayItem? {
         let predicate = NSPredicate(format: "%K = %@", "current", NSNumber(booleanLiteral: true))
         
@@ -123,6 +138,24 @@ class SDWDataStore: NSObject {
     }
     
     
+    public func allPinTypes() -> [PinTypeDisplayItem] {
+        let types = self.dataModelManager.fetchAll(entityName: PinType.entityName(), predicate: nil, context: self.dataModelManager.viewContext) as! [PinType]
+        let items = types.map({ (item: PinType) -> PinTypeDisplayItem in
+            PinTypeDisplayItem(model: item)
+        })
+        return items
+    }
+    
+    
+    public func allPins() -> [PinItemDisplayItem] {
+        let types = self.dataModelManager.fetchAll(entityName: SDWPinItem.entityName(), predicate: nil, context: self.dataModelManager.viewContext) as! [SDWPinItem]
+        let items = types.map({ (item: SDWPinItem) -> PinItemDisplayItem in
+            PinItemDisplayItem(model: item)
+        })
+        return items
+    }
+    
+    
     
     public func allQuarryTypes() -> [QuarryTypeDisplayItem] {
         let quarryTypes = self.dataModelManager.fetchAll(entityName: SDWQuarryType.entityName(), predicate: nil, context: self.dataModelManager.viewContext) as! [SDWQuarryType]
@@ -187,13 +220,33 @@ class SDWDataStore: NSObject {
                 }, fetchedData: { (objects, error) in
                     
                     
-                    guard let data = objects, error == nil else {
+                    guard let _ = objects, error == nil else {
                         print(error?.localizedDescription ?? "No data")
                         completion(nil,error)
                         return
                     }
-                    self.dataModelManager.saveContext()
-                    completion(data,nil)
+
+                    self.pullAllPinItemTypes(currentData: { (objects, error) in
+                        
+                        guard let _ = objects, error == nil else {
+                            print(error?.localizedDescription ?? "No data")
+                            completion(nil,error)
+                            return
+                        }
+                        
+                        
+                    }, fetchedData: { (objects, error) in
+                        
+                        
+                        guard let data = objects, error == nil else {
+                            print(error?.localizedDescription ?? "No data")
+                            completion(nil,error)
+                            return
+                        }
+                        self.dataModelManager.saveContext()
+                        completion(data,nil)
+                        
+                    })
                     
                 })
                 
@@ -299,6 +352,7 @@ class SDWDataStore: NSObject {
                                   quarryTypes:[QuarryTypeDisplayItem]?,
                                   foodItems:[DiaryFoodItemDisplayItem]?,
                                   weightItems:[DiaryWeightItemDisplayItem]?,
+                                  pinItems:[PinItemDisplayItem]?,
                                   completion:@escaping sdw_id_error_block) {
         
         
@@ -311,7 +365,7 @@ class SDWDataStore: NSObject {
         
         
         
-        self.networkManager.updateDiaryItemWith(foodItems:foodItems,weightItems:weightItems, itemID:itemID, quarryTypeIDs:quarryTypeIDs, note:note, completion: {(object, error) in
+        self.networkManager.updateDiaryItemWith(foodItems:foodItems,weightItems:weightItems,pinItems:pinItems, itemID:itemID, quarryTypeIDs:quarryTypeIDs, note:note, completion: {(object, error) in
             
             
             guard let data = object, error == nil else {
@@ -335,6 +389,7 @@ class SDWDataStore: NSObject {
                                   quarryTypes:[QuarryTypeDisplayItem]?,
                                   foodItems:[DiaryFoodItemDisplayItem]?,
                                   weightItems:[DiaryWeightItemDisplayItem]?,
+                                  pinItems:[PinItemDisplayItem]?,
                                   completion:@escaping sdw_id_error_block) {
         
         
@@ -346,7 +401,7 @@ class SDWDataStore: NSObject {
         }
 
         
-        self.networkManager.createDiaryItemWith(season_id:self.currentSeason()!.remoteID, foodItems:foodItems,weightItems:weightItems,birdID:birdID, quarryTypeIDs:quarryTypeIDs, note:note, completion: {(object, error) in
+        self.networkManager.createDiaryItemWith(season_id:self.currentSeason()!.remoteID, foodItems:foodItems,weightItems:weightItems,pinItems:pinItems,birdID:birdID, quarryTypeIDs:quarryTypeIDs, note:note, completion: {(object, error) in
             
             
             guard let data = object, error == nil else {
@@ -476,6 +531,66 @@ class SDWDataStore: NSObject {
 
         
     }
+    
+    public func pullAllPinItemTypes(currentData:sdw_id_error_block,fetchedData:@escaping sdw_id_error_block) {
+        
+        
+        
+        self.dataModelManager.fetchAll(entityName:PinType.entityName(), predicate: nil, context: self.dataModelManager.viewContext) { (objects, error) in
+            
+            
+            guard let data = objects, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                currentData(nil,error)
+                return
+            }
+            
+            
+            let arr:Array<PinType> = data as! Array
+            var displayItemsArray = [PinTypeDisplayItem]()
+            
+            
+            for obj in arr {
+                let displayItem:PinTypeDisplayItem = PinTypeDisplayItem(model: obj)
+                displayItemsArray.append(displayItem)
+            }
+            
+            currentData(displayItemsArray,nil)
+            
+            self.networkManager.fetchPinItemTypes(completion: { (objects, error) in
+                
+                
+                guard let data = objects, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    fetchedData(nil,error)
+                    return
+                }
+                
+                
+                let mappedObjects = SDWMapper.ez_arrayOfObjects(withClass: type(of: PinType()) as SDWObjectMapping.Type, fromJSON: data as! Array<Any>, context: self.dataModelManager.viewContext)
+                
+                
+                
+                var displayItemsArray = [PinTypeDisplayItem]()
+                
+                
+                for obj in mappedObjects {
+                    let displayItem:PinTypeDisplayItem = PinTypeDisplayItem(model: obj as! PinType)
+                    displayItemsArray.append(displayItem)
+                }
+                
+                
+                fetchedData(displayItemsArray,nil)
+                
+                
+                
+                
+            })
+            
+            
+        }
+    }
+    
     
     public func pullAllBirdTypes(currentData:sdw_id_error_block,fetchedData:@escaping sdw_id_error_block) {
         

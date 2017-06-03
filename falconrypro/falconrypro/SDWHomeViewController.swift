@@ -14,6 +14,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     var diaryListNav :UINavigationController?
     var statsListNav :UINavigationController?
     var mapNav :UINavigationController?
+    var settingsNav :UINavigationController?
     
     let dataStore:SDWDataStore = SDWDataStore.sharedInstance
     
@@ -22,6 +23,8 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     var season:SeasonDisplayItem?
     var diaryListVC:SDWDiaryListViewController?
     var statsVC:SDWStatsViewController?
+    var settingsVC:SDWSettingsViewController?
+    
     var mapVC:SDWMapViewController?
     var hmButton:UIButton = UIButton()
     
@@ -63,8 +66,8 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         
 
         
-        items.append(MiniTabBarItem(title: "Map", icon: #imageLiteral(resourceName: "map")))
-        items.append(MiniTabBarItem(title: "Photos", icon: #imageLiteral(resourceName: "gallery")))
+        items.append(MiniTabBarItem(title: "Activity", icon: #imageLiteral(resourceName: "map")))
+        items.append(MiniTabBarItem(title: "Settings", icon: #imageLiteral(resourceName: "settings")))
         
         let tabBar = MiniTabBar(items: items)
         tabBar.delegate = self
@@ -94,6 +97,13 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
                 self.mapNav?.view.removeFromSuperview()
                 self.mapNav?.removeFromParentViewController()
             }
+            
+            if ((self.settingsNav) != nil) {
+                self.settingsNav?.willMove(toParentViewController: self)
+                self.settingsNav?.view.removeFromSuperview()
+                self.settingsNav?.removeFromParentViewController()
+            }
+            
             
             
            self.diaryListNav = storyboard?.instantiateViewController(withIdentifier: "DiaryListNav") as? UINavigationController
@@ -132,6 +142,12 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
                 self.mapNav?.removeFromParentViewController()
             }
             
+            if ((self.settingsNav) != nil) {
+                self.settingsNav?.willMove(toParentViewController: self)
+                self.settingsNav?.view.removeFromSuperview()
+                self.settingsNav?.removeFromParentViewController()
+            }
+            
             
             
             self.diaryListNav?.willMove(toParentViewController: self)
@@ -150,7 +166,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
             
             
             self.addChildViewController(self.statsListNav!)
-            self.statsListNav!.view.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height-44)
+            self.statsListNav!.view.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
             self.view.insertSubview(self.statsListNav!.view, at: 0)
             self.view.bringSubview(toFront: self.view)
             self.statsListNav!.didMove(toParentViewController: self)
@@ -172,6 +188,13 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
                 self.diaryListNav?.removeFromParentViewController()
             }
             
+            if ((self.settingsNav) != nil) {
+                self.settingsNav?.willMove(toParentViewController: self)
+                self.settingsNav?.view.removeFromSuperview()
+                self.settingsNav?.removeFromParentViewController()
+            }
+            
+            
             
             
             self.mapNav = storyboard?.instantiateViewController(withIdentifier: "MapNav") as? UINavigationController
@@ -191,34 +214,69 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
             
             
             
+        } else if (index == 4) {
+            
+            if ((self.statsListNav) != nil) {
+                self.statsListNav?.willMove(toParentViewController: self)
+                self.statsListNav?.view.removeFromSuperview()
+                self.statsListNav?.removeFromParentViewController()
+            }
+            
+            if ((self.diaryListNav) != nil) {
+                self.diaryListNav?.willMove(toParentViewController: self)
+                self.diaryListNav?.view.removeFromSuperview()
+                self.diaryListNav?.removeFromParentViewController()
+            }
+            if ((self.mapNav) != nil) {
+                self.mapNav?.willMove(toParentViewController: self)
+                self.mapNav?.view.removeFromSuperview()
+                self.mapNav?.removeFromParentViewController()
+            }
+            
+            
+            self.settingsNav = storyboard?.instantiateViewController(withIdentifier: "SDWSettingsNav") as? UINavigationController
+            
+            
+            self.settingsVC = self.settingsNav!.viewControllers[0] as? SDWSettingsViewController
+            self.settingsVC?.title = "Settings"
+            
+            
+            self.addChildViewController(self.settingsNav!)
+            self.settingsNav!.view.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height-44)
+            self.view.insertSubview(self.settingsNav!.view, at: 0)
+            self.view.bringSubview(toFront: self.view)
+            self.settingsNav!.didMove(toParentViewController: self)
+            
+            
+            
         }
     }
     
     @objc private func customButtonTapped() {
         
-        let currentItem = self.diaryListVC?.lastSelectedItem
-        if (currentItem == nil) {
-            
-            return
-        }
-        
-        UIView.animate(withDuration: 0.25) {
-            
-            
-            if (self.hmButton.backgroundColor == UIColor.white) {
-                self.hmButton.backgroundColor = UIColor.black
-                self.hmButton.setTitleColor(UIColor.white, for: .normal)
-                self.hmButton.layer.borderColor = UIColor.white.cgColor
-                self.hmModeViewBottomLayout.constant = 40
-                self.view.layoutIfNeeded()
-            } else {
-                self.hmButton.backgroundColor = UIColor.white
-                self.hmButton.setTitleColor(UIColor.black, for: .normal)
-                self.hmButton.layer.borderColor = UIColor.black.cgColor
-                self.hmModeViewBottomLayout.constant = -40
-                self.view.layoutIfNeeded()
-            }
-        }
+//        let currentItem = self.diaryListVC?.lastSelectedItem
+//        if (currentItem == nil) {
+//            
+//            return
+//        }
+//        
+//        UIView.animate(withDuration: 0.25) {
+//            
+//            
+//            if (self.hmButton.backgroundColor == UIColor.white) {
+//                self.hmButton.backgroundColor = UIColor.black
+//                self.hmButton.setTitleColor(UIColor.white, for: .normal)
+//                self.hmButton.layer.borderColor = UIColor.white.cgColor
+//                self.hmModeViewBottomLayout.constant = 40
+//                self.view.layoutIfNeeded()
+//            } else {
+//                self.hmButton.backgroundColor = UIColor.white
+//                self.hmButton.setTitleColor(UIColor.black, for: .normal)
+//                self.hmButton.layer.borderColor = UIColor.black.cgColor
+//                self.hmModeViewBottomLayout.constant = -40
+//                self.view.layoutIfNeeded()
+//            }
+//        }
         
 
         

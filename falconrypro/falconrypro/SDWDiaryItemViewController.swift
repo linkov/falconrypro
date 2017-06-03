@@ -54,46 +54,7 @@ class SDWDiaryItemViewController: FormViewController {
         form
             
             +++ Section("Notes")
-            
-//            <<< IntRow(){ row in
-//                
-//                row.value = diaryItem?.model?["weight"] as? Int
-//                row.tag = "weight"
-//                row.title = "Weight"
-//                row.placeholder = "weight in gramms"
-//                row.formatter = self.weightFormatter
-//                
-//            }
-//            
-//            <<< IntRow(){ row in
-//                row.value = diaryItem?.model?["diet_offered"] as? Int
-//                row.tag = "d_offered"
-//                row.title = "Diet offered"
-//                row.placeholder = "weight in gramms"
-//                row.formatter = self.weightFormatter
-//                
-//            }
-//            
-//            <<< IntRow(){
-//                $0.value = diaryItem?.model?["diet_eaten"] as? Int
-//                $0.tag = "d_eaten"
-//                $0.title = "Diet eaten"
-//                $0.placeholder = "weight in gramms"
-//                $0.formatter = self.weightFormatter
-//            }
-//        
-//            <<< SearchablePushRow<TypeDisplayItem>("name") {
-//                $0.baseValue = diaryItem?.foodDisplayItem
-//                $0.tag = "food"
-//                $0.title = "Food eaten"
-//                $0.displayValueFor = { value in
-//                    return value?.name
-//                }
-//                
-//                }.cellUpdate { cell, row in
-//                    row.options = self.foods
-//        }
-        
+
         
             <<< TextAreaRow(){ row in
                 row.value = diaryItem?.note
@@ -101,6 +62,48 @@ class SDWDiaryItemViewController: FormViewController {
                 row.tag = "note"
                 row.title = "Notes"
         }
+            
+            
+            +++
+            
+            MultivaluedSection(multivaluedOptions: [.Insert, .Delete],
+                               header: "Pins",
+                               footer: "") { section in
+                                section.tag = "pinitem"
+                                section.multivaluedRowToInsertAt = { index in
+                                    return SDWPinRow(){
+                                        $0.tag = "\(index+1)_newpinitem"
+                                        $0.title = "Pin"
+                                        $0.displayValueFor = { value in
+                                            return  "\(value?.pintype?.title ?? "")"
+                                            
+                                        }
+                                        
+                                    }
+                                }
+                                if(self.diaryItem != nil && (self.diaryItem?.pins!.count)! > 0) {
+                                    
+                                    
+                                    for (index, pinItem) in (self.diaryItem?.pins)!.enumerated() {
+                                        
+                                        
+                                        section <<< SDWPinRow() {
+                                            $0.tag = "\(index+1)_pinitem"
+                                            $0.value = pinItem
+                                            $0.title = "Pin"
+                                            $0.displayValueFor = { value in
+                                                return  "\(value?.pintype?.title ?? "")"
+                                            }
+                                            
+                                        }
+                                        
+                                    }
+                                }
+                                
+                                
+                                
+            }
+            
             
             +++
             
@@ -271,10 +274,20 @@ class SDWDiaryItemViewController: FormViewController {
             
         }
         
+        var pinItems = [PinItemDisplayItem]()
+        
+        for (key, value) in valuesDictionary {
+            if(key.hasSuffix("pinitem")) {
+                let item:PinItemDisplayItem = value as! PinItemDisplayItem
+                pinItems.append(item)
+            }
+            
+        }
+        
         
         if (self.diaryItem != nil) {
             
-            self.dataStore.updateDiaryItemWith(itemID:self.diaryItem!.remoteID, note: note?.value, quarryTypes: quarry,foodItems:foodItems,weightItems:weightItems) { (object, error) in
+            self.dataStore.updateDiaryItemWith(itemID:self.diaryItem!.remoteID, note: note?.value, quarryTypes: quarry,foodItems:foodItems,weightItems:weightItems,pinItems: pinItems) { (object, error) in
                 
                 if (error == nil) {
                     self.navigationController?.popViewController(animated: true)
@@ -283,7 +296,7 @@ class SDWDiaryItemViewController: FormViewController {
             
         } else {
             
-            self.dataStore.pushDiaryItemWith(birdID:bird_id!, note: note?.value, quarryTypes: quarry,foodItems:foodItems,weightItems:weightItems) { (object, error) in
+            self.dataStore.pushDiaryItemWith(birdID:bird_id!, note: note?.value, quarryTypes: quarry,foodItems:foodItems,weightItems:weightItems,pinItems: pinItems) { (object, error) in
                 
                 if (error == nil) {
                     self.navigationController?.popViewController(animated: true)

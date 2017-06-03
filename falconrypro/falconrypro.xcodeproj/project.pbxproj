@@ -16,6 +16,13 @@
 		F104179D1ED5C82D00D2F3B1 /* SDWWeightItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F104179C1ED5C82D00D2F3B1 /* SDWWeightItemRow.swift */; };
 		F10E12FE1EBB417A0044802C /* SDWSeasonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10E12FD1EBB417A0044802C /* SDWSeasonListViewController.swift */; };
 		F10E13001EBB418E0044802C /* SDWSeasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10E12FF1EBB418E0044802C /* SDWSeasonViewController.swift */; };
+		F1140C701EE1F959006ABBBD /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1140C6F1EE1F959006ABBBD /* CustomCells.swift */; };
+		F1140C721EE1FBE5006ABBBD /* SDWPinRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1140C711EE1FBE5006ABBBD /* SDWPinRow.swift */; };
+		F1140C741EE1FC67006ABBBD /* SDWPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1140C731EE1FC67006ABBBD /* SDWPinViewController.swift */; };
+		F1140C771EE1FF40006ABBBD /* PinType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1140C751EE1FF40006ABBBD /* PinType+CoreDataClass.swift */; };
+		F1140C781EE1FF40006ABBBD /* PinType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1140C761EE1FF40006ABBBD /* PinType+CoreDataProperties.swift */; };
+		F1140C7A1EE207F2006ABBBD /* FloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1140C791EE207F2006ABBBD /* FloatLabelTextField.swift */; };
+		F1140C7D1EE20B90006ABBBD /* SDWSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1140C7C1EE20B90006ABBBD /* SDWSettingsViewController.swift */; };
 		F12550621EA2D034004122D4 /* SDWDiaryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */; };
 		F140C5E41EA149A10099C592 /* SDWBirdListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F140C5E21EA149A10099C592 /* SDWBirdListTableViewCell.swift */; };
 		F140C5E51EA149A10099C592 /* SDWBirdListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */; };
@@ -135,6 +142,13 @@
 		F104179C1ED5C82D00D2F3B1 /* SDWWeightItemRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWWeightItemRow.swift; sourceTree = "<group>"; };
 		F10E12FD1EBB417A0044802C /* SDWSeasonListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWSeasonListViewController.swift; sourceTree = "<group>"; };
 		F10E12FF1EBB418E0044802C /* SDWSeasonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWSeasonViewController.swift; sourceTree = "<group>"; };
+		F1140C6F1EE1F959006ABBBD /* CustomCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCells.swift; sourceTree = "<group>"; };
+		F1140C711EE1FBE5006ABBBD /* SDWPinRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWPinRow.swift; sourceTree = "<group>"; };
+		F1140C731EE1FC67006ABBBD /* SDWPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWPinViewController.swift; sourceTree = "<group>"; };
+		F1140C751EE1FF40006ABBBD /* PinType+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PinType+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F1140C761EE1FF40006ABBBD /* PinType+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PinType+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F1140C791EE207F2006ABBBD /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabelTextField.swift; sourceTree = "<group>"; };
+		F1140C7C1EE20B90006ABBBD /* SDWSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWSettingsViewController.swift; sourceTree = "<group>"; };
 		F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDiaryListViewController.swift; sourceTree = "<group>"; };
 		F140C5E21EA149A10099C592 /* SDWBirdListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdListTableViewCell.swift; sourceTree = "<group>"; };
 		F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWBirdListTableViewCell.xib; sourceTree = "<group>"; };
@@ -278,6 +292,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F1140C7B1EE20B75006ABBBD /* Settings Flow */ = {
+			isa = PBXGroup;
+			children = (
+				F1140C7C1EE20B90006ABBBD /* SDWSettingsViewController.swift */,
+			);
+			name = "Settings Flow";
+			sourceTree = "<group>";
+		};
 		F162E3B21EDF771100732195 /* Map Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +335,7 @@
 		F1CB9CC31E9905C900A90363 /* falconrypro */ = {
 			isa = PBXGroup;
 			children = (
+				F1140C7B1EE20B75006ABBBD /* Settings Flow */,
 				F162E3B21EDF771100732195 /* Map Flow */,
 				F1FA3B2C1EC43CC100355507 /* Stats Flow */,
 				F1FA3AE41EC0A5D400355507 /* Mapping */,
@@ -355,10 +378,13 @@
 		F1FA3A971EC0704A00355507 /* Diary Flow */ = {
 			isa = PBXGroup;
 			children = (
+				F1140C6F1EE1F959006ABBBD /* CustomCells.swift */,
 				F1FBC21E1EB53AA900D57ED0 /* SDWDiaryItemViewController.swift */,
 				F10417961ED5634C00D2F3B1 /* SDWFoodItemViewController.swift */,
+				F1140C731EE1FC67006ABBBD /* SDWPinViewController.swift */,
 				F104179A1ED5C81100D2F3B1 /* SDWWeightItemViewController.swift */,
 				F10417981ED563CF00D2F3B1 /* SDWFoodItemRow.swift */,
+				F1140C711EE1FBE5006ABBBD /* SDWPinRow.swift */,
 				F104179C1ED5C82D00D2F3B1 /* SDWWeightItemRow.swift */,
 				F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */,
 				F1FBC2201EB54DA400D57ED0 /* SDWDiaryListTableViewCell.swift */,
@@ -383,6 +409,7 @@
 		F1FA3A991EC0709D00355507 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				F1140C791EE207F2006ABBBD /* FloatLabelTextField.swift */,
 				F140C5E81EA25C6F0099C592 /* Extensions.swift */,
 				F162E3BF1EE03F8200732195 /* SDWChartDateValueFormatter.swift */,
 				F1AD8B751EA0410B006B2EB1 /* Constants.swift */,
@@ -422,6 +449,8 @@
 		F1FA3A9D1EC070E400355507 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				F1140C751EE1FF40006ABBBD /* PinType+CoreDataClass.swift */,
+				F1140C761EE1FF40006ABBBD /* PinType+CoreDataProperties.swift */,
 				F162E3B71EDF9CB600732195 /* SDWPinItem+CoreDataClass.swift */,
 				F162E3B81EDF9CB600732195 /* SDWPinItem+CoreDataProperties.swift */,
 				F1EE1F221EC5B70E00917993 /* SDWQuarryType+CoreDataClass.swift */,
@@ -876,6 +905,7 @@
 				F1FA3B131EC219E700355507 /* BackgroundMover.swift in Sources */,
 				F1FA3AB41EC0899800355507 /* SDWFood+CoreDataProperties.swift in Sources */,
 				F1AD8B711E9EA18A006B2EB1 /* SDWBirdViewController.swift in Sources */,
+				F1140C771EE1FF40006ABBBD /* PinType+CoreDataClass.swift in Sources */,
 				F10E12FE1EBB417A0044802C /* SDWSeasonListViewController.swift in Sources */,
 				F1CB9CC51E9905C900A90363 /* AppDelegate.swift in Sources */,
 				F1FA3B161EC219E700355507 /* FacebookService.swift in Sources */,
@@ -884,6 +914,7 @@
 				F1FA3AAF1EC0899800355507 /* SDWBirdType+CoreDataClass.swift in Sources */,
 				F1AD8B761EA0410B006B2EB1 /* Constants.swift in Sources */,
 				F140C5E91EA25C6F0099C592 /* Extensions.swift in Sources */,
+				F1140C781EE1FF40006ABBBD /* PinType+CoreDataProperties.swift in Sources */,
 				F1FA3AB91EC0899800355507 /* SDWBird+CoreDataClass.swift in Sources */,
 				F1FA3B291EC3B8E600355507 /* SDWDiaryFood+CoreDataClass.swift in Sources */,
 				F162E3B61EDF7A4D00732195 /* SDWLocationManager.swift in Sources */,
@@ -893,6 +924,7 @@
 				F1FA3ABA1EC0899800355507 /* SDWBird+CoreDataProperties.swift in Sources */,
 				F1FA3AB61EC0899800355507 /* SDWDiaryItem+CoreDataProperties.swift in Sources */,
 				F1FA3AB81EC0899800355507 /* SDWUser+CoreDataProperties.swift in Sources */,
+				F1140C701EE1F959006ABBBD /* CustomCells.swift in Sources */,
 				F162E3BE1EE025F700732195 /* SDWStatChartViewController.swift in Sources */,
 				F1FA3B181EC219E700355507 /* InitialViewController.swift in Sources */,
 				F1FA3B211EC219E700355507 /* UIViewController+Nib.swift in Sources */,
@@ -912,9 +944,11 @@
 				F1FA3B1C1EC219E700355507 /* PasswordViewController.swift in Sources */,
 				F1FA3AB31EC0899800355507 /* SDWFood+CoreDataClass.swift in Sources */,
 				F1FA3B1D1EC219E700355507 /* SignupViewController.swift in Sources */,
+				F1140C7D1EE20B90006ABBBD /* SDWSettingsViewController.swift in Sources */,
 				F1FA3B1E1EC219E700355507 /* SkyFloatingLabelTextField.swift in Sources */,
 				F1FA3AE61EC0A5F900355507 /* SDWMapper.swift in Sources */,
 				F1FA3AB01EC0899800355507 /* SDWBirdType+CoreDataProperties.swift in Sources */,
+				F1140C7A1EE207F2006ABBBD /* FloatLabelTextField.swift in Sources */,
 				F19FEDC71EB380ED00996B40 /* searchable_push_row.swift in Sources */,
 				F1D2608D1EB3BF3E006D1BE9 /* SDWHomeViewController.swift in Sources */,
 				F1EE1F241EC5B70E00917993 /* SDWQuarryType+CoreDataClass.swift in Sources */,
@@ -937,10 +971,12 @@
 				F1FA3AB11EC0899800355507 /* SDWSeason+CoreDataClass.swift in Sources */,
 				F1FA3B151EC219E700355507 /* CrossDissolveAnimation.swift in Sources */,
 				F10E13001EBB418E0044802C /* SDWSeasonViewController.swift in Sources */,
+				F1140C741EE1FC67006ABBBD /* SDWPinViewController.swift in Sources */,
 				F1FA3B311EC43E5800355507 /* SDWStatsItemCell.swift in Sources */,
 				F10417971ED5634C00D2F3B1 /* SDWFoodItemViewController.swift in Sources */,
 				F140C5E71EA2509C0099C592 /* SDWHomeTBC.swift in Sources */,
 				F1FA3B171EC219E700355507 /* GradientImageView.swift in Sources */,
+				F1140C721EE1FBE5006ABBBD /* SDWPinRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
