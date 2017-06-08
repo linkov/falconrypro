@@ -40,14 +40,19 @@ class SDWSeasonViewController: FormViewController {
             
             <<< DateInlineRow(){
                 $0.tag = "start"
+                $0.add(rule: RuleRequired())
                 $0.title = "Start"
-                $0.value = (season?.start != nil) ?  (season?.start as! Date) : Date()
-            }
+                $0.value = (season?.start != nil) ?  (season?.start as! Date) : nil
+                }.cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.textLabel?.textColor = .red
+                    }
+                }
             
             <<< DateInlineRow(){
                 $0.tag = "end"
                 $0.title = "End"
-                $0.value = (season?.end != nil) ?  (season?.end as! Date) : Date()
+                $0.value = (season?.end != nil) ?  (season?.end as! Date) : nil
             }
         
             <<< SwitchRow() {
@@ -74,21 +79,19 @@ class SDWSeasonViewController: FormViewController {
     
     func updateSeason() {
         
+        let errors = form.validate()
+        self.tableView.reloadData()
+        if (errors.count > 0) {
+            return
+        }
+        
 
         let start: DateInlineRow? = form.rowBy(tag: "start")
         let end: DateInlineRow? = form.rowBy(tag: "end")
         let between: SwitchRow? = form.rowBy(tag: "between")
         
         
-        
-        let dict: [String: Any] = [
-
-
-            "start": (start?.value)!.toString(),
-            "end": (end?.value)!.toString(),
-            
-            ]
-        
+    
 
         
         let token = UserDefaults.standard.value(forKey: "access-token")
@@ -134,7 +137,7 @@ class SDWSeasonViewController: FormViewController {
 //            }
             
         } else {
-            self.dataStore.pushSeasonWith(season_id:nil, bird_id: bird_id, start: (start?.value)!, end: (end?.value)!, isBetween: (between?.value)!, completion: { (object, error) in
+            self.dataStore.pushSeasonWith(season_id:nil, bird_id: bird_id, start: (start?.value)!, end: end?.value, isBetween: (between?.value)!, completion: { (object, error) in
                 
                 PKHUD.sharedHUD.hide()
                 

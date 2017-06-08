@@ -69,8 +69,13 @@ class SDWFoodItemViewController : FormViewController, TypedRowControllerType {
             <<< DateTimeInlineRow(){
                 $0.tag = "time"
                 $0.title = "When"
-                $0.value = currentItem?.time != nil ? currentItem?.time : Date()
-        }
+                $0.add(rule: RuleRequired())
+                $0.value = currentItem?.time != nil ? currentItem?.time : nil
+                }.cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.textLabel?.textColor = .red
+                    }
+                }
         
             <<< SearchablePushRow<FoodDisplayItem>("name") {
                 $0.tag = "food"

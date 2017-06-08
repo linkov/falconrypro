@@ -56,8 +56,13 @@ class SDWPinViewController: FormViewController, TypedRowControllerType {
             <<< LocationRow(){
                 $0.tag = "location"
                 $0.title = "Set location"
+                $0.add(rule: RuleRequired())
                 $0.value = (self.currentItem?.long != nil && self.currentItem?.long != nil) ? CLLocation.init(latitude: (self.currentItem?.lat)!, longitude: (self.currentItem?.long)!) : nil
-            }
+                }.cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.textLabel?.textColor = .red
+                    }
+                }
         
             <<< TextAreaRow(){ row in
                 row.value = (self.currentItem?.note != nil) ? self.currentItem?.note : nil
@@ -69,6 +74,7 @@ class SDWPinViewController: FormViewController, TypedRowControllerType {
             <<< ActionSheetRow<PinTypeDisplayItem>() {
                 $0.tag = "type"
                 $0.title = "Type"
+                $0.add(rule: RuleRequired())
                 $0.selectorTitle = "Pick the type of pin"
                 $0.value = (self.currentItem?.pintype != nil) ? self.currentItem?.pintype : nil
                 $0.options = self.dataStore.allPinTypes()
@@ -77,7 +83,11 @@ class SDWPinViewController: FormViewController, TypedRowControllerType {
                 }
                 
                 
-        }
+                }.cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.textLabel?.textColor = .red
+                    }
+                }
             <<< ImageRow() {
                 $0.tag = "pic"
                 $0.title = "photo"
@@ -97,7 +107,13 @@ class SDWPinViewController: FormViewController, TypedRowControllerType {
     }
     
     func tappedDone(_ sender: UIBarButtonItem){
-//        
+        
+        let errors = form.validate()
+        self.tableView.reloadData()
+        if (errors.count > 0) {
+            return
+        }
+//
         let noteRow: TextAreaRow? = form.rowBy(tag: "note")
         let typeRow: ActionSheetRow<PinTypeDisplayItem>? = form.rowBy(tag: "type")
         

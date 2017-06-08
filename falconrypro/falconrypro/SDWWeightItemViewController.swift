@@ -54,18 +54,28 @@ class SDWWeightItemViewController: FormViewController, TypedRowControllerType {
                 row.value =  currentItem?.weight != nil ?  Int((currentItem?.weight!)!)  : nil
                 row.tag = "eaten"
                 row.title = "Weight"
+                row.add(rule: RuleRequired())
                 row.placeholder = "weight in gramms"
                 
                 
                 
                 
-            }
+                }.cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.textLabel?.textColor = .red
+                    }
+                }
             
             <<< DateTimeInlineRow(){
+                $0.add(rule: RuleRequired())
                 $0.tag = "time"
                 $0.title = "When"
-                $0.value = currentItem?.time != nil ? currentItem?.time : Date()
-            }
+                $0.value = currentItem?.time != nil ? currentItem?.time : nil
+                }.cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.textLabel?.textColor = .red
+                    }
+                }
 
         
         
@@ -73,6 +83,12 @@ class SDWWeightItemViewController: FormViewController, TypedRowControllerType {
     }
     
     func tappedDone(_ sender: UIBarButtonItem){
+        
+        let errors = form.validate()
+        self.tableView.reloadData()
+        if (errors.count > 0) {
+            return
+        }
         
         let eatenRow: IntRow? = form.rowBy(tag: "eaten")
         let timeRow: DateTimeInlineRow? = form.rowBy(tag: "time")

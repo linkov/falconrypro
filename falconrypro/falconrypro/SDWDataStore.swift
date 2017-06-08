@@ -267,30 +267,36 @@ class SDWDataStore: NSObject {
         UserDefaults.standard.removeObject(forKey: "uid")
         
         
-        self.dataModelManager.fetch(entityDescription: SDWUser.entity(), predicate: nil, context: self.dataModelManager.viewContext) { (user, error) in
-            
-//            let birds = (user as! SDWUser).birds
-//            let seasons = (user as! SDWUser).seasons
+        self.dataModelManager.deleteAllEntitiesWithName(name: "SDWSeason")
+        self.dataModelManager.deleteAllEntitiesWithName(name: "SDWUser")
+        self.dataModelManager.viewContext.processPendingChanges()
+        self.dataModelManager.saveContext()
+        
+        
+//        self.dataModelManager.fetch(entityDescription: SDWUser.entity(), predicate: nil, context: self.dataModelManager.viewContext) { (user, error) in
 //            
-//            for bird in birds! {
-//                self.dataModelManager.viewContext.delete(bird as! NSManagedObject)
-//            }
+////            let birds = (user as! SDWUser).birds
+////            let seasons = (user as! SDWUser).seasons
+////            
+////            for bird in birds! {
+////                self.dataModelManager.viewContext.delete(bird as! NSManagedObject)
+////            }
+////            
+////            
+////            for season in seasons! {
+////                self.dataModelManager.viewContext.delete(season as! NSManagedObject)
+////            }
+////         
+//            
+//            self.dataModelManager.deleteAllEntitiesWithName(name: "SDWSeason")
+////            self.dataModelManager.deleteAllEntitiesWithName(name: "SDWDiaryItem")
+//            self.dataModelManager.viewContext.delete(user as! NSManagedObject)
+//            self.dataModelManager.viewContext.processPendingChanges()
 //            
 //            
-//            for season in seasons! {
-//                self.dataModelManager.viewContext.delete(season as! NSManagedObject)
-//            }
-//         
-            
-            self.dataModelManager.deleteAllEntitiesWithName(name: "SDWSeason")
-//            self.dataModelManager.deleteAllEntitiesWithName(name: "SDWDiaryItem")
-            self.dataModelManager.viewContext.delete(user as! NSManagedObject)
-            self.dataModelManager.viewContext.processPendingChanges()
-            
-            
-            
-            self.dataModelManager.saveContext()
-        }
+//            
+////            self.dataModelManager.saveContext()
+//        }
         
         
     }
@@ -423,7 +429,7 @@ class SDWDataStore: NSObject {
     
     public func pushSeasonWith(season_id:String?, bird_id:String,
                              start:Date,
-                             end:Date,
+                             end:Date?,
                              isBetween:Bool,
                              completion:@escaping sdw_id_error_block) {
         

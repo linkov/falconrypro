@@ -241,6 +241,8 @@ class SDWDiaryItemViewController: FormViewController {
     
     func updateDiaryItem() {
         
+
+        
         let note: TextAreaRow? = form.rowBy(tag: "note")
         let bird_id = self.bird?.remoteID
         
@@ -284,6 +286,17 @@ class SDWDiaryItemViewController: FormViewController {
                 pinItems.append(item)
             }
             
+        }
+        
+        
+        if (weightItems.count == 0 || foodItems.count == 0) {
+            
+            PKHUD.sharedHUD.contentView = PKHUDTextView(text: "At least 1 weight and 1 food item required")
+            PKHUD.sharedHUD.show()
+            PKHUD.sharedHUD.hide(afterDelay: 1.0) { success in
+                // Completion Handler
+            }
+            return
         }
         
         

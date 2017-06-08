@@ -106,37 +106,63 @@ class SDWBirdViewController: FormViewController {
                     row.value = bird?.name
                     row.tag = "name"
                     row.title = "Name"
-                }
+                    row.add(rule: RuleRequired())
+                    }.cellUpdate { cell, row in
+                        if !row.isValid {
+                            cell.textLabel?.textColor = .red
+                        }
+                    }
+                
                 <<< DateInlineRow(){
                     $0.tag = "bday"
                     $0.dateFormatter = birthdayDateFormatter
                     $0.title = "Birthday"
-                    $0.value = (bird?.birthday != nil) ? bird?.birthday! : Date()
-                }
+                    $0.add(rule: RuleRequired())
+                    $0.value = (bird?.birthday != nil) ? bird?.birthday! : nil
+                    }.cellUpdate { cell, row in
+                        if !row.isValid {
+                            cell.textLabel?.textColor = .red
+                        }
+                    }
                 
                 
                 <<< ActionSheetRow<String>() {
                     $0.tag = "sex"
                     $0.title = "Sex"
+                    $0.add(rule: RuleRequired())
                     $0.selectorTitle = "Pick the sex"
                     $0.value =  (bird?.model != nil) ? ((bird?.sex! == true ? "Male" : "Female")) as String : ""
                     $0.options = ["Male","Female"]
-                }
+                    }.cellUpdate { cell, row in
+                        if !row.isValid {
+                            cell.textLabel?.textColor = .red
+                        }
+                  }
                 
                 <<< IntRow(){ row in
                     row.tag = "fweight"
                     row.value =  (bird?.model != nil) ? Int((bird?.fatWeight)!) : nil
                     row.title = "Fat Weight"
                     row.placeholder = "weight in gramms"
+                    row.add(rule: RuleRequired())
                     row.formatter = self.weightFormatter
                     
+                    }.cellUpdate { cell, row in
+                        if !row.isValid {
+                            cell.textLabel?.textColor = .red
+                        }
                 }
                 <<< IntRow(){
                     $0.value = (bird?.model != nil) ? Int((bird?.huntingWeight)!) : nil
                     $0.tag = "hweight"
+                    $0.add(rule: RuleRequired())
                     $0.title = "Hunting Weight"
                     $0.placeholder = "weight in gramms"
                     $0.formatter = self.weightFormatter
+                    }.cellUpdate { cell, row in
+                        if !row.isValid {
+                            cell.textLabel?.textColor = .red
+                        }
                 }
 
                 
@@ -146,12 +172,18 @@ class SDWBirdViewController: FormViewController {
                 <<< SegmentedRow<String>("segments"){
                     $0.options = ["Pure", "Hybrid 2", "Hybrid 4"]
                     $0.tag = "segment_row"
+                    $0.cell.segmentedControl.tintColor = .blue
+                    $0.add(rule: RuleRequired())
+                    }.cellUpdate { cell, row in
+                        if !row.isValid {
+                            cell.segmentedControl.tintColor = .red
+                        }
                     }
                     
                     .onChange({ (row) in
                         
                         self.toggleDeselectedBirdTypes(row: row)
-                        
+                        row.cell.segmentedControl.tintColor = .blue
                     })
                 
                 
@@ -471,6 +503,12 @@ class SDWBirdViewController: FormViewController {
 //    }
     
     func updateBird() {
+        
+        let errors = form.validate()
+        self.tableView.reloadData()
+        if (errors.count > 0) {
+            return
+        }
         
         let name: TextRow? = form.rowBy(tag: "name")
         let code: TextRow? = form.rowBy(tag: "code")

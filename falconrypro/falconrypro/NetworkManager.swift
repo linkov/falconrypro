@@ -346,16 +346,20 @@ class NetworkManager: NSObject {
         
     }
     
-    public func createSeasonWith(bird_id:String, start:Date,end:Date,isBetween:Bool,completion:@escaping sdw_id_error_block) {
+    public func createSeasonWith(bird_id:String, start:Date,end:Date?,isBetween:Bool,completion:@escaping sdw_id_error_block) {
         
         self.setupRequestHeaders()
         
-        let dict: [String: Any] = [
+        var dict: [String: Any] = [
             "start": start.toString(),
-            "end": end.toString(),
             "between": isBetween
             
         ]
+        
+        
+        if let endDate = end  {
+            dict["end"] = endDate.toString()
+        }
         
         networking.post("/seasons?bird_id="+bird_id, parameters: ["season":dict])  { result in
             
@@ -377,16 +381,19 @@ class NetworkManager: NSObject {
     }
     
     
-    public func updateSeasonWith(season_id:String, bird_id:String, start:Date,end:Date,isBetween:Bool,completion:@escaping sdw_id_error_block) {
+    public func updateSeasonWith(season_id:String, bird_id:String, start:Date,end:Date?,isBetween:Bool,completion:@escaping sdw_id_error_block) {
         
         self.setupRequestHeaders()
         
-        let dict: [String: Any] = [
+        var dict: [String: Any] = [
             "start": start.toString(),
-            "end": end.toString(),
             "between": isBetween
             
         ]
+        
+        if let endDate = end  {
+            dict["end"] = endDate.toString()
+        }
         
         networking.put("/seasons/"+season_id+"?bird_id="+bird_id, parameters: ["season":dict])  { result in
             
