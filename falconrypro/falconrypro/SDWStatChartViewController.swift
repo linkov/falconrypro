@@ -8,15 +8,22 @@
 
 import UIKit
 import Charts
+import SwiftDate
 
 enum ChartTimeFrame: Int {
-    case week = 0,month, season, year, life
+    case week = 0,month, season, life
 }
 
 class SDWStatChartViewController: UIViewController, SDWPageable {
 
     var index: NSInteger = 0
     var currentChart:CellChartType?
+    
+    
+    var medianDataset:LineChartDataSet?
+    var deadDataset:LineChartDataSet?
+    var fatDataset:LineChartDataSet?
+    
     
     @IBOutlet weak var mainLabel: UILabel!
     var mainLabelText:String?
@@ -65,9 +72,32 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
     
     func changeTimeframe(timeframe:ChartTimeFrame) {
         
+        var startDate:DateInRegion = DateInRegion() - 1.week
+        let currentSeasonStart:DateInRegion = (dataStore.currentSeason()?.start?.inDefaultRegion())!
+        
+        
+        switch timeframe {
+        case .week:
+            
+            startDate =  DateInRegion() - 1.week
+            break
+        case .month:
+            startDate =  DateInRegion() - 1.month
+            break
+        case .season:
+            startDate = currentSeasonStart
+            break
+        case .life:
+            startDate = currentSeasonStart
+            break
+
+
+        }
+        
+        
         switch self.currentChart! {
         case .WeightChart:
-            //
+            setupTimeframeForLineChart(start: startDate)
             break
             
         case .FoodWeight:
@@ -83,6 +113,69 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         }
 
         
+    }
+    
+    func setupTimeframeForLineChart(start:DateInRegion) {
+        
+        self.lineChart.xAxis.axisMinimum = start.absoluteDate.timeIntervalSince1970
+        self.lineChart.notifyDataSetChanged()
+        
+        
+        self.lineChart.data?.removeDataSet(self.medianDataset)
+        self.lineChart.data?.removeDataSet(self.deadDataset)
+        self.lineChart.data?.removeDataSet(self.fatDataset)
+        
+
+        
+        let hWeght = Double((self.dataStore.currentBird()?.huntingWeight)!)
+        let fWeght = Double((self.dataStore.currentBird()?.fatWeight)!)
+        let deadWeight = hWeght * 0.66
+        
+        let mdataPoint10:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMinimum, y: hWeght)
+        let mdataPoint20:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMaximum, y: hWeght)
+        
+        
+        self.medianDataset = LineChartDataSet(values: [mdataPoint10,mdataPoint20], label:"hunting weight")
+        self.medianDataset?.lineWidth = 1.5;
+        self.medianDataset?.circleRadius = 0.0;
+        self.medianDataset?.circleHoleRadius = 0.0;
+        self.medianDataset?.setColor( UIColor.blue.withAlphaComponent(0.5))
+        self.medianDataset?.setCircleColor(UIColor.blue)
+        
+        
+        
+        
+        let deadPoint10:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMinimum, y: deadWeight)
+        let deadPoint20:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMaximum, y: deadWeight)
+        
+        self.deadDataset = LineChartDataSet(values: [deadPoint10,deadPoint20], label:"danger zone")
+        self.deadDataset?.lineWidth = 1.0;
+        self.deadDataset?.circleRadius = 0.0;
+        self.deadDataset?.circleHoleRadius = 0.0;
+        self.deadDataset?.setColor( UIColor.red.withAlphaComponent(0.5))
+        self.deadDataset?.fillAlpha = 0.4
+        self.deadDataset?.fill = Fill.fillWithColor(UIColor.red)
+        self.deadDataset?.drawFilledEnabled = true;
+        
+        
+        
+        let fatPoint10:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMinimum, y: fWeght)
+        let fatPoint20:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMaximum, y: fWeght)
+        
+        self.fatDataset = LineChartDataSet(values: [fatPoint10,fatPoint20], label:"maximum weight")
+        self.fatDataset?.lineWidth = 1.0;
+        self.fatDataset?.circleRadius = 0.0;
+        self.fatDataset?.circleHoleRadius = 0.0;
+        self.fatDataset?.setColor( UIColor.green.withAlphaComponent(0.5))
+        
+        
+        self.lineChart.data?.addDataSet(self.medianDataset)
+        self.lineChart.data?.addDataSet(self.deadDataset)
+        self.lineChart.data?.addDataSet(self.fatDataset)
+    
+        self.lineChart.notifyDataSetChanged()
+
+  
     }
     
 
@@ -112,7 +205,7 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         self.lineChart.xAxis.granularity = 1
         if(dataPoints.count > 0) {
             self.lineChart.xAxis.axisMinimum = (dataPoints.first?.x)!
-            self.lineChart.xAxis.axisMaximum = (dataPoints.last?.x)!
+            self.lineChart.xAxis.axisMaximum = (Date().timeIntervalSince1970)
         }
 
         
@@ -134,12 +227,12 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         let mdataPoint20:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMaximum, y: hWeght)
         
         
-        let medianDataset:LineChartDataSet = LineChartDataSet(values: [mdataPoint10,mdataPoint20], label:"hunting weight")
-        medianDataset.lineWidth = 1.5;
-        medianDataset.circleRadius = 0.0;
-        medianDataset.circleHoleRadius = 0.0;
-        medianDataset.setColor( UIColor.blue.withAlphaComponent(0.5))
-        medianDataset.setCircleColor(UIColor.blue)
+        self.medianDataset = LineChartDataSet(values: [mdataPoint10,mdataPoint20], label:"hunting weight")
+        self.medianDataset?.lineWidth = 1.5;
+        self.medianDataset?.circleRadius = 0.0;
+        self.medianDataset?.circleHoleRadius = 0.0;
+        self.medianDataset?.setColor( UIColor.blue.withAlphaComponent(0.5))
+        self.medianDataset?.setCircleColor(UIColor.blue)
         
         
         
@@ -147,29 +240,30 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         let deadPoint10:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMinimum, y: deadWeight)
         let deadPoint20:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMaximum, y: deadWeight)
         
-        let deadDataset:LineChartDataSet = LineChartDataSet(values: [deadPoint10,deadPoint20], label:"danger zone")
-        deadDataset.lineWidth = 1.0;
-        deadDataset.circleRadius = 0.0;
-        deadDataset.circleHoleRadius = 0.0;
-        deadDataset.setColor( UIColor.red.withAlphaComponent(0.5))
-        deadDataset.fillAlpha = 0.4
-        deadDataset.fill = Fill.fillWithColor(UIColor.red)
-        deadDataset.drawFilledEnabled = true;
+        self.deadDataset = LineChartDataSet(values: [deadPoint10,deadPoint20], label:"danger zone")
+        self.deadDataset?.lineWidth = 1.0;
+        self.deadDataset?.circleRadius = 0.0;
+        self.deadDataset?.circleHoleRadius = 0.0;
+        self.deadDataset?.setColor( UIColor.red.withAlphaComponent(0.5))
+        self.deadDataset?.fillAlpha = 0.4
+        self.deadDataset?.fill = Fill.fillWithColor(UIColor.red)
+        self.deadDataset?.drawFilledEnabled = true;
         
         
         
         let fatPoint10:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMinimum, y: fWeght)
         let fatPoint20:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMaximum, y: fWeght)
         
-        let fatDataset:LineChartDataSet = LineChartDataSet(values: [fatPoint10,fatPoint20], label:"maximum weight")
-        fatDataset.lineWidth = 1.0;
-        fatDataset.circleRadius = 0.0;
-        fatDataset.circleHoleRadius = 0.0;
-        fatDataset.setColor( UIColor.green.withAlphaComponent(0.5))
+        self.fatDataset = LineChartDataSet(values: [fatPoint10,fatPoint20], label:"maximum weight")
+        self.fatDataset?.lineWidth = 1.0;
+        self.fatDataset?.circleRadius = 0.0;
+        self.fatDataset?.circleHoleRadius = 0.0;
+        self.fatDataset?.setColor( UIColor.green.withAlphaComponent(0.5))
         
         
         
-        let data:LineChartData = LineChartData(dataSets: [dataset,medianDataset,deadDataset,fatDataset])
+        
+        let data:LineChartData = LineChartData(dataSets: [dataset,self.medianDataset!,self.deadDataset!,self.fatDataset!])
         self.lineChart.data = data
         
         

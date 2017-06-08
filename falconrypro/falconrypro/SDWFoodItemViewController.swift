@@ -70,7 +70,7 @@ class SDWFoodItemViewController : FormViewController, TypedRowControllerType {
                 $0.tag = "time"
                 $0.title = "When"
                 $0.add(rule: RuleRequired())
-                $0.value = currentItem?.time != nil ? currentItem?.time : nil
+                $0.value = currentItem?.time != nil ? currentItem?.time : Date()
                 }.cellUpdate { cell, row in
                     if !row.isValid {
                         cell.textLabel?.textColor = .red

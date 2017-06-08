@@ -31,6 +31,7 @@ PODS:
   - Sparrow/Core (1.0.1)
   - Sparrow/Modules/RequestPermission (1.0.1):
     - Sparrow/Core
+  - SwiftDate (4.1.2)
   - UIEmptyState (0.5.0)
   - Validator (2.1.1)
 
@@ -50,6 +51,7 @@ DEPENDENCIES:
   - RoundedSwitch
   - SDWebImage (~> 4.0)
   - Sparrow/Modules/RequestPermission (from `https://github.com/IvanVorobei/Sparrow.git`)
+  - SwiftDate (~> 4.0)
   - UIEmptyState
   - Validator (~> 2.1.1)
 
@@ -90,9 +92,10 @@ SPEC CHECKSUMS:
   RoundedSwitch: 85ea55811bbeb5747dd99e2c2290c86e820decb5
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   Sparrow: 4b7826e69656f4745b0b4f74afadefa4f19cb9ee
+  SwiftDate: 2dfdebd4f67ae71c9c3e2413ee3c56947f302858
   UIEmptyState: b81840468b03d7be5b02114c239f5ac097dc935a
   Validator: b1793fbfd0046097551d0edd18e2c30792d69ef5
 
-PODFILE CHECKSUM: 22e693f6d084b21f1306ea0aeeaa85be100ca2fe
+PODFILE CHECKSUM: 383a41861c6af2e2e8ad6a13829e3e3b5a41695f
 
 COCOAPODS: 1.2.1
