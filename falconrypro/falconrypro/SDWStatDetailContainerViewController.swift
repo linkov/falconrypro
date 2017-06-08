@@ -52,7 +52,7 @@ class SDWStatDetailContainerViewController: UIViewController, UIPageViewControll
         }
         
         
-        self.lineChartVC?.setupWithChartType(type: .WeightChart,label: "Bird weight dynamics (lifetime)", dataPoints: points.sorted { $0.x < $1.x })
+        self.lineChartVC?.setupWithChartType(type: .WeightChart,label: "Weight (lifetime)", dataPoints: points.sorted { $0.x < $1.x })
         
   
         self.combinedLineChartVC?.setupWithChartType(type: .WeightChart,label: "Weight + Food", dataPoints: [])

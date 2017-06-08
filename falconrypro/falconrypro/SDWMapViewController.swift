@@ -25,58 +25,30 @@ class SDWMapViewController: UIViewController, MGLMapViewDelegate {
         mgMapView.delegate = self
         
         self.pins = self.dataStore.allPins()
+//        self.mgMapView.zoomLevel = 9;
         
-
-        
-        locationManager.locate { result in
-            switch result {
-            case .Success():
-                if let location = self.locationManager.location {
-                    self.mgMapView.setCenter(location.coordinate, zoomLevel: 15, animated: false)
-                    let point = MGLPointAnnotation()
-                    point.coordinate = location.coordinate
-                    point.title = "Rabbit"
-                    point.subtitle = "9 hours ago"
-                    self.mgMapView.addAnnotation(point)
-                    
-                    
-                    
-                    if ((self.pins) != nil) {
-                        if ( (self.mgMapView.annotations != nil) && (self.mgMapView.annotations?.count)! > 0) {
-                            self.mgMapView.removeAnnotations(self.mgMapView.annotations!)
-                        }
-                        
-                        
-                        for pin:PinItemDisplayItem in self.pins! {
-                            
-                            
-                            let point = MGLPointAnnotation()
-                            
-                            point.coordinate = CLLocationCoordinate2D(latitude: pin.lat!, longitude: pin.long!)
-                            point.title = pin.typeName
-                            point.subtitle = pin.note
-
-                            self.mgMapView.addAnnotation(point)
-                            
-                        }
-                        
-                        
-                        let lastPin = self.pins?.last
-                        
-                        
-                        self.mgMapView.setCenter(CLLocationCoordinate2D(latitude: (lastPin?.lat)!, longitude: (lastPin?.long)!), zoomLevel: 12, animated: false)
-                    }
-                    
-                    
-                    
-                    
-                    
-//                    self.centerMapOnLocation(location)
-                }
-            case .Failure():
-                print("ggg")
-        
+        if ((self.pins) != nil) {
+            if ( (self.mgMapView.annotations != nil) && (self.mgMapView.annotations?.count)! > 0) {
+                self.mgMapView.removeAnnotations(self.mgMapView.annotations!)
             }
+            
+            
+            for pin:PinItemDisplayItem in self.pins! {
+                
+                
+                let point = MGLPointAnnotation()
+                
+                point.coordinate = CLLocationCoordinate2D(latitude: pin.lat!, longitude: pin.long!)
+                point.title = pin.typeName
+                point.subtitle = pin.note
+                
+                self.mgMapView.addAnnotation(point)
+                
+            }
+            
+            
+            
+            
         }
         
         

@@ -38,7 +38,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         self.tableView.delegate = self;
         
         // Optionally remove seperator lines from empty cells
-//        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.tableView.reloadData()
         self.reloadEmptyState(forTableView: self.tableView)
         
@@ -69,30 +69,30 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        sizeHeaderToFit()
-    }
-    
-    func sizeHeaderToFit() {
-        
-        if (tableView.tableFooterView != nil) {
-            let headerView = tableView.tableFooterView!
-            tableView.tableFooterView = nil
-            
-            headerView.setNeedsLayout()
-            headerView.layoutIfNeeded()
-            
-            //        let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
-            var frame = headerView.frame
-            frame.size.height = 50
-            headerView.frame = frame
-            
-            tableView.tableHeaderView = headerView
-        }
-
-
-    }
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        sizeHeaderToFit()
+//    }
+//    
+//    func sizeHeaderToFit() {
+//        
+//        if (tableView.tableFooterView != nil) {
+//            let headerView = tableView.tableFooterView!
+//            tableView.tableFooterView = nil
+//            
+//            headerView.setNeedsLayout()
+//            headerView.layoutIfNeeded()
+//            
+//            //        let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+//            var frame = headerView.frame
+//            frame.size.height = 50
+//            headerView.frame = frame
+//            
+//            tableView.tableHeaderView = headerView
+//        }
+//
+//
+//    }
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -100,8 +100,20 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 40
     }
+    
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = SDWDiaryListSectionHeaderView.loadFromXib()
+        return headerView
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -127,9 +139,15 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         
         var lastWeight = 0
         let lastItem = object.weights?.last
-        lastWeight = Int((lastItem?.weight)!)
+        
+        if (object.weights?.last) != nil {
+            
+            lastWeight = Int((lastItem?.weight)!)
+            cell.weight.text = String(lastWeight)
+        }
+        
 
-        cell.weight.text = String(lastWeight)
+        
         
     
         return cell

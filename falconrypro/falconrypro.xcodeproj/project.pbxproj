@@ -28,6 +28,8 @@
 		F140C5E51EA149A10099C592 /* SDWBirdListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */; };
 		F140C5E71EA2509C0099C592 /* SDWHomeTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F140C5E61EA2509C0099C592 /* SDWHomeTBC.swift */; };
 		F140C5E91EA25C6F0099C592 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F140C5E81EA25C6F0099C592 /* Extensions.swift */; };
+		F1559F5C1EE929C200F69EA6 /* SDWDiaryListSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1559F5B1EE929C200F69EA6 /* SDWDiaryListSectionHeaderView.swift */; };
+		F1559F5E1EE929D600F69EA6 /* SDWDiaryListSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1559F5D1EE929D600F69EA6 /* SDWDiaryListSectionHeaderView.xib */; };
 		F162E3AE1EDF40B100732195 /* SDWStatsListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3AD1EDF40B100732195 /* SDWStatsListHeaderView.swift */; };
 		F162E3B01EDF40C200732195 /* SDWStatsListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F162E3AF1EDF40C200732195 /* SDWStatsListHeaderView.xib */; };
 		F162E3B41EDF772B00732195 /* SDWMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3B31EDF772B00732195 /* SDWMapViewController.swift */; };
@@ -154,6 +156,8 @@
 		F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWBirdListTableViewCell.xib; sourceTree = "<group>"; };
 		F140C5E61EA2509C0099C592 /* SDWHomeTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWHomeTBC.swift; sourceTree = "<group>"; };
 		F140C5E81EA25C6F0099C592 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F1559F5B1EE929C200F69EA6 /* SDWDiaryListSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDiaryListSectionHeaderView.swift; sourceTree = "<group>"; };
+		F1559F5D1EE929D600F69EA6 /* SDWDiaryListSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWDiaryListSectionHeaderView.xib; sourceTree = "<group>"; };
 		F162E3AD1EDF40B100732195 /* SDWStatsListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWStatsListHeaderView.swift; sourceTree = "<group>"; };
 		F162E3AF1EDF40C200732195 /* SDWStatsListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWStatsListHeaderView.xib; sourceTree = "<group>"; };
 		F162E3B31EDF772B00732195 /* SDWMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWMapViewController.swift; sourceTree = "<group>"; };
@@ -387,6 +391,8 @@
 				F1140C711EE1FBE5006ABBBD /* SDWPinRow.swift */,
 				F104179C1ED5C82D00D2F3B1 /* SDWWeightItemRow.swift */,
 				F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */,
+				F1559F5B1EE929C200F69EA6 /* SDWDiaryListSectionHeaderView.swift */,
+				F1559F5D1EE929D600F69EA6 /* SDWDiaryListSectionHeaderView.xib */,
 				F1FBC2201EB54DA400D57ED0 /* SDWDiaryListTableViewCell.swift */,
 				F1FBC2211EB54DA400D57ED0 /* SDWDiaryListTableViewCell.xib */,
 			);
@@ -710,6 +716,7 @@
 			files = (
 				F1FA3B0F1EC219E700355507 /* Montserrat-Regular.ttf in Resources */,
 				F1FA3B321EC43E5800355507 /* SDWStatsItemCell.xib in Resources */,
+				F1559F5E1EE929D600F69EA6 /* SDWDiaryListSectionHeaderView.xib in Resources */,
 				F1FA3B101EC219E700355507 /* PasswordViewController.xib in Resources */,
 				F1FA3B0E1EC219E700355507 /* Montserrat-Light.otf in Resources */,
 				F1FA3B0D1EC219E700355507 /* Media.xcassets in Resources */,
@@ -956,6 +963,7 @@
 				F104179D1ED5C82D00D2F3B1 /* SDWWeightItemRow.swift in Sources */,
 				F1FA3B2A1EC3B8E600355507 /* SDWDiaryFood+CoreDataProperties.swift in Sources */,
 				F1FA3B1A1EC219E700355507 /* LoginCoordinator.swift in Sources */,
+				F1559F5C1EE929C200F69EA6 /* SDWDiaryListSectionHeaderView.swift in Sources */,
 				F1FA3AA21EC0863900355507 /* SDWDataStore.swift in Sources */,
 				F1FA3AB51EC0899800355507 /* SDWDiaryItem+CoreDataClass.swift in Sources */,
 				F1EE1F251EC5B70E00917993 /* SDWQuarryType+CoreDataProperties.swift in Sources */,

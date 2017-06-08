@@ -54,8 +54,13 @@ class SDWFoodItemViewController : FormViewController, TypedRowControllerType {
                 row.value =  currentItem?.amountEaten != nil ?  Int((currentItem?.amountEaten!)!)  : nil
                 row.tag = "eaten"
                 row.title = "Diet eaten"
+                row.add(rule: RuleRequired())
                 row.placeholder = "weight in gramms"
-                
+                row.cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.textLabel?.textColor = .red
+                    }
+                }
                 
                 
                 
@@ -71,19 +76,29 @@ class SDWFoodItemViewController : FormViewController, TypedRowControllerType {
                 $0.tag = "food"
                 $0.value = (self.currentItem?.food != nil) ? self.currentItem?.food : nil
                 $0.title = "Food"
+                $0.add(rule: RuleRequired())
                 $0.displayValueFor = { value in
                     return value?.name
                 }
                 
                 }.cellUpdate { cell, row in
                     row.options = self.dataStore.allFoods()
-        }
+                    if !row.isValid {
+                        cell.textLabel?.textColor = .red
+                    }
+                }
         
 
         
     }
     
     func tappedDone(_ sender: UIBarButtonItem){
+        
+        let errors = form.validate()
+        self.tableView.reloadData()
+        if (errors.count > 0) {
+            return
+        }
         
         let eatenRow: IntRow? = form.rowBy(tag: "eaten")
         let timeRow: DateTimeInlineRow? = form.rowBy(tag: "time")

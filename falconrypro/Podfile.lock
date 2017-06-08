@@ -19,7 +19,7 @@ PODS:
     - FBSDKCoreKit
   - ImageRow (2.0.0):
     - Eureka (= 3.0)
-  - Mapbox-iOS-SDK (3.5.2)
+  - Mapbox-iOS-SDK (3.5.4)
   - MiniTabBar (1.0.2)
   - Networking (3.0.3)
   - PKHUD (4.2.1)
@@ -42,7 +42,7 @@ DEPENDENCIES:
   - FastEasyMapping (~> 1.1)
   - FBSDKLoginKit (= 4.18.0)
   - ImageRow (from `https://github.com/EurekaCommunity/ImageRow.git`)
-  - Mapbox-iOS-SDK (~> 3.5)
+  - Mapbox-iOS-SDK (~> 3.5.4)
   - MiniTabBar
   - Networking
   - PKHUD (~> 4.0)
@@ -82,7 +82,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 8a372ab194b5c7c26355c1920ef52dbeb44bc222
   FBSDKLoginKit: 6773073e970b2b15fb12e451ce7f11da0532b880
   ImageRow: b90616c9e78d94523efd74c2658964eb49be6d5b
-  Mapbox-iOS-SDK: d0d58079e56e4eed4f0d8726afdbd49a76de8e5a
+  Mapbox-iOS-SDK: 81197829dcf4c4ed9a593b7a95462881b5f1309a
   MiniTabBar: 331db203a8d6b4b3c504f0978224f36f60125efc
   Networking: e2c42013296d093e4249f8247acb08e36958a11a
   PKHUD: 957ce2a68b3c97a51839b30216120c1dbc0c3a78
@@ -93,6 +93,6 @@ SPEC CHECKSUMS:
   UIEmptyState: b81840468b03d7be5b02114c239f5ac097dc935a
   Validator: b1793fbfd0046097551d0edd18e2c30792d69ef5
 
-PODFILE CHECKSUM: af64e7d98cc803a1e911d9b2bd22eb663b14ef29
+PODFILE CHECKSUM: 22e693f6d084b21f1306ea0aeeaa85be100ca2fe
 
 COCOAPODS: 1.2.1

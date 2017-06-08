@@ -122,7 +122,11 @@ class NetworkManager: NSObject {
                 arrFood.append(itm)
             }
             
-            dict["diary_foods_attributes"] = arrFood
+            if (arrFood.count > 0) {
+                dict["diary_foods_attributes"] = arrFood
+            } else {
+                dict["diary_foods_attributes"] = []
+            }
         }
         
         if let weights = weightItems {
@@ -133,7 +137,11 @@ class NetworkManager: NSObject {
                 arrWeight.append(itm)
             }
             
-            dict["diary_weights_attributes"] = arrWeight
+            if(arrWeight.count > 0) {
+                dict["diary_weights_attributes"] = arrWeight
+            } else {
+                dict["diary_weights_attributes"] = []
+            }
         }
         
         
@@ -145,7 +153,12 @@ class NetworkManager: NSObject {
                 arrPin.append(itm)
             }
             
-            dict["pin_items_attributes"] = arrPin
+            if (arrPin.count > 0) {
+                 dict["pin_items_attributes"] = arrPin
+            } else {
+                dict["pin_items_attributes"] = []
+            }
+           
         }
         
         
@@ -191,7 +204,12 @@ class NetworkManager: NSObject {
                 arrFood.append(itm)
             }
             
-            dict["diary_foods_attributes"] = arrFood
+            if (arrFood.count > 0) {
+                dict["diary_foods_attributes"] = arrFood
+            } else {
+                dict["diary_foods_attributes"] = []
+            }
+            
         }
         
         if let weights = weightItems {
@@ -201,8 +219,12 @@ class NetworkManager: NSObject {
                 let itm = ff.serialization()
                 arrWeight.append(itm)
             }
+            if(arrWeight.count > 0) {
+                dict["diary_weights_attributes"] = arrWeight
+            } else {
+                dict["diary_weights_attributes"] = []
+            }
             
-            dict["diary_weights_attributes"] = arrWeight
         }
         
         
@@ -214,7 +236,11 @@ class NetworkManager: NSObject {
                 arrPin.append(itm)
             }
             
-            dict["pin_items_attributes"] = arrPin
+            if (arrPin.count > 0) {
+                dict["pin_items_attributes"] = arrPin
+            } else {
+                dict["pin_items_attributes"] = []
+            }
         }
         
         networking.put("/diary_items/"+itemID, parameters: ["diary_item":dict])  { result in
