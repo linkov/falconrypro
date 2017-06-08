@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class SDWStatDetailContainerViewController: UIViewController, UIPageViewControllerDataSource {
+class SDWStatDetailContainerViewController: UIViewController, UIPageViewControllerDataSource,UIPageViewControllerDelegate {
 
     var pageController:UIPageViewController?
     
@@ -18,6 +18,9 @@ class SDWStatDetailContainerViewController: UIViewController, UIPageViewControll
     var combinedLineChartVC: SDWStatChartViewController?
     var lineChartVC: SDWStatChartViewController?
     var barChartVC: SDWStatChartViewController?
+    var currentIndex:Int?
+    
+    @IBOutlet weak var chartTimeControl: UISegmentedControl!
 
     
     override func viewDidLoad() {
@@ -37,6 +40,14 @@ class SDWStatDetailContainerViewController: UIViewController, UIPageViewControll
         self.combinedLineChartVC?.index = 2
         
         
+
+        
+//        chartFilterControl.insertSegment(withTitle: "week", at: 0, animated: false)
+//        chartFilterControl.insertSegment(withTitle: "month", at: 1, animated: false)
+//        chartFilterControl.insertSegment(withTitle: "season", at: 2, animated: false)
+//        
+//        
+//        self.navigationController?.navigationBar.navigationItem.titleView = chartFilterControl
         
         let allItems = self.dataStore.currentBird()?.currentDiaryItems()
         var points = [ChartDataEntry]()
@@ -52,7 +63,7 @@ class SDWStatDetailContainerViewController: UIViewController, UIPageViewControll
         }
         
         
-        self.lineChartVC?.setupWithChartType(type: .WeightChart,label: "Weight (lifetime)", dataPoints: points.sorted { $0.x < $1.x })
+        self.lineChartVC?.setupWithChartType(type: .WeightChart,label: "Weight", dataPoints: points.sorted { $0.x < $1.x })
         
   
         self.combinedLineChartVC?.setupWithChartType(type: .WeightChart,label: "Weight + Food", dataPoints: [])
@@ -72,6 +83,11 @@ class SDWStatDetailContainerViewController: UIViewController, UIPageViewControll
         self.view .addSubview((self.pageController?.view)!)
         self.pageController?.didMove(toParentViewController: self)
         
+        self.view.bringSubview(toFront: self.chartTimeControl)
+        
+        self.pageController?.delegate = self
+        
+        currentIndex = 0
         
         
     }
@@ -105,6 +121,14 @@ class SDWStatDetailContainerViewController: UIViewController, UIPageViewControll
     
 
     // MARK: UIPageViewControllerDataSource
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if completed {
+            if let currentViewController = pageViewController.viewControllers![0] as? SDWStatChartViewController {
+                currentIndex = currentViewController.index
+            }
+        }
+    }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
@@ -156,6 +180,13 @@ class SDWStatDetailContainerViewController: UIViewController, UIPageViewControll
         } else {
             return nil
         }
+    }
+    @IBAction func chartTimeControlDidChange(_ sender: UISegmentedControl) {
+        
+        let index:Int = sender.selectedSegmentIndex
+        let currentController:SDWPageable = self.viewControllerAtIndex(index: currentIndex!) as! SDWPageable
+        currentController.changeTimeframe(timeframe: ChartTimeFrame(rawValue: index)!)
+        
     }
 
 

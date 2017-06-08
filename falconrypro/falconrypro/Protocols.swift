@@ -16,4 +16,5 @@ import FastEasyMapping
 
 protocol SDWPageable {
     var index:NSInteger { get }
+    func changeTimeframe(timeframe:ChartTimeFrame) -> Void
 }

@@ -167,7 +167,7 @@
         <scene sceneID="KKZ-G3-6nO">
             <objects>
                 <navigationController storyboardIdentifier="BirdProfileEdit" id="tcw-iN-XCI" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ihw-4v-V0x">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Ihw-4v-V0x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -221,7 +221,7 @@
         <scene sceneID="E4h-4l-11o">
             <objects>
                 <navigationController storyboardIdentifier="StatsListNav" id="CVg-zS-hJg" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TiM-Xd-QpX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="TiM-Xd-QpX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -278,14 +278,40 @@
                         <viewControllerLayoutGuide type="bottom" id="Iah-up-d6c"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Qhg-AI-aIz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="taX-KP-YsT">
+                                <rect key="frame" x="184" y="327" width="299" height="29"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <segments>
+                                    <segment title="Week"/>
+                                    <segment title="Month"/>
+                                    <segment title="Season"/>
+                                    <segment title="Year"/>
+                                    <segment title="Life"/>
+                                </segments>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="chartTimeControlDidChange:" destination="XFf-KL-pYy" eventType="valueChanged" id="77G-WL-wDy"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Iah-up-d6c" firstAttribute="top" secondItem="taX-KP-YsT" secondAttribute="bottom" constant="20" id="4xn-CA-GfN"/>
+                            <constraint firstItem="taX-KP-YsT" firstAttribute="centerX" secondItem="Qhg-AI-aIz" secondAttribute="centerX" id="UOx-dN-061"/>
+                        </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="667" height="375"/>
+                    <connections>
+                        <outlet property="chartTimeControl" destination="taX-KP-YsT" id="JCf-mw-MIV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iPo-WN-AYL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6386" y="152"/>
+            <point key="canvasLocation" x="6863" y="141"/>
         </scene>
         <!--Stat Chart View Controller-->
         <scene sceneID="RwU-QY-Ink">
@@ -300,11 +326,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Gg-4i-dOG" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="79" width="667" height="296"/>
+                                <rect key="frame" x="0.0" y="50" width="667" height="325"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZv-pG-57j" customClass="HorizontalBarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="70" width="667" height="305"/>
+                                <rect key="frame" x="0.0" y="50" width="667" height="325"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCr-eR-Vt9">
@@ -319,10 +345,10 @@
                             <constraint firstItem="wZv-pG-57j" firstAttribute="leading" secondItem="fWE-am-YGC" secondAttribute="leading" id="4HK-Bf-8PB"/>
                             <constraint firstAttribute="trailing" secondItem="1Gg-4i-dOG" secondAttribute="trailing" id="JRL-Ny-Jfa"/>
                             <constraint firstItem="mCr-eR-Vt9" firstAttribute="centerX" secondItem="fWE-am-YGC" secondAttribute="centerX" id="PAp-02-UI9"/>
-                            <constraint firstItem="wZv-pG-57j" firstAttribute="top" secondItem="g4y-Dd-qKF" secondAttribute="bottom" constant="50" id="RHe-oZ-R7P"/>
+                            <constraint firstItem="wZv-pG-57j" firstAttribute="top" secondItem="g4y-Dd-qKF" secondAttribute="bottom" constant="30" id="RHe-oZ-R7P"/>
                             <constraint firstItem="5tJ-Bi-dbY" firstAttribute="top" secondItem="wZv-pG-57j" secondAttribute="bottom" id="RMD-12-aoU"/>
                             <constraint firstItem="1Gg-4i-dOG" firstAttribute="leading" secondItem="fWE-am-YGC" secondAttribute="leading" id="X2e-od-Mm9"/>
-                            <constraint firstItem="1Gg-4i-dOG" firstAttribute="top" secondItem="g4y-Dd-qKF" secondAttribute="bottom" constant="59" id="kZ2-rc-8Ge"/>
+                            <constraint firstItem="1Gg-4i-dOG" firstAttribute="top" secondItem="g4y-Dd-qKF" secondAttribute="bottom" constant="30" id="kZ2-rc-8Ge"/>
                             <constraint firstAttribute="trailing" secondItem="wZv-pG-57j" secondAttribute="trailing" id="lCZ-83-Gpc"/>
                             <constraint firstItem="5tJ-Bi-dbY" firstAttribute="top" secondItem="1Gg-4i-dOG" secondAttribute="bottom" id="rjY-X4-oig"/>
                             <constraint firstItem="mCr-eR-Vt9" firstAttribute="top" secondItem="g4y-Dd-qKF" secondAttribute="bottom" constant="20" id="w7Q-bB-Itw"/>
@@ -338,13 +364,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ELc-hD-vyA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7360.8000000000002" y="151.57421289355324"/>
+            <point key="canvasLocation" x="8094" y="152"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="btS-vb-iMU">
             <objects>
                 <navigationController storyboardIdentifier="MapNav" id="BFc-Wv-AtJ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ief-A4-UvG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Ief-A4-UvG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -401,7 +427,7 @@
         <scene sceneID="VFP-aU-MZG">
             <objects>
                 <navigationController storyboardIdentifier="SDWSettingsNav" id="L2q-7p-i72" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gy4-OZ-cNe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gy4-OZ-cNe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -436,7 +462,7 @@
         <scene sceneID="DNh-Vd-Iq3">
             <objects>
                 <navigationController storyboardIdentifier="SeasonEdit" id="Kz5-PJ-mPi" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="012-Jt-ciV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="012-Jt-ciV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -452,7 +478,7 @@
         <scene sceneID="O9E-Ha-nUf">
             <objects>
                 <navigationController storyboardIdentifier="DiaryListNav" id="Tfa-Zx-mvt" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eIf-l0-Qvs">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eIf-l0-Qvs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -530,7 +556,7 @@
         <scene sceneID="Q5G-4v-8Lt">
             <objects>
                 <navigationController id="Apd-Xo-FPZ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Mv-GK-ohS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8Mv-GK-ohS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

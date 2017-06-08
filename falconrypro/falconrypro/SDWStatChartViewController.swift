@@ -9,9 +9,14 @@
 import UIKit
 import Charts
 
+enum ChartTimeFrame: Int {
+    case week = 0,month, season, year, life
+}
+
 class SDWStatChartViewController: UIViewController, SDWPageable {
 
     var index: NSInteger = 0
+    var currentChart:CellChartType?
     
     @IBOutlet weak var mainLabel: UILabel!
     var mainLabelText:String?
@@ -38,6 +43,7 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
     public func setupWithChartType(type:CellChartType, label:String,dataPoints:[ChartDataEntry]) {
         
         self.mainLabelText = label
+        self.currentChart = type;
         
         switch type {
         case .WeightChart:
@@ -57,11 +63,32 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         }
     }
     
+    func changeTimeframe(timeframe:ChartTimeFrame) {
+        
+        switch self.currentChart! {
+        case .WeightChart:
+            //
+            break
+            
+        case .FoodWeight:
+            //
+            break
+            
+        case .QuerryChart:
+            //
+            break
+            
+        default: break
+            
+        }
+
+        
+    }
+    
 
     func setupWithWeightChart(dataPoints:[ChartDataEntry]) {
         
         self.view.sendSubview(toBack: self.barChart)
-        
         
         self.lineChart.leftAxis.enabled = true;
         self.lineChart.rightAxis.drawAxisLineEnabled = true;
@@ -149,6 +176,7 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
     }
     
     func setupWithBarChart(dataPoints:[ChartDataEntry]) {
+        
         
         self.view.sendSubview(toBack: self.lineChart)
         self.barChart.chartDescription?.enabled = false
