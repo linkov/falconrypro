@@ -64,6 +64,8 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         super.viewWillAppear(animated)
         self.lastSelectedItem = nil
         self.birdEditButton.setTitle(self.title, for: .normal)
+        self.birdEditButton.contentMode = .center
+        self.birdEditButton.imageView?.contentMode = .scaleAspectFit
         self.loadItems()
 
         
@@ -112,6 +114,17 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         
         let headerView = SDWDiaryListSectionHeaderView.loadFromXib()
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        let footerView:SDWDiaryListSectionFooterView = SDWDiaryListSectionFooterView.loadFromXib()
+        footerView.addButton.addTarget(self, action: #selector(addItem(_:)), for: .touchUpInside)
+        return footerView
     }
     
     
@@ -233,6 +246,18 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         birdEditVC?.bird = self.dataStore.currentBird()
         
         self.present(controller, animated: true, completion: nil)
+    }
+    
+    
+    func addItem(_ sender: Any) {
+        
+        
+        let controller:SDWDiaryItemViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemViewController") as! SDWDiaryItemViewController
+        controller.bird = self.bird
+        controller.title = "Past item"
+        self.navigationController?.pushViewController(controller, animated: true)
+        //
+        
     }
 
 }

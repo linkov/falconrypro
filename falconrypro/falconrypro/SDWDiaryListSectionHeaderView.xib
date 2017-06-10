@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,33 +16,35 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="total food given" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQ2-VE-6FS">
-                    <rect key="frame" x="113" y="16" width="95" height="21"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                    <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="food" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQ2-VE-6FS">
+                    <rect key="frame" x="79.5" y="20.5" width="22.5" height="12"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXh-LY-0jd">
-                    <rect key="frame" x="299" y="16" width="60" height="21"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                    <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="weight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3eh-qQ-Bcs">
+                    <rect key="frame" x="22" y="20" width="33.5" height="12"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="last weight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3eh-qQ-Bcs">
-                    <rect key="frame" x="16" y="16" width="83" height="21"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                    <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MO7-aD-46U" customClass="DottedLineView" customModule="falconrypro" customModuleProvider="target">
+                    <rect key="frame" x="66" y="28" width="2" height="24"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="K6n-3q-V8v"/>
+                        <constraint firstAttribute="width" constant="2" id="dPB-24-aA6"/>
+                    </constraints>
+                </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="FXh-LY-0jd" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="GBR-o3-dYq"/>
                 <constraint firstItem="3eh-qQ-Bcs" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="SQi-lv-774"/>
-                <constraint firstAttribute="trailing" secondItem="FXh-LY-0jd" secondAttribute="trailing" constant="16" id="aic-BK-c0d"/>
+                <constraint firstItem="MO7-aD-46U" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" constant="58" id="Tf8-MA-gMh"/>
                 <constraint firstItem="jQ2-VE-6FS" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="gmO-P7-EiC"/>
-                <constraint firstItem="jQ2-VE-6FS" firstAttribute="leading" secondItem="3eh-qQ-Bcs" secondAttribute="trailing" constant="14" id="pKh-Qx-wYJ"/>
-                <constraint firstItem="3eh-qQ-Bcs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="s9i-gg-fQy"/>
+                <constraint firstAttribute="bottom" secondItem="MO7-aD-46U" secondAttribute="bottom" id="iut-Er-iGJ"/>
+                <constraint firstItem="jQ2-VE-6FS" firstAttribute="leading" secondItem="3eh-qQ-Bcs" secondAttribute="trailing" constant="24" id="pKh-Qx-wYJ"/>
+                <constraint firstItem="3eh-qQ-Bcs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="22" id="s9i-gg-fQy"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>

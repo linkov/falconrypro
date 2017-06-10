@@ -105,6 +105,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SDWebImage/SDWebImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Sparrow/Sparrow.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftDate/SwiftDate.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UICountingLabel/UICountingLabel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIEmptyState/UIEmptyState.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Validator/Validator.framework"
 fi
@@ -124,6 +125,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SDWebImage/SDWebImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Sparrow/Sparrow.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftDate/SwiftDate.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UICountingLabel/UICountingLabel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIEmptyState/UIEmptyState.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Validator/Validator.framework"
 fi

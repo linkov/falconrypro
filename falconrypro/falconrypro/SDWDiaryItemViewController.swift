@@ -33,8 +33,6 @@ class SDWDiaryItemViewController: FormViewController {
         
         if(self.diaryItem != nil) {
             self.title = self.diaryItem?.created
-        } else {
-            self.title = "Today"
         }
         
         
@@ -63,9 +61,9 @@ class SDWDiaryItemViewController: FormViewController {
                                 section.multivaluedRowToInsertAt = { index in
                                     return SDWWeightItemRow(){
                                         $0.tag = "\(index+1)_newweightitem"
-                                        $0.title = "Weight"
+                                        $0.title = ""
                                         $0.displayValueFor = { value in
-                                            return  "\(value?.timeString ?? "")"
+                                            return  "\(value?.weight ?? 0) grm. - \(value?.timeString ?? "")"
                                             
                                         }
                                         
@@ -80,10 +78,7 @@ class SDWDiaryItemViewController: FormViewController {
                                         section <<< SDWWeightItemRow() {
                                             $0.tag = "\(index+1)_weightitem"
                                             $0.value = weightItem
-                                            $0.title = "Weight"
-                                            $0.displayValueFor = { value in
-                                                return  "\(value?.timeString ?? "")"
-                                            }
+                                            $0.title = "\($0.value?.weight ?? 0) grm. - \($0.value?.timeString ?? "")"
                                             
                                         }
                                         
@@ -103,9 +98,9 @@ class SDWDiaryItemViewController: FormViewController {
                                 section.multivaluedRowToInsertAt = { index in
                                     return SDWFoodItemRow(){
                                         $0.tag = "\(index+1)_newfooditem"
-                                        $0.title = "Food"
+                                        $0.title = ""
                                         $0.displayValueFor = { value in
-                                            return value?.timeString
+                                            return  "\(value?.amountEaten ?? 0) grm. - \(value?.timeString ?? "")"
                                         }
                                         
                                     }
@@ -119,10 +114,7 @@ class SDWDiaryItemViewController: FormViewController {
                                         section <<< SDWFoodItemRow() {
                                             $0.tag = "\(index+1)_fooditem"
                                             $0.value = foodItem
-                                            $0.title = "Food"
-                                            $0.displayValueFor = { value in
-                                                return  value?.timeString
-                                            }
+                                            $0.title = "\($0.value?.amountEaten ?? 0) grm. - \($0.value?.timeString ?? "")"
                                             
                                         }
                                         

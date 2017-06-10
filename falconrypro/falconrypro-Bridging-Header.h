@@ -14,3 +14,4 @@
 
 #import <FastEasyMapping/FastEasyMapping.h>
 #import "FEMAttribute+listsAttributes.h"
+#import <UICountingLabel/UICountingLabel.h>

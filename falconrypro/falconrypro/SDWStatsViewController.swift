@@ -36,11 +36,16 @@ class SDWStatsViewController: UIViewController, UITableViewDataSource, UITableVi
         headerView?.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300)
             
         self.tableView.tableHeaderView = self.headerView
-        self.tableView.backgroundColor = UIColor.groupTableViewBackground
+        
+
         
 
     }
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.headerView?.animateLabels()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

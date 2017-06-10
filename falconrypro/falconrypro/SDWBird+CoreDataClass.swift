@@ -30,7 +30,9 @@ public class SDWBird: NSManagedObject, SDWObjectMapping {
         mapping.addAttribute(withProperty: "thumbURL", keyPath: "thumb")
         mapping.addAttribute(withProperty: "fatWeight", keyPath: "fat_weight")
         mapping.addAttribute(withProperty: "huntingWeight", keyPath: "hunting_weight")
-        mapping.addAttribute(FEMAttribute.bdayDateAttribute(withProperty: "birthday", keyPath: "birthday"))
+        mapping.addAttribute(FEMAttribute.bdayDateAttribute(withProperty: "dead", keyPath: "dead"))
+        mapping.addAttribute(FEMAttribute.bdayDateAttribute(withProperty: "wasDeleted", keyPath: "deleted"))
+        mapping.addAttribute(FEMAttribute.bdayDateAttribute(withProperty: "sold", keyPath: "sold"))
         
         let userMapping:FEMMapping = FEMMapping(entityName: "SDWUser")
         userMapping.primaryKey = "remoteID"

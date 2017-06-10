@@ -43,7 +43,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     
     private func createCustomItemTabBar() {
         var items = [MiniTabBarItem]()
-        items.append(MiniTabBarItem(title: "Diary", icon: #imageLiteral(resourceName: "journal")))
+        items.append(MiniTabBarItem(title: "Diary", icon: #imageLiteral(resourceName: "activity")))
         
         
         hmButton.backgroundColor = UIColor.white
@@ -52,7 +52,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         hmButton.layer.borderWidth = 1;
         hmButton.layer.borderColor = UIColor.black.cgColor
         hmButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
-        hmButton.setTitle("HM", for: .normal)
+        hmButton.setImage(#imageLiteral(resourceName: "target"), for: .normal)
         hmButton.setTitleColor(UIColor.black, for: .normal)
         hmButton.imageView?.contentMode = .scaleAspectFit
         hmButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
@@ -60,13 +60,13 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         customItem.selectable = false
         
         
-        items.append(MiniTabBarItem(title: "Stats", icon: #imageLiteral(resourceName: "stats")))
+        items.append(MiniTabBarItem(title: "Stats", icon: #imageLiteral(resourceName: "pie-chart")))
         
         items.append(customItem)
         
 
         
-        items.append(MiniTabBarItem(title: "Activity", icon: #imageLiteral(resourceName: "map")))
+        items.append(MiniTabBarItem(title: "Activity", icon: #imageLiteral(resourceName: "map-pin")))
         items.append(MiniTabBarItem(title: "Settings", icon: #imageLiteral(resourceName: "settings")))
         
         let tabBar = MiniTabBar(items: items)
@@ -315,6 +315,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         
         let controller:SDWDiaryItemViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemViewController") as! SDWDiaryItemViewController
         controller.bird = bird
+        controller.title = "Today"
         if (self.diaryListVC?.existingTodayItem != nil) {
             controller.diaryItem = self.diaryListVC?.existingTodayItem
         }

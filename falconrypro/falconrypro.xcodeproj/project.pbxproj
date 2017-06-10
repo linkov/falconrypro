@@ -54,6 +54,9 @@
 		F1D2608D1EB3BF3E006D1BE9 /* SDWHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2608C1EB3BF3E006D1BE9 /* SDWHomeViewController.swift */; };
 		F1EE1F241EC5B70E00917993 /* SDWQuarryType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EE1F221EC5B70E00917993 /* SDWQuarryType+CoreDataClass.swift */; };
 		F1EE1F251EC5B70E00917993 /* SDWQuarryType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EE1F231EC5B70E00917993 /* SDWQuarryType+CoreDataProperties.swift */; };
+		F1EF43A71EEC624600E0ABBA /* SDWDiaryListSectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EF43A61EEC624600E0ABBA /* SDWDiaryListSectionFooterView.swift */; };
+		F1EF43A91EEC625300E0ABBA /* SDWDiaryListSectionFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1EF43A81EEC625300E0ABBA /* SDWDiaryListSectionFooterView.xib */; };
+		F1EF43AB1EEC64D600E0ABBA /* DottedLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EF43AA1EEC64D600E0ABBA /* DottedLineView.swift */; };
 		F1FA3A961EBFFE4300355507 /* DataModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3A951EBFFE4300355507 /* DataModelManager.swift */; };
 		F1FA3AA21EC0863900355507 /* SDWDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AA11EC0863900355507 /* SDWDataStore.swift */; };
 		F1FA3AAF1EC0899800355507 /* SDWBirdType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA3AA31EC0899800355507 /* SDWBirdType+CoreDataClass.swift */; };
@@ -188,6 +191,9 @@
 		F1D2608C1EB3BF3E006D1BE9 /* SDWHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWHomeViewController.swift; sourceTree = "<group>"; };
 		F1EE1F221EC5B70E00917993 /* SDWQuarryType+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWQuarryType+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F1EE1F231EC5B70E00917993 /* SDWQuarryType+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWQuarryType+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F1EF43A61EEC624600E0ABBA /* SDWDiaryListSectionFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDiaryListSectionFooterView.swift; sourceTree = "<group>"; };
+		F1EF43A81EEC625300E0ABBA /* SDWDiaryListSectionFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWDiaryListSectionFooterView.xib; sourceTree = "<group>"; };
+		F1EF43AA1EEC64D600E0ABBA /* DottedLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DottedLineView.swift; sourceTree = "<group>"; };
 		F1FA3A951EBFFE4300355507 /* DataModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModelManager.swift; sourceTree = "<group>"; };
 		F1FA3A9F1EC070FB00355507 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		F1FA3AA11EC0863900355507 /* SDWDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDataStore.swift; sourceTree = "<group>"; };
@@ -392,6 +398,8 @@
 				F104179C1ED5C82D00D2F3B1 /* SDWWeightItemRow.swift */,
 				F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */,
 				F1559F5B1EE929C200F69EA6 /* SDWDiaryListSectionHeaderView.swift */,
+				F1EF43A61EEC624600E0ABBA /* SDWDiaryListSectionFooterView.swift */,
+				F1EF43A81EEC625300E0ABBA /* SDWDiaryListSectionFooterView.xib */,
 				F1559F5D1EE929D600F69EA6 /* SDWDiaryListSectionHeaderView.xib */,
 				F1FBC2201EB54DA400D57ED0 /* SDWDiaryListTableViewCell.swift */,
 				F1FBC2211EB54DA400D57ED0 /* SDWDiaryListTableViewCell.xib */,
@@ -511,6 +519,7 @@
 		F1FA3AEB1EC219E700355507 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				F1EF43AA1EEC64D600E0ABBA /* DottedLineView.swift */,
 				F1FA3AEC1EC219E700355507 /* LoginKit */,
 			);
 			path = Vendor;
@@ -721,6 +730,7 @@
 				F1FA3B0E1EC219E700355507 /* Montserrat-Light.otf in Resources */,
 				F1FA3B0D1EC219E700355507 /* Media.xcassets in Resources */,
 				F1FA3ABB1EC08C6700355507 /* DataModel.xcdatamodeld in Resources */,
+				F1EF43A91EEC625300E0ABBA /* SDWDiaryListSectionFooterView.xib in Resources */,
 				F1CB9CCF1E9905C900A90363 /* LaunchScreen.storyboard in Resources */,
 				F1CB9CCC1E9905C900A90363 /* Assets.xcassets in Resources */,
 				F1FA3B0B1EC219E700355507 /* InitialViewController.xib in Resources */,
@@ -929,6 +939,7 @@
 				F162E3AE1EDF40B100732195 /* SDWStatsListHeaderView.swift in Sources */,
 				F1AD8B6F1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift in Sources */,
 				F1FA3ABA1EC0899800355507 /* SDWBird+CoreDataProperties.swift in Sources */,
+				F1EF43AB1EEC64D600E0ABBA /* DottedLineView.swift in Sources */,
 				F1FA3AB61EC0899800355507 /* SDWDiaryItem+CoreDataProperties.swift in Sources */,
 				F1FA3AB81EC0899800355507 /* SDWUser+CoreDataProperties.swift in Sources */,
 				F1140C701EE1F959006ABBBD /* CustomCells.swift in Sources */,
@@ -937,6 +948,7 @@
 				F1FA3B211EC219E700355507 /* UIViewController+Nib.swift in Sources */,
 				F1FA3A961EBFFE4300355507 /* DataModelManager.swift in Sources */,
 				F1FA3B201EC219E700355507 /* UITextField+fixCaretPosition.swift in Sources */,
+				F1EF43A71EEC624600E0ABBA /* SDWDiaryListSectionFooterView.swift in Sources */,
 				F1FA3AE91EC0B55400355507 /* FEMAttribute+listsAttributes.m in Sources */,
 				F1FBC2221EB54DA500D57ED0 /* SDWDiaryListTableViewCell.swift in Sources */,
 				F1FA3B2E1EC43CEE00355507 /* SDWStatsViewController.swift in Sources */,

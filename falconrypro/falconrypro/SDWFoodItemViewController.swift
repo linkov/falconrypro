@@ -87,7 +87,7 @@ class SDWFoodItemViewController : FormViewController, TypedRowControllerType {
                 }
                 
                 }.cellUpdate { cell, row in
-                    row.options = self.dataStore.allFoods()
+                    row.options = self.dataStore.allFoods().sorted { $0.popular && !$1.popular }
                     if !row.isValid {
                         cell.textLabel?.textColor = .red
                     }

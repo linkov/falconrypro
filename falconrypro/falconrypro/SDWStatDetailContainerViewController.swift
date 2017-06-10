@@ -42,12 +42,7 @@ class SDWStatDetailContainerViewController: UIViewController, UIPageViewControll
         
 
         
-//        chartFilterControl.insertSegment(withTitle: "week", at: 0, animated: false)
-//        chartFilterControl.insertSegment(withTitle: "month", at: 1, animated: false)
-//        chartFilterControl.insertSegment(withTitle: "season", at: 2, animated: false)
-//        
-//        
-//        self.navigationController?.navigationBar.navigationItem.titleView = chartFilterControl
+
         
         let allItems = self.dataStore.currentBird()?.currentDiaryItems()
         var points = [ChartDataEntry]()
@@ -68,12 +63,7 @@ class SDWStatDetailContainerViewController: UIViewController, UIPageViewControll
   
         self.combinedLineChartVC?.setupWithChartType(type: .WeightChart,label: "Weight + Food", dataPoints: [])
         
-//        
-//        let bar1:BarChartDataEntry = BarChartDataEntry(x: 10, y: 2)
-//        let bar2:BarChartDataEntry = BarChartDataEntry(x: 20, y: 4)
-//        let bar3:BarChartDataEntry = BarChartDataEntry(x: 30, y: 10)
-//        
-//        self.barChartVC?.setupWithChartType(type: .QuerryChart,label: "Top 3 kills", dataPoints: [bar1,bar2,bar3])
+
         
         
         self.pageController?.setViewControllers([self.lineChartVC!], direction:.forward, animated: false, completion: nil)

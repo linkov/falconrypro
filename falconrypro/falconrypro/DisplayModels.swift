@@ -22,7 +22,7 @@ class DiaryWeightItemDisplayItem: NSObject {
         self.weight = weight
         self.time = time
         timeFormatter.dateStyle = .none
-        timeFormatter.timeStyle = .medium
+        timeFormatter.dateFormat = "H:mm"
         self.timeString = timeFormatter.string(from: self.time!)
     }
     
@@ -33,7 +33,7 @@ class DiaryWeightItemDisplayItem: NSObject {
         self.remoteID = self.model?.remoteID!
         
         timeFormatter.dateStyle = .none
-        timeFormatter.timeStyle = .medium
+        timeFormatter.dateFormat = "H:mm"
         self.timeString = timeFormatter.string(from: self.time!)
     }
     
@@ -63,7 +63,7 @@ class DiaryFoodItemDisplayItem: NSObject {
         self.food = food
         self.time = time
         timeFormatter.dateStyle = .none
-        timeFormatter.timeStyle = .medium
+        timeFormatter.dateFormat = "H:mm"
         self.timeString = timeFormatter.string(from: self.time!)
     }
     
@@ -75,7 +75,7 @@ class DiaryFoodItemDisplayItem: NSObject {
         }
         
         timeFormatter.dateStyle = .none
-        timeFormatter.timeStyle = .medium
+        timeFormatter.dateFormat = "H:mm"
         
         self.time = self.model?.time! as! Date
         self.timeString = timeFormatter.string(from: self.time!)
@@ -99,6 +99,7 @@ class DiaryFoodItemDisplayItem: NSObject {
 class FoodDisplayItem: NSObject, SearchableItem {
     var remoteID:String
     var name:String?
+    var popular:Bool = false
     public private(set) var model:SDWFood
     
     
@@ -109,6 +110,7 @@ class FoodDisplayItem: NSObject, SearchableItem {
     init(model:SDWFood) {
         self.model = model
         self.name = self.model.name
+        self.popular = self.model.popular
         self.remoteID = self.model.remoteID!
     }
     
@@ -287,7 +289,10 @@ class BirdDisplayItem: NSObject {
         self.current = self.model.current
         self.name = model.name
         self.gender = (self.sex == true) ? "Male" : "Female"
-        self.birthdayString = self.birthdayDateFormatter.string(from: self.birthday!)
+        if (self.birthday != nil) {
+            self.birthdayString = self.birthdayDateFormatter.string(from: self.birthday!)
+        }
+        
         
         
         
@@ -408,7 +413,7 @@ class DiaryItemDisplayItem: NSObject {
     init(model:SDWDiaryItem) {
         
         dateFormatter.timeStyle = .none
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateStyle = .medium
         
         self.model = model
         self.remoteID = model.remoteID!

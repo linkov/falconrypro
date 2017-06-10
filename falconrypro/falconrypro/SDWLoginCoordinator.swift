@@ -45,7 +45,7 @@ class SDWLoginCoordinator: LoginCoordinator {
         // Customize LoginKit. All properties have defaults, only set the ones you want.
         
         // Customize the look with background & logo images
-        backgroundImage = #imageLiteral(resourceName: "f3")
+        backgroundImage = #imageLiteral(resourceName: "newno2")
         // mainLogoImage =
         // secondaryLogoImage =
         

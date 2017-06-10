@@ -2,7 +2,7 @@
 //  SDWBird+CoreDataProperties.swift
 //  falconrypro
 //
-//  Created by Alex Linkov on 5/30/17.
+//  Created by Alex Linkov on 6/10/17.
 //  Copyright © 2017 SDWR. All rights reserved.
 //
 
@@ -18,6 +18,7 @@ extension SDWBird {
 
     @NSManaged public var birthday: NSDate?
     @NSManaged public var code: String?
+    @NSManaged public var current: Bool
     @NSManaged public var fatWeight: Int16
     @NSManaged public var huntingWeight: Int16
     @NSManaged public var imageURL: String?
@@ -25,7 +26,9 @@ extension SDWBird {
     @NSManaged public var name: String?
     @NSManaged public var remoteID: String?
     @NSManaged public var thumbURL: String?
-    @NSManaged public var current: Bool
+    @NSManaged public var dead: NSDate?
+    @NSManaged public var sold: NSDate?
+    @NSManaged public var wasDeleted: NSDate?
     @NSManaged public var diaryItems: NSSet?
     @NSManaged public var owner: SDWUser?
     @NSManaged public var seasons: NSSet?

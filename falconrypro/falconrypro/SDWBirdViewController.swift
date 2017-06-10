@@ -13,6 +13,12 @@ import Networking
 import SDWebImage
 import PKHUD
 
+
+enum ButtonAlertType: Int {
+    case delete,kill,sell
+}
+
+
 class SDWBirdViewController: FormViewController {
     
     let networking = Networking(baseURL: Constants.server.BASEURL)
@@ -54,7 +60,13 @@ class SDWBirdViewController: FormViewController {
             
         }, fetchedData: {(objects, error) in
             
-            self.birdtypes = objects as! [BirdTypeDisplayItem]
+            guard let data = objects, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            
+            self.birdtypes = data as! [BirdTypeDisplayItem]
+            self.birdtypes = self.birdtypes.sorted { $0.isPopular && !$1.isPopular }
             self.form.sectionBy(tag:"species")?.reload()
         })
         
@@ -272,8 +284,51 @@ class SDWBirdViewController: FormViewController {
                         row.options = self.birdtypes
                         }
 
-             self.selectSegmentForBirdtypes()
-            self.updateImageRow()
+        
+        
+                +++ Section("Bird management")
+
+        
+                <<< ButtonRow() { (row: ButtonRow) -> Void in
+                    row.title = "MARK DEAD"
+                    row.cell.tintColor = .black
+                    row.cell.preservesSuperviewLayoutMargins = false
+                    row.cell.separatorInset = UIEdgeInsets.zero
+                    row.cell.layoutMargins = UIEdgeInsets.zero
+
+                    }
+                    .onCellSelection { [weak self] (cell, row) in
+                        self?.showButtonAlert(alertType: .kill)
+        }
+                
+        
+                <<< ButtonRow() { (row: ButtonRow) -> Void in
+                    row.title = "MARK SOLD"
+                    row.cell.tintColor = .black
+                    row.cell.preservesSuperviewLayoutMargins = false
+                    row.cell.separatorInset = UIEdgeInsets.zero
+                    row.cell.layoutMargins = UIEdgeInsets.zero
+
+                    }
+                    .onCellSelection { [weak self] (cell, row) in
+                        self?.showButtonAlert(alertType: .sell)
+        }
+                
+                <<< ButtonRow() { (row: ButtonRow) -> Void in
+                    row.title = "DELETE"
+                    row.cell.tintColor = .red
+                    row.cell.preservesSuperviewLayoutMargins = false
+                    row.cell.separatorInset = UIEdgeInsets.zero
+                    row.cell.layoutMargins = UIEdgeInsets.zero
+
+                    }
+                    .onCellSelection { [weak self] (cell, row) in
+                        self?.showButtonAlert(alertType: .delete)
+        }
+        
+        
+        self.selectSegmentForBirdtypes()
+        self.updateImageRow()
         
         
         
@@ -282,6 +337,47 @@ class SDWBirdViewController: FormViewController {
         
         
     
+    }
+    
+    
+    func showButtonAlert(alertType:ButtonAlertType) {
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        switch alertType {
+        case .delete:
+            let alertController = UIAlertController(title: "Delete the bird", message: "Please confirm this action, this can not be undone bla bla bla", preferredStyle: .actionSheet)
+            let defaultAction = UIAlertAction(title: "DELETE", style: .destructive, handler: { (action) in
+                
+                self.deleteBird()
+            })
+            alertController.addAction(defaultAction)
+            alertController.addAction(cancelAction)
+            present(alertController, animated: true)
+            break
+        case .sell:
+            break
+        case .kill:
+            break
+        default:
+            break
+        }
+        
+
+    }
+    
+    
+    func deleteBird() {
+        print("delete called")
+        
+    }
+    
+    func toggleMarkBirdSold() {
+        
+    }
+    
+    func toggleMarkBirdDead() {
+        
     }
     
     func updateImageRow() {
@@ -461,46 +557,7 @@ class SDWBirdViewController: FormViewController {
     }
     
 
-    
-//    func loadBirdTypes() {
-//        
-//        let token = UserDefaults.standard.value(forKey: "access-token")
-//        let expires = UserDefaults.standard.value(forKey: "expiry")
-//        let client = UserDefaults.standard.value(forKey: "client")
-//        let uid = UserDefaults.standard.value(forKey: "uid")
-//        
-//        var array = [TypeDisplayItem]()
-//        
-//        networking.headerFields = ["access-token": token as! String,"client":client as! String,"uid":uid as! String,"expiry":expires as! String]
-//        
-//        
-//        networking.get("/bird_types")  { result in
-//          
-//            switch result {
-//            case .success(let response):
-//
-//                for item in response.arrayBody {
-//                    
-//                    let object = TypeDisplayItem()
-//                    object.name = item["name"] as? String
-//                    object.latin = item["latin"] as? String
-//                    object.model = item
-//        
-//                    
-//                    array.append(object)
-//                    
-//                    
-//                }
-//                self.birdtypes = array
-//                self.form.sectionBy(tag:"species")?.reload()
-//                
-//            case .failure(let response):
-//                print(response)
-//            }
-//            
-//        }
-//        
-//    }
+
     
     func updateBird() {
         

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SDWDiaryListSectionFooterView" customModule="falconrypro" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" alpha="0.40000000000000002" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mol-i3-6bs">
+                    <rect key="frame" x="179.5" y="18.5" width="15" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="15" id="CMT-lB-AwV"/>
+                        <constraint firstAttribute="height" constant="15" id="Ivd-0m-bED"/>
+                    </constraints>
+                    <state key="normal" image="plus-square"/>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCR-cy-xBs" customClass="DottedLineView" customModule="falconrypro" customModuleProvider="target">
+                    <rect key="frame" x="66" y="0.0" width="2" height="32"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="2" id="UvS-43-nWg"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="mol-i3-6bs" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="AZP-C6-CdZ"/>
+                <constraint firstItem="lCR-cy-xBs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" constant="58" id="B8X-sM-dvc"/>
+                <constraint firstItem="mol-i3-6bs" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Uyt-gN-21c"/>
+                <constraint firstAttribute="bottom" secondItem="lCR-cy-xBs" secondAttribute="bottom" constant="20" id="WeW-cy-pd4"/>
+                <constraint firstItem="lCR-cy-xBs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="X5w-sk-hP1"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="addButton" destination="mol-i3-6bs" id="Ydr-LM-nUv"/>
+                <outlet property="dottedView" destination="lCR-cy-xBs" id="vtk-WL-h3b"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="54"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="plus-square" width="20" height="20"/>
+    </resources>
+</document>

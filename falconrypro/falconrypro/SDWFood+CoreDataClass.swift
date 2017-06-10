@@ -24,6 +24,7 @@ public class SDWFood: NSManagedObject, SDWObjectMapping {
         mapping.primaryKey = "remoteID";
         mapping.addAttribute(FEMAttribute.falconryID())
         mapping.addAttribute(withProperty: "name", keyPath: "name")
+        mapping.addAttribute(withProperty: "popular", keyPath: "popular")
         
         return mapping
     }
