@@ -25,7 +25,7 @@ class SDWStatsViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Stats"
+        self.title = "Trends"
         let nibName = UINib(nibName: "SDWStatsItemCell", bundle:nil)
         self.tableView.register(nibName, forCellReuseIdentifier:"SCell")
         
@@ -71,7 +71,7 @@ class SDWStatsViewController: UIViewController, UITableViewDataSource, UITableVi
         if (indexPath.row == 0) {
             
 
-            cell.setupWithLink(text: "Show detailed stats")
+            cell.setupWithLink(text: "Show detailed data")
            
         } else if (indexPath.row == 1) {
             

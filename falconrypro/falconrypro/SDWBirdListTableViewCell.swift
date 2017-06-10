@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import BadgeSwift
 
 class SDWBirdListTableViewCell: UITableViewCell {
-
+    
+    var context = CIContext(options: nil)
+    @IBOutlet weak var badgeLabel: BadgeSwift!
     @IBOutlet weak var birdImage: UIImageView!
     @IBOutlet weak var subLabel: UILabel!
     @IBOutlet weak var mainLabel: UILabel!
@@ -22,6 +25,34 @@ class SDWBirdListTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    public func noirUpImage() {
+        
+        if (birdImage.image == nil) {
+            return
+        }
+        
+        var inputImage = CIImage(image: birdImage.image!)
+        let options:[String : AnyObject] = [CIDetectorImageOrientation:1 as AnyObject]
+        let filters = inputImage!.autoAdjustmentFilters(options: options)
+        
+        for filter: CIFilter in filters {
+            filter.setValue(inputImage, forKey: kCIInputImageKey)
+            inputImage =  filter.outputImage
+        }
+        let cgImage = context.createCGImage(inputImage!, from: inputImage!.extent)
+        self.birdImage.image =  UIImage(cgImage: cgImage!)
+        
+        //Apply noir Filter
+        let currentFilter = CIFilter(name: "CIPhotoEffectTonal")
+        currentFilter!.setValue(CIImage(image: UIImage(cgImage: cgImage!)), forKey: kCIInputImageKey)
+        
+        let output = currentFilter!.outputImage
+        let cgimg = context.createCGImage(output!, from: output!.extent)
+        let processedImage = UIImage(cgImage: cgimg!)
+        birdImage.image = processedImage
+    
     }
     
 }

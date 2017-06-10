@@ -23,7 +23,7 @@ class SDWSeasonListViewController: UITableViewController {
         
         self.title = "Seasons"
         
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
+        let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "plus-square"), style: .plain, target: self, action: #selector(insertNewObject(_:)))
         addButton.tintColor = UIColor.black
         self.navigationItem.rightBarButtonItem = addButton
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -38,6 +38,8 @@ class SDWSeasonListViewController: UITableViewController {
             self.present(controller, animated: false, completion: nil)
         }
         
+        let nibName = UINib(nibName: "SDWSeasonListCell", bundle:nil)
+        self.tableView.register(nibName, forCellReuseIdentifier:"SCell")
         
     }
     
@@ -86,7 +88,7 @@ class SDWSeasonListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 170
+        return 200
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,17 +97,24 @@ class SDWSeasonListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "SeasonCell")!
-        
+
+        let cell:SDWSeasonListCell = tableView.dequeueReusableCell(withIdentifier: "SCell", for: indexPath) as! SDWSeasonListCell
+        cell.tintColor = .black
         let object:SeasonDisplayItem = objects[indexPath.row]
         
         if (object.isBetweenSeason == false) {
-            cell.textLabel?.text = "Hunting season" + ((object.current == true) ? " active" : "")
+            cell.mainLabel?.text = "Hunting season"
         } else{
-            cell.textLabel?.text = "In Between season" + ((object.current == true) ? " active" : "")
+            cell.mainLabel?.text = "In Between season"
         }
         
-        cell.detailTextLabel?.text = object.startDateString! + " - " + object.endDateString!
+        cell.timeLabel?.text = object.startDateString! + " - " + object.endDateString!
+        
+        if (object.current == true) {
+            cell.activeBadge.isHidden = false
+        } else {
+            cell.activeBadge.isHidden = true
+        }
         
         
         

@@ -60,7 +60,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         customItem.selectable = false
         
         
-        items.append(MiniTabBarItem(title: "Stats", icon: #imageLiteral(resourceName: "pie-chart")))
+        items.append(MiniTabBarItem(title: "Trends", icon: #imageLiteral(resourceName: "pie-chart")))
         
         items.append(customItem)
         

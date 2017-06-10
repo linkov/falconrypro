@@ -76,6 +76,8 @@ class SDWBirdViewController: FormViewController {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
         cancelButton.tintColor = UIColor.black
         
+        let nibName = UINib(nibName: "SDWBirdListCell", bundle:nil)
+        self.tableView.register(nibName, forCellReuseIdentifier:"BCell")
 
         
         birthdayDateFormatter.dateStyle = .none

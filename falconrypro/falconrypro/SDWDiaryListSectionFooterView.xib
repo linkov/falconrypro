@@ -16,12 +16,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" alpha="0.40000000000000002" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mol-i3-6bs">
+                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mol-i3-6bs">
                     <rect key="frame" x="179.5" y="18.5" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="15" id="CMT-lB-AwV"/>
                         <constraint firstAttribute="height" constant="15" id="Ivd-0m-bED"/>
                     </constraints>
+                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" image="plus-square"/>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCR-cy-xBs" customClass="DottedLineView" customModule="falconrypro" customModuleProvider="target">

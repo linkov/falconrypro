@@ -16,8 +16,8 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JSn-fU-92P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
                             <outlet property="dataSource" destination="1sj-mz-z9I" id="dhw-kU-7ne"/>
                             <outlet property="delegate" destination="1sj-mz-z9I" id="zaM-YT-XC2"/>
@@ -39,7 +39,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8P0-qW-4gp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="SeasonCell" textLabel="v2U-Mq-bgI" detailTextLabel="8cN-Ah-IAX" style="IBUITableViewCellStyleSubtitle" id="22l-wL-Eoc">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -233,7 +233,7 @@
             </objects>
             <point key="canvasLocation" x="4641" y="141"/>
         </scene>
-        <!--Stats-->
+        <!--Trends-->
         <scene sceneID="Ku9-Cq-KZv">
             <objects>
                 <viewController storyboardIdentifier="SDWStatsViewController" id="zCa-tB-QhU" customClass="SDWStatsViewController" customModule="falconrypro" customModuleProvider="target" sceneMemberID="viewController">
@@ -259,8 +259,8 @@
                             <constraint firstItem="MTa-3R-cvE" firstAttribute="leading" secondItem="f3h-bR-5nm" secondAttribute="leading" id="rBK-iQ-ftQ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Stats" id="zfL-BR-FfQ"/>
-                    <navigationItem key="navigationItem" title="Stats" id="lnl-M6-AfL"/>
+                    <tabBarItem key="tabBarItem" title="Trends" id="zfL-BR-FfQ"/>
+                    <navigationItem key="navigationItem" title="Trends" id="lnl-M6-AfL"/>
                     <connections>
                         <outlet property="tableView" destination="MTa-3R-cvE" id="Hmo-Bh-6HR"/>
                     </connections>
@@ -283,7 +283,6 @@
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="taX-KP-YsT">
                                 <rect key="frame" x="214" y="327" width="239" height="29"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <segments>
                                     <segment title="Week"/>
                                     <segment title="Month"/>
@@ -329,12 +328,12 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZv-pG-57j" customClass="HorizontalBarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="50" width="667" height="325"/>
+                                <rect key="frame" x="0.0" y="55" width="667" height="320"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCr-eR-Vt9">
-                                <rect key="frame" x="312" y="30" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="315" y="30" width="37.5" height="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -344,7 +343,7 @@
                             <constraint firstItem="wZv-pG-57j" firstAttribute="leading" secondItem="fWE-am-YGC" secondAttribute="leading" id="4HK-Bf-8PB"/>
                             <constraint firstAttribute="trailing" secondItem="1Gg-4i-dOG" secondAttribute="trailing" id="JRL-Ny-Jfa"/>
                             <constraint firstItem="mCr-eR-Vt9" firstAttribute="centerX" secondItem="fWE-am-YGC" secondAttribute="centerX" id="PAp-02-UI9"/>
-                            <constraint firstItem="wZv-pG-57j" firstAttribute="top" secondItem="g4y-Dd-qKF" secondAttribute="bottom" constant="30" id="RHe-oZ-R7P"/>
+                            <constraint firstItem="wZv-pG-57j" firstAttribute="top" secondItem="g4y-Dd-qKF" secondAttribute="bottom" constant="35" id="RHe-oZ-R7P"/>
                             <constraint firstItem="5tJ-Bi-dbY" firstAttribute="top" secondItem="wZv-pG-57j" secondAttribute="bottom" id="RMD-12-aoU"/>
                             <constraint firstItem="1Gg-4i-dOG" firstAttribute="leading" secondItem="fWE-am-YGC" secondAttribute="leading" id="X2e-od-Mm9"/>
                             <constraint firstItem="1Gg-4i-dOG" firstAttribute="top" secondItem="g4y-Dd-qKF" secondAttribute="bottom" constant="30" id="kZ2-rc-8Ge"/>

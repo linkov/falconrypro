@@ -39,6 +39,8 @@ class SDWStatDetailContainerViewController: UIViewController, UIPageViewControll
         self.combinedLineChartVC = self.storyboard?.instantiateViewController(withIdentifier: "SDWStatChartViewController") as? SDWStatChartViewController
         self.combinedLineChartVC?.index = 2
         
+        self.title = "Trends"
+        
         
 
         

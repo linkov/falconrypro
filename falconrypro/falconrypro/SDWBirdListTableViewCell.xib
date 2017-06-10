@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,11 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="95" id="KGk-i7-Jjw" customClass="SDWBirdListTableViewCell" customModule="falconrypro" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="110" id="KGk-i7-Jjw" customClass="SDWBirdListTableViewCell" customModule="falconrypro" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="185"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="169.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="184.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ifL-DY-DfJ">
@@ -33,11 +33,28 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twv-tA-Hze">
-                        <rect key="frame" x="139" y="129" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.31853141191709844" green="0.31853141191709844" blue="0.31853141191709844" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twv-tA-Hze">
+                        <rect key="frame" x="147" y="136" width="27" height="12"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
+                    </label>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sold" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BR9-WU-bO9" customClass="BadgeSwift" customModule="BadgeSwift">
+                        <rect key="frame" x="144.5" y="156" width="32" height="16"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="badgeColor">
+                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </label>
                 </subviews>
                 <constraints>
@@ -46,15 +63,18 @@
                     <constraint firstItem="ifL-DY-DfJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="17" id="5Fy-Sb-M7P"/>
                     <constraint firstItem="Byi-yZ-dvr" firstAttribute="top" secondItem="ifL-DY-DfJ" secondAttribute="bottom" constant="8" id="9ph-yy-3e1"/>
                     <constraint firstItem="ifL-DY-DfJ" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="MYq-x8-8lU"/>
+                    <constraint firstItem="BR9-WU-bO9" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="hJt-jg-ubH"/>
+                    <constraint firstItem="BR9-WU-bO9" firstAttribute="top" secondItem="twv-tA-Hze" secondAttribute="bottom" constant="8" id="s0E-Qp-iT5"/>
                     <constraint firstItem="Byi-yZ-dvr" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="xWL-qf-Zhf"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="badgeLabel" destination="BR9-WU-bO9" id="wCy-65-l5E"/>
                 <outlet property="birdImage" destination="ifL-DY-DfJ" id="Ybw-vp-TEP"/>
                 <outlet property="mainLabel" destination="Byi-yZ-dvr" id="zuK-jI-BVW"/>
                 <outlet property="subLabel" destination="twv-tA-Hze" id="Ojr-G8-yvg"/>
             </connections>
-            <point key="canvasLocation" x="34" y="88"/>
+            <point key="canvasLocation" x="34" y="95.5"/>
         </tableViewCell>
     </objects>
 </document>

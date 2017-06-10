@@ -136,11 +136,10 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         
         
         self.medianDataset = LineChartDataSet(values: [mdataPoint10,mdataPoint20], label:"hunting weight")
-        self.medianDataset?.lineWidth = 1.5;
+        self.medianDataset?.lineWidth = 2;
         self.medianDataset?.circleRadius = 0.0;
         self.medianDataset?.circleHoleRadius = 0.0;
-        self.medianDataset?.setColor( UIColor.blue.withAlphaComponent(0.5))
-        self.medianDataset?.setCircleColor(UIColor.blue)
+        self.medianDataset?.setColor( .green)
         
         
         
@@ -183,13 +182,13 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         
         self.view.sendSubview(toBack: self.barChart)
         
-        self.lineChart.leftAxis.enabled = true;
-        self.lineChart.rightAxis.drawAxisLineEnabled = true;
-        self.lineChart.rightAxis.drawGridLinesEnabled = true;
-        self.lineChart.xAxis.drawAxisLineEnabled = true;
-        self.lineChart.xAxis.drawGridLinesEnabled = true;
+        self.lineChart.leftAxis.enabled = false;
+        self.lineChart.rightAxis.drawAxisLineEnabled = false;
+        self.lineChart.rightAxis.drawGridLinesEnabled = false;
+        self.lineChart.xAxis.drawAxisLineEnabled = false;
+        self.lineChart.xAxis.drawGridLinesEnabled = false;
         
-        self.lineChart.drawGridBackgroundEnabled = true;
+        self.lineChart.drawGridBackgroundEnabled = false;
         self.lineChart.drawBordersEnabled = true;
         self.lineChart.dragEnabled = false;
         self.lineChart.setScaleEnabled(true)
@@ -197,8 +196,8 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         self.lineChart.xAxis.drawLabelsEnabled = true
         self.lineChart.rightAxis.drawLabelsEnabled = false
         
-        self.lineChart.chartDescription?.enabled = true
-        self.lineChart.legend.enabled = true
+        self.lineChart.chartDescription?.enabled = false
+        self.lineChart.legend.enabled = false
         
         self.lineChart.xAxis.valueFormatter = SDWChartDateValueFormatter()
         self.lineChart.xAxis.centerAxisLabelsEnabled = true
@@ -228,11 +227,10 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         
         
         self.medianDataset = LineChartDataSet(values: [mdataPoint10,mdataPoint20], label:"hunting weight")
-        self.medianDataset?.lineWidth = 1.5;
+        self.medianDataset?.lineWidth = 2;
         self.medianDataset?.circleRadius = 0.0;
         self.medianDataset?.circleHoleRadius = 0.0;
-        self.medianDataset?.setColor( UIColor.blue.withAlphaComponent(0.5))
-        self.medianDataset?.setCircleColor(UIColor.blue)
+        self.medianDataset?.setColor( .green)
         
         
         
@@ -256,9 +254,11 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         
         self.fatDataset = LineChartDataSet(values: [fatPoint10,fatPoint20], label:"maximum weight")
         self.fatDataset?.lineWidth = 1.0;
+        self.fatDataset?.fillAlpha = 0.4
         self.fatDataset?.circleRadius = 0.0;
         self.fatDataset?.circleHoleRadius = 0.0;
-        self.fatDataset?.setColor( UIColor.green.withAlphaComponent(0.5))
+        self.fatDataset?.fill = Fill.fillWithColor(UIColor.red)
+        self.fatDataset?.setColor( UIColor.red.withAlphaComponent(0.5))
         
         
         

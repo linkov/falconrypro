@@ -29,7 +29,7 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
         // Do any additional setup after loading the view, typically from a nib.
         
         
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
+        let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "plus-square"), style: .plain, target: self, action: #selector(insertNewObject(_:)))
         addButton.tintColor = UIColor.black
         self.navigationItem.rightBarButtonItem = addButton
         
@@ -127,7 +127,7 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 170
+        return 200
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -157,6 +157,7 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
         }
         
         
+        cell.noirUpImage()
 
         
         

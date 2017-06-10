@@ -24,6 +24,7 @@ target 'falconrypro' do
   pod 'ImageRow', :git => 'https://github.com/EurekaCommunity/ImageRow.git'
   pod 'SwiftDate', '~> 4.0'
   pod 'UICountingLabel'
+  pod 'BadgeSwift', '~> 5.0'
 
 
   pod 'Mapbox-iOS-SDK', '~> 3.5.4'

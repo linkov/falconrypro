@@ -1,4 +1,5 @@
 PODS:
+  - BadgeSwift (5.0.1)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
@@ -37,6 +38,7 @@ PODS:
   - Validator (2.1.1)
 
 DEPENDENCIES:
+  - BadgeSwift (~> 5.0)
   - Charts
   - Crashlytics
   - Eureka (from `https://github.com/xmartlabs/Eureka.git`)
@@ -77,6 +79,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/IvanVorobei/Sparrow.git
 
 SPEC CHECKSUMS:
+  BadgeSwift: 3defa56f504bfb46f2300122c4a565ec9e405c1e
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
@@ -99,6 +102,6 @@ SPEC CHECKSUMS:
   UIEmptyState: b81840468b03d7be5b02114c239f5ac097dc935a
   Validator: b1793fbfd0046097551d0edd18e2c30792d69ef5
 
-PODFILE CHECKSUM: 3694a153beb5f7180d30dbee825c19c9612e4200
+PODFILE CHECKSUM: 73d3e1d740b32356db0204123c0e99f2728a6d73
 
 COCOAPODS: 1.2.1
