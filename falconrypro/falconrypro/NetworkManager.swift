@@ -9,6 +9,12 @@
 import UIKit
 import Networking
 
+
+enum BirdStatusNetworkAction: Int {
+    case delete, sell, kill, undelete, unkill, unsell
+}
+
+
 public typealias sdw_id_error_block = (Any?, Error?) -> Swift.Void
 
 class NetworkManager: NSObject {
@@ -286,6 +292,54 @@ class NetworkManager: NSObject {
             ]
         
         networking.post("/birds", parameters: ["bird":dict])  { result in
+            
+            switch result {
+            case .success(let response):
+                print(response)
+                completion(response.dictionaryBody,nil)
+                
+                
+                
+                
+            case .failure(let response):
+                print(response.dictionaryBody)
+                completion(nil,response.error)
+            }
+            
+        }
+        
+    }
+    
+    public func updateBirdStatus(bird_id:String, status:BirdStatusNetworkAction , completion:@escaping sdw_id_error_block) {
+        
+        self.setupRequestHeaders()
+        
+        var dict: [String: Any] = [:]
+        
+        switch status {
+        case .delete:
+            dict["deleted"] = Date().toString()
+            break;
+        case .undelete:
+            dict["deleted"] = ""
+            break;
+        case .kill:
+            dict["dead"] = Date().toString()
+            break;
+        case .unkill:
+            dict["dead"] = ""
+            break;
+        case .sell:
+            dict["sold"] = Date().toString()
+            break;
+        case .unsell:
+            dict["sold"] = ""
+            break;
+
+        }
+        
+        
+        networking.put("/birds/"+bird_id, parameters: ["bird":dict])  { result in
             
             switch result {
             case .success(let response):

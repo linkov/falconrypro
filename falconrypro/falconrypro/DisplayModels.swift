@@ -246,6 +246,7 @@ class BirdDisplayItem: NSObject {
     var gender:String?
     var fatWeight:Int16?
     var huntingWeight:Int16?
+    var status:BirdStatus = .active
     var birdTypes:Array<BirdTypeDisplayItem>?
     var seasons:Array<SeasonDisplayItem>?
     public private(set) var model:SDWBird
@@ -295,7 +296,17 @@ class BirdDisplayItem: NSObject {
         
         
         
+        if (self.model.dead != nil) {
+            self.status = .killed
+        }
         
+        if (self.model.wasDeleted != nil) {
+            self.status = .deleted
+        }
+        
+        if (self.model.sold != nil) {
+            self.status = .sold
+        }
         
     }
     
@@ -316,6 +327,12 @@ class BirdDisplayItem: NSObject {
             DiaryItemDisplayItem(model: item)
         })
         return items
+    }
+    
+    
+    public func isViewOnly() -> Bool {
+        
+        return (self.model.dead != nil || self.model.sold != nil || self.model.wasDeleted != nil)
     }
 }
 

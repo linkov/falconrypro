@@ -25,12 +25,15 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     var statsVC:SDWStatsViewController?
     var settingsVC:SDWSettingsViewController?
     
+    var editTodayButton:UIBarButtonItem?
+    
     var mapVC:SDWMapViewController?
     var hmButton:UIButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(reactOnBirdStatus), name: NSNotification.Name(rawValue: "SDWBirdStatusDidChange"), object: nil)
 
         AppUtility.lockOrientation(.portrait)
         self.createCustomItemTabBar()
@@ -39,6 +42,10 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func reactOnBirdStatus() {
+        self.editTodayButton?.isEnabled = !(self.bird?.isViewOnly())!
     }
     
     private func createCustomItemTabBar() {
@@ -117,9 +124,10 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
             self.diaryListVC?.title = self.bird?.name
             
             //        let editTodayButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editToday(_:)))
-            let editTodayButton = UIBarButtonItem(title: "Today", style: .done, target: self, action: #selector(editToday(_:)))
-            editTodayButton.tintColor = UIColor.black
-            self.diaryListVC?.navigationItem.rightBarButtonItem = editTodayButton
+            self.editTodayButton = UIBarButtonItem(title: "Today", style: .done, target: self, action: #selector(editToday(_:)))
+            self.editTodayButton?.tintColor = UIColor.black
+            self.editTodayButton?.isEnabled = !(self.bird?.isViewOnly())!
+            self.diaryListVC?.navigationItem.rightBarButtonItem = self.editTodayButton
             
             
             let  backButton = UIBarButtonItem(title: "Seasons", style: .plain, target: self, action: #selector(back(_:)))

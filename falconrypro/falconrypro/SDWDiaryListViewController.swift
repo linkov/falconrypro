@@ -67,6 +67,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         self.birdEditButton.contentMode = .center
         self.birdEditButton.imageView?.contentMode = .scaleAspectFit
         self.loadItems()
+        self.tableView.reloadData()
 
         
     }
@@ -124,6 +125,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         
         let footerView:SDWDiaryListSectionFooterView = SDWDiaryListSectionFooterView.loadFromXib()
         footerView.addButton.addTarget(self, action: #selector(addItem(_:)), for: .touchUpInside)
+        footerView.addButton.isEnabled = !(self.bird?.isViewOnly())!
         return footerView
     }
     
@@ -141,6 +143,9 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         
         object = objects[indexPath.row]
         cell.time.text =  object.created
+        
+
+        
         
         var totalFood = 0
         for item:DiaryFoodItemDisplayItem in object.foods! {
@@ -168,6 +173,12 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if (self.bird?.isViewOnly())! {
+            return
+        }
+        
         
         var object:DiaryItemDisplayItem
         
@@ -181,6 +192,17 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         lastSelectedItem = object
         
         self.navigationController?.pushViewController(diaryController, animated: true)
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        let cell  = tableView.cellForRow(at: indexPath as IndexPath)
+        cell!.contentView.backgroundColor = .black
+    }
+    
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        let cell  = tableView.cellForRow(at: indexPath as IndexPath)
+        cell!.contentView.backgroundColor = .white
     }
     
     

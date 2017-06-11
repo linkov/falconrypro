@@ -10,6 +10,12 @@ import UIKit
 import CoreData
 import FastEasyMapping
 
+
+enum BirdStatus: Int {
+    case deleted,killed,sold,active
+}
+
+
 class SDWDataStore: NSObject {
     
     
@@ -476,6 +482,50 @@ class SDWDataStore: NSObject {
         
 
         
+    }
+    
+    public func pushBirdStatus(birdItem:BirdDisplayItem, status:BirdStatus, completion:@escaping sdw_id_error_block) {
+        
+        let block:sdw_id_error_block = { object, error in
+        
+            guard let data = object, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                completion(nil,error)
+                return
+            }
+            
+            
+            let mappedObject = SDWMapper.ez_object(withClass: type(of: SDWBird()) as SDWObjectMapping.Type, fromJSON: data as! Dictionary<AnyHashable, Any>, context: self.dataModelManager.viewContext)
+            self.dataModelManager.saveContext()
+            
+            completion(BirdDisplayItem.init(model: mappedObject as! SDWBird),nil)
+        }
+        
+        switch status {
+        case .deleted:
+            if(birdItem.model.wasDeleted == nil) {
+                self.networkManager.updateBirdStatus(bird_id: birdItem.remoteID, status: .delete, completion: block)
+            } else {
+                self.networkManager.updateBirdStatus(bird_id: birdItem.remoteID, status: .undelete, completion: block)
+            }
+            break
+        case .killed:
+            if(birdItem.model.dead == nil) {
+                self.networkManager.updateBirdStatus(bird_id: birdItem.remoteID, status: .kill, completion: block)
+            } else {
+                self.networkManager.updateBirdStatus(bird_id: birdItem.remoteID, status: .unkill, completion: block)
+            }
+            break
+        case .sold:
+            if(birdItem.model.sold == nil) {
+                self.networkManager.updateBirdStatus(bird_id: birdItem.remoteID, status: .sell, completion: block)
+            } else {
+                self.networkManager.updateBirdStatus(bird_id: birdItem.remoteID, status: .unsell, completion: block)
+            }
+            break
+        default:
+            break
+        }
     }
 
     public func pushBirdWith(bird_id:String?,

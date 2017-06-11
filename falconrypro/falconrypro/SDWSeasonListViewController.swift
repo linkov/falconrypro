@@ -25,6 +25,7 @@ class SDWSeasonListViewController: UITableViewController {
         
         let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "plus-square"), style: .plain, target: self, action: #selector(insertNewObject(_:)))
         addButton.tintColor = UIColor.black
+        addButton.isEnabled = !(self.bird?.isViewOnly())!
         self.navigationItem.rightBarButtonItem = addButton
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         
@@ -67,7 +68,7 @@ class SDWSeasonListViewController: UITableViewController {
         
         let indexPath = self.tableView.indexPath(for: cell)
         
-        if (segue.identifier == "seasonEditSegue" && indexPath != nil) {
+        if (segue.identifier == "seasonEditSegue" && indexPath != nil && !(self.bird?.isViewOnly())!) {
             
             //prepare for segue to the details view controller
             let controller:UINavigationController = segue.destination as! UINavigationController

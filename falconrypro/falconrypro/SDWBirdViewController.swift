@@ -95,7 +95,13 @@ class SDWBirdViewController: FormViewController {
                 
                 
                 
-                +++ Section(header: "Bird identifier", footer: "Enter your Bird ID provided by certification authority or other organization. Falconry Pro Bird ID was already setup automatically.")
+                +++ Section(header: "Bird identifier", footer: "Enter your Bird ID provided by certification authority or other organization. Falconry Pro Bird ID was already setup automatically."){
+                    $0.tag = "bird_id"
+                    $0.hidden = Condition.function([], { form in
+                        return (self.bird?.isViewOnly())!
+                    })
+                }
+
                 
                 <<< TextRow(){ row in
                     row.value = bird?.code
@@ -104,7 +110,13 @@ class SDWBirdViewController: FormViewController {
                 }
                 
                 
-                +++ Section("Basic information")
+                +++ Section("Basic information"){
+                    $0.tag = "basic"
+                    $0.hidden = Condition.function([], { form in
+                        return (self.bird?.isViewOnly())!
+                    })
+                }
+
                 
                 <<< ImageRow() {
                     $0.tag = "pic"
@@ -182,11 +194,14 @@ class SDWBirdViewController: FormViewController {
                 
                 +++  Section("Species"){
                         $0.tag = "species"
+                        $0.hidden = Condition.function([], { form in
+                            return (self.bird?.isViewOnly())!
+                        })
                 }
                 <<< SegmentedRow<String>("segments"){
                     $0.options = ["Pure", "Hybrid 2", "Hybrid 4"]
                     $0.tag = "segment_row"
-                    $0.cell.segmentedControl.tintColor = .blue
+                    $0.cell.segmentedControl.tintColor = .black
                     $0.add(rule: RuleRequired())
                     }.cellUpdate { cell, row in
                         if !row.isValid {
@@ -197,7 +212,7 @@ class SDWBirdViewController: FormViewController {
                     .onChange({ (row) in
                         
                         self.toggleDeselectedBirdTypes(row: row)
-                        row.cell.segmentedControl.tintColor = .blue
+                        row.cell.segmentedControl.tintColor = .black
                     })
                 
                 
@@ -286,13 +301,20 @@ class SDWBirdViewController: FormViewController {
                         row.options = self.birdtypes
                         }
 
+
+       
         
-        
-                +++ Section("Bird management")
+                +++ Section("Bird management"){
+                    $0.tag = "management"
+                    $0.hidden = Condition.function([], { form in
+                        return (self.bird == nil)
+                    })
+                }
+                
 
         
                 <<< ButtonRow() { (row: ButtonRow) -> Void in
-                    row.title = "MARK DEAD"
+                    row.title = "TOGGLE DEAD"
                     row.cell.tintColor = .black
                     row.cell.preservesSuperviewLayoutMargins = false
                     row.cell.separatorInset = UIEdgeInsets.zero
@@ -305,7 +327,7 @@ class SDWBirdViewController: FormViewController {
                 
         
                 <<< ButtonRow() { (row: ButtonRow) -> Void in
-                    row.title = "MARK SOLD"
+                    row.title = "TOGGLE SOLD"
                     row.cell.tintColor = .black
                     row.cell.preservesSuperviewLayoutMargins = false
                     row.cell.separatorInset = UIEdgeInsets.zero
@@ -317,7 +339,7 @@ class SDWBirdViewController: FormViewController {
         }
                 
                 <<< ButtonRow() { (row: ButtonRow) -> Void in
-                    row.title = "DELETE"
+                    row.title = "TOGGLE DELETE"
                     row.cell.tintColor = .red
                     row.cell.preservesSuperviewLayoutMargins = false
                     row.cell.separatorInset = UIEdgeInsets.zero
@@ -348,8 +370,8 @@ class SDWBirdViewController: FormViewController {
         
         switch alertType {
         case .delete:
-            let alertController = UIAlertController(title: "Delete the bird", message: "Please confirm this action, this can not be undone bla bla bla", preferredStyle: .actionSheet)
-            let defaultAction = UIAlertAction(title: "DELETE", style: .destructive, handler: { (action) in
+            let alertController = UIAlertController(title: "Delete/Undelete the bird", message: "Please confirm this action, this can not be undone bla bla bla", preferredStyle: .actionSheet)
+            let defaultAction = UIAlertAction(title: "TOGGLE DELETE", style: .destructive, handler: { (action) in
                 
                 self.deleteBird()
             })
@@ -358,11 +380,25 @@ class SDWBirdViewController: FormViewController {
             present(alertController, animated: true)
             break
         case .sell:
-            break
+            let alertController = UIAlertController(title: "Sell/Unsell the bird", message: "Please confirm this action, this can not be undone bla bla bla", preferredStyle: .actionSheet)
+            let defaultAction = UIAlertAction(title: "TOGGLE SOLD", style: .destructive, handler: { (action) in
+                
+                self.toggleMarkBirdSold()
+            })
+            alertController.addAction(defaultAction)
+            alertController.addAction(cancelAction)
+            present(alertController, animated: true)
         case .kill:
+            let alertController = UIAlertController(title: "Pronounce dead/alive", message: "Please confirm this action, this can not be undone bla bla bla", preferredStyle: .actionSheet)
+            let defaultAction = UIAlertAction(title: "TOGGLE DEAD", style: .destructive, handler: { (action) in
+                
+                self.toggleMarkBirdDead()
+            })
+            alertController.addAction(defaultAction)
+            alertController.addAction(cancelAction)
+            present(alertController, animated: true)
             break
-        default:
-            break
+
         }
         
 
@@ -370,16 +406,46 @@ class SDWBirdViewController: FormViewController {
     
     
     func deleteBird() {
-        print("delete called")
         
+        PKHUD.sharedHUD.show()
+        
+        self.dataStore.pushBirdStatus(birdItem:self.bird!, status: .deleted, completion: { (result, error) in
+            
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SDWBirdStatusDidChange"), object: nil)
+            PKHUD.sharedHUD.hide()
+            self.dismiss(animated: true, completion: nil)
+            
+            
+        })
     }
     
     func toggleMarkBirdSold() {
         
+         PKHUD.sharedHUD.show()
+        
+        self.dataStore.pushBirdStatus(birdItem:self.bird!, status: .sold, completion: { (result, error) in
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SDWBirdStatusDidChange"), object: nil)
+            PKHUD.sharedHUD.hide()
+            self.dismiss(animated: true, completion: nil)
+            
+            
+        })
     }
     
     func toggleMarkBirdDead() {
         
+        PKHUD.sharedHUD.show()
+        
+        self.dataStore.pushBirdStatus(birdItem:self.bird!, status: .killed, completion: { (result, error) in
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SDWBirdStatusDidChange"), object: nil)
+            PKHUD.sharedHUD.hide()
+            self.dismiss(animated: true, completion: nil)
+            
+            
+        })
     }
     
     func updateImageRow() {

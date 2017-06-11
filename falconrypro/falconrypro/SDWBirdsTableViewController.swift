@@ -146,18 +146,48 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
         cell.birdImage.layer.cornerRadius = cell.birdImage.frame.size.width/2
         cell.birdImage.clipsToBounds = true
         
-
+        
         if let image = object.imageURL {
-            cell.birdImage.sd_setImage(with: URL(string:image),
-                         placeholderImage: nil,
-                         options: [],
-                         completed: nil)
+            cell.birdImage.contentMode = .scaleAspectFill
+            cell.birdImage.sd_setImage(with: URL(string:image)) { (image, error, bla, url) in
+                
+                if (error == nil) {
+                    
+                    cell.noirUpImage()
+                }
+                
+                
+            }
         } else {
-            cell.birdImage.image = nil
+            cell.birdImage.contentMode = .center
+            cell.birdImage.image = #imageLiteral(resourceName: "circle")
         }
         
         
-        cell.noirUpImage()
+
+        
+
+
+
+        
+        
+        
+        
+        switch object.status {
+        case .active:
+            cell.badgeLabel.text = "active"
+            break
+        case .deleted:
+            cell.badgeLabel.text = "deleted"
+            break
+        case .sold:
+            cell.badgeLabel.text = "sold"
+            break
+        case .killed:
+            cell.badgeLabel.text = "dead"
+            break
+
+        }
 
         
         
