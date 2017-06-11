@@ -21,6 +21,7 @@ class SDWDiaryItemViewController: FormViewController {
     var bird:BirdDisplayItem?
     var diaryItem:DiaryItemDisplayItem?
     var foods = [TypeDisplayItem]()
+    var isPastItem:Bool = false
     var weightFormatter = NumberFormatter()
     
     
@@ -57,6 +58,27 @@ class SDWDiaryItemViewController: FormViewController {
         weightFormatter.numberStyle = .none
 
         form
+            
+            +++ Section("Past date"){
+                $0.hidden = Condition.function([], { form in
+                    return !self.isPastItem
+                })
+                    
+
+                
+            }
+            
+            <<< DateInlineRow(){
+                $0.tag = "past_created"
+                $0.title = "Date"
+                $0.add(rule: RuleRequired())
+                }.cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.textLabel?.textColor = .red
+                    }
+            }
+            
+            
             
             
             +++
@@ -157,6 +179,12 @@ class SDWDiaryItemViewController: FormViewController {
                 row.tag = "note"
                 row.title = "Notes"
         }
+            
+            
+
+            
+            
+
             
             
             +++
@@ -269,6 +297,7 @@ class SDWDiaryItemViewController: FormViewController {
 
         
         let note: TextAreaRow? = form.rowBy(tag: "note")
+        let pastCreated: DateInlineRow? = form.rowBy(tag: "past_created")
         let bird_id = self.bird?.remoteID
         
 
@@ -336,7 +365,7 @@ class SDWDiaryItemViewController: FormViewController {
             
         } else {
             
-            self.dataStore.pushDiaryItemWith(birdID:bird_id!, note: note?.value, quarryTypes: quarry,foodItems:foodItems,weightItems:weightItems,pinItems: pinItems) { (object, error) in
+            self.dataStore.pushDiaryItemWith(birdID:bird_id!, note: note?.value, quarryTypes: quarry,foodItems:foodItems,weightItems:weightItems,pinItems: pinItems,createdDate:pastCreated?.value ) { (object, error) in
                 
                 if (error == nil) {
                     self.navigationController?.popViewController(animated: true)

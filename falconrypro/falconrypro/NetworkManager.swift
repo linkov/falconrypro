@@ -101,15 +101,20 @@ class NetworkManager: NSObject {
         }
     }
     
-    public func createDiaryItemWith(season_id:String, foodItems:Array<DiaryFoodItemDisplayItem>?,weightItems:Array<DiaryWeightItemDisplayItem>?,pinItems:Array<PinItemDisplayItem>?, birdID:String, quarryTypeIDs:Array<String>?,note:String?,
+    public func createDiaryItemWith(season_id:String, foodItems:Array<DiaryFoodItemDisplayItem>?,weightItems:Array<DiaryWeightItemDisplayItem>?,pinItems:Array<PinItemDisplayItem>?, birdID:String, quarryTypeIDs:Array<String>?,note:String?, createdDate:Date?,
                                     completion:@escaping sdw_id_error_block) {
         self.setupRequestHeaders()
         
         var dict: [String: Any] = [
             "bird_id": birdID,
-            "season_id":season_id
+            "season_id":season_id,
             
         ]
+        
+        
+        if let cdate = createdDate {
+            dict["created_date"] = cdate.toString()
+        }
         
         if let quarry = quarryTypeIDs {
             dict["quarry_type_ids"] = quarry

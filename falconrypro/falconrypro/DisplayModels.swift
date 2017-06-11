@@ -419,6 +419,7 @@ class DiaryItemDisplayItem: NSObject {
     var remoteID:String
     var foods:Array<DiaryFoodItemDisplayItem>?
     var pins:Array<PinItemDisplayItem>?
+
     var weights:Array<DiaryWeightItemDisplayItem>?
     var quarryTypes:Array<QuarryTypeDisplayItem>?
     

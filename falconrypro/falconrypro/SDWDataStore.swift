@@ -402,7 +402,7 @@ class SDWDataStore: NSObject {
                                   foodItems:[DiaryFoodItemDisplayItem]?,
                                   weightItems:[DiaryWeightItemDisplayItem]?,
                                   pinItems:[PinItemDisplayItem]?,
-                                  completion:@escaping sdw_id_error_block) {
+                                  createdDate:Date?,                                  completion:@escaping sdw_id_error_block) {
         
         
         var quarryTypeIDs = [String]()
@@ -413,7 +413,7 @@ class SDWDataStore: NSObject {
         }
 
         
-        self.networkManager.createDiaryItemWith(season_id:self.currentSeason()!.remoteID, foodItems:foodItems,weightItems:weightItems,pinItems:pinItems,birdID:birdID, quarryTypeIDs:quarryTypeIDs, note:note, completion: {(object, error) in
+        self.networkManager.createDiaryItemWith(season_id:self.currentSeason()!.remoteID, foodItems:foodItems,weightItems:weightItems,pinItems:pinItems,birdID:birdID, quarryTypeIDs:quarryTypeIDs, note:note, createdDate: createdDate, completion: {(object, error) in
             
             
             guard let data = object, error == nil else {

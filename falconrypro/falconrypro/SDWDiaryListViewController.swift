@@ -237,9 +237,11 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
                 return
             }
             
+
             
             
             self.objects = data as! [DiaryItemDisplayItem]
+            self.objects = self.objects.sorted { $0.model.createdAt?.compare($1.model.createdAt as! Date) == .orderedDescending }
             self.tableView.reloadData()
             self.reloadEmptyState(forTableView: self.tableView)
             
@@ -253,6 +255,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
             }
             
             self.objects = data as! [DiaryItemDisplayItem]
+            self.objects = self.objects.sorted { $0.model.createdAt?.compare($1.model.createdAt as! Date) == .orderedDescending }
             self.tableView.reloadData()
             self.reloadEmptyState(forTableView: self.tableView)
             
@@ -276,6 +279,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         
         let controller:SDWDiaryItemViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemViewController") as! SDWDiaryItemViewController
         controller.bird = self.bird
+        controller.isPastItem = true
         controller.title = "Past item"
         self.navigationController?.pushViewController(controller, animated: true)
         //
