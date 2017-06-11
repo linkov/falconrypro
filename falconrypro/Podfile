@@ -25,7 +25,8 @@ target 'falconrypro' do
   pod 'SwiftDate', '~> 4.0'
   pod 'UICountingLabel'
   pod 'BadgeSwift', '~> 5.0'
-
+  pod 'PureLayout'
+  pod 'SwiftRichString'
 
   pod 'Mapbox-iOS-SDK', '~> 3.5.4'
 

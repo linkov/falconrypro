@@ -432,6 +432,31 @@ class SDWDataStore: NSObject {
         
     }
     
+    public func pushFoodWith(name:String, completion:@escaping sdw_id_error_block) {
+        
+        
+        
+
+        self.networkManager.createFoodWith(name:name, completion: {(object, error) in
+                
+                
+                guard let data = object, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    completion(nil,error)
+                    return
+                }
+                
+                
+                let mappedObject = SDWMapper.ez_object(withClass: type(of: SDWFood()) as SDWObjectMapping.Type, fromJSON: data as! Dictionary<AnyHashable, Any>, context: self.dataModelManager.viewContext)
+                self.dataModelManager.saveContext()
+                
+                completion(FoodDisplayItem.init(model: mappedObject as! SDWFood),nil)
+                
+            })
+        
+        
+    }
+    
     
     public func pushSeasonWith(season_id:String?, bird_id:String,
                              start:Date,
@@ -708,7 +733,7 @@ class SDWDataStore: NSObject {
     }
     
     public func pullAllBirds(currentData:sdw_id_error_block,fetchedData:@escaping sdw_id_error_block) {
-        
+
         
         self.dataModelManager.fetchAll(entityName:SDWBird.entityName(), predicate: nil, context: self.dataModelManager.viewContext) { (objects, error) in
             

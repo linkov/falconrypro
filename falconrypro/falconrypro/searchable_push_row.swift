@@ -8,6 +8,10 @@
 
 import Foundation
 import Eureka
+import UIKit
+import PureLayout
+import SwiftRichString
+import PKHUD
 
 open class _SearchablePushRow<T: Equatable, Cell: CellType> : TableSelectorRow<Cell, SearchableViewController<T>> where Cell: BaseCell, Cell: TypedCellType, Cell.Value == T, T: SearchableItem, T: CustomStringConvertible {
     
@@ -28,6 +32,11 @@ open class SearchableViewController<T:Equatable> : _SearchableViewController<T, 
 }
 
 open class _SearchableViewController<T: Equatable, Row: SelectableRowType, TOriginal:Equatable> : UITableViewController, UISearchResultsUpdating, TypedRowControllerType where Row: BaseRow, Row: TypedRowType, Row.Cell.Value == T, T: SearchableItem, T: CustomStringConvertible, TOriginal: SearchableItem, TOriginal: CustomStringConvertible  {
+    
+    
+    var noresultsView:SDWCustomAddView?
+    
+    let dataStore:SDWDataStore = SDWDataStore.sharedInstance
     
     /// A closure to be called when the controller disappears.
     public var onDismissCallback: ((UIViewController) -> ())?
@@ -64,6 +73,21 @@ open class _SearchableViewController<T: Equatable, Row: SelectableRowType, TOrig
         super.viewDidLoad()
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         searchController.searchBar.placeholder = searchPlaceholder
+        
+       self.noresultsView = SDWCustomAddView.loadFromXib()
+       self.navigationController!.view.addSubview(self.noresultsView!)
+        
+        
+       self.noresultsView?.autoSetDimension(.height, toSize: 200)
+       self.noresultsView?.autoPinEdgesToSuperviewEdges(with: UIEdgeInsetsMake(200, 20, 20, 20))
+       self.noresultsView?.actionButton.addTarget(self, action: #selector(addCustomFood), for: .touchUpInside)
+       self.noresultsView?.isHidden = true
+    
+       PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        
+        
+        
+        
 
         tableView!.tableHeaderView = searchController.searchBar
         if let options = row.dataProvider?.arrayData {
@@ -74,12 +98,50 @@ open class _SearchableViewController<T: Equatable, Row: SelectableRowType, TOrig
         self.tableView.reloadData()
     }
     
+    open override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.noresultsView?.isHidden = true
+    }
+    
+    func addCustomFood() {
+        print(searchController.searchBar.text ?? "no text")
+        
+        let firstRecord = self.originalOptions.first
+        
+        if (firstRecord is FoodDisplayItem) {
+          
+            PKHUD.sharedHUD.show()
+            self.dataStore.pushFoodWith(name: searchController.searchBar.text!, completion: { (object, error) in
+                PKHUD.sharedHUD.hide()
+                if (error == nil) {
+                    self.row.value = object as! T
+                    self.onDismissCallback?(self)
+                }
+            })
+        }
+        
+        // if self.originalOptions first is of type quarry, push quarry to server else
+        // push food to server
+        // callback ->
+
+
+    }
+    
     fileprivate func filter(_ query: String) {
         if query == "" {
             currentOptions = self.originalOptions
         } else {
             currentOptions = self.originalOptions.filter{ $0.matchesSearchQuery(query) }
         }
+        
+        
+        if (currentOptions.count == 0) {
+            self.noresultsView?.isHidden = false
+            self.noresultsView?.actionButton.setAttributedTitle("add ".set(style: AppUtility.style_normal) + "\(query)".set(style: AppUtility.style_bold) + " as a new food type".set(style: AppUtility.style_normal), for: .normal)
+        } else {
+            self.noresultsView?.isHidden = true
+        }
+        
         self.tableView.reloadData()
     }
     

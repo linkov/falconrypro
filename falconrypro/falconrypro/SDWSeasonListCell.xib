@@ -33,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="active" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5K0-ZJ-aEM" customClass="BadgeSwift" customModule="BadgeSwift">
-                        <rect key="frame" x="138.5" y="156" width="41.5" height="16"/>
+                        <rect key="frame" x="143.5" y="156" width="31.5" height="12"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>

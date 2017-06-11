@@ -435,6 +435,35 @@ class NetworkManager: NSObject {
     }
     
     
+    public func createFoodWith(name:String,completion:@escaping sdw_id_error_block) {
+        
+        self.setupRequestHeaders()
+        
+        let dict: [String: Any] = [
+            "name": name
+        ]
+        
+
+        networking.post("/foods", parameters: ["food":dict])  { result in
+            
+            switch result {
+            case .success(let response):
+                print(response)
+                completion(response.dictionaryBody,nil)
+                
+                
+                
+                
+            case .failure(let response):
+                print(response.dictionaryBody)
+                completion(nil,response.error)
+            }
+            
+        }
+        
+    }
+    
+    
     public func updateSeasonWith(season_id:String, bird_id:String, start:Date,end:Date?,isBetween:Bool,completion:@escaping sdw_id_error_block) {
         
         self.setupRequestHeaders()

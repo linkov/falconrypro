@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SwiftRichString
 
 extension Date {
     func toString() -> String {
@@ -38,6 +39,16 @@ struct AppUtility {
             closure()
         }
     }
+    
+    static let style_bold = Style("bold", {
+        $0.font = FontAttribute(.HelveticaNeue_Bold, size: 14)
+        $0.color = .black
+    })
+    
+    static let style_normal = Style("normal", {
+        $0.font = FontAttribute(.HelveticaNeue, size: 14)
+        $0.color = .black
+    })
     
     static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
         
