@@ -33,6 +33,12 @@ public extension UIView
 
 struct AppUtility {
     
+    static func delay(delay:Double, closure:@escaping ()->()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            closure()
+        }
+    }
+    
     static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
         
         if let delegate = UIApplication.shared.delegate as? AppDelegate {

@@ -22,6 +22,13 @@ class SDWDiaryItemViewController: FormViewController {
     var diaryItem:DiaryItemDisplayItem?
     var foods = [TypeDisplayItem]()
     var weightFormatter = NumberFormatter()
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,13 +68,18 @@ class SDWDiaryItemViewController: FormViewController {
                                 section.multivaluedRowToInsertAt = { index in
                                     return SDWWeightItemRow(){
                                         $0.tag = "\(index+1)_newweightitem"
-                                        $0.title = ""
+                                        $0.title = "just added:"
                                         $0.displayValueFor = { value in
                                             return  "\(value?.weight ?? 0) grm. - \(value?.timeString ?? "")"
                                             
                                         }
                                         
-                                    }
+                                        }.cellSetup({ (cell,row) in
+                                            AppUtility.delay(delay: 0.3, closure: {
+                                                row.didSelect()
+                                            })
+                                            
+                                        })
                                 }
                                 if(self.diaryItem != nil && (self.diaryItem?.weights!.count)! > 0) {
                                     
@@ -79,7 +91,10 @@ class SDWDiaryItemViewController: FormViewController {
                                             $0.tag = "\(index+1)_weightitem"
                                             $0.value = weightItem
                                             $0.title = "\($0.value?.weight ?? 0) grm. - \($0.value?.timeString ?? "")"
-                                            
+                                            $0.displayValueFor = { value in
+                                                return  ""
+                                                
+                                            }
                                         }
                                         
                                     }
@@ -98,12 +113,17 @@ class SDWDiaryItemViewController: FormViewController {
                                 section.multivaluedRowToInsertAt = { index in
                                     return SDWFoodItemRow(){
                                         $0.tag = "\(index+1)_newfooditem"
-                                        $0.title = ""
+                                        $0.title = "just added:"
                                         $0.displayValueFor = { value in
                                             return  "\(value?.amountEaten ?? 0) grm. - \(value?.timeString ?? "")"
                                         }
                                         
-                                    }
+                                        }.cellSetup({ (cell,row) in
+                                            AppUtility.delay(delay: 0.3, closure: {
+                                                row.didSelect()
+                                            })
+                                            
+                                        })
                                 }
                                 if(self.diaryItem != nil && (self.diaryItem?.foods!.count)! > 0) {
                                     
@@ -115,7 +135,10 @@ class SDWDiaryItemViewController: FormViewController {
                                             $0.tag = "\(index+1)_fooditem"
                                             $0.value = foodItem
                                             $0.title = "\($0.value?.amountEaten ?? 0) grm. - \($0.value?.timeString ?? "")"
-                                            
+                                            $0.displayValueFor = { value in
+                                                return  ""
+                                                
+                                            }
                                         }
                                         
                                     }
@@ -145,13 +168,18 @@ class SDWDiaryItemViewController: FormViewController {
                                 section.multivaluedRowToInsertAt = { index in
                                     return SDWPinRow(){
                                         $0.tag = "\(index+1)_newpinitem"
-                                        $0.title = "Pin"
+                                        $0.title = "Just added:"
                                         $0.displayValueFor = { value in
                                             return  "\(value?.pintype?.title ?? "")"
                                             
                                         }
                                         
-                                    }
+                                        }.cellSetup({ (cell,row) in
+                                            AppUtility.delay(delay: 0.3, closure: {
+                                                row.didSelect()
+                                            })
+                                            
+                                        })
                                 }
                                 if(self.diaryItem != nil && (self.diaryItem?.pins!.count)! > 0) {
                                     
@@ -162,9 +190,9 @@ class SDWDiaryItemViewController: FormViewController {
                                         section <<< SDWPinRow() {
                                             $0.tag = "\(index+1)_pinitem"
                                             $0.value = pinItem
-                                            $0.title = "Pin"
+                                            $0.title = "\($0.value?.pintype?.title ?? "")"
                                             $0.displayValueFor = { value in
-                                                return  "\(value?.pintype?.title ?? "")"
+                                                return  ""
                                             }
                                             
                                         }
@@ -193,7 +221,12 @@ class SDWDiaryItemViewController: FormViewController {
                                         return value?.name
                                     }
                                     $0.options = self.dataStore.allQuarryTypes()
-                                }
+                                    }.cellSetup({ (cell,row) in
+                                        AppUtility.delay(delay: 0.3, closure: {
+                                            row.didSelect()
+                                        })
+                                        
+                                    })
                             }
                             if(self.diaryItem != nil && (self.diaryItem?.quarryTypes!.count)! > 0) {
 
@@ -281,9 +314,9 @@ class SDWDiaryItemViewController: FormViewController {
         }
         
         
-        if (weightItems.count == 0 || foodItems.count == 0) {
+        if (weightItems.count == 0) {
             
-            PKHUD.sharedHUD.contentView = PKHUDTextView(text: "At least 1 weight and 1 food item required")
+            PKHUD.sharedHUD.contentView = PKHUDTextView(text: "At least 1 weight item required")
             PKHUD.sharedHUD.show()
             PKHUD.sharedHUD.hide(afterDelay: 1.0) { success in
                 // Completion Handler
