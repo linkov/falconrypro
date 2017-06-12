@@ -120,6 +120,21 @@ open class _SearchableViewController<T: Equatable, Row: SelectableRowType, TOrig
             })
         }
         
+        
+        if (firstRecord is QuarryTypeDisplayItem) {
+            
+            PKHUD.sharedHUD.show()
+            self.dataStore.pushQuarryWith(name: searchController.searchBar.text!, completion: { (object, error) in
+                PKHUD.sharedHUD.hide()
+                if (error == nil) {
+                    self.row.value = object as! T
+                    self.onDismissCallback?(self)
+                }
+            })
+        }
+        
+    
+        
         // if self.originalOptions first is of type quarry, push quarry to server else
         // push food to server
         // callback ->
@@ -136,8 +151,22 @@ open class _SearchableViewController<T: Equatable, Row: SelectableRowType, TOrig
         
         
         if (currentOptions.count == 0) {
+            
+            let firstRecord = self.originalOptions.first
+            
+            
+            var string:String = ""
+            
+            if (firstRecord is FoodDisplayItem) {
+                
+                string = "as a new food type"
+            }
+            if (firstRecord is QuarryTypeDisplayItem) {
+                string = "as a new quarry type"
+            }
+            
             self.noresultsView?.isHidden = false
-            self.noresultsView?.actionButton.setAttributedTitle("add ".set(style: AppUtility.style_normal) + "\(query)".set(style: AppUtility.style_bold) + " as a new food type".set(style: AppUtility.style_normal), for: .normal)
+            self.noresultsView?.actionButton.setAttributedTitle("add ".set(style: AppUtility.style_normal) + "\(query)".set(style: AppUtility.style_bold) + " \(string)".set(style: AppUtility.style_normal), for: .normal)
         } else {
             self.noresultsView?.isHidden = true
         }

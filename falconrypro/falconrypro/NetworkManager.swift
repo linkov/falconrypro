@@ -288,7 +288,7 @@ class NetworkManager: NSObject {
         let dict: [String: Any] = [
             "name": name,
             "sex": sex,
-            "code": code,
+            "code": code ?? "",
             "fat_weight": fatWeight,
             "hunting_weight": huntingWeight,
             "birthday": birthday.toString(),
@@ -378,7 +378,7 @@ class NetworkManager: NSObject {
         let dict: [String: Any] = [
             "name": name,
             "sex": sex,
-            "code": code,
+            "code": code ?? "",
             "fat_weight": fatWeight,
             "hunting_weight": huntingWeight,
             "birthday": birthday.toString(),
@@ -450,6 +450,34 @@ class NetworkManager: NSObject {
         
 
         networking.post("/foods", parameters: ["food":dict])  { result in
+            
+            switch result {
+            case .success(let response):
+                print(response)
+                completion(response.dictionaryBody,nil)
+                
+                
+                
+                
+            case .failure(let response):
+                print(response.dictionaryBody)
+                completion(nil,response.error)
+            }
+            
+        }
+        
+    }
+    
+    public func createQuarryWith(name:String,completion:@escaping sdw_id_error_block) {
+        
+        self.setupRequestHeaders()
+        
+        let dict: [String: Any] = [
+            "name": name
+        ]
+        
+        
+        networking.post("/quarry_types", parameters: ["quarry_type":dict])  { result in
             
             switch result {
             case .success(let response):
