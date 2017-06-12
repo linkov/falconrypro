@@ -87,6 +87,7 @@
         <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="startDateString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wasDeleted" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="bird" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWBird" inverseName="seasons" inverseEntity="SDWBird" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWDiaryItem" inverseName="season" inverseEntity="SDWDiaryItem" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWUser" inverseName="seasons" inverseEntity="SDWUser" syncable="YES"/>
@@ -109,7 +110,7 @@
         <element name="SDWFood" positionX="-27" positionY="81" width="128" height="105"/>
         <element name="SDWPinItem" positionX="-27" positionY="117" width="128" height="180"/>
         <element name="SDWQuarryType" positionX="-27" positionY="117" width="128" height="90"/>
-        <element name="SDWSeason" positionX="-18" positionY="90" width="128" height="195"/>
+        <element name="SDWSeason" positionX="-18" positionY="90" width="128" height="210"/>
         <element name="SDWUser" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

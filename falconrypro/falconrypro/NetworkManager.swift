@@ -315,6 +315,34 @@ class NetworkManager: NSObject {
         
     }
     
+    
+    public func deleteSeason(season_id:String , completion:@escaping sdw_id_error_block) {
+        
+        self.setupRequestHeaders()
+        
+        var dict: [String: Any] = [:]
+        dict["deleted"] = Date().toString()
+        
+        
+        networking.put("/seasons/"+season_id, parameters: ["season":dict])  { result in
+            
+            switch result {
+            case .success(let response):
+                print(response)
+                completion(response.dictionaryBody,nil)
+                
+                
+                
+                
+            case .failure(let response):
+                print(response.dictionaryBody)
+                completion(nil,response.error)
+            }
+            
+        }
+        
+    }
+    
     public func updateBirdStatus(bird_id:String, status:BirdStatusNetworkAction , completion:@escaping sdw_id_error_block) {
         
         self.setupRequestHeaders()

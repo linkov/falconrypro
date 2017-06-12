@@ -28,6 +28,7 @@ public class SDWSeason: NSManagedObject, SDWObjectMapping {
         mapping.addAttribute(withProperty: "endDateString", keyPath: "end_date")
         mapping.addAttribute(FEMAttribute.bdayDateAttribute(withProperty: "startDate", keyPath: "start"))
         mapping.addAttribute(FEMAttribute.bdayDateAttribute(withProperty: "endDate", keyPath: "end"))
+        mapping.addAttribute(FEMAttribute.bdayDateAttribute(withProperty: "wasDeleted", keyPath: "deleted"))
         
         let birdMapping:FEMMapping = FEMMapping(entityName: "SDWBird")
         birdMapping.primaryKey = "remoteID"

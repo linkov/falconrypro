@@ -61,6 +61,22 @@ class SDWSeasonViewController: FormViewController {
                 $0.value =  (season?.isBetweenSeason != nil) ?  (season?.isBetweenSeason as! Bool) : false
         }
         
+            +++ Section("Season management"){
+                $0.tag = "management"
+            }
+            
+            
+            <<< ButtonRow() { (row: ButtonRow) -> Void in
+                row.title = "DELETE"
+                row.cell.tintColor = .red
+                row.cell.preservesSuperviewLayoutMargins = false
+                row.cell.separatorInset = UIEdgeInsets.zero
+                row.cell.layoutMargins = UIEdgeInsets.zero
+                
+                }
+                .onCellSelection { [weak self] (cell, row) in
+                    self?.showButtonAlert(alertType: .delete)
+        }
 
     
     }
@@ -74,6 +90,33 @@ class SDWSeasonViewController: FormViewController {
         self.updateSeason()
         
         
+    }
+    
+    
+    func showButtonAlert(alertType:ButtonAlertType) {
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let alertController = UIAlertController(title: "Delete the season", message: "Season and all related diery items will not be accessable", preferredStyle: .actionSheet)
+        let defaultAction = UIAlertAction(title: "DELETE", style: .destructive, handler: { (action) in
+            
+            self.deleteSeason()
+        })
+        alertController.addAction(defaultAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+        
+    }
+    
+    
+    func deleteSeason() {
+        
+        PKHUD.sharedHUD.show()
+        self.dataStore.removeSeason(season_id: (self.season?.remoteID)!, completion: { (result, error) in
+            
+            PKHUD.sharedHUD.hide()
+            self.dismiss(animated: true, completion: nil)
+            
+        })
     }
     
     

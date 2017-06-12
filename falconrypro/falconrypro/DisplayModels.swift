@@ -312,7 +312,7 @@ class BirdDisplayItem: NSObject {
     
     
     public func currentSeasons() -> [SeasonDisplayItem] {
-        let seasonArr:Array<SDWSeason> = self.model.seasons?.allObjects as! Array<SDWSeason>
+        let seasonArr:Array<SDWSeason> = self.model.seasons?.filter({($0 as! SDWSeason).wasDeleted == nil}) as! Array<SDWSeason>
         
         let seasonItems:Array = seasonArr.map({ (item: SDWSeason) -> SeasonDisplayItem in
             SeasonDisplayItem(model: item)
@@ -406,6 +406,11 @@ class SeasonDisplayItem: NSObject {
         
         
         
+    }
+    
+    public func isViewOnly() -> Bool {
+        
+        return (self.model.wasDeleted != nil)
     }
 }
 

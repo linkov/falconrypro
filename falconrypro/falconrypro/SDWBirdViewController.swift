@@ -339,7 +339,7 @@ class SDWBirdViewController: FormViewController {
         }
                 
                 <<< ButtonRow() { (row: ButtonRow) -> Void in
-                    row.title = "TOGGLE DELETE"
+                    row.title = "TOGGLE ARCHIVE"
                     row.cell.tintColor = .red
                     row.cell.preservesSuperviewLayoutMargins = false
                     row.cell.separatorInset = UIEdgeInsets.zero
@@ -370,8 +370,8 @@ class SDWBirdViewController: FormViewController {
         
         switch alertType {
         case .delete:
-            let alertController = UIAlertController(title: "Delete/Undelete the bird", message: "Please confirm this action, this can not be undone bla bla bla", preferredStyle: .actionSheet)
-            let defaultAction = UIAlertAction(title: "TOGGLE DELETE", style: .destructive, handler: { (action) in
+            let alertController = UIAlertController(title: "ARCHIVE/ARCHIVE the bird", message: "Please confirm this action, this can not be undone bla bla bla", preferredStyle: .actionSheet)
+            let defaultAction = UIAlertAction(title: "TOGGLE ARCHIVE", style: .destructive, handler: { (action) in
                 
                 self.deleteBird()
             })

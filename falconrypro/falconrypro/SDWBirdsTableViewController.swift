@@ -179,7 +179,7 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
             cell.badgeLabel.text = "active"
             break
         case .deleted:
-            cell.badgeLabel.text = "deleted"
+            cell.badgeLabel.text = "archived"
             break
         case .sold:
             cell.badgeLabel.text = "sold"

@@ -535,6 +535,27 @@ class SDWDataStore: NSObject {
         
     }
     
+    public func removeSeason(season_id:String, completion:@escaping sdw_id_error_block) {
+        
+        let block:sdw_id_error_block = { object, error in
+            
+            guard let data = object, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                completion(nil,error)
+                return
+            }
+            
+            
+            let mappedObject = SDWMapper.ez_object(withClass: type(of: SDWSeason()) as SDWObjectMapping.Type, fromJSON: data as! Dictionary<AnyHashable, Any>, context: self.dataModelManager.viewContext)
+            self.dataModelManager.saveContext()
+            
+            completion(SeasonDisplayItem.init(model: mappedObject as! SDWSeason),nil)
+        }
+        
+        
+        self.networkManager.deleteSeason(season_id: season_id, completion: block)
+    }
+    
     public func pushBirdStatus(birdItem:BirdDisplayItem, status:BirdStatus, completion:@escaping sdw_id_error_block) {
         
         let block:sdw_id_error_block = { object, error in
