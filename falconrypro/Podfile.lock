@@ -35,6 +35,7 @@ PODS:
     - Sparrow/Core
   - SwiftDate (4.1.2)
   - SwiftRichString (0.9.8)
+  - SwipeCellKit (1.8.0)
   - UICountingLabel (1.4.0)
   - UIEmptyState (0.5.0)
   - Validator (2.1.1)
@@ -59,6 +60,7 @@ DEPENDENCIES:
   - Sparrow/Modules/RequestPermission (from `https://github.com/IvanVorobei/Sparrow.git`)
   - SwiftDate (~> 4.0)
   - SwiftRichString
+  - SwipeCellKit
   - UICountingLabel
   - UIEmptyState
   - Validator (~> 2.1.1)
@@ -104,10 +106,11 @@ SPEC CHECKSUMS:
   Sparrow: 4b7826e69656f4745b0b4f74afadefa4f19cb9ee
   SwiftDate: 2dfdebd4f67ae71c9c3e2413ee3c56947f302858
   SwiftRichString: d42eeaefceea340e27b8a33945e0fac1ee21f58f
+  SwipeCellKit: 01a58bf7e63d5df09aedd161828833944c4c333c
   UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
   UIEmptyState: b81840468b03d7be5b02114c239f5ac097dc935a
   Validator: b1793fbfd0046097551d0edd18e2c30792d69ef5
 
-PODFILE CHECKSUM: 8fbd30506f13b987bc30be62106e95753d33586c
+PODFILE CHECKSUM: e412f4141498102f035f6c3e78cf3a53645bb0e7
 
 COCOAPODS: 1.2.1

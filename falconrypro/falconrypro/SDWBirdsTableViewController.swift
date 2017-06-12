@@ -12,8 +12,9 @@ import Networking
 import PKHUD
 import SDWebImage
 import UIEmptyState
+import SwipeCellKit
 
-class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStateDelegate {
+class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStateDelegate, SwipeTableViewCellDelegate {
     
     let dataModelManager = DataModelManager.sharedInstance
     let networkManager = NetworkManager.sharedInstance
@@ -137,7 +138,7 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:SDWBirdListTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SDWBirdListTableViewCell
-
+        cell.delegate = self
         
         let object = objects[indexPath.row]
         let string = object.name
@@ -206,6 +207,36 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
         
 
     }
+    
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        
+        let birdDisplayItem = objects[indexPath.row]
+        
+        let editAction = SwipeAction(style: .default, title: nil) { action, indexPath in
+            
+            
+            let controller:UINavigationController = self.storyboard?.instantiateViewController(withIdentifier: "BirdProfileEdit") as! UINavigationController
+            let birdEditVC = controller.viewControllers[0] as? SDWBirdViewController
+            birdEditVC?.bird = birdDisplayItem
+            
+            self.present(controller, animated: true, completion: nil)
+            
+            
+        }
+        
+        editAction.backgroundColor = .black
+        
+        
+        // customize the action appearance
+        editAction.image = #imageLiteral(resourceName: "edit-white")
+        
+        
+        return [editAction]
+    }
+    
     
     
     var emptyStateViewAnimationDuration: TimeInterval {

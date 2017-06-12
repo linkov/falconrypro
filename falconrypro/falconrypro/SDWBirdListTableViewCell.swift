@@ -8,8 +8,9 @@
 
 import UIKit
 import BadgeSwift
+import SwipeCellKit
 
-class SDWBirdListTableViewCell: UITableViewCell {
+class SDWBirdListTableViewCell: SwipeTableViewCell {
     
     var context = CIContext(options: nil)
     @IBOutlet weak var badgeLabel: BadgeSwift!

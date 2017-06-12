@@ -27,6 +27,7 @@ target 'falconrypro' do
   pod 'BadgeSwift', '~> 5.0'
   pod 'PureLayout'
   pod 'SwiftRichString'
+  pod 'SwipeCellKit'
 
   pod 'Mapbox-iOS-SDK', '~> 3.5.4'
 

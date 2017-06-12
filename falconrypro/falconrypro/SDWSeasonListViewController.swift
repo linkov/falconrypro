@@ -11,8 +11,9 @@ import Networking
 import PKHUD
 import SDWebImage
 import UIEmptyState
+import SwipeCellKit
 
-class SDWSeasonListViewController: UITableViewController {
+class SDWSeasonListViewController: UITableViewController,SwipeTableViewCellDelegate {
     
     let dataStore:SDWDataStore = SDWDataStore.sharedInstance
     var objects = [SeasonDisplayItem]()
@@ -84,6 +85,29 @@ class SDWSeasonListViewController: UITableViewController {
     
     // Table
     
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        
+        let cell = tableView.cellForRow(at: indexPath)
+        
+        let editAction = SwipeAction(style: .default, title: nil) { action, indexPath in
+            self.performSegue(withIdentifier: "seasonEditSegue", sender: cell)
+        }
+    
+        editAction.backgroundColor = .black
+        
+        
+        // customize the action appearance
+        editAction.image = #imageLiteral(resourceName: "edit-white")
+        
+        
+        return [editAction]
+    }
+    
+
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -100,6 +124,7 @@ class SDWSeasonListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell:SDWSeasonListCell = tableView.dequeueReusableCell(withIdentifier: "SCell", for: indexPath) as! SDWSeasonListCell
+        cell.delegate = self
         cell.tintColor = .black
         let object:SeasonDisplayItem = objects[indexPath.row]
         

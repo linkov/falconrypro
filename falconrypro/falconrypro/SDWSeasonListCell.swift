@@ -8,8 +8,9 @@
 
 import UIKit
 import BadgeSwift
+import SwipeCellKit
 
-class SDWSeasonListCell: UITableViewCell {
+class SDWSeasonListCell: SwipeTableViewCell {
 
     @IBOutlet weak var activeBadge: BadgeSwift!
     @IBOutlet weak var timeLabel: UILabel!
