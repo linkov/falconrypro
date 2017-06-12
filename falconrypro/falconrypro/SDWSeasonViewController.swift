@@ -156,7 +156,7 @@ class SDWSeasonViewController: FormViewController {
             
             let season_id:String = (self.season?.remoteID)!
             
-            self.dataStore.pushSeasonWith(season_id:season_id, bird_id: bird_id, start: (start?.value)!, end: (end?.value)!, isBetween: (between?.value)!, completion: { (object, error) in
+            self.dataStore.pushSeasonWith(season_id:season_id, bird_id: bird_id, start: (start?.value)!, end: end?.value, isBetween: (between?.value)!, completion: { (object, error) in
                 
                 PKHUD.sharedHUD.hide()
                 
