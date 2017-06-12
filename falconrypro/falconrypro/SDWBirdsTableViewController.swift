@@ -65,6 +65,8 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
         if ((UserDefaults.standard.value(forKey: "access-token")) != nil) {
             
             self.loadBirds()
+            self.dataStore.removeCurrentSeason()
+            self.dataStore.removeCurrentBird()
             
         } else {
             

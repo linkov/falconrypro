@@ -119,6 +119,41 @@ class SDWDataStore: NSObject {
         
     }
     
+    public func removeCurrentSeason() {
+        
+        let predicate = NSPredicate(format: "%K = %@", "current", NSNumber(booleanLiteral: true))
+        
+        let seasons = self.dataModelManager.fetchAll(entityName: SDWSeason.entityName(), predicate: predicate, context: self.dataModelManager.viewContext) as? [SDWSeason]
+        
+        
+        for se:SDWSeason in seasons! {
+            se.current = false
+        }
+        
+        self.dataModelManager.saveContext()
+        
+        
+        
+    }
+    
+    
+    public func removeCurrentBird() {
+        
+        let predicate = NSPredicate(format: "%K = %@", "current", NSNumber(booleanLiteral: true))
+        
+        let birds = self.dataModelManager.fetchAll(entityName: SDWBird.entityName(), predicate: predicate, context: self.dataModelManager.viewContext) as? [SDWBird]
+        
+        
+        for be:SDWBird in birds! {
+            be.current = false
+        }
+        
+        self.dataModelManager.saveContext()
+        
+        
+        
+    }
+    
     
     public func setupCurrentSeason(remoteID:String) {
         

@@ -45,6 +45,15 @@ public class SDWDiaryItem: NSManagedObject, SDWObjectMapping {
         birdRelationshipMapping.weak = true
         mapping.addRelationship(birdRelationshipMapping)
         
+        
+        let seasonMapping:FEMMapping = FEMMapping(entityName: "SDWSeason")
+        seasonMapping.primaryKey = "remoteID"
+        seasonMapping.addAttribute(withProperty: "remoteID", keyPath: nil)
+        
+        let seasonRelationshipMapping:FEMRelationship = FEMRelationship(property: "season", keyPath: "season", mapping: seasonMapping)
+        seasonRelationshipMapping.weak = true
+        mapping.addRelationship(seasonRelationshipMapping)
+        
         return mapping
     }
     

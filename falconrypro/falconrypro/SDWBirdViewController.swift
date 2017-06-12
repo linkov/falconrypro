@@ -98,7 +98,7 @@ class SDWBirdViewController: FormViewController {
                 +++ Section(header: "Bird identifier", footer: "Enter your Bird ID provided by certification authority or other organization. Falconry Pro Bird ID was already setup automatically."){
                     $0.tag = "bird_id"
                     $0.hidden = Condition.function([], { form in
-                        return (self.bird?.isViewOnly())!
+                        return (self.bird != nil && (self.bird?.isViewOnly())!)
                     })
                 }
 
@@ -113,7 +113,7 @@ class SDWBirdViewController: FormViewController {
                 +++ Section("Basic information"){
                     $0.tag = "basic"
                     $0.hidden = Condition.function([], { form in
-                        return (self.bird?.isViewOnly())!
+                        return (self.bird != nil && (self.bird?.isViewOnly())!)
                     })
                 }
 
@@ -195,7 +195,7 @@ class SDWBirdViewController: FormViewController {
                 +++  Section("Species"){
                         $0.tag = "species"
                         $0.hidden = Condition.function([], { form in
-                            return (self.bird?.isViewOnly())!
+                            return (self.bird != nil && (self.bird?.isViewOnly())!)
                         })
                 }
                 <<< SegmentedRow<String>("segments"){
@@ -649,7 +649,7 @@ class SDWBirdViewController: FormViewController {
         var dict: [String: Any] = [
             "name": (name?.value)!,
             "sex": sexbool,
-            "code": code?.value,
+            "code": code?.value ?? "",
             "fat_weight": (fweight?.value)!,
             "hunting_weight": (hweight?.value)!,
             "birthday": (bday?.value)!.toString(),
@@ -682,6 +682,7 @@ class SDWBirdViewController: FormViewController {
             dataStore.pushBirdWith(bird_id:nil, code: code?.value, sex: sexbool, name: (name?.value)!, birthday: (bday?.value)!, fatWeight: (fweight?.value)!, huntingWeight: (hweight?.value)!, image: nil, birdTypes: self.selectedBirdTypes(), completion: { (result, error) in
                 
                 PKHUD.sharedHUD.hide()
+                
                 
                 let birdItem:BirdDisplayItem = result as! BirdDisplayItem
                 self.uploadImage(bird_id: birdItem.remoteID)
