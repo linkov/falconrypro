@@ -53,17 +53,16 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         items.append(MiniTabBarItem(title: "Diary", icon: #imageLiteral(resourceName: "activity")))
         
         
-        hmButton.backgroundColor = UIColor.white
+        hmButton.backgroundColor = UIColor.clear
         hmButton.layer.cornerRadius = 4
-        hmButton.frame.size = CGSize(width: 50, height: 50)
-        hmButton.layer.borderWidth = 1;
-        hmButton.layer.borderColor = UIColor.black.cgColor
+        hmButton.frame.size = CGSize(width: 60, height: 60)
+
         hmButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
         hmButton.setImage(#imageLiteral(resourceName: "target"), for: .normal)
         hmButton.setTitleColor(UIColor.black, for: .normal)
         hmButton.imageView?.contentMode = .scaleAspectFit
-        hmButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        let customItem = MiniTabBarItem(customView: hmButton, offset: UIOffset(horizontal: 0, vertical: -10))
+        hmButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        let customItem = MiniTabBarItem(customView: hmButton, offset: UIOffset(horizontal: 0, vertical: -5))
         customItem.selectable = false
         
         
@@ -262,6 +261,20 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     
     @objc private func customButtonTapped() {
         
+        
+        
+//        if (self.hmButton.backgroundColor == UIColor.white) {
+//            
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SDWHuntingModeStatusDidChange"), object: NSNumber(booleanLiteral: true))
+//            self.hmButton.backgroundColor = UIColor.black
+//            self.hmButton.tintColor = .white
+//        } else {
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SDWHuntingModeStatusDidChange"), object: NSNumber(booleanLiteral: false))
+//            self.hmButton.backgroundColor = UIColor.white
+//            self.hmButton.tintColor = .black
+//        }
+//        
+        
 //        let currentItem = self.diaryListVC?.lastSelectedItem
 //        if (currentItem == nil) {
 //            
@@ -321,7 +334,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     func editToday(_ sender: Any) {
         
         
-        let controller:SDWDiaryItemViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemViewController") as! SDWDiaryItemViewController
+        let controller:SDWDiaryItemContainerViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemContainerViewController") as! SDWDiaryItemContainerViewController
         controller.bird = bird
         controller.title = "Today"
         if (self.diaryListVC?.existingTodayItem != nil) {

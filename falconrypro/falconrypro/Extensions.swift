@@ -66,3 +66,27 @@ struct AppUtility {
     }
     
 }
+
+
+class GradientView: UIView {
+    
+    private let gradient : CAGradientLayer = CAGradientLayer()
+    
+    
+    
+    override func layoutSublayers(of layer: CALayer) {
+        super.layoutSublayers(of: layer)
+        self.gradient.frame = self.bounds
+    }
+    
+    
+    override public func draw(_ rect: CGRect) {
+        self.gradient.frame = self.bounds
+        self.gradient.colors = [UIColor.black.cgColor, UIColor.white.cgColor]
+        self.gradient.startPoint     = CGPoint(x: 1, y: 0)
+        self.gradient.endPoint       = CGPoint(x: 0.2, y: 1)
+        if self.gradient.superlayer != nil {
+            self.layer.insertSublayer(self.gradient, at: 0)
+        }
+    }
+}

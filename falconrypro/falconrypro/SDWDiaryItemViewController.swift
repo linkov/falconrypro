@@ -11,16 +11,22 @@ import Eureka
 import Networking
 import SDWebImage
 import PKHUD
+import PureLayout
 
 
-class SDWDiaryItemViewController: FormViewController {
+class SDWDiaryItemViewController: FormViewController, SDWPageable {
+    
+    var foodItems = [DiaryFoodItemDisplayItem]()
+    var weightItems = [DiaryWeightItemDisplayItem]()
+    var note:String?
+    var pastCreated:Date?
     
     
+    var index:NSInteger = 0
     let networking = Networking(baseURL: Constants.server.BASEURL)
     let dataStore:SDWDataStore = SDWDataStore.sharedInstance
-    var bird:BirdDisplayItem?
+
     var diaryItem:DiaryItemDisplayItem?
-    var foods = [TypeDisplayItem]()
     var isPastItem:Bool = false
     var weightFormatter = NumberFormatter()
     
@@ -30,6 +36,13 @@ class SDWDiaryItemViewController: FormViewController {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
     }
+    
+    func changeTimeframe(timeframe:ChartTimeFrame) {
+        
+    }
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,25 +52,30 @@ class SDWDiaryItemViewController: FormViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d yyyy" //Your New Date format as per requirement change it own
         
-        if(self.diaryItem != nil) {
-            self.title = self.diaryItem?.created
-        }
+        self.view.backgroundColor = UIColor.clear
         
+        self.tableView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsetsMake(40, 20, 20, 20))
+        self.tableView.layer.cornerRadius = 8
+        self.tableView.layer.masksToBounds = true
+
         
+        self.tableView.backgroundColor = .white
         
-        let addButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(finish(_:)))
-        addButton.tintColor = UIColor.black
-        
-//        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
-//        cancelButton.tintColor = UIColor.black
-        
-        self.navigationItem.rightBarButtonItem = addButton
-//        self.navigationItem.leftBarButtonItem = cancelButton
-        
-        weightFormatter.locale = Locale.current
-        weightFormatter.numberStyle = .none
 
         form
+            
+        +++ Section(){ section in
+            var header = HeaderFooterView<SDWDiaryCardHeaderView>(.nibFile(name: "SDWDiaryCardHeaderView", bundle: nil))
+            
+            // Will be called every time the header appears on screen
+            header.height = {52}
+            header.onSetupView = { view, _ in
+                // Commonly used to setup texts inside the view
+                // Don't change the view hierarchy or size here!
+                view.mainImageView.image = #imageLiteral(resourceName: "check-circle")
+            }
+            section.header = header
+            }
             
             +++ Section("Past date"){
                 $0.hidden = Condition.function([], { form in
@@ -84,8 +102,9 @@ class SDWDiaryItemViewController: FormViewController {
             +++
             
             MultivaluedSection(multivaluedOptions: [.Insert, .Delete],
-                               header: "Weight measurements",
+                               header: "Weight",
                                footer: "") { section in
+
                                 section.tag = "weightitem"
                                 section.multivaluedRowToInsertAt = { index in
                                     return SDWWeightItemRow(){
@@ -100,6 +119,7 @@ class SDWDiaryItemViewController: FormViewController {
                                             AppUtility.delay(delay: 0.3, closure: {
                                                 row.didSelect()
                                             })
+                                            
                                             
                                         })
                                 }
@@ -129,9 +149,10 @@ class SDWDiaryItemViewController: FormViewController {
             +++
             
             MultivaluedSection(multivaluedOptions: [.Insert, .Delete],
-                               header: "Food given",
+                               header: "Food",
                                footer: "") { section in
                                 section.tag = "fooditem"
+
                                 section.multivaluedRowToInsertAt = { index in
                                     return SDWFoodItemRow(){
                                         $0.tag = "\(index+1)_newfooditem"
@@ -170,7 +191,10 @@ class SDWDiaryItemViewController: FormViewController {
                                 
             }
             
-            +++ Section("Notes")
+            +++ Section("Notes"){
+                $0.tag = "notes"
+
+            }
 
         
             <<< TextAreaRow(){ row in
@@ -187,110 +211,14 @@ class SDWDiaryItemViewController: FormViewController {
 
             
             
-            +++
-            
-            MultivaluedSection(multivaluedOptions: [.Insert, .Delete],
-                               header: "Pins",
-                               footer: "") { section in
-                                section.tag = "pinitem"
-                                section.multivaluedRowToInsertAt = { index in
-                                    return SDWPinRow(){
-                                        $0.tag = "\(index+1)_newpinitem"
-                                        $0.title = "Just added:"
-                                        $0.displayValueFor = { value in
-                                            return  "\(value?.pintype?.title ?? "")"
-                                            
-                                        }
-                                        
-                                        }.cellSetup({ (cell,row) in
-                                            AppUtility.delay(delay: 0.3, closure: {
-                                                row.didSelect()
-                                            })
-                                            
-                                        })
-                                }
-                                if(self.diaryItem != nil && (self.diaryItem?.pins!.count)! > 0) {
-                                    
-                                    
-                                    for (index, pinItem) in (self.diaryItem?.pins)!.enumerated() {
-                                        
-                                        
-                                        section <<< SDWPinRow() {
-                                            $0.tag = "\(index+1)_pinitem"
-                                            $0.value = pinItem
-                                            $0.title = "\($0.value?.pintype?.title ?? "")"
-                                            $0.displayValueFor = { value in
-                                                return  ""
-                                            }
-                                            
-                                        }
-                                        
-                                    }
-                                }
-                                
-                                
-                                
-            }
-            
-            
-
-        
-        +++
-            
-        MultivaluedSection(multivaluedOptions: [.Insert, .Delete],
-                           header: "Quarry caught",
-                           footer: "") { section in
-                            section.tag = "quarry"
-                            section.multivaluedRowToInsertAt = { index in
-                                return SearchablePushRow<QuarryTypeDisplayItem>(){
-                                    $0.tag = "\(index+1)_newquarry"
-                                    $0.title = "Quarry"
-                                    $0.displayValueFor = { value in
-                                        return value?.name
-                                    }
-                                    $0.options = self.dataStore.allQuarryTypes()
-                                    }.cellSetup({ (cell,row) in
-                                        AppUtility.delay(delay: 0.3, closure: {
-                                            row.didSelect()
-                                        })
-                                        
-                                    })
-                            }
-                            if(self.diaryItem != nil && (self.diaryItem?.quarryTypes!.count)! > 0) {
-
-                                
-                                for (index, quarry) in (self.diaryItem?.quarryTypes)!.enumerated() {
-                                    
-                                    
-                                     section <<< SearchablePushRow<QuarryTypeDisplayItem>() {
-                                        $0.tag = "\(index+1)_quarry"
-                                        $0.value = quarry
-                                        $0.title = "Quarry"
-                                        $0.displayValueFor = { value in
-                                            return value?.name
-                                        }
-                                        
-                                        }.cellUpdate { cell, row in
-                                            row.options = self.dataStore.allQuarryTypes()
-                                    }
-                                    
-                                }
-                            }
-
-
-                            
-            }
-        
+                
 
 
     
     }
     
-    func loadFoods() {
 
 
-    }
-    
     
     func updateDiaryItem() {
         
@@ -298,21 +226,13 @@ class SDWDiaryItemViewController: FormViewController {
         
         let note: TextAreaRow? = form.rowBy(tag: "note")
         let pastCreated: DateInlineRow? = form.rowBy(tag: "past_created")
-        let bird_id = self.bird?.remoteID
         
+        self.note = note?.value
+        self.pastCreated = pastCreated?.value
 
         let valuesDictionary = form.values()
-        var quarry = [QuarryTypeDisplayItem]()
-        
-        for (key, value) in valuesDictionary {
-            if(key.hasSuffix("quarry")) {
-                let item:QuarryTypeDisplayItem = value as! QuarryTypeDisplayItem
-                quarry.append(item)
-            }
-            
-        }
-        
-        var foodItems = [DiaryFoodItemDisplayItem]()
+
+
         
         for (key, value) in valuesDictionary {
             if(key.hasSuffix("fooditem")) {
@@ -322,7 +242,7 @@ class SDWDiaryItemViewController: FormViewController {
             
         }
         
-        var weightItems = [DiaryWeightItemDisplayItem]()
+        
         
         for (key, value) in valuesDictionary {
             if(key.hasSuffix("weightitem")) {
@@ -332,63 +252,21 @@ class SDWDiaryItemViewController: FormViewController {
             
         }
         
-        var pinItems = [PinItemDisplayItem]()
-        
-        for (key, value) in valuesDictionary {
-            if(key.hasSuffix("pinitem")) {
-                let item:PinItemDisplayItem = value as! PinItemDisplayItem
-                pinItems.append(item)
-            }
-            
-        }
-        
-        
-        if (weightItems.count == 0) {
-            
-            PKHUD.sharedHUD.contentView = PKHUDTextView(text: "At least 1 weight item required")
-            PKHUD.sharedHUD.show()
-            PKHUD.sharedHUD.hide(afterDelay: 1.0) { success in
-                // Completion Handler
-            }
-            return
-        }
-        
-        
-        if (self.diaryItem != nil) {
-            
-            self.dataStore.updateDiaryItemWith(itemID:self.diaryItem!.remoteID, note: note?.value, quarryTypes: quarry,foodItems:foodItems,weightItems:weightItems,pinItems: pinItems) { (object, error) in
-                
-                if (error == nil) {
-                    self.navigationController?.popViewController(animated: true)
-                }
-            }
-            
-        } else {
-            
-            self.dataStore.pushDiaryItemWith(birdID:bird_id!, note: note?.value, quarryTypes: quarry,foodItems:foodItems,weightItems:weightItems,pinItems: pinItems,createdDate:pastCreated?.value ) { (object, error) in
-                
-                if (error == nil) {
-                    self.navigationController?.popViewController(animated: true)
-                }
-            }
-        }
-        
-
-
         
         
     }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 52
+    }
+    
     
     
     func cancel(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func finish(_ sender: Any) {
-        self.updateDiaryItem()
 
-        
-    }
 
 
 }

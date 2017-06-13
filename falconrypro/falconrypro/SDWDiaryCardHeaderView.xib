@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SDWDiaryCardHeaderView" customModule="falconrypro" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disc2" translatesAutoresizingMaskIntoConstraints="NO" id="Nz8-8l-qYn">
+                    <rect key="frame" x="176" y="21" width="22" height="22"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="more-horizontal" translatesAutoresizingMaskIntoConstraints="NO" id="28y-Fa-uOF">
+                    <rect key="frame" x="333" y="29" width="22" height="6"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Nz8-8l-qYn" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="6" id="XhR-RV-GFc"/>
+                <constraint firstItem="Nz8-8l-qYn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dTW-c1-3Hy"/>
+                <constraint firstItem="28y-Fa-uOF" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="6" id="lmq-Cx-Xrd"/>
+                <constraint firstAttribute="trailing" secondItem="28y-Fa-uOF" secondAttribute="trailing" constant="20" id="zvC-Qv-ZkK"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mainImageView" destination="Nz8-8l-qYn" id="4Ey-5f-waw"/>
+            </connections>
+            <point key="canvasLocation" x="-347.5" y="-174"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="disc2" width="22" height="22"/>
+        <image name="more-horizontal" width="22" height="6"/>
+    </resources>
+</document>

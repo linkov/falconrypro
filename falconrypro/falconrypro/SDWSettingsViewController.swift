@@ -23,7 +23,8 @@ class SDWSettingsViewController: FormViewController {
             <<< TextRow(){ row in
                 row.value = dataStore.currentUser()?.email
                 row.tag = "email"
-                row.title = "eMail"
+                row.title = "email"
+                row.cell.height = { 60 }
             }
         
         

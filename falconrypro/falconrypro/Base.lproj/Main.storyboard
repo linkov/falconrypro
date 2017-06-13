@@ -167,7 +167,7 @@
         <scene sceneID="KKZ-G3-6nO">
             <objects>
                 <navigationController storyboardIdentifier="BirdProfileEdit" id="tcw-iN-XCI" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Ihw-4v-V0x">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ihw-4v-V0x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -198,10 +198,10 @@
             </objects>
             <point key="canvasLocation" x="3946" y="-1500"/>
         </scene>
-        <!--Diary Item View Controller-->
+        <!--Diary Item Container View Controller-->
         <scene sceneID="DiY-Au-m7z">
             <objects>
-                <viewController storyboardIdentifier="SDWDiaryItemViewController" id="hGL-1i-q5P" customClass="SDWDiaryItemViewController" customModule="falconrypro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SDWDiaryItemContainerViewController" id="hGL-1i-q5P" customClass="SDWDiaryItemContainerViewController" customModule="falconrypro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="G7i-7k-z1S"/>
                         <viewControllerLayoutGuide type="bottom" id="sIU-VF-np8"/>
@@ -215,13 +215,49 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKT-ZL-xGt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6417" y="-546"/>
+            <point key="canvasLocation" x="6953" y="-776"/>
+        </scene>
+        <!--Diary Item View Controller-->
+        <scene sceneID="MV8-A7-fzO">
+            <objects>
+                <viewController storyboardIdentifier="SDWDiaryItemViewController" id="PgV-cs-v5K" customClass="SDWDiaryItemViewController" customModule="falconrypro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zTk-hE-vIb"/>
+                        <viewControllerLayoutGuide type="bottom" id="QkS-2a-j6T"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UvS-0d-IzI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cD4-6L-Avz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7810" y="-777"/>
+        </scene>
+        <!--Diary Hunt View Controller-->
+        <scene sceneID="i42-If-FJH">
+            <objects>
+                <viewController storyboardIdentifier="SDWDiaryHuntViewController" id="TAx-tJ-gmj" customClass="SDWDiaryHuntViewController" customModule="falconrypro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QI6-Bb-oMy"/>
+                        <viewControllerLayoutGuide type="bottom" id="YM3-mO-2xw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="txp-6n-deh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="37P-c5-LYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8449" y="-777"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="E4h-4l-11o">
             <objects>
                 <navigationController storyboardIdentifier="StatsListNav" id="CVg-zS-hJg" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="TiM-Xd-QpX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TiM-Xd-QpX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -368,7 +404,7 @@
         <scene sceneID="btS-vb-iMU">
             <objects>
                 <navigationController storyboardIdentifier="MapNav" id="BFc-Wv-AtJ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Ief-A4-UvG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ief-A4-UvG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -425,7 +461,7 @@
         <scene sceneID="VFP-aU-MZG">
             <objects>
                 <navigationController storyboardIdentifier="SDWSettingsNav" id="L2q-7p-i72" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gy4-OZ-cNe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gy4-OZ-cNe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -460,7 +496,7 @@
         <scene sceneID="DNh-Vd-Iq3">
             <objects>
                 <navigationController storyboardIdentifier="SeasonEdit" id="Kz5-PJ-mPi" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="012-Jt-ciV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="012-Jt-ciV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -476,7 +512,7 @@
         <scene sceneID="O9E-Ha-nUf">
             <objects>
                 <navigationController storyboardIdentifier="DiaryListNav" id="Tfa-Zx-mvt" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eIf-l0-Qvs">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eIf-l0-Qvs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -558,7 +594,7 @@
         <scene sceneID="Q5G-4v-8Lt">
             <objects>
                 <navigationController id="Apd-Xo-FPZ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8Mv-GK-ohS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Mv-GK-ohS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

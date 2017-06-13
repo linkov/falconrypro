@@ -12,6 +12,7 @@ PODS:
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Eureka (3.0.0)
+  - EZYGradientView (1.5.1)
   - Fabric (1.6.11)
   - FastEasyMapping (1.1.2)
   - FBSDKCoreKit (4.21.0):
@@ -45,6 +46,7 @@ DEPENDENCIES:
   - Charts
   - Crashlytics
   - Eureka (from `https://github.com/xmartlabs/Eureka.git`)
+  - EZYGradientView (from `https://github.com/Niphery/EZYGradientView`)
   - Fabric
   - FastEasyMapping (~> 1.1)
   - FBSDKLoginKit (= 4.18.0)
@@ -68,6 +70,8 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   Eureka:
     :git: https://github.com/xmartlabs/Eureka.git
+  EZYGradientView:
+    :git: https://github.com/Niphery/EZYGradientView
   ImageRow:
     :git: https://github.com/EurekaCommunity/ImageRow.git
   Sparrow:
@@ -77,6 +81,9 @@ CHECKOUT OPTIONS:
   Eureka:
     :commit: 77cb04f587a4e83f28ad5f3174f6f8f6c086b524
     :git: https://github.com/xmartlabs/Eureka.git
+  EZYGradientView:
+    :commit: e8cc7bf2fb77557af214289288ebc96776ffbf57
+    :git: https://github.com/Niphery/EZYGradientView
   ImageRow:
     :commit: 1456406e7afa99f6e0be2c3c691f76ebbdaa1b16
     :git: https://github.com/EurekaCommunity/ImageRow.git
@@ -90,6 +97,7 @@ SPEC CHECKSUMS:
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Eureka: 5b9418d7bfdc21ca977d69d124a6409f3e9af2c7
+  EZYGradientView: f13e7a9e774b906c66d617fb04a13c8853ba25b4
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FastEasyMapping: fe654d4b8d3c5650f41da1563a4385c6a19adea3
   FBSDKCoreKit: 8a372ab194b5c7c26355c1920ef52dbeb44bc222
@@ -111,6 +119,6 @@ SPEC CHECKSUMS:
   UIEmptyState: b81840468b03d7be5b02114c239f5ac097dc935a
   Validator: b1793fbfd0046097551d0edd18e2c30792d69ef5
 
-PODFILE CHECKSUM: e412f4141498102f035f6c3e78cf3a53645bb0e7
+PODFILE CHECKSUM: b6bf7b79557e853fe8db78565b50a8dde8251ce2
 
 COCOAPODS: 1.2.1

@@ -30,6 +30,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UISearchBar.appearance().tintColor = UIColor.black
         UINavigationBar.appearance().backgroundColor = UIColor.white
         
+//        let proxyButton = UIButton.appearance()
+//        proxyButton.setTitleColor(.black, for: .normal)
+//        proxyButton.tintColor = .black
+        
+
+        let proxyCell = UITableViewCell.appearance()
+        proxyCell.tintColor = .black
+        proxyCell.textLabel?.textColor = .black
+        
+        
+        
+//        let proxyImageView = UIImageView.appearance()
+//        proxyImageView.tintColor = .black
+//        
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     

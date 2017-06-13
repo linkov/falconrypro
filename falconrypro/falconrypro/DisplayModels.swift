@@ -162,7 +162,6 @@ class UserDisplayItem: NSObject {
 class PinItemDisplayItem: NSObject {
     var remoteID:String?
     var note:String?
-    var imageData:Data?
     var typeName:String?
     var lat:Double?
     var long:Double?
@@ -186,12 +185,11 @@ class PinItemDisplayItem: NSObject {
         
     }
     
-    init(note:String?,type:PinTypeDisplayItem,lat:Double, long:Double,imageData:Data?) {
+    init(note:String?,type:PinTypeDisplayItem,lat:Double, long:Double) {
         self.note = note
         self.pintype = type
         self.long = long
         self.lat = lat
-        self.imageData = imageData
     }
     
     func serialization() -> Dictionary<String, Any> {

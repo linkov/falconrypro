@@ -41,6 +41,10 @@
 		F162E3C01EE03F8200732195 /* SDWChartDateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3BF1EE03F8200732195 /* SDWChartDateValueFormatter.swift */; };
 		F17A30C01EEC88E500B8AD70 /* SDWSeasonListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17A30BE1EEC88E500B8AD70 /* SDWSeasonListCell.swift */; };
 		F17A30C11EEC88E500B8AD70 /* SDWSeasonListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F17A30BF1EEC88E500B8AD70 /* SDWSeasonListCell.xib */; };
+		F186C5CD1EEF1EAA00353A64 /* SDWDiaryItemContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F186C5CC1EEF1EAA00353A64 /* SDWDiaryItemContainerViewController.swift */; };
+		F186C5CF1EEF1F8400353A64 /* SDWDiaryHuntViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F186C5CE1EEF1F8400353A64 /* SDWDiaryHuntViewController.swift */; };
+		F186C5D11EEF308E00353A64 /* SDWDiaryCardHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F186C5D01EEF308E00353A64 /* SDWDiaryCardHeaderView.xib */; };
+		F186C5D31EEF30CE00353A64 /* SDWDiaryCardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F186C5D21EEF30CE00353A64 /* SDWDiaryCardHeaderView.swift */; };
 		F19FEDC71EB380ED00996B40 /* searchable_push_row.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */; };
 		F1A8136A1EEDC0DA00F2BBE5 /* SDWCustomAddView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A813691EEDC0DA00F2BBE5 /* SDWCustomAddView.xib */; };
 		F1A8136C1EEDC11F00F2BBE5 /* SDWCustomAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8136B1EEDC11F00F2BBE5 /* SDWCustomAddView.swift */; };
@@ -176,6 +180,10 @@
 		F162E3BF1EE03F8200732195 /* SDWChartDateValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWChartDateValueFormatter.swift; sourceTree = "<group>"; };
 		F17A30BE1EEC88E500B8AD70 /* SDWSeasonListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWSeasonListCell.swift; sourceTree = "<group>"; };
 		F17A30BF1EEC88E500B8AD70 /* SDWSeasonListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWSeasonListCell.xib; sourceTree = "<group>"; };
+		F186C5CC1EEF1EAA00353A64 /* SDWDiaryItemContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDiaryItemContainerViewController.swift; sourceTree = "<group>"; };
+		F186C5CE1EEF1F8400353A64 /* SDWDiaryHuntViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDiaryHuntViewController.swift; sourceTree = "<group>"; };
+		F186C5D01EEF308E00353A64 /* SDWDiaryCardHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWDiaryCardHeaderView.xib; sourceTree = "<group>"; };
+		F186C5D21EEF30CE00353A64 /* SDWDiaryCardHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDiaryCardHeaderView.swift; sourceTree = "<group>"; };
 		F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchable_push_row.swift; sourceTree = "<group>"; };
 		F1A813691EEDC0DA00F2BBE5 /* SDWCustomAddView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWCustomAddView.xib; sourceTree = "<group>"; };
 		F1A8136B1EEDC11F00F2BBE5 /* SDWCustomAddView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWCustomAddView.swift; sourceTree = "<group>"; };
@@ -398,12 +406,16 @@
 			children = (
 				F1140C6F1EE1F959006ABBBD /* CustomCells.swift */,
 				F1FBC21E1EB53AA900D57ED0 /* SDWDiaryItemViewController.swift */,
+				F186C5CE1EEF1F8400353A64 /* SDWDiaryHuntViewController.swift */,
+				F186C5CC1EEF1EAA00353A64 /* SDWDiaryItemContainerViewController.swift */,
 				F10417961ED5634C00D2F3B1 /* SDWFoodItemViewController.swift */,
 				F1140C731EE1FC67006ABBBD /* SDWPinViewController.swift */,
 				F104179A1ED5C81100D2F3B1 /* SDWWeightItemViewController.swift */,
 				F10417981ED563CF00D2F3B1 /* SDWFoodItemRow.swift */,
 				F1140C711EE1FBE5006ABBBD /* SDWPinRow.swift */,
 				F104179C1ED5C82D00D2F3B1 /* SDWWeightItemRow.swift */,
+				F186C5D21EEF30CE00353A64 /* SDWDiaryCardHeaderView.swift */,
+				F186C5D01EEF308E00353A64 /* SDWDiaryCardHeaderView.xib */,
 				F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */,
 				F1A813691EEDC0DA00F2BBE5 /* SDWCustomAddView.xib */,
 				F1A8136B1EEDC11F00F2BBE5 /* SDWCustomAddView.swift */,
@@ -751,6 +763,7 @@
 				F1CB9CCA1E9905C900A90363 /* Main.storyboard in Resources */,
 				F140C5E51EA149A10099C592 /* SDWBirdListTableViewCell.xib in Resources */,
 				F162E3B01EDF40C200732195 /* SDWStatsListHeaderView.xib in Resources */,
+				F186C5D11EEF308E00353A64 /* SDWDiaryCardHeaderView.xib in Resources */,
 				F1FBC2231EB54DA500D57ED0 /* SDWDiaryListTableViewCell.xib in Resources */,
 				F1FA3B0A1EC219E700355507 /* .gitkeep in Resources */,
 				F1FA3B121EC219E700355507 /* .gitkeep in Resources */,
@@ -933,6 +946,7 @@
 			files = (
 				F162E3B41EDF772B00732195 /* SDWMapViewController.swift in Sources */,
 				F104179B1ED5C81100D2F3B1 /* SDWWeightItemViewController.swift in Sources */,
+				F186C5D31EEF30CE00353A64 /* SDWDiaryCardHeaderView.swift in Sources */,
 				F1FA3B131EC219E700355507 /* BackgroundMover.swift in Sources */,
 				F1FA3AB41EC0899800355507 /* SDWFood+CoreDataProperties.swift in Sources */,
 				F1AD8B711E9EA18A006B2EB1 /* SDWBirdViewController.swift in Sources */,
@@ -963,6 +977,7 @@
 				F1FA3B211EC219E700355507 /* UIViewController+Nib.swift in Sources */,
 				F1FA3A961EBFFE4300355507 /* DataModelManager.swift in Sources */,
 				F1FA3B201EC219E700355507 /* UITextField+fixCaretPosition.swift in Sources */,
+				F186C5CF1EEF1F8400353A64 /* SDWDiaryHuntViewController.swift in Sources */,
 				F1EF43A71EEC624600E0ABBA /* SDWDiaryListSectionFooterView.swift in Sources */,
 				F1FA3AE91EC0B55400355507 /* FEMAttribute+listsAttributes.m in Sources */,
 				F1A8136C1EEDC11F00F2BBE5 /* SDWCustomAddView.swift in Sources */,
@@ -1009,6 +1024,7 @@
 				F10E13001EBB418E0044802C /* SDWSeasonViewController.swift in Sources */,
 				F1140C741EE1FC67006ABBBD /* SDWPinViewController.swift in Sources */,
 				F1FA3B311EC43E5800355507 /* SDWStatsItemCell.swift in Sources */,
+				F186C5CD1EEF1EAA00353A64 /* SDWDiaryItemContainerViewController.swift in Sources */,
 				F10417971ED5634C00D2F3B1 /* SDWFoodItemViewController.swift in Sources */,
 				F140C5E71EA2509C0099C592 /* SDWHomeTBC.swift in Sources */,
 				F1FA3B171EC219E700355507 /* GradientImageView.swift in Sources */,

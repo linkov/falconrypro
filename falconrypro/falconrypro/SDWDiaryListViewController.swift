@@ -45,7 +45,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         self.existingTodayItem = self.dataStore.currentTodayItem()
         
         if (self.existingTodayItem != nil) {
-            let diaryController:SDWDiaryItemViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemViewController") as! SDWDiaryItemViewController
+            let diaryController:SDWDiaryItemContainerViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemContainerViewController") as! SDWDiaryItemContainerViewController
             
             diaryController.bird = self.bird
             diaryController.diaryItem = self.existingTodayItem
@@ -185,7 +185,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         
         object = objects[indexPath.row]
 
-        let diaryController:SDWDiaryItemViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemViewController") as! SDWDiaryItemViewController
+        let diaryController:SDWDiaryItemContainerViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemContainerViewController") as! SDWDiaryItemContainerViewController
 
         diaryController.bird = bird
         diaryController.diaryItem = object
@@ -277,7 +277,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     func addItem(_ sender: Any) {
         
         
-        let controller:SDWDiaryItemViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemViewController") as! SDWDiaryItemViewController
+        let controller:SDWDiaryItemContainerViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemContainerViewController") as! SDWDiaryItemContainerViewController
         controller.bird = self.bird
         controller.isPastItem = true
         controller.title = "Past item"

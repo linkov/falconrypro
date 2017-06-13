@@ -28,6 +28,7 @@ target 'falconrypro' do
   pod 'PureLayout'
   pod 'SwiftRichString'
   pod 'SwipeCellKit'
+  pod 'EZYGradientView', :git => 'https://github.com/Niphery/EZYGradientView'
 
   pod 'Mapbox-iOS-SDK', '~> 3.5.4'
 

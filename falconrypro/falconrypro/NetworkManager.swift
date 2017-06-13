@@ -36,11 +36,13 @@ class NetworkManager: NSObject {
                 print(response)
                 self.configureHeaders(json: response.headers as NSDictionary)
                 completion(response.dictionaryBody["data"],nil)
+                break
                 
                 
             case .failure(let response):
-                completion(nil,response.error.localizedDescription as? Error)
+                completion(nil,response.error)
                 print(response)
+                break
             }
             
         }

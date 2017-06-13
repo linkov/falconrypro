@@ -69,13 +69,24 @@ class SDWLoginCoordinator: LoginCoordinator {
     // MARK: - Completion Callbacks
     
     override func login(email: String, password: String) {
+       
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
         PKHUD.sharedHUD.show()
         // Handle login via your API
         
         dataStore.pullUserWith(email: email, password: password) { (result, error) in
             
             PKHUD.sharedHUD.hide()
-            self.finish()
+            
+            if (error != nil) {
+                PKHUD.sharedHUD.contentView = PKHUDErrorView(title: nil, subtitle: error?.localizedDescription)
+                PKHUD.sharedHUD.show()
+            } else {
+                
+                self.finish()
+            }
+            
+            
             
         }
 
@@ -83,6 +94,7 @@ class SDWLoginCoordinator: LoginCoordinator {
     
     override func signup(email: String, password: String) {
         // Handle signup via your API
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
         PKHUD.sharedHUD.show()
         
         dataStore.pushUserWith(email: email, password: password) { (result, error) in
@@ -90,9 +102,11 @@ class SDWLoginCoordinator: LoginCoordinator {
             PKHUD.sharedHUD.hide()
             
             if (error == nil) {
+                
                 self.login(email: email, password: password)
             } else {
-                print(error?.localizedDescription ?? "No data")
+               PKHUD.sharedHUD.contentView = PKHUDErrorView(title: nil, subtitle: error?.localizedDescription)
+                PKHUD.sharedHUD.show()
             }
         }
 
@@ -102,7 +116,7 @@ class SDWLoginCoordinator: LoginCoordinator {
     
     override func enterWithFacebook(profile: FacebookProfile) {
         // Handle Facebook login/signup via your API
-      
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
         PKHUD.sharedHUD.show()
         
         networking.get("/auth/facebook_access_token/callback?access_token="+profile.facebookToken)  { result in
@@ -114,13 +128,16 @@ class SDWLoginCoordinator: LoginCoordinator {
                 let json = response.dictionaryBody
                 print(json)
                 
+                
                 self.networkManager.configureHeaders(json: json as NSDictionary,isFacebook:true)
                 
                 self.finish()
+                break
                 
                 
             case .failure(let response):
-                print(response)
+                PKHUD.sharedHUD.contentView = PKHUDErrorView(title: nil, subtitle: response.error.localizedDescription)
+                PKHUD.sharedHUD.show()
             }
             
         }

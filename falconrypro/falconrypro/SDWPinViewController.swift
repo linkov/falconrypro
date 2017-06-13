@@ -88,16 +88,7 @@ class SDWPinViewController: FormViewController, TypedRowControllerType {
                         cell.textLabel?.textColor = .red
                     }
                 }
-            <<< ImageRow() {
-                $0.tag = "pic"
-                $0.title = "photo"
-                $0.sourceTypes = .Camera
-                $0.clearAction = .no
-                }
-                .cellUpdate { cell, row in
-                    cell.accessoryView?.layer.cornerRadius = 17
-                    cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
-        }
+
         
         
         
@@ -113,6 +104,8 @@ class SDWPinViewController: FormViewController, TypedRowControllerType {
         if (errors.count > 0) {
             return
         }
+        
+        
 //
         let noteRow: TextAreaRow? = form.rowBy(tag: "note")
         let typeRow: ActionSheetRow<PinTypeDisplayItem>? = form.rowBy(tag: "type")
@@ -122,7 +115,7 @@ class SDWPinViewController: FormViewController, TypedRowControllerType {
         
         
         if (currentItem == nil) {
-            currentItem = PinItemDisplayItem(note: noteRow?.value ?? nil, type: (typeRow?.value)!, lat: locationRowValue.coordinate.latitude, long: locationRowValue.coordinate.longitude, imageData: nil)
+            currentItem = PinItemDisplayItem(note: noteRow?.value ?? nil, type: (typeRow?.value)!, lat: locationRowValue.coordinate.latitude, long: locationRowValue.coordinate.longitude )
         } else {
             currentItem?.note = noteRow?.value
             currentItem?.pintype = typeRow?.value
