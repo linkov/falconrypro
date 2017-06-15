@@ -25,7 +25,7 @@ class SDWSeasonListViewController: UITableViewController,SwipeTableViewCellDeleg
         self.title = "Seasons"
         
         let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "plus-square"), style: .plain, target: self, action: #selector(insertNewObject(_:)))
-        addButton.tintColor = UIColor.black
+        addButton.tintColor = AppUtility.app_color_black
         addButton.isEnabled = !(self.bird?.isViewOnly())!
         self.navigationItem.rightBarButtonItem = addButton
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -96,7 +96,7 @@ class SDWSeasonListViewController: UITableViewController,SwipeTableViewCellDeleg
             self.performSegue(withIdentifier: "seasonEditSegue", sender: cell)
         }
     
-        editAction.backgroundColor = .black
+        editAction.backgroundColor = AppUtility.app_color_black
         
         
         // customize the action appearance
@@ -125,7 +125,7 @@ class SDWSeasonListViewController: UITableViewController,SwipeTableViewCellDeleg
 
         let cell:SDWSeasonListCell = tableView.dequeueReusableCell(withIdentifier: "SCell", for: indexPath) as! SDWSeasonListCell
         cell.delegate = self
-        cell.tintColor = .black
+        cell.tintColor = AppUtility.app_color_black
         let object:SeasonDisplayItem = objects[indexPath.row]
         
         if (object.isBetweenSeason == false) {

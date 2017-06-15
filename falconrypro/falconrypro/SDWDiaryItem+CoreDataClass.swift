@@ -31,6 +31,8 @@ public class SDWDiaryItem: NSManagedObject, SDWObjectMapping {
         
         mapping.add(toManyRelationshipMapping: SDWPinItem.defaultMapping(), forProperty: "pins", keyPath: "pin_items")
         
+        mapping.add(toManyRelationshipMapping: SDWDiaryPhoto.defaultMapping(), forProperty: "photos", keyPath: "diary_photos")
+        
         let quarryRelationshipMapping:FEMRelationship = FEMRelationship(property: "quarryTypes", keyPath: "quarry_types", mapping: SDWQuarryType.defaultMapping())
         quarryRelationshipMapping.weak = true
         quarryRelationshipMapping.isToMany = true

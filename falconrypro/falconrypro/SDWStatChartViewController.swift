@@ -214,8 +214,8 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         dataset.circleHoleRadius = 2.0;
         dataset.axisDependency = .left
         dataset.mode = .cubicBezier
-        dataset.setColor(UIColor.black)
-        dataset.setCircleColor(UIColor.black)
+        dataset.setColor(AppUtility.app_color_black)
+        dataset.setCircleColor(AppUtility.app_color_black)
         
         
         let hWeght = Double((self.dataStore.currentBird()?.huntingWeight)!)
@@ -335,7 +335,7 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         let dataSet1:BarChartDataSet = BarChartDataSet(values: [dataPoints[1]], label: "Mice")
         dataSet1.setColor(UIColor.gray)
         let dataSet2:BarChartDataSet = BarChartDataSet(values: [dataPoints[2]], label: "Rats")
-        dataSet2.setColor(UIColor.black)
+        dataSet2.setColor(AppUtility.app_color_black)
         
         
         

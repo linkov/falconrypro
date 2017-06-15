@@ -70,11 +70,11 @@ class SDWBirdViewController: FormViewController {
             self.form.sectionBy(tag:"species")?.reload()
         })
         
-        let addButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(finish(_:)))
-        addButton.tintColor = UIColor.black
+        let addButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(finish(_:)))
+        addButton.tintColor = AppUtility.app_color_green
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
-        cancelButton.tintColor = UIColor.black
+        cancelButton.tintColor = AppUtility.app_color_black
         
         let nibName = UINib(nibName: "SDWBirdListCell", bundle:nil)
         self.tableView.register(nibName, forCellReuseIdentifier:"BCell")
@@ -201,7 +201,7 @@ class SDWBirdViewController: FormViewController {
                 <<< SegmentedRow<String>("segments"){
                     $0.options = ["Pure", "Hybrid 2", "Hybrid 4"]
                     $0.tag = "segment_row"
-                    $0.cell.segmentedControl.tintColor = .black
+                    $0.cell.segmentedControl.tintColor = AppUtility.app_color_black
                     $0.add(rule: RuleRequired())
                     }.cellUpdate { cell, row in
                         if !row.isValid {
@@ -212,7 +212,7 @@ class SDWBirdViewController: FormViewController {
                     .onChange({ (row) in
                         
                         self.toggleDeselectedBirdTypes(row: row)
-                        row.cell.segmentedControl.tintColor = .black
+                        row.cell.segmentedControl.tintColor = AppUtility.app_color_black
                     })
                 
                 
@@ -315,7 +315,7 @@ class SDWBirdViewController: FormViewController {
         
                 <<< ButtonRow() { (row: ButtonRow) -> Void in
                     row.title = "TOGGLE DEAD"
-                    row.cell.tintColor = .black
+                    row.cell.tintColor = AppUtility.app_color_black
                     row.cell.preservesSuperviewLayoutMargins = false
                     row.cell.separatorInset = UIEdgeInsets.zero
                     row.cell.layoutMargins = UIEdgeInsets.zero
@@ -328,7 +328,7 @@ class SDWBirdViewController: FormViewController {
         
                 <<< ButtonRow() { (row: ButtonRow) -> Void in
                     row.title = "TOGGLE SOLD"
-                    row.cell.tintColor = .black
+                    row.cell.tintColor = AppUtility.app_color_black
                     row.cell.preservesSuperviewLayoutMargins = false
                     row.cell.separatorInset = UIEdgeInsets.zero
                     row.cell.layoutMargins = UIEdgeInsets.zero
@@ -356,7 +356,7 @@ class SDWBirdViewController: FormViewController {
         
         
         
-//       self.tableView?.backgroundColor = UIColor.white
+       self.tableView?.backgroundColor = AppUtility.app_color_offWhite
 
         
         

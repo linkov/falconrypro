@@ -24,14 +24,16 @@ class SDWSeasonViewController: FormViewController {
         self.title = "Season"
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(finish(_:)))
-        addButton.tintColor = UIColor.black
+        addButton.tintColor = AppUtility.app_color_black
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
-        cancelButton.tintColor = UIColor.black
+        cancelButton.tintColor = AppUtility.app_color_black
         
         
         self.navigationItem.rightBarButtonItem = addButton
         self.navigationItem.leftBarButtonItem = cancelButton
+        
+        self.tableView?.backgroundColor = AppUtility.app_color_offWhite
 
         
         form

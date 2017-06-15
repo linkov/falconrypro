@@ -21,7 +21,7 @@ class SDWHomeTBC: UITabBarController {
         self.title = self.bird?.first
         
         let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(edit(_:)))
-        editButton.tintColor = UIColor.black
+        editButton.tintColor = AppUtility.app_color_black
         self.navigationItem.rightBarButtonItem = editButton
     
     }

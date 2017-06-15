@@ -113,7 +113,7 @@ class SDWMapViewController: UIViewController, MGLMapViewDelegate {
     
     func mapView(_ mapView: MGLMapView, leftCalloutAccessoryViewFor annotation: MGLAnnotation) -> UIView? {
         let button:UIButton = UIButton.init(type: .detailDisclosure)
-        button.tintColor = UIColor.black
+        button.tintColor = AppUtility.app_color_black
         return button
     }
     

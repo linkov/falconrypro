@@ -3,6 +3,7 @@
     <entity name="PinType" representedClassName="PinType" syncable="YES" codeGenerationType="class">
         <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="photos" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWDiaryPhoto" inverseName="pinType" inverseEntity="SDWDiaryPhoto" syncable="YES"/>
         <relationship name="pins" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWPinItem" inverseName="pintype" inverseEntity="SDWPinItem" syncable="YES"/>
     </entity>
     <entity name="SDWBird" representedClassName="SDWBird" syncable="YES" codeGenerationType="class">
@@ -46,10 +47,21 @@
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="bird" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWBird" inverseName="diaryItems" inverseEntity="SDWBird" syncable="YES"/>
         <relationship name="foods" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SDWDiaryFood" inverseName="diaryItem" inverseEntity="SDWDiaryFood" syncable="YES"/>
+        <relationship name="photos" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWDiaryPhoto" inverseName="diaryItem" inverseEntity="SDWDiaryPhoto" syncable="YES"/>
         <relationship name="pins" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SDWPinItem" inverseName="diaryItem" inverseEntity="SDWPinItem" syncable="YES"/>
         <relationship name="quarryTypes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWQuarryType" inverseName="diaryItems" inverseEntity="SDWQuarryType" syncable="YES"/>
         <relationship name="season" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWSeason" inverseName="items" inverseEntity="SDWSeason" syncable="YES"/>
         <relationship name="weights" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SDWDiaryWeight" inverseName="diaryItem" inverseEntity="SDWDiaryWeight" syncable="YES"/>
+    </entity>
+    <entity name="SDWDiaryPhoto" representedClassName="SDWDiaryPhoto" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lat" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="long" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="diaryItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWDiaryItem" inverseName="photos" inverseEntity="SDWDiaryItem" syncable="YES"/>
+        <relationship name="pinType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PinType" inverseName="photos" inverseEntity="PinType" syncable="YES"/>
+        <relationship name="quarry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWQuarryType" inverseName="photos" inverseEntity="SDWQuarryType" syncable="YES"/>
     </entity>
     <entity name="SDWDiaryWeight" representedClassName="SDWDiaryWeight" syncable="YES" codeGenerationType="class">
         <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
@@ -78,6 +90,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="diaryItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWDiaryItem" inverseName="quarryTypes" inverseEntity="SDWDiaryItem" syncable="YES"/>
+        <relationship name="photos" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWDiaryPhoto" inverseName="quarry" inverseEntity="SDWDiaryPhoto" syncable="YES"/>
     </entity>
     <entity name="SDWSeason" representedClassName="SDWSeason" syncable="YES" codeGenerationType="class">
         <attribute name="current" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -103,16 +116,17 @@
         <relationship name="seasons" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SDWSeason" inverseName="user" inverseEntity="SDWSeason" syncable="YES"/>
     </entity>
     <elements>
-        <element name="PinType" positionX="-27" positionY="126" width="128" height="90"/>
+        <element name="PinType" positionX="-27" positionY="126" width="128" height="105"/>
         <element name="SDWBird" positionX="-54" positionY="9" width="128" height="300"/>
         <element name="SDWBirdType" positionX="-36" positionY="36" width="128" height="135"/>
         <element name="SDWDiaryFood" positionX="18" positionY="162" width="128" height="120"/>
-        <element name="SDWDiaryItem" positionX="0" positionY="108" width="128" height="195"/>
+        <element name="SDWDiaryItem" positionX="0" positionY="108" width="128" height="210"/>
         <element name="SDWDiaryWeight" positionX="-27" positionY="108" width="128" height="105"/>
         <element name="SDWFood" positionX="-27" positionY="81" width="128" height="105"/>
         <element name="SDWPinItem" positionX="-27" positionY="117" width="128" height="180"/>
-        <element name="SDWQuarryType" positionX="-27" positionY="117" width="128" height="90"/>
+        <element name="SDWQuarryType" positionX="-27" positionY="117" width="128" height="105"/>
         <element name="SDWSeason" positionX="-18" positionY="90" width="128" height="210"/>
         <element name="SDWUser" positionX="-63" positionY="-18" width="128" height="165"/>
+        <element name="SDWDiaryPhoto" positionX="-27" positionY="135" width="128" height="165"/>
     </elements>
 </model>

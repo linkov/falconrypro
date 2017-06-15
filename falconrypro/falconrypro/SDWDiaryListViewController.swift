@@ -197,7 +197,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell  = tableView.cellForRow(at: indexPath as IndexPath)
-        cell!.contentView.backgroundColor = .black
+        cell!.contentView.backgroundColor = AppUtility.app_color_black
     }
     
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {

@@ -50,8 +50,8 @@ class SDWLoginCoordinator: LoginCoordinator {
         // secondaryLogoImage =
         
         // Change colors
-        tintColor = UIColor.black
-        errorTintColor = UIColor.lightGray
+        tintColor = AppUtility.app_color_black
+        errorTintColor = AppUtility.app_color_offWhite
         
         // Change placeholder & button texts, useful for different marketing style or language.
         loginButtonText = "Sign In"

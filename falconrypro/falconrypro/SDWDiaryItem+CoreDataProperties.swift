@@ -2,7 +2,7 @@
 //  SDWDiaryItem+CoreDataProperties.swift
 //  falconrypro
 //
-//  Created by Alex Linkov on 6/1/17.
+//  Created by Alex Linkov on 6/15/17.
 //  Copyright © 2017 SDWR. All rights reserved.
 //
 
@@ -22,10 +22,11 @@ extension SDWDiaryItem {
     @NSManaged public var updatedAt: NSDate?
     @NSManaged public var bird: SDWBird?
     @NSManaged public var foods: NSSet?
+    @NSManaged public var pins: NSSet?
     @NSManaged public var quarryTypes: NSSet?
     @NSManaged public var season: SDWSeason?
     @NSManaged public var weights: NSSet?
-    @NSManaged public var pins: NSSet?
+    @NSManaged public var photos: SDWDiaryPhoto?
 
 }
 
@@ -43,6 +44,23 @@ extension SDWDiaryItem {
 
     @objc(removeFoods:)
     @NSManaged public func removeFromFoods(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for pins
+extension SDWDiaryItem {
+
+    @objc(addPinsObject:)
+    @NSManaged public func addToPins(_ value: SDWPinItem)
+
+    @objc(removePinsObject:)
+    @NSManaged public func removeFromPins(_ value: SDWPinItem)
+
+    @objc(addPins:)
+    @NSManaged public func addToPins(_ values: NSSet)
+
+    @objc(removePins:)
+    @NSManaged public func removeFromPins(_ values: NSSet)
 
 }
 
@@ -77,22 +95,5 @@ extension SDWDiaryItem {
 
     @objc(removeWeights:)
     @NSManaged public func removeFromWeights(_ values: NSSet)
-
-}
-
-// MARK: Generated accessors for pins
-extension SDWDiaryItem {
-
-    @objc(addPinsObject:)
-    @NSManaged public func addToPins(_ value: SDWPinItem)
-
-    @objc(removePinsObject:)
-    @NSManaged public func removeFromPins(_ value: SDWPinItem)
-
-    @objc(addPins:)
-    @NSManaged public func addToPins(_ values: NSSet)
-
-    @objc(removePins:)
-    @NSManaged public func removeFromPins(_ values: NSSet)
 
 }

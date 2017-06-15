@@ -2,7 +2,7 @@
 //  SDWPinItem+CoreDataProperties.swift
 //  falconrypro
 //
-//  Created by Alex Linkov on 6/2/17.
+//  Created by Alex Linkov on 6/15/17.
 //  Copyright © 2017 SDWR. All rights reserved.
 //
 

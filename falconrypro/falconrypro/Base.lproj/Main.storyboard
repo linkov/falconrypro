@@ -257,7 +257,7 @@
         <scene sceneID="E4h-4l-11o">
             <objects>
                 <navigationController storyboardIdentifier="StatsListNav" id="CVg-zS-hJg" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TiM-Xd-QpX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="TiM-Xd-QpX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -325,7 +325,7 @@
                                     <segment title="Season"/>
                                     <segment title="Life"/>
                                 </segments>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.14117647058823529" green="0.16078431372549018" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="chartTimeControlDidChange:" destination="XFf-KL-pYy" eventType="valueChanged" id="77G-WL-wDy"/>
                                 </connections>
@@ -404,7 +404,7 @@
         <scene sceneID="btS-vb-iMU">
             <objects>
                 <navigationController storyboardIdentifier="MapNav" id="BFc-Wv-AtJ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ief-A4-UvG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Ief-A4-UvG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -461,7 +461,7 @@
         <scene sceneID="VFP-aU-MZG">
             <objects>
                 <navigationController storyboardIdentifier="SDWSettingsNav" id="L2q-7p-i72" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gy4-OZ-cNe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gy4-OZ-cNe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -512,7 +512,7 @@
         <scene sceneID="O9E-Ha-nUf">
             <objects>
                 <navigationController storyboardIdentifier="DiaryListNav" id="Tfa-Zx-mvt" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eIf-l0-Qvs">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eIf-l0-Qvs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -558,7 +558,7 @@
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                             <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Button" image="edit_small">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" red="0.14117647058823529" green="0.16078431372549018" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="didTapBirdEdit:" destination="69C-mM-jtS" eventType="touchUpInside" id="cPt-6d-N25"/>
@@ -594,7 +594,7 @@
         <scene sceneID="Q5G-4v-8Lt">
             <objects>
                 <navigationController id="Apd-Xo-FPZ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Mv-GK-ohS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8Mv-GK-ohS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

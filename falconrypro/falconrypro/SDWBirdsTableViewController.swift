@@ -31,11 +31,11 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
         
         
         let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "plus-square"), style: .plain, target: self, action: #selector(insertNewObject(_:)))
-        addButton.tintColor = UIColor.black
+        addButton.tintColor = AppUtility.app_color_black
         self.navigationItem.rightBarButtonItem = addButton
         
         let settingsButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(logout(_:)))
-        settingsButton.tintColor = UIColor.black
+        settingsButton.tintColor = AppUtility.app_color_black
         self.navigationItem.leftBarButtonItem = settingsButton
         
         let nibName = UINib(nibName: "SDWBirdListTableViewCell", bundle:nil)
@@ -237,7 +237,7 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
             
         }
         
-        editAction.backgroundColor = .black
+        editAction.backgroundColor = AppUtility.app_color_black
         
         
         // customize the action appearance
@@ -283,7 +283,7 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
 
     
     var emptyStateButtonTitle: NSAttributedString? {
-        let attrs = [NSForegroundColorAttributeName: UIColor.black,
+        let attrs = [NSForegroundColorAttributeName: AppUtility.app_color_black,
                      NSFontAttributeName: UIFont.systemFont(ofSize: 26)]
         return NSAttributedString(string: "Add", attributes: attrs)
     }

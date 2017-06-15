@@ -53,10 +53,10 @@ class SDWDiaryItemContainerViewController: UIViewController, UIPageViewControlle
         
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(finish(_:)))
-        addButton.tintColor = UIColor.black
+        addButton.tintColor = AppUtility.app_color_black
         
         //        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
-        //        cancelButton.tintColor = UIColor.black
+        //        cancelButton.tintColor = AppUtility.app_color_black
         
         self.navigationItem.rightBarButtonItem = addButton
         
@@ -65,6 +65,7 @@ class SDWDiaryItemContainerViewController: UIViewController, UIPageViewControlle
         
         self.diaryVC = self.storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemViewController") as? SDWDiaryItemViewController
         self.diaryVC?.index = 0
+        self.diaryVC?.isPastItem = self.isPastItem
         self.diaryVC?.diaryItem = self.diaryItem
         
         self.huntingVC = self.storyboard?.instantiateViewController(withIdentifier: "SDWDiaryHuntViewController") as? SDWDiaryHuntViewController
@@ -92,7 +93,7 @@ class SDWDiaryItemContainerViewController: UIViewController, UIPageViewControlle
         
         let gradientView = EZYGradientView()
         gradientView.frame = view.bounds
-        gradientView.firstColor = UIColor.black
+        gradientView.firstColor = AppUtility.app_color_black
         gradientView.secondColor = UIColor.darkGray
         gradientView.angleº = 185.0
         gradientView.colorRatio = 0.5

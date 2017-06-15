@@ -57,16 +57,19 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     
     private func createCustomItemTabBar() {
         var items = [MiniTabBarItem]()
+        
+        
         items.append(MiniTabBarItem(title: "Diary", icon: #imageLiteral(resourceName: "activity")))
         
         
-        hmButton.backgroundColor = UIColor.clear
+        hmButton.backgroundColor = .clear
         hmButton.layer.cornerRadius = 4
         hmButton.frame.size = CGSize(width: 60, height: 60)
 
         hmButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
         hmButton.setImage(#imageLiteral(resourceName: "target"), for: .normal)
-        hmButton.setTitleColor(UIColor.black, for: .normal)
+        hmButton.imageView?.tintColor = AppUtility.app_color_offWhite
+        hmButton.setTitleColor(AppUtility.app_color_black, for: .normal)
         hmButton.imageView?.contentMode = .scaleAspectFit
         hmButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         let customItem = MiniTabBarItem(customView: hmButton, offset: UIOffset(horizontal: 0, vertical: -5))
@@ -85,9 +88,9 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         let tabBar = MiniTabBar(items: items)
         tabBar.delegate = self
         tabBar.backgroundBlurEnabled = false
-        tabBar.backgroundColor = UIColor.white
-        tabBar.keyLine.backgroundColor = UIColor.black
-        tabBar.tintColor = UIColor.black
+        tabBar.backgroundColor = AppUtility.app_color_black
+        tabBar.keyLine.backgroundColor = AppUtility.app_color_black
+        tabBar.tintColor = AppUtility.app_color_offWhite
         tabBar.frame = CGRect(x: 0, y: self.view.frame.height - 44, width: self.view.frame.width, height: 44)
         self.view.addSubview(tabBar)
         tabSelected(0)
@@ -131,14 +134,15 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
             
             //        let editTodayButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editToday(_:)))
             self.editTodayButton = UIBarButtonItem(title: "Today", style: .done, target: self, action: #selector(editToday(_:)))
-            self.editTodayButton?.tintColor = UIColor.black
+            
             self.editTodayButton?.isEnabled = !(self.bird?.isViewOnly())!
             self.diaryListVC?.navigationItem.rightBarButtonItem = self.editTodayButton
             
             
             let  backButton = UIBarButtonItem(title: "Seasons", style: .plain, target: self, action: #selector(back(_:)))
-            backButton.tintColor = UIColor.black
+            backButton.tintColor = AppUtility.app_color_black
             self.diaryListVC?.navigationItem.leftBarButtonItem = backButton
+            
             
             
             self.addChildViewController(self.diaryListNav!)
@@ -273,12 +277,12 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
 //        if (self.hmButton.backgroundColor == UIColor.white) {
 //            
 //            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SDWHuntingModeStatusDidChange"), object: NSNumber(booleanLiteral: true))
-//            self.hmButton.backgroundColor = UIColor.black
+//            self.hmButton.backgroundColor = AppUtility.app_color_black
 //            self.hmButton.tintColor = .white
 //        } else {
 //            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SDWHuntingModeStatusDidChange"), object: NSNumber(booleanLiteral: false))
 //            self.hmButton.backgroundColor = UIColor.white
-//            self.hmButton.tintColor = .black
+//            self.hmButton.tintColor = AppUtility.app_color_black
 //        }
 //        
         
@@ -292,15 +296,15 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
 //            
 //            
 //            if (self.hmButton.backgroundColor == UIColor.white) {
-//                self.hmButton.backgroundColor = UIColor.black
+//                self.hmButton.backgroundColor = AppUtility.app_color_black
 //                self.hmButton.setTitleColor(UIColor.white, for: .normal)
 //                self.hmButton.layer.borderColor = UIColor.white.cgColor
 //                self.hmModeViewBottomLayout.constant = 40
 //                self.view.layoutIfNeeded()
 //            } else {
 //                self.hmButton.backgroundColor = UIColor.white
-//                self.hmButton.setTitleColor(UIColor.black, for: .normal)
-//                self.hmButton.layer.borderColor = UIColor.black.cgColor
+//                self.hmButton.setTitleColor(AppUtility.app_color_black, for: .normal)
+//                self.hmButton.layer.borderColor = AppUtility.app_color_black.cgColor
 //                self.hmModeViewBottomLayout.constant = -40
 //                self.view.layoutIfNeeded()
 //            }

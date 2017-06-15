@@ -2,7 +2,7 @@
 //  SDWQuarryType+CoreDataProperties.swift
 //  falconrypro
 //
-//  Created by Alex Linkov on 5/12/17.
+//  Created by Alex Linkov on 6/15/17.
 //  Copyright © 2017 SDWR. All rights reserved.
 //
 
@@ -19,6 +19,7 @@ extension SDWQuarryType {
     @NSManaged public var name: String?
     @NSManaged public var remoteID: String?
     @NSManaged public var diaryItems: NSSet?
+    @NSManaged public var photos: SDWDiaryPhoto?
 
 }
 

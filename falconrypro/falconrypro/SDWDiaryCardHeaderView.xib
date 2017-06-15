@@ -17,7 +17,7 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disc2" translatesAutoresizingMaskIntoConstraints="NO" id="Nz8-8l-qYn">
                     <rect key="frame" x="176" y="21" width="22" height="22"/>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="0.14117647058823529" green="0.16078431372549018" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="more-horizontal" translatesAutoresizingMaskIntoConstraints="NO" id="28y-Fa-uOF">
                     <rect key="frame" x="333" y="29" width="22" height="6"/>

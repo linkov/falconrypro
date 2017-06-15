@@ -30,8 +30,8 @@ class SDWSettingsViewController: FormViewController {
         
         
 //        let proxyTitleLabel = UILabel.appearance(whenContainedInInstancesOf: [SDWSettingsViewController.self])
-//        proxyTitleLabel.tintColor = .black
-//        proxyTitleLabel.textColor = .black
+//        proxyTitleLabel.tintColor = AppUtility.app_color_black
+//        proxyTitleLabel.textColor = AppUtility.app_color_black
 //        proxyTitleLabel.font = UIFont.systemFont(ofSize: <#T##CGFloat#>)
         
         form
@@ -54,7 +54,7 @@ class SDWSettingsViewController: FormViewController {
                 $0.tag = "metric"
                 $0.value = (self.dataStore.currentUser()?.metric == true) ? "Metric" : "Imperial"
                 $0.cell.titleLabel?.text = "preferred system"
-                $0.cell.segmentedControl.tintColor = .black
+                $0.cell.segmentedControl.tintColor = AppUtility.app_color_black
                 $0.add(rule: RuleRequired())
                 }.cellUpdate { cell, row in
                     if !row.isValid {
@@ -76,7 +76,7 @@ class SDWSettingsViewController: FormViewController {
                 $0.value =  true
                 }.cellSetup({ (cell, row) in
                     
-                    cell.switchControl.tintColor = .black
+                    cell.switchControl.tintColor = AppUtility.app_color_black
                 })
         
     
@@ -85,7 +85,7 @@ class SDWSettingsViewController: FormViewController {
         self.tableView.separatorColor = .clear
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(finish(_:)))
-        addButton.tintColor = UIColor.black
+        addButton.tintColor = AppUtility.app_color_black
         
         self.navigationItem.rightBarButtonItem = addButton
     }

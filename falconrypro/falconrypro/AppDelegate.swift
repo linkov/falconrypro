@@ -33,24 +33,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     public func application(_ application: UIApplication,  didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         // Override point for customization after application launch.
         Fabric.with([Crashlytics.self])
-        UINavigationBar.appearance().tintColor = UIColor.black
-        UISearchBar.appearance().tintColor = UIColor.black
+        UINavigationBar.appearance().tintColor = AppUtility.app_color_black
+        UISearchBar.appearance().tintColor = AppUtility.app_color_black
         UINavigationBar.appearance().backgroundColor = UIColor.white
         
-//        let proxyButton = UIButton.appearance()
-//        proxyButton.setTitleColor(.black, for: .normal)
-//        proxyButton.tintColor = .black
+        let proxyButton = UIButton.appearance()
+//        proxyButton.setTitleColor(AppUtility.app_color_black, for: .normal)
+        proxyButton.tintColor = AppUtility.app_color_black
+        
+        let proxyImageView = UIImageView.appearance()
+        proxyImageView.tintColor = AppUtility.app_color_black
         
 
         let proxyCell = UITableViewCell.appearance()
-        proxyCell.tintColor = .black
-        proxyCell.textLabel?.textColor = .black
+        proxyCell.tintColor = AppUtility.app_color_black
+        proxyCell.textLabel?.textColor = AppUtility.app_color_black
         
         
         let proxyTitleLabel = UILabel.appearance(whenContainedInInstancesOf: [FormViewController.self])
-        proxyTitleLabel.tintColor = .black
+        proxyTitleLabel.tintColor = AppUtility.app_color_black
         
-        proxyTitleLabel.textColor = .black
+        proxyTitleLabel.textColor = AppUtility.app_color_black
         
         center.delegate = self
         
@@ -80,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         
         
 //        let proxyImageView = UIImageView.appearance()
-//        proxyImageView.tintColor = .black
+//        proxyImageView.tintColor = AppUtility.app_color_black
 //        
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }

@@ -34,6 +34,16 @@ public extension UIView
 
 struct AppUtility {
     
+    static let app_color_black:UIColor = UIColor(hex: "24292e")
+    static let app_color_offWhite:UIColor = UIColor(hex: "fafbfc")
+    static let app_color_lightGray:UIColor = UIColor(hex: "e8e9eb")
+    static let app_color_linkBlue:UIColor = UIColor(hex: "0366d6")
+    static let app_color_green:UIColor = UIColor(hex: "28a745")
+    static let app_color_velvet:UIColor = UIColor(hex:"6f42c1")
+    
+    static let app_color_red:UIColor = UIColor(hex: "cb2431")
+    
+    
     static func delay(delay:Double, closure:@escaping ()->()) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             closure()
@@ -42,12 +52,12 @@ struct AppUtility {
     
     static let style_bold = Style("bold", {
         $0.font = FontAttribute(.HelveticaNeue_Bold, size: 14)
-        $0.color = .black
+        $0.color = AppUtility.app_color_black
     })
     
     static let style_normal = Style("normal", {
         $0.font = FontAttribute(.HelveticaNeue, size: 14)
-        $0.color = .black
+        $0.color = AppUtility.app_color_black
     })
     
     static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
@@ -65,4 +75,26 @@ struct AppUtility {
         UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
     }
     
+}
+
+
+extension UIColor {
+    convenience init(hex: String) {
+        let scanner = Scanner(string: hex)
+        scanner.scanLocation = 0
+        
+        var rgbValue: UInt64 = 0
+        
+        scanner.scanHexInt64(&rgbValue)
+        
+        let r = (rgbValue & 0xff0000) >> 16
+        let g = (rgbValue & 0xff00) >> 8
+        let b = rgbValue & 0xff
+        
+        self.init(
+            red: CGFloat(r) / 0xff,
+            green: CGFloat(g) / 0xff,
+            blue: CGFloat(b) / 0xff, alpha: 1
+        )
+    }
 }
