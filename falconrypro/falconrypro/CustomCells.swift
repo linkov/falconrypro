@@ -27,6 +27,8 @@ import UIKit
 import MapKit
 import Eureka
 
+import SwiftLocation
+
 //MARK: WeeklyDayCell
 
 public enum WeekDay {
@@ -526,7 +528,7 @@ public class MapViewController : UIViewController, TypedRowControllerType, MKMap
 
     public var row: RowOf<CLLocation>!
     public var onDismissCallback: ((UIViewController) -> ())?
-    var locationManager:SDWLocationManager = SDWLocationManager.shared
+
     
     
     lazy var mapView : MKMapView = { [unowned self] in
@@ -590,8 +592,6 @@ public class MapViewController : UIViewController, TypedRowControllerType, MKMap
         super.viewDidLoad()
         view.addSubview(mapView)
         
-        locationManager.authorize()
-
         mapView.delegate = self
         mapView.addSubview(pinView)
         mapView.layer.insertSublayer(ellipsisLayer, below: pinView.layer)
@@ -607,22 +607,16 @@ public class MapViewController : UIViewController, TypedRowControllerType, MKMap
         else{
             
             
-            
-            locationManager.locate { result in
-                switch result {
-                case .Success():
-                    if let location = self.locationManager.location {
-                        let region = MKCoordinateRegionMakeWithDistance(location.coordinate, 400, 400)
-                        self.mapView.setRegion(region, animated: true)
-            
-                        }
-                    
-                case .Failure():
-                    print("ggg")
-                    self.mapView.showsUserLocation = true
-                }
-            }
-            
+            Location.getLocation(accuracy: .block, frequency: .oneShot, success: { (request, location) -> (Void) in
+                
+                let region = MKCoordinateRegionMakeWithDistance(location.coordinate, 400, 400)
+                self.mapView.setRegion(region, animated: true)
+                
+            }, error: { (request, location, error) -> (Void) in
+                
+                print(error.localizedDescription)
+                self.mapView.showsUserLocation = true
+            })
             
             
             

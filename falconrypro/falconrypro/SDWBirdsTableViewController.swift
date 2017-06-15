@@ -44,6 +44,8 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
         self.emptyStateDataSource = self
         self.emptyStateDelegate = self
         
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        
         // Optionally remove seperator lines from empty cells
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         
@@ -91,8 +93,10 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
     
     func loadBirds() {
         
+         PKHUD.sharedHUD.show()
         
         dataStore.pullAllBirds(currentData: { (objects, error) in
+            
             
             
             guard let data = objects, error == nil else {
@@ -103,13 +107,17 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
             
         
             self.objects = data as! [BirdDisplayItem]
+            
+            if (self.objects.count > 0) {
+                PKHUD.sharedHUD.hide()
+            }
             self.tableView.reloadData()
             self.reloadEmptyState(forTableView: self.tableView)
         
         }) { (fetched, error) in
             
             
-            
+            PKHUD.sharedHUD.hide()
             guard let data = fetched, error == nil else {
                 print(error?.localizedDescription ?? "No data")
                 return

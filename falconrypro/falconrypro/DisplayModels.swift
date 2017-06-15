@@ -144,6 +144,7 @@ class PinTypeDisplayItem: NSObject {
 class UserDisplayItem: NSObject {
     var remoteID:String?
     var name:String?
+    var metric:Bool?
     var email:String?
     public private(set) var model:SDWUser
     
@@ -151,6 +152,7 @@ class UserDisplayItem: NSObject {
         self.model = model
         self.name = self.model.name
         self.email = self.model.email
+        self.metric = self.model.metric
         self.remoteID = self.model.remoteID!
     }
     
@@ -310,11 +312,18 @@ class BirdDisplayItem: NSObject {
     
     
     public func currentSeasons() -> [SeasonDisplayItem] {
-        let seasonArr:Array<SDWSeason> = self.model.seasons?.filter({($0 as! SDWSeason).wasDeleted == nil}) as! Array<SDWSeason>
         
-        let seasonItems:Array = seasonArr.map({ (item: SDWSeason) -> SeasonDisplayItem in
+        var seasonItems = [SeasonDisplayItem]()
+        
+        if ((self.model.seasons) != nil) {
+            var seasonArr:Array<SDWSeason> = self.model.seasons?.allObjects as! Array<SDWSeason>
+            seasonArr = seasonArr.filter({$0.wasDeleted == nil})
+            
+            seasonItems = seasonArr.map({ (item: SDWSeason) -> SeasonDisplayItem in
             SeasonDisplayItem(model: item)
-        })
+            })
+        }
+
         return seasonItems
     }
     

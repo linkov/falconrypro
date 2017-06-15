@@ -11,13 +11,20 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import Fabric
 import Crashlytics
-
+import Eureka
+import UserNotifications
+import SwiftDate
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
 
+    let center = UNUserNotificationCenter.current()
+    let options: UNAuthorizationOptions = [.alert, .sound];
+    let dataStore:SDWDataStore = SDWDataStore.sharedInstance
+    
     var window: UIWindow?
     var orientationLock = UIInterfaceOrientationMask.all
+//    var localNotification:UILocalNotification
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return self.orientationLock
@@ -40,11 +47,94 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         proxyCell.textLabel?.textColor = .black
         
         
+        let proxyTitleLabel = UILabel.appearance(whenContainedInInstancesOf: [FormViewController.self])
+        proxyTitleLabel.tintColor = .black
+        
+        proxyTitleLabel.textColor = .black
+        
+        center.delegate = self
+        
+        
+        center.requestAuthorization(options: options) {
+            (granted, error) in
+            if !granted {
+                print("Something went wrong")
+            } else {
+                self.createNotification()
+            }
+        }
+
+        
+//        let myOwnDate = Date()
+//        dateFormatter.dateFormat = "dd/MM/yyyy"
+//        let currentDate = dateFormatter.string(from: myOwnDate)
+//        let dateTime = currentDate + "9:00PM"
+//        dateFormatter.dateFormat = "dd/MM/yyyy hh:mm a"
+//        let date = dateFormatter.date(from: dateTime)!
+//        
+//        localNotification.fireDate = date
+//        localNotification.repeatInterval = NSCalendar.Unit.weekday
+//        localNotification.alertBody = "Your alarm is ringing!"
+//        let app = UIApplication.shared
+//        app.scheduleLocalNotification(localNotification)
+        
         
 //        let proxyImageView = UIImageView.appearance()
 //        proxyImageView.tintColor = .black
 //        
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    
+    func createNotification() {
+        
+        let currentUser = self.dataStore.currentUser()
+        
+        let bird = self.dataStore.currentBird()
+        
+        if (bird == nil || currentUser == nil || currentUser?.model.sunsetTime == nil) {
+            return
+        }
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Don't forget to feed \(bird?.name ?? "" )"
+        content.body = "Add food given to your diary item for today"
+        content.sound = UNNotificationSound.default()
+        
+        
+        let date = currentUser?.model.sunsetTime
+        let swiftDate:DateInRegion = date!.inDefaultRegion()
+        let hourBeforeSunset = swiftDate - 1.hour
+        let absolute = hourBeforeSunset.absoluteDate
+        
+        
+        //        let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: date)
+        //
+        //        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate,
+        //                                                    repeats: false)
+        
+        //        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 300,
+        //                                                        repeats: false)
+        //
+        let triggerDaily = Calendar.current.dateComponents([.hour,.minute,.second,], from: absolute)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDaily, repeats: true)
+        
+        let identifier = "UYLLocalNotification"
+        let request = UNNotificationRequest(identifier: identifier,
+                                            content: content, trigger: trigger)
+        center.add(request, withCompletionHandler: { (error) in
+            if let error = error {
+                print(" center.add error - \(error.localizedDescription)")
+            }
+        })
+        
+ 
+        
+        
+        
+
+        
+
+        
     }
     
     public func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -63,6 +153,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             open: url as URL!,
             sourceApplication: sourceApplication,
             annotation: annotation)
+    }
+    
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        let bird = self.dataStore.currentBird()
+        
+        if (bird == nil) {
+            return
+        }
+        let todayDiaryItem = self.dataStore.currentTodayItemForBird(bird_id: (bird?.remoteID)!)
+        
+        if (todayDiaryItem == nil || todayDiaryItem?.weights?.count == 0) {
+            
+            completionHandler([.alert,.sound])
+        }
+        
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        // Determine the user action
+        switch response.actionIdentifier {
+        case UNNotificationDismissActionIdentifier:
+            print("Dismiss Action")
+        case UNNotificationDefaultActionIdentifier:
+            print("Default")
+        case "Snooze":
+            print("Snooze")
+        case "Delete":
+            print("Delete")  
+        default:
+            print("Unknown action")
+        }
+        completionHandler()
     }
 
 

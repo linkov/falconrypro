@@ -12,7 +12,6 @@ import Mapbox
 
 class SDWMapViewController: UIViewController, MGLMapViewDelegate {
     
-    var locationManager:SDWLocationManager = SDWLocationManager.shared
     let regionRadius: CLLocationDistance = 1000
     let dataStore:SDWDataStore = SDWDataStore.sharedInstance
     var pins:[PinItemDisplayItem]?

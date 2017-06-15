@@ -9,7 +9,9 @@
 import UIKit
 import CoreData
 import FastEasyMapping
-
+import CoreLocation
+import SwiftLocation
+import Solar
 
 enum BirdStatus: Int {
     case deleted,killed,sold,active
@@ -76,7 +78,7 @@ class SDWDataStore: NSObject {
         
     }
     
-    public func currentTodayItem() -> DiaryItemDisplayItem? {
+    public func currentTodayItemForBird(bird_id:String) -> DiaryItemDisplayItem? {
         
         
         var calendar = Calendar.current
@@ -90,7 +92,7 @@ class SDWDataStore: NSObject {
         // Note: Times are printed in UTC. Depending on where you live it won't print 00:00:00 but it will work with UTC times which can be converted to local time
 
         
-        let datePredicate = NSPredicate(format: "(%@ <= createdAt) AND (createdAt < %@)", argumentArray: [dateFrom, dateTo])
+        let datePredicate = NSPredicate(format: "(%@ <= createdAt) AND (createdAt < %@) AND bird.remoteID == %@", argumentArray: [dateFrom, dateTo, bird_id])
         
 
         
@@ -343,9 +345,82 @@ class SDWDataStore: NSObject {
     }
     
     
+    public func pullUserWithID(user_id:String,completion:@escaping sdw_id_error_block) {
+        
+        self.networkManager.fetchUserWithID(user_id:user_id) { (object, error) in
+            
+            guard let data = object, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                completion(nil,error)
+                return
+            }
+            
+            let mappedObject = SDWMapper.ez_object(withClass: type(of: SDWUser()) as SDWObjectMapping.Type, fromJSON: data as! Dictionary<AnyHashable, Any>, context: self.dataModelManager.viewContext)
+            self.dataModelManager.saveContext()
+            
+            completion(UserDisplayItem.init(model:mappedObject as! SDWUser),nil)
+            
+        }
+    }
+    
+    
+    public func setSunsetTimeForCurrentUser() {
+        
+        Location.getLocation(accuracy: .block, frequency: .oneShot, success: { (request, location:CLLocation) -> (Void) in
+            
+            let currentUser = self.currentUser()
+            let solar = Solar(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            
+            currentUser?.model.sunsetTime = solar?.sunset
+            self.dataModelManager.saveContext()
+            
+        }, error: { (request, location, error) -> (Void) in
+            
+            print(error.localizedDescription)
+        })
+    }
+
+    
+    public func pullCurrentUser() {
+        
+        self.networkManager.fetchUserWithID(user_id:(self.currentUser()?.remoteID)!) { (object, error) in
+            
+            guard let data = object, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            
+            _ = SDWMapper.ez_object(withClass: type(of: SDWUser()) as SDWObjectMapping.Type, fromJSON: data as! Dictionary<AnyHashable, Any>, context: self.dataModelManager.viewContext)
+            self.dataModelManager.saveContext()
+            
+            
+        }
+    }
+    
+    
+    
     public func pullUserWith(email:String,password:String,completion:@escaping sdw_id_error_block) {
         
         self.networkManager .signInWith(email: email, password: password) { (object, error) in
+            
+            guard let data = object, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                completion(nil,error)
+                return
+            }
+            
+            let mappedObject = SDWMapper.ez_object(withClass: type(of: SDWUser()) as SDWObjectMapping.Type, fromJSON: data as! Dictionary<AnyHashable, Any>, context: self.dataModelManager.viewContext)
+            self.dataModelManager.saveContext()
+            
+            completion(mappedObject,nil)
+            
+        }
+    }
+    
+    
+    public func updateCurrentUserWith(metric:Bool,completion:@escaping sdw_id_error_block) {
+        
+        self.networkManager.putUserWithID(user_id: (self.currentUser()?.remoteID)!, metric:metric) { (object, error) in
             
             guard let data = object, error == nil else {
                 print(error?.localizedDescription ?? "No data")

@@ -27,6 +27,48 @@ class NetworkManager: NSObject {
     
     let networking:Networking = Networking(baseURL: Constants.server.BASEURL)
     
+    public func putUserWithID(user_id:String, metric:Bool, completion:@escaping sdw_id_error_block) {
+        
+        networking.put("/users/"+user_id,parameters: ["metric" : metric])  { result in
+            
+            switch result {
+            case .success(let response):
+                print(response)
+                self.configureHeaders(json: response.headers as NSDictionary)
+                completion(response.dictionaryBody,nil)
+                break
+                
+                
+            case .failure(let response):
+                completion(nil,response.error)
+                print(response)
+                break
+            }
+            
+        }
+    }
+    
+    public func fetchUserWithID(user_id:String, completion:@escaping sdw_id_error_block) {
+        
+        networking.get("/users/"+user_id)  { result in
+            
+            switch result {
+            case .success(let response):
+                print(response)
+                self.configureHeaders(json: response.headers as NSDictionary)
+                completion(response.dictionaryBody,nil)
+                break
+                
+                
+            case .failure(let response):
+                completion(nil,response.error)
+                print(response)
+                break
+            }
+            
+        }
+    }
+    
     public func signInWith(email:String,password:String, completion:@escaping sdw_id_error_block) {
         
         networking.post("/auth/sign_in",parameters: ["email" : email, "password" : password])  { result in

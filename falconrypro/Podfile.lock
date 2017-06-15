@@ -1,4 +1,5 @@
 PODS:
+  - AIFlatSwitch (1.0.2)
   - BadgeSwift (5.0.1)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
@@ -31,10 +32,9 @@ PODS:
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
-  - Sparrow/Core (1.0.1)
-  - Sparrow/Modules/RequestPermission (1.0.1):
-    - Sparrow/Core
+  - Solar (2.0.0)
   - SwiftDate (4.1.2)
+  - SwiftLocation (2.0.7)
   - SwiftRichString (0.9.8)
   - SwipeCellKit (1.8.0)
   - UICountingLabel (1.4.0)
@@ -42,6 +42,7 @@ PODS:
   - Validator (2.1.1)
 
 DEPENDENCIES:
+  - AIFlatSwitch (~> 1.0.1)
   - BadgeSwift (~> 5.0)
   - Charts
   - Crashlytics
@@ -59,8 +60,9 @@ DEPENDENCIES:
   - Reveal-SDK
   - RoundedSwitch
   - SDWebImage (~> 4.0)
-  - Sparrow/Modules/RequestPermission (from `https://github.com/IvanVorobei/Sparrow.git`)
+  - Solar
   - SwiftDate (~> 4.0)
+  - SwiftLocation
   - SwiftRichString
   - SwipeCellKit
   - UICountingLabel
@@ -74,8 +76,6 @@ EXTERNAL SOURCES:
     :git: https://github.com/Niphery/EZYGradientView
   ImageRow:
     :git: https://github.com/EurekaCommunity/ImageRow.git
-  Sparrow:
-    :git: https://github.com/IvanVorobei/Sparrow.git
 
 CHECKOUT OPTIONS:
   Eureka:
@@ -87,11 +87,9 @@ CHECKOUT OPTIONS:
   ImageRow:
     :commit: 1456406e7afa99f6e0be2c3c691f76ebbdaa1b16
     :git: https://github.com/EurekaCommunity/ImageRow.git
-  Sparrow:
-    :commit: f5354738460f009a22aa24ed34029846df05ba23
-    :git: https://github.com/IvanVorobei/Sparrow.git
 
 SPEC CHECKSUMS:
+  AIFlatSwitch: 5ab22806eeff3e09d585c2f13d22bfa6e3427191
   BadgeSwift: 3defa56f504bfb46f2300122c4a565ec9e405c1e
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
@@ -111,14 +109,15 @@ SPEC CHECKSUMS:
   Reveal-SDK: 43be4e662864e937960d0d04d005135e29c4e53b
   RoundedSwitch: 85ea55811bbeb5747dd99e2c2290c86e820decb5
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
-  Sparrow: 4b7826e69656f4745b0b4f74afadefa4f19cb9ee
+  Solar: ea092f7660c1b58d2b754227decb61a1c6710826
   SwiftDate: 2dfdebd4f67ae71c9c3e2413ee3c56947f302858
+  SwiftLocation: 1fe2e15a5812e961496e82eeaca71d03e829e47a
   SwiftRichString: d42eeaefceea340e27b8a33945e0fac1ee21f58f
   SwipeCellKit: 01a58bf7e63d5df09aedd161828833944c4c333c
   UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
   UIEmptyState: b81840468b03d7be5b02114c239f5ac097dc935a
   Validator: b1793fbfd0046097551d0edd18e2c30792d69ef5
 
-PODFILE CHECKSUM: b6bf7b79557e853fe8db78565b50a8dde8251ce2
+PODFILE CHECKSUM: e1c5f4a24f7df90d313dbddb2ed2f2a42d2552ed
 
 COCOAPODS: 1.2.1

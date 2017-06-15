@@ -11,6 +11,7 @@ import MiniTabBar
 
 class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     
+    
     var diaryListNav :UINavigationController?
     var statsListNav :UINavigationController?
     var mapNav :UINavigationController?
@@ -37,6 +38,12 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
 
         AppUtility.lockOrientation(.portrait)
         self.createCustomItemTabBar()
+        
+        self.dataStore.pullCurrentUser()
+        self.dataStore.setSunsetTimeForCurrentUser()
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,7 +68,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         hmButton.setImage(#imageLiteral(resourceName: "target"), for: .normal)
         hmButton.setTitleColor(UIColor.black, for: .normal)
         hmButton.imageView?.contentMode = .scaleAspectFit
-        hmButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        hmButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         let customItem = MiniTabBarItem(customView: hmButton, offset: UIOffset(horizontal: 0, vertical: -5))
         customItem.selectable = false
         
@@ -333,7 +340,6 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     
     func editToday(_ sender: Any) {
         
-        
         let controller:SDWDiaryItemContainerViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemContainerViewController") as! SDWDiaryItemContainerViewController
         controller.bird = bird
         controller.title = "Today"
@@ -341,7 +347,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
             controller.diaryItem = self.diaryListVC?.existingTodayItem
         }
         self.diaryListNav?.pushViewController(controller, animated: true)
-//
+
 
     }
 

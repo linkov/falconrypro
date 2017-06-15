@@ -48,9 +48,7 @@ class SDWDiaryItemContainerViewController: UIViewController, UIPageViewControlle
             self.title = self.diaryItem?.created
         }
         
-        let proxyTitleLabel = UILabel.appearance(whenContainedInInstancesOf: [SDWDiaryItemContainerViewController.self])
-        proxyTitleLabel.tintColor = .black
-        proxyTitleLabel.textColor = .black
+
         
         
         

@@ -33,7 +33,6 @@
 		F162E3AE1EDF40B100732195 /* SDWStatsListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3AD1EDF40B100732195 /* SDWStatsListHeaderView.swift */; };
 		F162E3B01EDF40C200732195 /* SDWStatsListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F162E3AF1EDF40C200732195 /* SDWStatsListHeaderView.xib */; };
 		F162E3B41EDF772B00732195 /* SDWMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3B31EDF772B00732195 /* SDWMapViewController.swift */; };
-		F162E3B61EDF7A4D00732195 /* SDWLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3B51EDF7A4D00732195 /* SDWLocationManager.swift */; };
 		F162E3B91EDF9CB600732195 /* SDWPinItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3B71EDF9CB600732195 /* SDWPinItem+CoreDataClass.swift */; };
 		F162E3BA1EDF9CB600732195 /* SDWPinItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3B81EDF9CB600732195 /* SDWPinItem+CoreDataProperties.swift */; };
 		F162E3BC1EE025A800732195 /* SDWStatDetailContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F162E3BB1EE025A800732195 /* SDWStatDetailContainerViewController.swift */; };
@@ -45,6 +44,7 @@
 		F186C5CF1EEF1F8400353A64 /* SDWDiaryHuntViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F186C5CE1EEF1F8400353A64 /* SDWDiaryHuntViewController.swift */; };
 		F186C5D11EEF308E00353A64 /* SDWDiaryCardHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F186C5D01EEF308E00353A64 /* SDWDiaryCardHeaderView.xib */; };
 		F186C5D31EEF30CE00353A64 /* SDWDiaryCardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F186C5D21EEF30CE00353A64 /* SDWDiaryCardHeaderView.swift */; };
+		F1915EAA1EF01A16009E0EC5 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1915EA91EF01A16009E0EC5 /* SwitchCell.xib */; };
 		F19FEDC71EB380ED00996B40 /* searchable_push_row.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */; };
 		F1A8136A1EEDC0DA00F2BBE5 /* SDWCustomAddView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1A813691EEDC0DA00F2BBE5 /* SDWCustomAddView.xib */; };
 		F1A8136C1EEDC11F00F2BBE5 /* SDWCustomAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8136B1EEDC11F00F2BBE5 /* SDWCustomAddView.swift */; };
@@ -59,6 +59,8 @@
 		F1CB9CCF1E9905C900A90363 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1CB9CCD1E9905C900A90363 /* LaunchScreen.storyboard */; };
 		F1CB9CDA1E9905C900A90363 /* falconryproTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB9CD91E9905C900A90363 /* falconryproTests.swift */; };
 		F1CB9CE51E9905C900A90363 /* falconryproUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CB9CE41E9905C900A90363 /* falconryproUITests.swift */; };
+		F1D1773A1EF0366A00FC2D23 /* SDWBadgeHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D177391EF0366A00FC2D23 /* SDWBadgeHeaderFooterView.swift */; };
+		F1D1773C1EF0367C00FC2D23 /* SDWBadgeHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1D1773B1EF0367C00FC2D23 /* SDWBadgeHeaderFooterView.xib */; };
 		F1D2608D1EB3BF3E006D1BE9 /* SDWHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D2608C1EB3BF3E006D1BE9 /* SDWHomeViewController.swift */; };
 		F1EE1F241EC5B70E00917993 /* SDWQuarryType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EE1F221EC5B70E00917993 /* SDWQuarryType+CoreDataClass.swift */; };
 		F1EE1F251EC5B70E00917993 /* SDWQuarryType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EE1F231EC5B70E00917993 /* SDWQuarryType+CoreDataProperties.swift */; };
@@ -172,7 +174,6 @@
 		F162E3AD1EDF40B100732195 /* SDWStatsListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWStatsListHeaderView.swift; sourceTree = "<group>"; };
 		F162E3AF1EDF40C200732195 /* SDWStatsListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWStatsListHeaderView.xib; sourceTree = "<group>"; };
 		F162E3B31EDF772B00732195 /* SDWMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWMapViewController.swift; sourceTree = "<group>"; };
-		F162E3B51EDF7A4D00732195 /* SDWLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWLocationManager.swift; sourceTree = "<group>"; };
 		F162E3B71EDF9CB600732195 /* SDWPinItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWPinItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F162E3B81EDF9CB600732195 /* SDWPinItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWPinItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F162E3BB1EE025A800732195 /* SDWStatDetailContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWStatDetailContainerViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +185,7 @@
 		F186C5CE1EEF1F8400353A64 /* SDWDiaryHuntViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDiaryHuntViewController.swift; sourceTree = "<group>"; };
 		F186C5D01EEF308E00353A64 /* SDWDiaryCardHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWDiaryCardHeaderView.xib; sourceTree = "<group>"; };
 		F186C5D21EEF30CE00353A64 /* SDWDiaryCardHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDiaryCardHeaderView.swift; sourceTree = "<group>"; };
+		F1915EA91EF01A16009E0EC5 /* SwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
 		F19FEDC61EB380ED00996B40 /* searchable_push_row.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = searchable_push_row.swift; sourceTree = "<group>"; };
 		F1A813691EEDC0DA00F2BBE5 /* SDWCustomAddView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWCustomAddView.xib; sourceTree = "<group>"; };
 		F1A8136B1EEDC11F00F2BBE5 /* SDWCustomAddView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWCustomAddView.swift; sourceTree = "<group>"; };
@@ -204,6 +206,8 @@
 		F1CB9CE01E9905C900A90363 /* falconryproUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = falconryproUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1CB9CE41E9905C900A90363 /* falconryproUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = falconryproUITests.swift; sourceTree = "<group>"; };
 		F1CB9CE61E9905C900A90363 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1D177391EF0366A00FC2D23 /* SDWBadgeHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBadgeHeaderFooterView.swift; sourceTree = "<group>"; };
+		F1D1773B1EF0367C00FC2D23 /* SDWBadgeHeaderFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWBadgeHeaderFooterView.xib; sourceTree = "<group>"; };
 		F1D2608C1EB3BF3E006D1BE9 /* SDWHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWHomeViewController.swift; sourceTree = "<group>"; };
 		F1EE1F221EC5B70E00917993 /* SDWQuarryType+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWQuarryType+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F1EE1F231EC5B70E00917993 /* SDWQuarryType+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDWQuarryType+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -416,6 +420,8 @@
 				F104179C1ED5C82D00D2F3B1 /* SDWWeightItemRow.swift */,
 				F186C5D21EEF30CE00353A64 /* SDWDiaryCardHeaderView.swift */,
 				F186C5D01EEF308E00353A64 /* SDWDiaryCardHeaderView.xib */,
+				F1D177391EF0366A00FC2D23 /* SDWBadgeHeaderFooterView.swift */,
+				F1D1773B1EF0367C00FC2D23 /* SDWBadgeHeaderFooterView.xib */,
 				F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */,
 				F1A813691EEDC0DA00F2BBE5 /* SDWCustomAddView.xib */,
 				F1A8136B1EEDC11F00F2BBE5 /* SDWCustomAddView.swift */,
@@ -447,6 +453,7 @@
 		F1FA3A991EC0709D00355507 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				F1915EA91EF01A16009E0EC5 /* SwitchCell.xib */,
 				F1140C791EE207F2006ABBBD /* FloatLabelTextField.swift */,
 				F140C5E81EA25C6F0099C592 /* Extensions.swift */,
 				F162E3BF1EE03F8200732195 /* SDWChartDateValueFormatter.swift */,
@@ -477,7 +484,6 @@
 			isa = PBXGroup;
 			children = (
 				F1CB316C1EBFB590004C7342 /* NetworkManager.swift */,
-				F162E3B51EDF7A4D00732195 /* SDWLocationManager.swift */,
 				F1FA3AA11EC0863900355507 /* SDWDataStore.swift */,
 				F1FA3A951EBFFE4300355507 /* DataModelManager.swift */,
 			);
@@ -757,12 +763,14 @@
 				F1FA3B0D1EC219E700355507 /* Media.xcassets in Resources */,
 				F1FA3ABB1EC08C6700355507 /* DataModel.xcdatamodeld in Resources */,
 				F1EF43A91EEC625300E0ABBA /* SDWDiaryListSectionFooterView.xib in Resources */,
+				F1915EAA1EF01A16009E0EC5 /* SwitchCell.xib in Resources */,
 				F1CB9CCF1E9905C900A90363 /* LaunchScreen.storyboard in Resources */,
 				F1CB9CCC1E9905C900A90363 /* Assets.xcassets in Resources */,
 				F1FA3B0B1EC219E700355507 /* InitialViewController.xib in Resources */,
 				F1CB9CCA1E9905C900A90363 /* Main.storyboard in Resources */,
 				F140C5E51EA149A10099C592 /* SDWBirdListTableViewCell.xib in Resources */,
 				F162E3B01EDF40C200732195 /* SDWStatsListHeaderView.xib in Resources */,
+				F1D1773C1EF0367C00FC2D23 /* SDWBadgeHeaderFooterView.xib in Resources */,
 				F186C5D11EEF308E00353A64 /* SDWDiaryCardHeaderView.xib in Resources */,
 				F1FBC2231EB54DA500D57ED0 /* SDWDiaryListTableViewCell.xib in Resources */,
 				F1FA3B0A1EC219E700355507 /* .gitkeep in Resources */,
@@ -963,7 +971,6 @@
 				F1140C781EE1FF40006ABBBD /* PinType+CoreDataProperties.swift in Sources */,
 				F1FA3AB91EC0899800355507 /* SDWBird+CoreDataClass.swift in Sources */,
 				F1FA3B291EC3B8E600355507 /* SDWDiaryFood+CoreDataClass.swift in Sources */,
-				F162E3B61EDF7A4D00732195 /* SDWLocationManager.swift in Sources */,
 				F1FA3B191EC219E700355507 /* KeyboardMover.swift in Sources */,
 				F162E3AE1EDF40B100732195 /* SDWStatsListHeaderView.swift in Sources */,
 				F1AD8B6F1E9E8835006B2EB1 /* SDWBirdsTableViewController.swift in Sources */,
@@ -1023,6 +1030,7 @@
 				F1FA3B151EC219E700355507 /* CrossDissolveAnimation.swift in Sources */,
 				F10E13001EBB418E0044802C /* SDWSeasonViewController.swift in Sources */,
 				F1140C741EE1FC67006ABBBD /* SDWPinViewController.swift in Sources */,
+				F1D1773A1EF0366A00FC2D23 /* SDWBadgeHeaderFooterView.swift in Sources */,
 				F1FA3B311EC43E5800355507 /* SDWStatsItemCell.swift in Sources */,
 				F186C5CD1EEF1EAA00353A64 /* SDWDiaryItemContainerViewController.swift in Sources */,
 				F10417971ED5634C00D2F3B1 /* SDWFoodItemViewController.swift in Sources */,
@@ -1182,7 +1190,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB873D0E87BC0AD9C1A3080A /* Pods-falconrypro.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-4";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-5";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 43R88X5B35;
 				INFOPLIST_FILE = falconrypro/Info.plist;
@@ -1190,7 +1198,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdwr.falconrypro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5af0b21d-8dfc-4b0e-a386-36e5c72163b7";
+				PROVISIONING_PROFILE = "82ed9fd4-ae10-4dbb-9971-1898e2090e45";
 				PROVISIONING_PROFILE_SPECIFIER = "Falconry AdHoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "falconrypro-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -1202,7 +1210,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A73D7675904B829DCC5919B2 /* Pods-falconrypro.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-4";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-5";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 43R88X5B35;
 				INFOPLIST_FILE = falconrypro/Info.plist;
@@ -1210,7 +1218,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdwr.falconrypro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5af0b21d-8dfc-4b0e-a386-36e5c72163b7";
+				PROVISIONING_PROFILE = "82ed9fd4-ae10-4dbb-9971-1898e2090e45";
 				PROVISIONING_PROFILE_SPECIFIER = "Falconry AdHoc";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "\"-D\" \"PROD\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "falconrypro-Bridging-Header.h";

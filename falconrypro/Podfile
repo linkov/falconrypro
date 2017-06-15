@@ -13,7 +13,6 @@ target 'falconrypro' do
   pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka.git'
   pod 'SDWebImage', '~>4.0'
   pod 'Reveal-SDK', :configurations => ['Debug']
-  pod "Sparrow/Modules/RequestPermission", :git => "https://github.com/IvanVorobei/Sparrow.git"
   pod 'UIEmptyState'
   pod 'MiniTabBar'
   pod 'FastEasyMapping', '~> 1.1'
@@ -29,8 +28,10 @@ target 'falconrypro' do
   pod 'SwiftRichString'
   pod 'SwipeCellKit'
   pod 'EZYGradientView', :git => 'https://github.com/Niphery/EZYGradientView'
-
+  pod 'SwiftLocation'
   pod 'Mapbox-iOS-SDK', '~> 3.5.4'
+  pod "Solar"
+  pod 'AIFlatSwitch', '~> 1.0.1'
 
   target 'falconryproTests' do
     inherit! :search_paths

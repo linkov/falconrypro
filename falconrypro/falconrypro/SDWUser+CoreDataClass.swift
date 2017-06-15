@@ -26,6 +26,7 @@ public class SDWUser: NSManagedObject, SDWObjectMapping {
         mapping.addAttribute(FEMAttribute.falconryID())
         mapping.addAttribute(withProperty: "name", keyPath: "name")
         mapping.addAttribute(withProperty: "email", keyPath: "email")
+        mapping.addAttribute(withProperty: "metric", keyPath: "metric")
         
         
         return mapping

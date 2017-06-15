@@ -66,12 +66,9 @@ class SDWDiaryItemViewController: FormViewController, SDWPageable {
             
         +++ Section(){ section in
             var header = HeaderFooterView<SDWDiaryCardHeaderView>(.nibFile(name: "SDWDiaryCardHeaderView", bundle: nil))
-            
-            // Will be called every time the header appears on screen
             header.height = {52}
             header.onSetupView = { view, _ in
-                // Commonly used to setup texts inside the view
-                // Don't change the view hierarchy or size here!
+
                 view.mainImageView.image = #imageLiteral(resourceName: "check-circle")
             }
             section.header = header

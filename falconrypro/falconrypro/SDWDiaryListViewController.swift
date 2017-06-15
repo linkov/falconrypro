@@ -42,7 +42,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         self.tableView.reloadData()
         self.reloadEmptyState(forTableView: self.tableView)
         
-        self.existingTodayItem = self.dataStore.currentTodayItem()
+        self.existingTodayItem = self.dataStore.currentTodayItemForBird(bird_id: (bird?.remoteID)!)
         
         if (self.existingTodayItem != nil) {
             let diaryController:SDWDiaryItemContainerViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemContainerViewController") as! SDWDiaryItemContainerViewController
