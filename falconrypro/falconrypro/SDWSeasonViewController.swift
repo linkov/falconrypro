@@ -65,7 +65,11 @@ class SDWSeasonViewController: FormViewController {
         
             +++ Section("Season management"){
                 $0.tag = "management"
+                $0.hidden = Condition.function([], { form in
+                    return self.season == nil
+                })
             }
+
             
             
             <<< ButtonRow() { (row: ButtonRow) -> Void in
@@ -111,6 +115,7 @@ class SDWSeasonViewController: FormViewController {
     
     
     func deleteSeason() {
+        
         
         PKHUD.sharedHUD.show()
         self.dataStore.removeSeason(season_id: (self.season?.remoteID)!, completion: { (result, error) in
@@ -168,19 +173,7 @@ class SDWSeasonViewController: FormViewController {
                 
             })
             
-//            networking.put("/seasons/"+season_id+"?bird_id="+bird_id, parameters: ["season":dict])  { result in
-//                PKHUD.sharedHUD.hide()
-//                switch result {
-//                case .success(let response):
-//                    print(response.dictionaryBody)
-//                    self.dismiss(animated: true, completion: nil)
-//                    
-//                case .failure(let response):
-//                    print(response.dictionaryBody)
-//                }
-//                
-//            }
-            
+
         } else {
             self.dataStore.pushSeasonWith(season_id:nil, bird_id: bird_id, start: (start?.value)!, end: end?.value, isBetween: (between?.value)!, completion: { (object, error) in
                 

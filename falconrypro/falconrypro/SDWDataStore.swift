@@ -69,7 +69,7 @@ class SDWDataStore: NSObject {
         }
         
         
-        let predicate = NSPredicate(format: "%K = %@", "remoteID", remoteID)
+        let predicate = NSPredicate(format: "remoteID = %@", remoteID)
         let bird:SDWBird = self.dataModelManager.fetch(entityName: SDWBird.entityName(), predicate: predicate, context: self.dataModelManager.viewContext) as! SDWBird
         
         bird.current = true
@@ -78,7 +78,7 @@ class SDWDataStore: NSObject {
         
     }
     
-    public func currentTodayItemForBird(bird_id:String) -> DiaryItemDisplayItem? {
+    public func currentTodayItemForBird(bird_id:String, inSeason:String) -> DiaryItemDisplayItem? {
         
         
         var calendar = Calendar.current
@@ -92,7 +92,7 @@ class SDWDataStore: NSObject {
         // Note: Times are printed in UTC. Depending on where you live it won't print 00:00:00 but it will work with UTC times which can be converted to local time
 
         
-        let datePredicate = NSPredicate(format: "(%@ <= createdAt) AND (createdAt < %@) AND bird.remoteID == %@", argumentArray: [dateFrom, dateTo, bird_id])
+        let datePredicate = NSPredicate(format: "(%@ <= createdAt) AND (createdAt < %@) AND bird.remoteID == %@ AND season.remoteID == %@", argumentArray: [dateFrom, dateTo, bird_id, inSeason])
         
 
         
@@ -120,6 +120,24 @@ class SDWDataStore: NSObject {
         return nil
         
     }
+    
+    public func removeCurrentDiaryItem() {
+        
+        let predicate = NSPredicate(format: "%K = %@", "current", NSNumber(booleanLiteral: true))
+        
+        let seasons = self.dataModelManager.fetchAll(entityName: SDWSeason.entityName(), predicate: predicate, context: self.dataModelManager.viewContext) as? [SDWSeason]
+        
+        
+        for se:SDWSeason in seasons! {
+            se.current = false
+        }
+        
+        self.dataModelManager.saveContext()
+        
+        
+        
+    }
+    
     
     public func removeCurrentSeason() {
         
@@ -383,18 +401,18 @@ class SDWDataStore: NSObject {
     
     public func pullCurrentUser() {
         
-        self.networkManager.fetchUserWithID(user_id:(self.currentUser()?.remoteID)!) { (object, error) in
-            
-            guard let data = object, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-            
-            _ = SDWMapper.ez_object(withClass: type(of: SDWUser()) as SDWObjectMapping.Type, fromJSON: data as! Dictionary<AnyHashable, Any>, context: self.dataModelManager.viewContext)
-            self.dataModelManager.saveContext()
-            
-            
-        }
+//        self.networkManager.fetchUserWithID(user_id:(self.currentUser()?.remoteID)!) { (object, error) in
+//            
+//            guard let data = object, error == nil else {
+//                print(error?.localizedDescription ?? "No data")
+//                return
+//            }
+//            
+//            _ = SDWMapper.ez_object(withClass: type(of: SDWUser()) as SDWObjectMapping.Type, fromJSON: data as! Dictionary<AnyHashable, Any>, context: self.dataModelManager.viewContext)
+//            self.dataModelManager.saveContext()
+//            
+//            
+//        }
     }
     
     
@@ -458,7 +476,7 @@ class SDWDataStore: NSObject {
     
     public func removeBird(remoteID:String) {
         
-        let predicate = NSPredicate(format: "%K = %K", "remoteID", remoteID)
+        let predicate = NSPredicate(format: "remoteID = %@", remoteID)
         
         self.dataModelManager.fetch(entityDescription: SDWBird.entity(), predicate: predicate, context: self.dataModelManager.viewContext) { (object, error) in
             

@@ -21,6 +21,8 @@ class SDWSeasonListViewController: UITableViewController,SwipeTableViewCellDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.bird = self.dataStore.currentBird()
+        
         
         self.title = "Seasons"
         
@@ -49,7 +51,7 @@ class SDWSeasonListViewController: UITableViewController,SwipeTableViewCellDeleg
         super.viewWillAppear(animated)
         
         
-        self.objects = self.bird?.currentSeasons() ?? []
+        self.objects = self.bird!.currentSeasons()
         self.tableView.reloadData()
         
     }

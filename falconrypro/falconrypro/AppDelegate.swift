@@ -164,11 +164,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         let bird = self.dataStore.currentBird()
+        let season = self.dataStore.currentSeason()
         
-        if (bird == nil) {
+        if (bird == nil || season == nil) {
             return
         }
-        let todayDiaryItem = self.dataStore.currentTodayItemForBird(bird_id: (bird?.remoteID)!)
+        let todayDiaryItem = self.dataStore.currentTodayItemForBird(bird_id: (bird?.remoteID)!, inSeason: (season?.remoteID)!)
         
         if (todayDiaryItem == nil || todayDiaryItem?.weights?.count == 0) {
             

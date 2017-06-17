@@ -248,7 +248,7 @@ class BirdDisplayItem: NSObject {
     var huntingWeight:Int16?
     var status:BirdStatus = .active
     var birdTypes:Array<BirdTypeDisplayItem>?
-    var seasons:Array<SeasonDisplayItem>?
+    var seasons = [SeasonDisplayItem]()
     public private(set) var model:SDWBird
     
     var birthdayDateFormatter = DateFormatter()
@@ -271,9 +271,11 @@ class BirdDisplayItem: NSObject {
         
         let seasonArr:Array<SDWSeason> = self.model.seasons?.allObjects as! Array<SDWSeason>
         
-        let seasonItems:Array = seasonArr.map({ (item: SDWSeason) -> SeasonDisplayItem in
+        var seasonItems:Array = seasonArr.map({ (item: SDWSeason) -> SeasonDisplayItem in
             SeasonDisplayItem(model: item)
         })
+        
+         seasonItems = seasonItems.filter({$0.wasDeleted == nil})
         
         self.seasons = seasonItems
         self.birdTypes = birdTypeItems
@@ -312,7 +314,10 @@ class BirdDisplayItem: NSObject {
     
     
     public func currentSeasons() -> [SeasonDisplayItem] {
+        let predicate = NSPredicate(format: "remoteID = %@", self.remoteID)
         
+        let bird:SDWBird =  DataModelManager.sharedInstance.fetch(entityName: SDWBird.entityName(), predicate: predicate, context:  DataModelManager.sharedInstance.viewContext) as! SDWBird
+        self.model = bird
         var seasonItems = [SeasonDisplayItem]()
         
         if ((self.model.seasons) != nil) {
@@ -388,6 +393,7 @@ class SeasonDisplayItem: NSObject {
     var endDateString:String?
     var start:Date?
     var end:Date?
+    var wasDeleted:NSDate?
     var remoteID:String
     
     public private(set) var model:SDWSeason
@@ -405,6 +411,7 @@ class SeasonDisplayItem: NSObject {
         self.start = self.model.startDate as Date?
         self.end = self.model.endDate as Date?
         self.current = self.model.current
+        self.wasDeleted = self.model.wasDeleted
         
         self.isBetweenSeason = self.model.isBetweenSeason
         
