@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		D7B21088DAAB20DA280DD182 /* Pods_falconrypro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15045DAE0FFDE292FB29065 /* Pods_falconrypro.framework */; };
 		DFBFC8248F3526A15DE9AB3F /* Pods_falconryproTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5C3730AAC0E46D0A22F7AF1 /* Pods_falconryproTests.framework */; };
+		F1011FC71F4474730013F66C /* SDWTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1011FC61F4474730013F66C /* SDWTagsViewController.swift */; };
+		F1011FC91F4476140013F66C /* SDWGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1011FC81F4476140013F66C /* SDWGalleryViewController.swift */; };
+		F1011FCB1F448A6A0013F66C /* FlickrPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1011FCA1F448A6A0013F66C /* FlickrPhotoCell.swift */; };
 		F1026AAE1E9D818D00A89821 /* SDWLoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1026AAD1E9D818D00A89821 /* SDWLoginCoordinator.swift */; };
 		F10417971ED5634C00D2F3B1 /* SDWFoodItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10417961ED5634C00D2F3B1 /* SDWFoodItemViewController.swift */; };
 		F10417991ED563CF00D2F3B1 /* SDWFoodItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10417981ED563CF00D2F3B1 /* SDWFoodItemRow.swift */; };
@@ -152,6 +155,9 @@
 		B15045DAE0FFDE292FB29065 /* Pods_falconrypro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_falconrypro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5C3730AAC0E46D0A22F7AF1 /* Pods_falconryproTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_falconryproTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECFDFFD9EB6FBDB9478BE8F4 /* Pods_falconryproUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_falconryproUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1011FC61F4474730013F66C /* SDWTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWTagsViewController.swift; sourceTree = "<group>"; };
+		F1011FC81F4476140013F66C /* SDWGalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWGalleryViewController.swift; sourceTree = "<group>"; };
+		F1011FCA1F448A6A0013F66C /* FlickrPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrPhotoCell.swift; sourceTree = "<group>"; };
 		F1026AAD1E9D818D00A89821 /* SDWLoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWLoginCoordinator.swift; sourceTree = "<group>"; };
 		F10417961ED5634C00D2F3B1 /* SDWFoodItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWFoodItemViewController.swift; sourceTree = "<group>"; };
 		F10417981ED563CF00D2F3B1 /* SDWFoodItemRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWFoodItemRow.swift; sourceTree = "<group>"; };
@@ -326,6 +332,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F1011FC51F4473CD0013F66C /* Photo Flow */ = {
+			isa = PBXGroup;
+			children = (
+				F1011FC61F4474730013F66C /* SDWTagsViewController.swift */,
+				F1011FCA1F448A6A0013F66C /* FlickrPhotoCell.swift */,
+				F1011FC81F4476140013F66C /* SDWGalleryViewController.swift */,
+			);
+			name = "Photo Flow";
+			sourceTree = "<group>";
+		};
 		F1140C7B1EE20B75006ABBBD /* Settings Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +385,7 @@
 		F1CB9CC31E9905C900A90363 /* falconrypro */ = {
 			isa = PBXGroup;
 			children = (
+				F1011FC51F4473CD0013F66C /* Photo Flow */,
 				F1140C7B1EE20B75006ABBBD /* Settings Flow */,
 				F162E3B21EDF771100732195 /* Map Flow */,
 				F1FA3B2C1EC43CC100355507 /* Stats Flow */,
@@ -1000,10 +1017,12 @@
 				F1FA3AE31EC0A4E100355507 /* Protocols.swift in Sources */,
 				F1FA3AB71EC0899800355507 /* SDWUser+CoreDataClass.swift in Sources */,
 				F1FBC21F1EB53AA900D57ED0 /* SDWDiaryItemViewController.swift in Sources */,
+				F1011FC71F4474730013F66C /* SDWTagsViewController.swift in Sources */,
 				F10417991ED563CF00D2F3B1 /* SDWFoodItemRow.swift in Sources */,
 				F1FA3B271EC3B8E600355507 /* SDWDiaryWeight+CoreDataClass.swift in Sources */,
 				F12550621EA2D034004122D4 /* SDWDiaryListViewController.swift in Sources */,
 				F1CB316D1EBFB590004C7342 /* NetworkManager.swift in Sources */,
+				F1011FCB1F448A6A0013F66C /* FlickrPhotoCell.swift in Sources */,
 				F1FA3B1C1EC219E700355507 /* PasswordViewController.swift in Sources */,
 				F1FA3AB31EC0899800355507 /* SDWFood+CoreDataClass.swift in Sources */,
 				F1FA3B1D1EC219E700355507 /* SignupViewController.swift in Sources */,
@@ -1024,6 +1043,7 @@
 				F1FA3AA21EC0863900355507 /* SDWDataStore.swift in Sources */,
 				F1FA3AB51EC0899800355507 /* SDWDiaryItem+CoreDataClass.swift in Sources */,
 				F1EE1F251EC5B70E00917993 /* SDWQuarryType+CoreDataProperties.swift in Sources */,
+				F1011FC91F4476140013F66C /* SDWGalleryViewController.swift in Sources */,
 				F1FA3B281EC3B8E600355507 /* SDWDiaryWeight+CoreDataProperties.swift in Sources */,
 				F1AD8B731E9EA518006B2EB1 /* DisplayModels.swift in Sources */,
 				F1FA3B1B1EC219E700355507 /* LoginViewController.swift in Sources */,

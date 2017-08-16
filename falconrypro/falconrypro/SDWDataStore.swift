@@ -1027,6 +1027,66 @@ class SDWDataStore: NSObject {
     }
     
     
+    public func pullAllPhotos(currentData:sdw_id_error_block,fetchedData:@escaping sdw_id_error_block) {
+        
+        
+        self.dataModelManager.fetchAll(entityName:SDWDiaryPhoto.entityName(), predicate: nil, context: self.dataModelManager.viewContext) { (objects, error) in
+            
+            
+            guard let data = objects, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                currentData(nil,error)
+                return
+            }
+            
+            
+            let arr:Array<SDWDiaryPhoto> = data as! Array
+            var displayItemsArray = [DiaryPhotoDisplayItem]()
+            
+            
+            for obj in arr {
+                let displayItem:DiaryPhotoDisplayItem = DiaryPhotoDisplayItem(model: obj )
+                displayItemsArray.append(displayItem)
+            }
+            
+            currentData(displayItemsArray,nil)
+            
+            
+            
+            self.networkManager.fetchPhotosForBird(bird:self.currentBird()!, completion: { (objects, error) in
+                
+                
+                guard let data = objects, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    fetchedData(nil,error)
+                    return
+                }
+                
+                
+                let mappedObjects = SDWMapper.ez_arrayOfObjects(withClass: type(of: SDWDiaryPhoto()) as SDWObjectMapping.Type, fromJSON: data as! Array<Any>, context: self.dataModelManager.viewContext)
+                
+                
+                var displayItemsArray = [DiaryPhotoDisplayItem]()
+                
+                
+                for obj in mappedObjects {
+                    let displayItem:DiaryPhotoDisplayItem = DiaryPhotoDisplayItem(model: obj as! SDWDiaryPhoto )
+                    displayItemsArray.append(displayItem)
+                }
+                
+                
+                fetchedData(displayItemsArray,nil)
+                
+                
+                
+                
+            })
+            
+            
+        }
+    }
+    
+    
     public func pullAllQuarryTypes(currentData:sdw_id_error_block,fetchedData:@escaping sdw_id_error_block) {
         
         

@@ -42,16 +42,16 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         self.tableView.reloadData()
         self.reloadEmptyState(forTableView: self.tableView)
         
-        self.existingTodayItem = self.dataStore.currentTodayItemForBird(bird_id: (bird?.remoteID)!,inSeason: (self.dataStore.currentSeason()?.remoteID)!)
+//        self.existingTodayItem = self.dataStore.currentTodayItemForBird(bird_id: (bird?.remoteID)!,inSeason: (self.dataStore.currentSeason()?.remoteID)!)
         
-        if (self.existingTodayItem != nil) {
-            let diaryController:SDWDiaryItemContainerViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemContainerViewController") as! SDWDiaryItemContainerViewController
-            
-            diaryController.bird = self.bird
-            diaryController.diaryItem = self.existingTodayItem
-            
-            self.navigationController?.pushViewController(diaryController, animated: false)
-        }
+//        if (self.existingTodayItem != nil) {
+//            let diaryController:SDWDiaryItemContainerViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemContainerViewController") as! SDWDiaryItemContainerViewController
+//            
+//            diaryController.bird = self.bird
+//            diaryController.diaryItem = self.existingTodayItem
+//            
+//            self.navigationController?.pushViewController(diaryController, animated: false)
+//        }
         
     }
 
@@ -117,17 +117,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         return headerView
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 40
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        
-        let footerView:SDWDiaryListSectionFooterView = SDWDiaryListSectionFooterView.loadFromXib()
-        footerView.addButton.addTarget(self, action: #selector(addItem(_:)), for: .touchUpInside)
-        footerView.addButton.isEnabled = !(self.bird?.isViewOnly())!
-        return footerView
-    }
+
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -274,16 +264,6 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     }
     
     
-    func addItem(_ sender: Any) {
-        
-        
-        let controller:SDWDiaryItemContainerViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemContainerViewController") as! SDWDiaryItemContainerViewController
-        controller.bird = self.bird
-        controller.isPastItem = true
-        controller.title = "Past item"
-        self.navigationController?.pushViewController(controller, animated: true)
-        //
-        
-    }
+
 
 }

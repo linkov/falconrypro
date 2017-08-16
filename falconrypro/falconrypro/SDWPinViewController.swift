@@ -42,7 +42,7 @@ class SDWPinViewController: FormViewController, TypedRowControllerType {
         
         
         let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(SDWPinViewController.tappedDone(_:)))
-        button.title = "Done"
+        button.title = "Save"
         navigationItem.rightBarButtonItem = button
         
         if let item = row.value  {

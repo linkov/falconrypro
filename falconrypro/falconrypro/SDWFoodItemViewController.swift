@@ -39,7 +39,7 @@ class SDWFoodItemViewController : FormViewController, TypedRowControllerType {
 
         
         let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(SDWFoodItemViewController.tappedDone(_:)))
-        button.title = "Done"
+        button.title = "Save"
         navigationItem.rightBarButtonItem = button
         
         if let item = row.value  {
@@ -53,7 +53,7 @@ class SDWFoodItemViewController : FormViewController, TypedRowControllerType {
             <<< IntRow(){ row in
                 row.value =  currentItem?.amountEaten != nil ?  Int((currentItem?.amountEaten!)!)  : nil
                 row.tag = "eaten"
-                row.title = "Diet eaten"
+                row.title = "Diet"
                 row.add(rule: RuleRequired())
                 row.placeholder = "weight in gramms"
                 row.cellUpdate { cell, row in
@@ -80,7 +80,7 @@ class SDWFoodItemViewController : FormViewController, TypedRowControllerType {
             <<< SearchablePushRow<FoodDisplayItem>("name") {
                 $0.tag = "food"
                 $0.value = (self.currentItem?.food != nil) ? self.currentItem?.food : nil
-                $0.title = "Food"
+                $0.title = "Diet Type"
                 $0.add(rule: RuleRequired())
                 $0.displayValueFor = { value in
                     return value?.name

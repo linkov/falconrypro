@@ -53,6 +53,7 @@ class SDWDiaryItemContainerViewController: UIViewController, UIPageViewControlle
         
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(finish(_:)))
+        addButton.title = "Done"
         addButton.tintColor = AppUtility.app_color_black
         
         //        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))

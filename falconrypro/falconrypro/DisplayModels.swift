@@ -136,7 +136,20 @@ class PinTypeDisplayItem: NSObject {
         self.remoteID = self.model.remoteID!
     }
     
+}
+
+class DiaryPhotoDisplayItem: NSObject {
+    var remoteID:String?
+    var imageURL:String?
+    var imageThumbURL:String?
+    public private(set) var model:SDWDiaryPhoto
     
+    init(model:SDWDiaryPhoto) {
+        self.model = model
+        self.imageURL = self.model.photoUrl
+        self.remoteID = self.model.remoteID
+        self.imageThumbURL = self.model.thumbUrl
+    }
     
 }
 

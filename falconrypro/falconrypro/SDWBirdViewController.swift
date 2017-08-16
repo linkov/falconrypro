@@ -142,7 +142,7 @@ class SDWBirdViewController: FormViewController {
                 <<< DateInlineRow(){
                     $0.tag = "bday"
                     $0.dateFormatter = birthdayDateFormatter
-                    $0.title = "Birthday"
+                    $0.title = "Hatch date"
                     $0.add(rule: RuleRequired())
                     $0.value = (bird?.birthday != nil) ? bird?.birthday! : nil
                     }.cellUpdate { cell, row in
@@ -314,7 +314,7 @@ class SDWBirdViewController: FormViewController {
 
         
                 <<< ButtonRow() { (row: ButtonRow) -> Void in
-                    row.title = "TOGGLE DEAD"
+                    row.title = "Deceased"
                     row.cell.tintColor = AppUtility.app_color_black
                     row.cell.preservesSuperviewLayoutMargins = false
                     row.cell.separatorInset = UIEdgeInsets.zero
@@ -390,7 +390,7 @@ class SDWBirdViewController: FormViewController {
             present(alertController, animated: true)
         case .kill:
             let alertController = UIAlertController(title: "Pronounce dead/alive", message: "Please confirm this action, this can not be undone bla bla bla", preferredStyle: .actionSheet)
-            let defaultAction = UIAlertAction(title: "TOGGLE DEAD", style: .destructive, handler: { (action) in
+            let defaultAction = UIAlertAction(title: "Deceased", style: .destructive, handler: { (action) in
                 
                 self.toggleMarkBirdDead()
             })

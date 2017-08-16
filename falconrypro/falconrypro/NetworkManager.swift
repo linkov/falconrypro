@@ -8,7 +8,7 @@
 
 import UIKit
 import Networking
-
+import PKHUD
 
 enum BirdStatusNetworkAction: Int {
     case delete, sell, kill, undelete, unkill, unsell
@@ -625,6 +625,28 @@ class NetworkManager: NSObject {
         
     }
     
+    public func fetchPhotosForBird(bird:BirdDisplayItem, completion:@escaping sdw_id_error_block) {
+        
+        self.setupRequestHeaders()
+        
+        self.networking.get("/diary_photos",parameters: ["bird":bird.remoteID])  { result in
+            
+            switch result {
+            case .success(let response):
+                print(response)
+                print(response.arrayBody)
+                completion(response.arrayBody,nil)
+                
+                
+            case .failure(let response):
+                completion(nil,response.error)
+                print(response)
+            }
+            
+        }
+        
+    }
+    
     public func fetchFoods(completion:@escaping sdw_id_error_block) {
         
         self.setupRequestHeaders()
@@ -683,8 +705,15 @@ class NetworkManager: NSObject {
                 
                 
             case .failure(let response):
-                completion(nil,response.error)
-                print(response)
+                if (response.error.code == 401) {
+                    self.showLogoutAlert()
+                    
+                    
+                } else {
+                    completion(nil,response.error)
+                    print(response)
+                }
+
             }
             
         }
@@ -755,5 +784,16 @@ class NetworkManager: NSObject {
         UserDefaults.standard.synchronize()
         
     }
+    
+    func showLogoutAlert() {
+        
+        PKHUD.sharedHUD.contentView = PKHUDErrorView(title: "Please logout", subtitle: "Your session is expired")
+        PKHUD.sharedHUD.show()
+        PKHUD.sharedHUD.hide(afterDelay: 2.0) { success in
+            // Completion Handler
+        }
+        
+    }
 }
+
 

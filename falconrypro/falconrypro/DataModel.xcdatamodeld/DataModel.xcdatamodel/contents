@@ -58,6 +58,7 @@
         <attribute name="lat" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="long" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbUrl" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="diaryItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWDiaryItem" inverseName="photos" inverseEntity="SDWDiaryItem" syncable="YES"/>
         <relationship name="pinType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PinType" inverseName="photos" inverseEntity="PinType" syncable="YES"/>
@@ -121,12 +122,12 @@
         <element name="SDWBirdType" positionX="-36" positionY="36" width="128" height="135"/>
         <element name="SDWDiaryFood" positionX="18" positionY="162" width="128" height="120"/>
         <element name="SDWDiaryItem" positionX="0" positionY="108" width="128" height="210"/>
+        <element name="SDWDiaryPhoto" positionX="-27" positionY="135" width="128" height="180"/>
         <element name="SDWDiaryWeight" positionX="-27" positionY="108" width="128" height="105"/>
         <element name="SDWFood" positionX="-27" positionY="81" width="128" height="105"/>
         <element name="SDWPinItem" positionX="-27" positionY="117" width="128" height="180"/>
         <element name="SDWQuarryType" positionX="-27" positionY="117" width="128" height="105"/>
         <element name="SDWSeason" positionX="-18" positionY="90" width="128" height="210"/>
         <element name="SDWUser" positionX="-63" positionY="-18" width="128" height="165"/>
-        <element name="SDWDiaryPhoto" positionX="-27" positionY="135" width="128" height="165"/>
     </elements>
 </model>

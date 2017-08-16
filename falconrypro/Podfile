@@ -32,6 +32,7 @@ target 'falconrypro' do
   pod 'Mapbox-iOS-SDK', '~> 3.5.4'
   pod "Solar"
   pod 'AIFlatSwitch', '~> 1.0.1'
+  pod 'ALCameraViewController'
 
   target 'falconryproTests' do
     inherit! :search_paths
