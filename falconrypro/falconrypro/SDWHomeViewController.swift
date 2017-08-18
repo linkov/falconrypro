@@ -23,7 +23,8 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     @IBOutlet weak var hmModeViewBottomLayout: NSLayoutConstraint!
     var bird:BirdDisplayItem?
     var season:SeasonDisplayItem?
-    var diaryListVC:SDWDiaryListViewController?
+    var diaryChartVC:SDWDiaryChartViewController?
+    
     var galleryVC:SDWGalleryViewController?
     var settingsVC:SDWSettingsViewController?
     
@@ -130,23 +131,23 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
            self.diaryListNav = storyboard?.instantiateViewController(withIdentifier: "DiaryListNav") as? UINavigationController
     
             
-            self.diaryListVC = self.diaryListNav!.viewControllers[0] as? SDWDiaryListViewController
-            self.diaryListVC?.bird = self.bird
-            self.diaryListVC?.season = self.season
+            self.diaryChartVC = self.diaryListNav!.viewControllers[0] as? SDWDiaryChartViewController
+            self.diaryChartVC?.bird = self.bird
+            self.diaryChartVC?.season = self.season
             
             
-            self.diaryListVC?.title = self.bird?.name
+            self.diaryChartVC?.title = self.bird?.name
             
 
             self.editTodayButton = UIBarButtonItem(image: #imageLiteral(resourceName: "plus-square"), style: .plain, target: self, action: #selector(editToday(_:)))
             
             self.editTodayButton?.isEnabled = !(self.bird?.isViewOnly())!
-            self.diaryListVC?.navigationItem.rightBarButtonItem = self.editTodayButton
+            self.diaryChartVC?.navigationItem.rightBarButtonItem = self.editTodayButton
             
             
             let  backButton = UIBarButtonItem(title: "Seasons", style: .plain, target: self, action: #selector(back(_:)))
             backButton.tintColor = AppUtility.app_color_black
-            self.diaryListVC?.navigationItem.leftBarButtonItem = backButton
+            self.diaryChartVC?.navigationItem.leftBarButtonItem = backButton
             
             
             
@@ -292,7 +293,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
 //        }
 //        
         
-//        let currentItem = self.diaryListVC?.lastSelectedItem
+//        let currentItem = self.diaryChartVC?.lastSelectedItem
 //        if (currentItem == nil) {
 //            
 //            return
@@ -333,7 +334,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     @IBAction func showMapForDiaryItem(_ sender: Any) {
         
         
-        let currentItem = self.diaryListVC?.lastSelectedItem
+        let currentItem = self.diaryChartVC?.lastSelectedItem
         
         if (currentItem != nil) {
             
@@ -354,8 +355,8 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         controller.bird = bird
         controller.isPastItem = true
         controller.title = "Diary Item"
-        if (self.diaryListVC?.existingTodayItem != nil) {
-            controller.diaryItem = self.diaryListVC?.existingTodayItem
+        if (self.diaryChartVC?.existingTodayItem != nil) {
+            controller.diaryItem = self.diaryChartVC?.existingTodayItem
         }
         self.diaryListNav?.pushViewController(controller, animated: true)
 

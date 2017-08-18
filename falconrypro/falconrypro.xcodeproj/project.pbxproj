@@ -33,6 +33,7 @@
 		F12739F81F463DEF00EBBA7E /* SDWTagsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F12739F71F463DEF00EBBA7E /* SDWTagsViewController.xib */; };
 		F12739FA1F46559900EBBA7E /* SDWGalleryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12739F91F46559900EBBA7E /* SDWGalleryHeaderView.swift */; };
 		F12739FC1F4655A100EBBA7E /* SDWGalleryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F12739FB1F4655A100EBBA7E /* SDWGalleryHeaderView.xib */; };
+		F12739FE1F46FE2100EBBA7E /* SDWDiaryChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12739FD1F46FE2100EBBA7E /* SDWDiaryChartViewController.swift */; };
 		F140C5E41EA149A10099C592 /* SDWBirdListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F140C5E21EA149A10099C592 /* SDWBirdListTableViewCell.swift */; };
 		F140C5E51EA149A10099C592 /* SDWBirdListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */; };
 		F140C5E71EA2509C0099C592 /* SDWHomeTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F140C5E61EA2509C0099C592 /* SDWHomeTBC.swift */; };
@@ -185,6 +186,7 @@
 		F12739F71F463DEF00EBBA7E /* SDWTagsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWTagsViewController.xib; sourceTree = "<group>"; };
 		F12739F91F46559900EBBA7E /* SDWGalleryHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWGalleryHeaderView.swift; sourceTree = "<group>"; };
 		F12739FB1F4655A100EBBA7E /* SDWGalleryHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWGalleryHeaderView.xib; sourceTree = "<group>"; };
+		F12739FD1F46FE2100EBBA7E /* SDWDiaryChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWDiaryChartViewController.swift; sourceTree = "<group>"; };
 		F140C5E21EA149A10099C592 /* SDWBirdListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWBirdListTableViewCell.swift; sourceTree = "<group>"; };
 		F140C5E31EA149A10099C592 /* SDWBirdListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWBirdListTableViewCell.xib; sourceTree = "<group>"; };
 		F140C5E61EA2509C0099C592 /* SDWHomeTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWHomeTBC.swift; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 				F1D177391EF0366A00FC2D23 /* SDWBadgeHeaderFooterView.swift */,
 				F1D1773B1EF0367C00FC2D23 /* SDWBadgeHeaderFooterView.xib */,
 				F12550611EA2D034004122D4 /* SDWDiaryListViewController.swift */,
+				F12739FD1F46FE2100EBBA7E /* SDWDiaryChartViewController.swift */,
 				F1A813691EEDC0DA00F2BBE5 /* SDWCustomAddView.xib */,
 				F1A8136B1EEDC11F00F2BBE5 /* SDWCustomAddView.swift */,
 				F1559F5B1EE929C200F69EA6 /* SDWDiaryListSectionHeaderView.swift */,
@@ -1002,6 +1005,7 @@
 				F186C5D31EEF30CE00353A64 /* SDWDiaryCardHeaderView.swift in Sources */,
 				F1FA3B131EC219E700355507 /* BackgroundMover.swift in Sources */,
 				F1FA3AB41EC0899800355507 /* SDWFood+CoreDataProperties.swift in Sources */,
+				F12739FE1F46FE2100EBBA7E /* SDWDiaryChartViewController.swift in Sources */,
 				F12739F51F46376F00EBBA7E /* SDWTagCollectionViewCell.swift in Sources */,
 				F1AD8B711E9EA18A006B2EB1 /* SDWBirdViewController.swift in Sources */,
 				F17A30C01EEC88E500B8AD70 /* SDWSeasonListCell.swift in Sources */,

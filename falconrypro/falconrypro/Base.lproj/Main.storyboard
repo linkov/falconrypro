@@ -614,7 +614,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="69C-mM-jtS" kind="relationship" relationship="rootViewController" id="r4E-Hf-M7C"/>
+                        <segue destination="hMd-rh-Sn7" kind="relationship" relationship="rootViewController" id="A6J-n4-voL"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rh5-A3-CVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -634,7 +634,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1If-tc-kSX">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="-44" width="375" height="711"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -671,6 +671,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v8O-0x-9c4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5476" y="-1384"/>
+        </scene>
+        <!--Diary Chart View Controller-->
+        <scene sceneID="XS1-XF-GL3">
+            <objects>
+                <viewController id="hMd-rh-Sn7" customClass="SDWDiaryChartViewController" customModule="falconrypro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hnQ-Kn-gsB"/>
+                        <viewControllerLayoutGuide type="bottom" id="7Vn-cP-a3s"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DsG-OJ-FrD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UgA-as-1qq" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="64" width="343" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Hen-lj-oFK"/>
+                    <connections>
+                        <outlet property="lineChart" destination="UgA-as-1qq" id="lrQ-Ix-FzX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j4r-bx-nXS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5476" y="-2070"/>
         </scene>
         <!--HomeTBC-->
         <scene sceneID="Eey-6A-tU9">
