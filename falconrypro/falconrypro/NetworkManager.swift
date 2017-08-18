@@ -720,6 +720,89 @@ class NetworkManager: NSObject {
         
     }
     
+    func uploadDiaryPhoto(bird_id:String, pin_type_id:String, image:UIImage, completion:@escaping sdw_id_error_block ) {
+        
+        PKHUD.sharedHUD.show()
+  
+        
+        
+        
+        
+        var dict: [String: String] = [:]
+        
+        dict["pin_item_type_id"] = pin_type_id
+        dict["bird_id"] = bird_id
+        
+        
+        var r  = URLRequest(url: URL(string: Constants.server.BASEURL+"/diary_photos/")!)
+        r.httpMethod = "POST"
+        let boundary = "Boundary-\(UUID().uuidString)"
+        
+        let token = UserDefaults.standard.value(forKey: "access-token")
+        let expires = UserDefaults.standard.value(forKey: "expiry")
+        let client = UserDefaults.standard.value(forKey: "client")
+        let uid = UserDefaults.standard.value(forKey: "uid")
+        
+        r.setValue(token as? String, forHTTPHeaderField: "access-token")
+        r.setValue(expires as? String, forHTTPHeaderField: "expiry")
+        r.setValue(client as? String, forHTTPHeaderField: "client")
+        r.setValue(uid as? String, forHTTPHeaderField: "uid")
+        
+        r.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        r.httpBody = createBody(parameters: dict,
+                                boundary: boundary,
+                                data: UIImageJPEGRepresentation(image, 0.7)!,
+                                mimeType: "image/jpg",
+                                filename: "bird.jpg")
+        
+        let task = URLSession.shared.dataTask(with: r) { data, response, error in
+            guard let data = data, error == nil else {
+                PKHUD.sharedHUD.hide()
+                print(error?.localizedDescription ?? "No data")
+                completion(nil,error)
+                // callback
+                return
+            }
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                PKHUD.sharedHUD.hide()
+                print(responseJSON)
+                completion(responseJSON,nil)
+            }
+        }
+        
+        task.resume()
+        
+        
+    }
+    
+    
+    func createBody(parameters: [String: String],
+                    boundary: String,
+                    data: Data,
+                    mimeType: String,
+                    filename: String) -> Data {
+        let body = NSMutableData()
+        
+        let boundaryPrefix = "--\(boundary)\r\n"
+        
+        for (key, value) in parameters {
+            body.appendString(boundaryPrefix)
+            body.appendString("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+            body.appendString("\(value)\r\n")
+        }
+        
+        body.appendString(boundaryPrefix)
+        body.appendString("Content-Disposition: form-data; name=\"diary_photo[photo]\"; filename=\"\(filename)\"\r\n")
+        body.appendString("Content-Type: \(mimeType)\r\n\r\n")
+        body.append(data)
+        body.appendString("\r\n")
+        body.appendString("--".appending(boundary.appending("--")))
+        
+        return body as Data
+    }
+    
     
     
     func setupRequestHeaders() {

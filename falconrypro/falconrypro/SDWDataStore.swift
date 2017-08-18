@@ -560,6 +560,31 @@ class SDWDataStore: NSObject {
         
     }
     
+    public func pushDiaryPhoto(image:UIImage, bird:BirdDisplayItem, pintype:PinTypeDisplayItem,  completion:@escaping sdw_id_error_block) {
+        
+        
+        
+        
+        self.networkManager.uploadDiaryPhoto(bird_id:bird.remoteID,pin_type_id: pintype.remoteID!, image:image, completion: {(object, error) in
+            
+            
+            guard let data = object, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                completion(nil,error)
+                return
+            }
+            
+            
+            let mappedObject = SDWMapper.ez_object(withClass: type(of: SDWDiaryPhoto()) as SDWObjectMapping.Type, fromJSON: data as! Dictionary<AnyHashable, Any>, context: self.dataModelManager.viewContext)
+            self.dataModelManager.saveContext()
+            
+            completion(DiaryPhotoDisplayItem.init(model: mappedObject as! SDWDiaryPhoto),nil)
+            
+        })
+        
+        
+    }
+    
     public func pushFoodWith(name:String, completion:@escaping sdw_id_error_block) {
         
         

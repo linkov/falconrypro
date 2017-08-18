@@ -142,6 +142,9 @@ class DiaryPhotoDisplayItem: NSObject {
     var remoteID:String?
     var imageURL:String?
     var imageThumbURL:String?
+    var width:Float?
+    var height:Float?
+    var pinTypeTitle:String?
     public private(set) var model:SDWDiaryPhoto
     
     init(model:SDWDiaryPhoto) {
@@ -149,6 +152,9 @@ class DiaryPhotoDisplayItem: NSObject {
         self.imageURL = self.model.photoUrl
         self.remoteID = self.model.remoteID
         self.imageThumbURL = self.model.thumbUrl
+        self.width = self.model.width
+        self.height = self.model.height
+        self.pinTypeTitle = self.model.pinTypeTitle
     }
     
 }

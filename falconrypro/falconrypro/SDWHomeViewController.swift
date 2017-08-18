@@ -8,7 +8,7 @@
 
 import UIKit
 import MiniTabBar
-import ALCameraViewController
+
 
 class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     
@@ -42,6 +42,10 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         
         self.dataStore.pullCurrentUser()
         self.dataStore.setSunsetTimeForCurrentUser()
+        
+        self.dataStore.prefetchData { (objects, error) in
+
+        }
         
         
         
@@ -272,15 +276,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     
     @objc private func customButtonTapped() {
         
-        let croppingEnabled = true
-        let cameraViewController = CameraViewController(croppingEnabled: croppingEnabled) { [weak self] image, asset in
-            // Do something with your image here.
-            // If cropping is enabled this image will be the cropped version
-            
-            self?.dismiss(animated: true, completion: nil)
-        }
-        
-        present(cameraViewController, animated: true, completion: nil)
+
         
         
         

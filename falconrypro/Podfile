@@ -33,6 +33,9 @@ target 'falconrypro' do
   pod "Solar"
   pod 'AIFlatSwitch', '~> 1.0.1'
   pod 'ALCameraViewController'
+  pod 'SimpleImageViewer', '~> 1.0.1'
+  pod 'CHTCollectionViewWaterfallLayout/Swift'
+  pod 'TagListView', '~> 1.0'
 
   target 'falconryproTests' do
     inherit! :search_paths

@@ -30,6 +30,12 @@ public class SDWDiaryPhoto: NSManagedObject, SDWObjectMapping {
         mapping.addAttribute(withProperty: "photoUrl", keyPath: "photo.url")
         mapping.addAttribute(withProperty: "thumbUrl", keyPath: "photo.thumb.url")
         
+        mapping.addAttribute(withProperty: "pinTypeTitle", keyPath: "pin_item_type_title")
+        
+        mapping.addAttribute(withProperty: "width", keyPath: "width")
+        mapping.addAttribute(withProperty: "height", keyPath: "height")
+
+        
         mapping.addAttribute(FEMAttribute.dateAttribute(withProperty: "createdAt", keyPath: "created_at"))
         
         

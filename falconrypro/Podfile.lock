@@ -11,6 +11,7 @@ PODS:
   - Charts (3.0.2):
     - Charts/Core (= 3.0.2)
   - Charts/Core (3.0.2)
+  - CHTCollectionViewWaterfallLayout/Swift (0.9.6)
   - Crashlytics (3.8.5):
     - Fabric (~> 1.6.3)
   - Eureka (3.0.0)
@@ -33,11 +34,13 @@ PODS:
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
+  - SimpleImageViewer (1.0.1)
   - Solar (2.0.0)
   - SwiftDate (4.1.2)
   - SwiftLocation (2.0.7)
   - SwiftRichString (0.9.8)
   - SwipeCellKit (1.8.0)
+  - TagListView (1.2.0)
   - UICountingLabel (1.4.0)
   - UIEmptyState (0.5.0)
   - Validator (2.1.1)
@@ -47,6 +50,7 @@ DEPENDENCIES:
   - ALCameraViewController
   - BadgeSwift (~> 5.0)
   - Charts
+  - CHTCollectionViewWaterfallLayout/Swift
   - Crashlytics
   - Eureka (from `https://github.com/xmartlabs/Eureka.git`)
   - EZYGradientView (from `https://github.com/Niphery/EZYGradientView`)
@@ -62,11 +66,13 @@ DEPENDENCIES:
   - Reveal-SDK
   - RoundedSwitch
   - SDWebImage (~> 4.0)
+  - SimpleImageViewer (~> 1.0.1)
   - Solar
   - SwiftDate (~> 4.0)
   - SwiftLocation
   - SwiftRichString
   - SwipeCellKit
+  - TagListView (~> 1.0)
   - UICountingLabel
   - UIEmptyState
   - Validator (~> 2.1.1)
@@ -96,6 +102,7 @@ SPEC CHECKSUMS:
   BadgeSwift: 3defa56f504bfb46f2300122c4a565ec9e405c1e
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
+  CHTCollectionViewWaterfallLayout: f4dab06db57b36dcf29e802594175acc76c56615
   Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
   Eureka: 5b9418d7bfdc21ca977d69d124a6409f3e9af2c7
   EZYGradientView: f13e7a9e774b906c66d617fb04a13c8853ba25b4
@@ -112,15 +119,17 @@ SPEC CHECKSUMS:
   Reveal-SDK: 43be4e662864e937960d0d04d005135e29c4e53b
   RoundedSwitch: 85ea55811bbeb5747dd99e2c2290c86e820decb5
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SimpleImageViewer: ab0deb97a2cbe008db5c60ea62a9431c2ce0c2e1
   Solar: ea092f7660c1b58d2b754227decb61a1c6710826
   SwiftDate: 2dfdebd4f67ae71c9c3e2413ee3c56947f302858
   SwiftLocation: 1fe2e15a5812e961496e82eeaca71d03e829e47a
   SwiftRichString: d42eeaefceea340e27b8a33945e0fac1ee21f58f
   SwipeCellKit: 01a58bf7e63d5df09aedd161828833944c4c333c
+  TagListView: 999e1df50c0f6b9ca927fae705c86a7e3b6ee9ba
   UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
   UIEmptyState: b81840468b03d7be5b02114c239f5ac097dc935a
   Validator: b1793fbfd0046097551d0edd18e2c30792d69ef5
 
-PODFILE CHECKSUM: 252d29cc5e07aff61fde13b3e52df66fc7711d53
+PODFILE CHECKSUM: d1d9f464141861bcf727a623055f00309612c5d8
 
 COCOAPODS: 1.2.1
