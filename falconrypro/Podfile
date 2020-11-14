@@ -6,45 +6,33 @@ target 'falconrypro' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'Fabric'
-  pod 'Crashlytics'
-  pod 'Networking'
-  pod 'PKHUD', '~> 4.0'
-  pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka.git'
-  pod 'SDWebImage', '~>4.0'
-  pod 'Reveal-SDK', :configurations => ['Debug']
-  pod 'UIEmptyState'
-  pod 'MiniTabBar'
-  pod 'FastEasyMapping', '~> 1.1'
-  pod 'Validator', '~> 2.1.1'
-  pod 'FBSDKLoginKit', '4.18.0'
-  pod 'Charts'
-  pod 'RoundedSwitch'
-  pod 'ImageRow', :git => 'https://github.com/EurekaCommunity/ImageRow.git'
-  pod 'SwiftDate', '~> 4.0'
-  pod 'UICountingLabel'
-  pod 'BadgeSwift', '~> 5.0'
-  pod 'PureLayout'
-  pod 'SwiftRichString'
-  pod 'SwipeCellKit'
-  pod 'EZYGradientView', :git => 'https://github.com/Niphery/EZYGradientView'
-  pod 'SwiftLocation'
-  pod 'Mapbox-iOS-SDK', '~> 3.5.4'
-  pod "Solar"
-  pod 'AIFlatSwitch', '~> 1.0.1'
-  pod 'ALCameraViewController'
-  pod 'SimpleImageViewer', '~> 1.0.1'
-  pod 'CHTCollectionViewWaterfallLayout/Swift'
-  pod 'TagListView', '~> 1.0'
+pod 'Fabric'
+pod 'Crashlytics'
+pod 'Networking'
+pod 'pop', '~> 1.0'
+pod 'PKHUD', '~> 5.0'
+#pod 'Eureka'
+pod 'SDWebImage', '~>4.0'
+pod 'UIEmptyState'
+pod 'FastEasyMapping', '~> 1.2'
+pod 'Validator'
+pod 'FBSDKLoginKit', '~> 5.0'
+pod 'Charts', '~> 3.3'
+pod 'ImageRow', '~> 4.0'
+pod 'SwiftDate', '~> 6.0'
+pod 'UICountingLabel'
+pod 'BadgeSwift', '~> 8.0'
+pod 'PureLayout'
+pod 'SwiftRichString'
+pod 'SwipeCellKit', '2.5.4'
+pod 'SwiftLocation', '~> 4.0'
+pod 'Mapbox-iOS-SDK', '~> 4.10'
+pod "Solar"
+pod 'AIFlatSwitch', '~> 1.0.6'
+pod 'CHTCollectionViewWaterfallLayout/Swift'
+pod 'TagListView', '~> 1.0'
+pod 'JBKenBurnsView'
 
-  target 'falconryproTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
 
-  target 'falconryproUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
 
 end

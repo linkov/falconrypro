@@ -36,12 +36,12 @@ class SDWBirdListTableViewCell: SwipeTableViewCell {
         
         var inputImage = CIImage(image: birdImage.image!)
         let options:[String : AnyObject] = [CIDetectorImageOrientation:1 as AnyObject]
-        let filters = inputImage!.autoAdjustmentFilters(options: options)
+      //  let filters = inputImage!.autoAdjustmentFilters(options: options)
         
-        for filter: CIFilter in filters {
-            filter.setValue(inputImage, forKey: kCIInputImageKey)
-            inputImage =  filter.outputImage
-        }
+//        for filter: CIFilter in filters {
+//            filter.setValue(inputImage, forKey: kCIInputImageKey)
+//            inputImage =  filter.outputImage
+//        }
         let cgImage = context.createCGImage(inputImage!, from: inputImage!.extent)
         self.birdImage.image =  UIImage(cgImage: cgImage!)
         

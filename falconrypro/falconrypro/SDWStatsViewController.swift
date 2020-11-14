@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RoundedSwitch
 import Charts
 
 class SDWStatsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {

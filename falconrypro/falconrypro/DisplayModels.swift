@@ -84,6 +84,7 @@ class DiaryFoodItemDisplayItem: NSObject {
     }
     
     
+    
     func serialization() -> Dictionary<String, Any> {
         
          if (self.remoteID != nil) {

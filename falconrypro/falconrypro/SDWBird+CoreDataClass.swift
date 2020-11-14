@@ -42,9 +42,9 @@ public class SDWBird: NSManagedObject, SDWObjectMapping {
         let userRelationshipMapping:FEMRelationship = FEMRelationship(property: "owner", keyPath: "owner", mapping: userMapping)
         userRelationshipMapping.weak = true
         mapping.addRelationship(userRelationshipMapping)
-        
-        mapping.add(toManyRelationshipMapping: SDWBirdType.defaultMapping(), forProperty: "types", keyPath: "bird_types")
-        mapping.add(toManyRelationshipMapping: SDWSeason.defaultMapping(), forProperty: "seasons", keyPath: "seasons")
+        mapping.addToManyRelationshipMapping(SDWBirdType.defaultMapping(), forProperty: "types", keyPath: "bird_types")
+        mapping.addToManyRelationshipMapping(SDWSeason.defaultMapping(), forProperty: "seasons", keyPath: "seasons")
+
 
         
         return mapping

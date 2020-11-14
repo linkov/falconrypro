@@ -41,16 +41,16 @@ public struct FacebookProfile {
 
 public class FacebookService {
 
-    let loginManager: FBSDKLoginManager = {
-        let manager = FBSDKLoginManager()
-        manager.loginBehavior = .systemAccount
+    let loginManager: LoginManager = {
+        let manager = LoginManager()
+        manager.loginBehavior = .browser
         return manager
     }()
 
     let permissions = ["email", "public_profile"]
 
     public func login(from viewController: UIViewController, completion: @escaping FacebookCompletion) {
-        loginManager.logIn(withReadPermissions: permissions, from: viewController) { (result, error) in
+        loginManager.logIn(readPermissions: permissions, from: viewController) { (result, error) in
             guard let result = result else {
                 if let error = error {
                     print("FACEBOOK LOGIN: ERROR")
@@ -85,8 +85,8 @@ public class FacebookService {
 
 private extension FacebookService {
 
-    func getUserInfo(loginResult: FBSDKLoginManagerLoginResult, completion: @escaping FacebookCompletion) {
-        guard FBSDKAccessToken.current() != nil else {
+    func getUserInfo(loginResult: LoginManagerLoginResult, completion: @escaping FacebookCompletion) {
+        guard AccessToken.current != nil else {
             print("FACEBOOK: NOT LOGGED IN: ABORTING")
             completion(.unknownError)
             return
@@ -94,8 +94,8 @@ private extension FacebookService {
 
         let params = ["fields" : "id, name, email"]
 
-        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: params)
-        _ = graphRequest?.start { (connection, result, error) in
+        let graphRequest = GraphRequest(graphPath: "me", parameters: params)
+        _ = graphRequest.start { (connection, result, error) in
             guard let userData = result as? [String : String] else {
                 if let error = error {
                     print("FACEBOOK: GRAPH REQUEST: ERROR")
@@ -121,7 +121,7 @@ private extension FacebookService {
                 return
             }
 
-            let facebookToken = loginResult.token.tokenString as String
+            let facebookToken = loginResult.token!.tokenString as String
 
             print("FACEBOOK: GRAPH REQUEST: SUCCESS")
             let profile = FacebookProfile(facebookId: facebookId,

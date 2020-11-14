@@ -1,135 +1,130 @@
 PODS:
-  - AIFlatSwitch (1.0.2)
-  - ALCameraViewController (1.3.1)
-  - BadgeSwift (5.0.1)
-  - Bolts (1.8.4):
-    - Bolts/AppLinks (= 1.8.4)
-    - Bolts/Tasks (= 1.8.4)
-  - Bolts/AppLinks (1.8.4):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.8.4)
-  - Charts (3.0.2):
-    - Charts/Core (= 3.0.2)
-  - Charts/Core (3.0.2)
-  - CHTCollectionViewWaterfallLayout/Swift (0.9.6)
-  - Crashlytics (3.8.5):
-    - Fabric (~> 1.6.3)
-  - Eureka (3.0.0)
-  - EZYGradientView (1.5.1)
-  - Fabric (1.6.11)
-  - FastEasyMapping (1.1.2)
-  - FBSDKCoreKit (4.21.0):
-    - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.18.0):
-    - FBSDKCoreKit
-  - ImageRow (2.0.0):
-    - Eureka (= 3.0)
-  - Mapbox-iOS-SDK (3.5.4)
-  - MiniTabBar (1.0.2)
-  - Networking (3.0.3)
-  - PKHUD (4.2.1)
-  - PureLayout (3.0.2)
-  - Reveal-SDK (8)
-  - RoundedSwitch (2.0.1)
-  - SDWebImage (4.0.0):
-    - SDWebImage/Core (= 4.0.0)
-  - SDWebImage/Core (4.0.0)
-  - SimpleImageViewer (1.0.1)
-  - Solar (2.0.0)
-  - SwiftDate (4.1.2)
-  - SwiftLocation (2.0.7)
-  - SwiftRichString (0.9.8)
-  - SwipeCellKit (1.8.0)
-  - TagListView (1.2.0)
-  - UICountingLabel (1.4.0)
-  - UIEmptyState (0.5.0)
-  - Validator (2.1.1)
+  - AIFlatSwitch (1.0.6)
+  - BadgeSwift (8.0.0)
+  - Charts (3.3.0):
+    - Charts/Core (= 3.3.0)
+  - Charts/Core (3.3.0)
+  - CHTCollectionViewWaterfallLayout/Swift (0.9.7)
+  - Crashlytics (3.12.0):
+    - Fabric (~> 1.9.0)
+  - Eureka (5.3.1)
+  - Fabric (1.9.0)
+  - FastEasyMapping (1.2.2)
+  - FBSDKCoreKit (5.0.0):
+    - FBSDKCoreKit/Basics (= 5.0.0)
+    - FBSDKCoreKit/Core (= 5.0.0)
+  - FBSDKCoreKit/Basics (5.0.0)
+  - FBSDKCoreKit/Core (5.0.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (5.0.0):
+    - FBSDKCoreKit (= 5.0.0)
+  - ImageRow (4.0.0):
+    - Eureka (~> 5.0)
+  - JBKenBurnsView (1.0)
+  - Mapbox-iOS-SDK (4.10.0)
+  - Networking (5.0.0)
+  - PKHUD (5.2.1)
+  - pop (1.0.12)
+  - PureLayout (3.1.4)
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
+  - Solar (2.1.0)
+  - SwiftDate (6.0.2)
+  - SwiftLocation (4.0.1)
+  - SwiftRichString (3.0.0)
+  - SwipeCellKit (2.5.4)
+  - TagListView (1.4.0)
+  - UICountingLabel (1.4.1)
+  - UIEmptyState (4.0.1)
+  - Validator (3.1.1)
 
 DEPENDENCIES:
-  - AIFlatSwitch (~> 1.0.1)
-  - ALCameraViewController
-  - BadgeSwift (~> 5.0)
-  - Charts
+  - AIFlatSwitch (~> 1.0.6)
+  - BadgeSwift (~> 8.0)
+  - Charts (~> 3.3)
   - CHTCollectionViewWaterfallLayout/Swift
   - Crashlytics
-  - Eureka (from `https://github.com/xmartlabs/Eureka.git`)
-  - EZYGradientView (from `https://github.com/Niphery/EZYGradientView`)
   - Fabric
-  - FastEasyMapping (~> 1.1)
-  - FBSDKLoginKit (= 4.18.0)
-  - ImageRow (from `https://github.com/EurekaCommunity/ImageRow.git`)
-  - Mapbox-iOS-SDK (~> 3.5.4)
-  - MiniTabBar
+  - FastEasyMapping (~> 1.2)
+  - FBSDKLoginKit (~> 5.0)
+  - ImageRow (~> 4.0)
+  - JBKenBurnsView
+  - Mapbox-iOS-SDK (~> 4.10)
   - Networking
-  - PKHUD (~> 4.0)
+  - PKHUD (~> 5.0)
+  - pop (~> 1.0)
   - PureLayout
-  - Reveal-SDK
-  - RoundedSwitch
   - SDWebImage (~> 4.0)
-  - SimpleImageViewer (~> 1.0.1)
   - Solar
-  - SwiftDate (~> 4.0)
-  - SwiftLocation
+  - SwiftDate (~> 6.0)
+  - SwiftLocation (~> 4.0)
   - SwiftRichString
-  - SwipeCellKit
+  - SwipeCellKit (= 2.5.4)
   - TagListView (~> 1.0)
   - UICountingLabel
   - UIEmptyState
-  - Validator (~> 2.1.1)
+  - Validator
 
-EXTERNAL SOURCES:
-  Eureka:
-    :git: https://github.com/xmartlabs/Eureka.git
-  EZYGradientView:
-    :git: https://github.com/Niphery/EZYGradientView
-  ImageRow:
-    :git: https://github.com/EurekaCommunity/ImageRow.git
-
-CHECKOUT OPTIONS:
-  Eureka:
-    :commit: 77cb04f587a4e83f28ad5f3174f6f8f6c086b524
-    :git: https://github.com/xmartlabs/Eureka.git
-  EZYGradientView:
-    :commit: e8cc7bf2fb77557af214289288ebc96776ffbf57
-    :git: https://github.com/Niphery/EZYGradientView
-  ImageRow:
-    :commit: 1456406e7afa99f6e0be2c3c691f76ebbdaa1b16
-    :git: https://github.com/EurekaCommunity/ImageRow.git
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AIFlatSwitch
+    - BadgeSwift
+    - Charts
+    - CHTCollectionViewWaterfallLayout
+    - Crashlytics
+    - Eureka
+    - Fabric
+    - FastEasyMapping
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - ImageRow
+    - JBKenBurnsView
+    - Mapbox-iOS-SDK
+    - Networking
+    - PKHUD
+    - pop
+    - PureLayout
+    - SDWebImage
+    - Solar
+    - SwiftDate
+    - SwiftLocation
+    - SwiftRichString
+    - SwipeCellKit
+    - TagListView
+    - UICountingLabel
+    - UIEmptyState
+    - Validator
 
 SPEC CHECKSUMS:
-  AIFlatSwitch: 5ab22806eeff3e09d585c2f13d22bfa6e3427191
-  ALCameraViewController: 29a34772007b98e23150bfe1772475a4a80a33ff
-  BadgeSwift: 3defa56f504bfb46f2300122c4a565ec9e405c1e
-  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
-  CHTCollectionViewWaterfallLayout: f4dab06db57b36dcf29e802594175acc76c56615
-  Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
-  Eureka: 5b9418d7bfdc21ca977d69d124a6409f3e9af2c7
-  EZYGradientView: f13e7a9e774b906c66d617fb04a13c8853ba25b4
-  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  FastEasyMapping: fe654d4b8d3c5650f41da1563a4385c6a19adea3
-  FBSDKCoreKit: 8a372ab194b5c7c26355c1920ef52dbeb44bc222
-  FBSDKLoginKit: 6773073e970b2b15fb12e451ce7f11da0532b880
-  ImageRow: b90616c9e78d94523efd74c2658964eb49be6d5b
-  Mapbox-iOS-SDK: 81197829dcf4c4ed9a593b7a95462881b5f1309a
-  MiniTabBar: 331db203a8d6b4b3c504f0978224f36f60125efc
-  Networking: e2c42013296d093e4249f8247acb08e36958a11a
-  PKHUD: 957ce2a68b3c97a51839b30216120c1dbc0c3a78
-  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
-  Reveal-SDK: 43be4e662864e937960d0d04d005135e29c4e53b
-  RoundedSwitch: 85ea55811bbeb5747dd99e2c2290c86e820decb5
-  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
-  SimpleImageViewer: ab0deb97a2cbe008db5c60ea62a9431c2ce0c2e1
-  Solar: ea092f7660c1b58d2b754227decb61a1c6710826
-  SwiftDate: 2dfdebd4f67ae71c9c3e2413ee3c56947f302858
-  SwiftLocation: 1fe2e15a5812e961496e82eeaca71d03e829e47a
-  SwiftRichString: d42eeaefceea340e27b8a33945e0fac1ee21f58f
-  SwipeCellKit: 01a58bf7e63d5df09aedd161828833944c4c333c
-  TagListView: 999e1df50c0f6b9ca927fae705c86a7e3b6ee9ba
-  UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
-  UIEmptyState: b81840468b03d7be5b02114c239f5ac097dc935a
-  Validator: b1793fbfd0046097551d0edd18e2c30792d69ef5
+  AIFlatSwitch: b1965ccd826c3ea7566f6bebda19562d131ec2b7
+  BadgeSwift: a81547ffde1f462bb5fc02e3fa3fdcbc1b888354
+  Charts: e0dd4cd8f257bccf98407b58183ddca8e8d5b578
+  CHTCollectionViewWaterfallLayout: 9d11068fafecac106695bb5a5d6d0f738483b598
+  Crashlytics: a33af323773f73904037dc2e684cd2f0d29f4fe2
+  Eureka: 859877ab1e85661b6b7e810015d430e937d9cc7d
+  Fabric: 09ef2d9b99b104702bede1acaf469fb8f20a9146
+  FastEasyMapping: cc13aa6608aeb171bc0ea895876434a7328a153a
+  FBSDKCoreKit: ba361d4a9d4dc29ff218822b849b22d4f869c7bb
+  FBSDKLoginKit: c6d0dc187bd076e370dffa10f7fc8a3562a6892c
+  ImageRow: e65b2e1a33f89062bf2a553a2aad61d975eb7428
+  JBKenBurnsView: e40d10fcd4fbeb652c29fa431d4748780a4672ff
+  Mapbox-iOS-SDK: 8b1b777de7de373cdf000994c91af101ef886477
+  Networking: 8ced5868ab2b5cf0fcc1d3657bf9bb589ae2fe91
+  PKHUD: 4e6162c4c39ac367c6934e9855c6b4762ee16256
+  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
+  PureLayout: f08c01b8dec00bb14a1fefa3de4c7d9c265df85e
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  Solar: 2dc6e7cc39186cb0c8228fa08df76fb50c7d8f24
+  SwiftDate: bbed9b23bfec599bd62b9a305afc554f7bd0eb6f
+  SwiftLocation: f6e3abae66b071c4b84a5f323dda7687d4f0b333
+  SwiftRichString: 5cb4860df3dc8e4d9087d7b948b210177342c3da
+  SwipeCellKit: 4eada3884ab1bbae5e8d2fb9030c242aa23d7f42
+  TagListView: 987b0bdbb16cd9d9e7c0e2ec32aff37ecba8b173
+  UICountingLabel: faf890b505d96312e324a86718f031fafffb0ccb
+  UIEmptyState: 767376694d9402452fb3c0a5a5283176c6a53c92
+  Validator: b34ab17a8fffd0c1ffd8f9002ead4d1e02cd9e6e
 
-PODFILE CHECKSUM: d1d9f464141861bcf727a623055f00309612c5d8
+PODFILE CHECKSUM: 96ad4f40a338a9e22321cebf1d70c74186730cbc
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.7.5

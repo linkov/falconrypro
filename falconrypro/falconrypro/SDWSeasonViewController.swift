@@ -88,11 +88,11 @@ class SDWSeasonViewController: FormViewController {
     }
     
     
-    func cancel(_ sender: Any) {
+    @objc func cancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func finish(_ sender: Any) {
+    @objc func finish(_ sender: Any) {
         self.updateSeason()
         
         

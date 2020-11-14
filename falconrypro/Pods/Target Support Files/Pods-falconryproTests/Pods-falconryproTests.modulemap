@@ -1,6 +1,0 @@
-framework module Pods_falconryproTests {
-  umbrella header "Pods-falconryproTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -40,7 +40,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         // Optionally remove seperator lines from empty cells
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.tableView.reloadData()
-        self.reloadEmptyState(forTableView: self.tableView)
+       // self.reloadEmptyState(forTableView: self.tableView)
         
 //        self.existingTodayItem = self.dataStore.currentTodayItemForBird(bird_id: (bird?.remoteID)!,inSeason: (self.dataStore.currentSeason()?.remoteID)!)
         
@@ -211,8 +211,8 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     
 
     var emptyStateTitle: NSAttributedString {
-        let attrs = [NSForegroundColorAttributeName: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
-                     NSFontAttributeName: UIFont.systemFont(ofSize: 22)]
+        let attrs = [NSAttributedString.Key.foregroundColor: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
+                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
         return NSAttributedString(string: "No entries yet", attributes: attrs)
     }
     
@@ -233,7 +233,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
             self.objects = data as! [DiaryItemDisplayItem]
             self.objects = self.objects.sorted { $0.model.createdAt?.compare($1.model.createdAt as! Date) == .orderedDescending }
             self.tableView.reloadData()
-            self.reloadEmptyState(forTableView: self.tableView)
+          //  self.reloadEmptyState(forTableView: self.tableView)
             
         }) { (fetched, error) in
             
@@ -247,7 +247,7 @@ class SDWDiaryListViewController: UIViewController, UIEmptyStateDataSource, UIEm
             self.objects = data as! [DiaryItemDisplayItem]
             self.objects = self.objects.sorted { $0.model.createdAt?.compare($1.model.createdAt as! Date) == .orderedDescending }
             self.tableView.reloadData()
-            self.reloadEmptyState(forTableView: self.tableView)
+        //    self.reloadEmptyState(forTableView: self.tableView)
             
         }
 

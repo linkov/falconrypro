@@ -6,6 +6,7 @@
 
 ## Requirements
 
+- Xcode 9.0 +
 - iOS 9.0 or greater
 
 
@@ -61,25 +62,27 @@ class ViewController: UITableViewController, UIEmptyStateDataSource, UIEmptyStat
    }
    
    override func viewDidAppear(_ animated: Bool) {
-   		super.viewDidAppear(animated)
-	 	// Set the initial state of the tableview, called here because cells should be done loading by now
-	 	// Number of cells are used to determine if the view should be shown or not
-		self.reloadEmptyState(forTableView: self.tableView)
+   	super.viewDidAppear(animated)
+	// Set the initial state of the tableview, called here because cells should be done loading by now
+	// Number of cells are used to determine if the view should be shown or not
+	self.reloadEmptyState()
    }
 }
 ```
 
-Whenever you need to reload the empty state view for example, on data changes to your table view source, make sure to call `self.reloadEmptyState(for:)`
+Whenever you need to reload the empty state view for example, on data changes to your table view source, make sure to call `self.reloadEmptyState()` if inside a `UITableViewController` or `UICollectionViewController`. If inside a regular `UIViewController` make sure to call the appropriate `reloadEmptyStateForTableView(_:)` or `reloadEmptyStateForCollectionView(_:)` methods.
 
 Example: 
 
 ```swift
+// Inside a UITableViewController subclass
+
 func foo() {
 	// My data has changed here, I want to my tableview, 
 	// and in case I no longer have data (user deleted, etc) also reload empty view
 	self.tableView.reloadData()
 	// Reload empty view as well
-	self.reloadEmptyState(forTableView: self.tableView)
+	self.reloadEmptyState()
 }
 
 func deleteFoo() {
@@ -89,7 +92,7 @@ func deleteFoo() {
 	tableView.deleteRows(at: [indexPath], with: .automatic)
 	tableView.endUpdates()
 	// Call reload of empty state 
-	self.reloadEmptyState(forTableView: self.tableView)
+	self.reloadEmptyState()
 }
 ```
 
@@ -97,63 +100,14 @@ If you need more help take a look at the example project here (Pokemon nerds, wi
 
 ## Documentation
 
-Quick overview of available `UIEmptyStateDataSource` properties
-
-```swift
-///////////// METHODS /////////////
-// If empty view should show, implemented by default
-func shouldShowEmptyStateView(forTableView:) -> Bool
-// If empty view should show, implemented by default
-func shouldShowEmptyStateView(forCollectionView:) -> Bool
-// The block for the animation code, basic animation by default
-func emptyStateViewAnimation(forView,animationDuration:completion) -> Bool
-
-///////////// COMPUTED PROPERTIES /////////////
-// The view to show, implemented by default
-var emptyStateView: UIView
-// Whether the view adjusts and resizes to fit and be centered when inside a nav controller 
-var emptyStateViewAdjustsToFitBars: Bool
-// The text for the title view, implemented by default
-var emptyStateTitle: NSAttributedString
-// The image for the image view, nil by default
-var emptyStateImage: UIImage?
-// The size of the image view, nil by default
-var emptyStateImageSize: CGSize?
-// The text for the button title, nil by default
-var emptyStateButtonTitle: NSAttributedString?
-// The image for the button, nil by default
-var emptyStateButtonImage: UIImage?
-// The size of the button, nil by default
-var emptyStateButtonSize: CGSize?
-// The detail message for the view, nil by default
-var emptyStateDetailMessage: NSAttributedString?
-// The spacing inbetween views, 12 by default
-var emptyStateViewSpacing: CGFloat
-// The background color for the view, UIColor.clear by default
-var emptyStateBackgroundColor: UIColor
-// Whether view can scroll when showing, false by default
-var emptyStateViewCanScroll: Bool
-// Whether view can animate, true by default
-var emptyStateViewCanAnimate: Bool
-// Whether view animates everytime it appears, true by default
-var emptyStateViewAnimatesEverytime: Bool
-// The animation duration for the view animation, 0.5 by default
-var emptyStateViewAnimationDuration: TimeInterval
-```
 
 #### [Read the full documentation here](http://htmlpreview.github.io/?https://github.com/luispadron/UIEmptyState/blob/master/docs/index.html)
 
 ## Example Project
 
-#### Clone this repo and run the `UIEmptyStateExample` project
-
-## Roadmap
-- [x] Add support for any `UIViewController` subclass, i.e `UICollectionView` etc.
-- [ ] Figure out nicer method for reloading emptystate with out explicitly calling for a reload, maybe method swizzling 
-- [x] Add animation to view appearance
-- [ ] Add nicer animation to button taps, or view taps
-- [ ] Add tests
-- [ ] Clean up and continue to work on `UIEmptyStateView`, i.e add better constraints and more customization options
+1. Clone this repo
+2. Change directory into `Example`
+3. Run `pod install`
 
 
 ## License (MIT)

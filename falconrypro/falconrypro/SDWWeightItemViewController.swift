@@ -38,7 +38,7 @@ class SDWWeightItemViewController: FormViewController, TypedRowControllerType {
         super.viewDidLoad()
         
         
-        let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(SDWFoodItemViewController.tappedDone(_:)))
+        let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(SDWFoodItemViewController.tappedDone(_:)))
         button.title = "Save"
         navigationItem.rightBarButtonItem = button
         

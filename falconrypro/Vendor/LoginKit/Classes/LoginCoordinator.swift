@@ -317,7 +317,7 @@ extension LoginCoordinator {
         let font = CGFont(provider)
         var error: Unmanaged<CFError>?
 
-        let success = CTFontManagerRegisterGraphicsFont(font, &error)
+        let success = CTFontManagerRegisterGraphicsFont(font!, &error)
         if !success {
             print("Error registering font. Font is possibly already registered.")
             return false

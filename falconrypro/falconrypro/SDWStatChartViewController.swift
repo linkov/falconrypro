@@ -72,17 +72,17 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
     
     func changeTimeframe(timeframe:ChartTimeFrame) {
         
-        var startDate:DateInRegion = DateInRegion() - 1.week
+        var startDate:DateInRegion = DateInRegion() // - 1.week
         let currentSeasonStart:DateInRegion = (dataStore.currentSeason()?.start?.inDefaultRegion())!
         
         
         switch timeframe {
         case .week:
             
-            startDate =  DateInRegion() - 1.week
+            startDate =  DateInRegion() //- 1.week
             break
         case .month:
-            startDate =  DateInRegion() - 1.month
+            startDate =  DateInRegion() // - 1.month
             break
         case .season:
             startDate = currentSeasonStart
@@ -117,13 +117,13 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
     
     func setupTimeframeForLineChart(start:DateInRegion) {
         
-        self.lineChart.xAxis.axisMinimum = start.absoluteDate.timeIntervalSince1970
+        self.lineChart.xAxis.axisMinimum = start.timeIntervalSince1970
         self.lineChart.notifyDataSetChanged()
         
         
-        self.lineChart.data?.removeDataSet(self.medianDataset)
-        self.lineChart.data?.removeDataSet(self.deadDataset)
-        self.lineChart.data?.removeDataSet(self.fatDataset)
+        self.lineChart.data?.removeDataSet(self.medianDataset as! IChartDataSet)
+        self.lineChart.data?.removeDataSet(self.deadDataset as! IChartDataSet)
+        self.lineChart.data?.removeDataSet(self.fatDataset as! IChartDataSet)
         
 
         
@@ -135,7 +135,7 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         let mdataPoint20:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMaximum, y: hWeght)
         
         
-        self.medianDataset = LineChartDataSet(values: [mdataPoint10,mdataPoint20], label:"hunting weight")
+        self.medianDataset = LineChartDataSet(entries: [mdataPoint10,mdataPoint20], label:"hunting weight")
         self.medianDataset?.lineWidth = 2;
         self.medianDataset?.circleRadius = 0.0;
         self.medianDataset?.circleHoleRadius = 0.0;
@@ -147,7 +147,7 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         let deadPoint10:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMinimum, y: deadWeight)
         let deadPoint20:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMaximum, y: deadWeight)
         
-        self.deadDataset = LineChartDataSet(values: [deadPoint10,deadPoint20], label:"danger zone")
+        self.deadDataset = LineChartDataSet(entries: [deadPoint10,deadPoint20], label:"danger zone")
         self.deadDataset?.lineWidth = 1.0;
         self.deadDataset?.circleRadius = 0.0;
         self.deadDataset?.circleHoleRadius = 0.0;
@@ -161,7 +161,7 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         let fatPoint10:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMinimum, y: fWeght)
         let fatPoint20:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMaximum, y: fWeght)
         
-        self.fatDataset = LineChartDataSet(values: [fatPoint10,fatPoint20], label:"maximum weight")
+        self.fatDataset = LineChartDataSet(entries: [fatPoint10,fatPoint20], label:"maximum weight")
         self.fatDataset?.lineWidth = 1.0;
         self.fatDataset?.circleRadius = 0.0;
         self.fatDataset?.circleHoleRadius = 0.0;
@@ -180,7 +180,7 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
 
     func setupWithWeightChart(dataPoints:[ChartDataEntry]) {
         
-        self.view.sendSubview(toBack: self.barChart)
+        self.view.sendSubviewToBack(self.barChart)
         
         self.lineChart.leftAxis.enabled = false;
         self.lineChart.rightAxis.drawAxisLineEnabled = false;
@@ -208,7 +208,7 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         }
 
         
-        let dataset:LineChartDataSet = LineChartDataSet(values: dataPoints, label:"weight")
+        let dataset:LineChartDataSet = LineChartDataSet(entries: dataPoints, label:"weight")
         dataset.lineWidth = 2.5;
         dataset.circleRadius = 4.0;
         dataset.circleHoleRadius = 2.0;
@@ -226,7 +226,7 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         let mdataPoint20:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMaximum, y: hWeght)
         
         
-        self.medianDataset = LineChartDataSet(values: [mdataPoint10,mdataPoint20], label:"hunting weight")
+        self.medianDataset = LineChartDataSet(entries: [mdataPoint10,mdataPoint20], label:"hunting weight")
         self.medianDataset?.lineWidth = 2;
         self.medianDataset?.circleRadius = 0.0;
         self.medianDataset?.circleHoleRadius = 0.0;
@@ -238,7 +238,7 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         let deadPoint10:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMinimum, y: deadWeight)
         let deadPoint20:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMaximum, y: deadWeight)
         
-        self.deadDataset = LineChartDataSet(values: [deadPoint10,deadPoint20], label:"danger zone")
+        self.deadDataset = LineChartDataSet(entries: [deadPoint10,deadPoint20], label:"danger zone")
         self.deadDataset?.lineWidth = 1.0;
         self.deadDataset?.circleRadius = 0.0;
         self.deadDataset?.circleHoleRadius = 0.0;
@@ -252,7 +252,7 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         let fatPoint10:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMinimum, y: fWeght)
         let fatPoint20:ChartDataEntry = ChartDataEntry(x: self.lineChart.xAxis.axisMaximum, y: fWeght)
         
-        self.fatDataset = LineChartDataSet(values: [fatPoint10,fatPoint20], label:"maximum weight")
+        self.fatDataset = LineChartDataSet(entries: [fatPoint10,fatPoint20], label:"maximum weight")
         self.fatDataset?.lineWidth = 1.0;
         self.fatDataset?.fillAlpha = 0.4
         self.fatDataset?.circleRadius = 0.0;
@@ -272,7 +272,7 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
     func setupWithBarChart(dataPoints:[ChartDataEntry]) {
         
         
-        self.view.sendSubview(toBack: self.lineChart)
+        self.view.sendSubviewToBack(self.lineChart)
         self.barChart.chartDescription?.enabled = false
         self.barChart.drawBarShadowEnabled = false
         
@@ -314,7 +314,7 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         self.barChart.legend.drawInside = false
         self.barChart.legend.form = .square
         self.barChart.legend.formSize = 8.0
-        self.barChart.legend.font = UIFont.systemFont(ofSize: 10, weight: 0.2)
+        self.barChart.legend.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight(rawValue: 0.2))
         self.barChart.legend.xEntrySpace = 4.0
         
         self.barChart.fitBars = true
@@ -330,11 +330,11 @@ class SDWStatChartViewController: UIViewController, SDWPageable {
         
         self.barChart.legend.entries = [legend1,legend2,legend3]
         
-        let dataSet:BarChartDataSet = BarChartDataSet(values: [dataPoints[0]], label: "Rabbit")
+        let dataSet:BarChartDataSet = BarChartDataSet(entries: [dataPoints[0]], label: "Rabbit")
         dataSet.setColor(UIColor.lightGray)
-        let dataSet1:BarChartDataSet = BarChartDataSet(values: [dataPoints[1]], label: "Mice")
+        let dataSet1:BarChartDataSet = BarChartDataSet(entries: [dataPoints[1]], label: "Mice")
         dataSet1.setColor(UIColor.gray)
-        let dataSet2:BarChartDataSet = BarChartDataSet(values: [dataPoints[2]], label: "Rats")
+        let dataSet2:BarChartDataSet = BarChartDataSet(entries: [dataPoints[2]], label: "Rats")
         dataSet2.setColor(AppUtility.app_color_black)
         
         

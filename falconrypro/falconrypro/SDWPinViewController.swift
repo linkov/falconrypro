@@ -41,7 +41,7 @@ class SDWPinViewController: FormViewController, TypedRowControllerType {
         super.viewDidLoad()
         
         
-        let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(SDWPinViewController.tappedDone(_:)))
+        let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(SDWPinViewController.tappedDone(_:)))
         button.title = "Save"
         navigationItem.rightBarButtonItem = button
         
@@ -53,16 +53,16 @@ class SDWPinViewController: FormViewController, TypedRowControllerType {
             
             +++ Section("")
             
-            <<< LocationRow(){
-                $0.tag = "location"
-                $0.title = "Set location"
-                $0.add(rule: RuleRequired())
-                $0.value = (self.currentItem?.long != nil && self.currentItem?.long != nil) ? CLLocation.init(latitude: (self.currentItem?.lat)!, longitude: (self.currentItem?.long)!) : nil
-                }.cellUpdate { cell, row in
-                    if !row.isValid {
-                        cell.textLabel?.textColor = .red
-                    }
-                }
+//            <<< LocationRow(){
+//                $0.tag = "location"
+//                $0.title = "Set location"
+//                $0.add(rule: RuleRequired())
+//                $0.value = (self.currentItem?.long != nil && self.currentItem?.long != nil) ? CLLocation.init(latitude: (self.currentItem?.lat)!, longitude: (self.currentItem?.long)!) : nil
+//                }.cellUpdate { cell, row in
+//                    if !row.isValid {
+//                        cell.textLabel?.textColor = .red
+//                    }
+//                }
         
             <<< TextAreaRow(){ row in
                 row.value = (self.currentItem?.note != nil) ? self.currentItem?.note : nil
@@ -97,7 +97,7 @@ class SDWPinViewController: FormViewController, TypedRowControllerType {
         
     }
     
-    func tappedDone(_ sender: UIBarButtonItem){
+    @objc func tappedDone(_ sender: UIBarButtonItem){
         
         let errors = form.validate()
         self.tableView.reloadData()
@@ -110,19 +110,19 @@ class SDWPinViewController: FormViewController, TypedRowControllerType {
         let noteRow: TextAreaRow? = form.rowBy(tag: "note")
         let typeRow: ActionSheetRow<PinTypeDisplayItem>? = form.rowBy(tag: "type")
         
-        let locationRow: LocationRow? = form.rowBy(tag: "location")
-        let locationRowValue:CLLocation = (locationRow?.value)!
+      //  let locationRow: LocationRow? = form.rowBy(tag: "location")
+      //  let locationRowValue:CLLocation = (locationRow?.value)!
         
         
-        if (currentItem == nil) {
-            currentItem = PinItemDisplayItem(note: noteRow?.value ?? nil, type: (typeRow?.value)!, lat: locationRowValue.coordinate.latitude, long: locationRowValue.coordinate.longitude )
-        } else {
-            currentItem?.note = noteRow?.value
-            currentItem?.pintype = typeRow?.value
-            currentItem?.lat = locationRowValue.coordinate.latitude
-            currentItem?.long = locationRowValue.coordinate.longitude
-            
-        }
+//        if (currentItem == nil) {
+//            currentItem = PinItemDisplayItem(note: noteRow?.value ?? nil, type: (typeRow?.value)!, lat: locationRowValue.coordinate.latitude, long: locationRowValue.coordinate.longitude )
+//        } else {
+//            currentItem?.note = noteRow?.value
+//            currentItem?.pintype = typeRow?.value
+//            currentItem?.lat = locationRowValue.coordinate.latitude
+//            currentItem?.long = locationRowValue.coordinate.longitude
+//            
+//        }
         
         
         

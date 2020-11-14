@@ -17,8 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 
  You can add polyline shapes to the map by adding them to an `MGLShapeSource`
  object. Configure the appearance of an `MGLShapeSource`’s or
- `MGLVectorSource`’s polylines collectively using an `MGLLineStyleLayer` or
- `MGLSymbolStyleLayer` object.
+ `MGLVectorTileSource`’s polylines collectively using an `MGLLineStyleLayer` or
+ `MGLSymbolStyleLayer` object. To access a polyline’s attributes, use an
+ `MGLPolylineFeature` object.
 
  Alternatively, you can add a polyline overlay directly to a map view using the
  `-[MGLMapView addAnnotation:]` or `-[MGLMapView addOverlay:]` method. Configure
@@ -33,12 +34,27 @@ NS_ASSUME_NONNULL_BEGIN
  `MGLPolygon` object. To group multiple polylines together in one shape, use an
  `MGLMultiPolyline` or `MGLShapeCollection` object.
 
- To make the polyline straddle the antimeridian, specify some longitudes less
- than −180 degrees or greater than 180 degrees.
+ To make the polyline go across the antimeridian or international date line, 
+ specify some longitudes less than −180 degrees or greater than 180 degrees.
+ For example, a polyline that stretches from Tokyo to San Francisco would have
+ coordinates of (35.68476, -220.24257) and (37.78428, -122.41310).
+ 
+ ```swift
+ let coordinates = [
+     CLLocationCoordinate2D(latitude: 35.68476, longitude: -220.24257),
+     CLLocationCoordinate2D(latitude: 37.78428, longitude: -122.41310)
+ ]
+ let polyline = MGLPolyline(coordinates: coordinates, count: UInt(coordinates.count))
+ ```
 
  A polyline is known as a
  <a href="https://tools.ietf.org/html/rfc7946#section-3.1.4">LineString</a>
  geometry in GeoJSON.
+ 
+ #### Related examples
+ See the <a href="https://docs.mapbox.com/ios/maps/examples/annotation-models/">
+ Annotation models</a> example to learn how to add an `MGLPolyine` object to
+ your map.
  */
 MGL_EXPORT
 @interface MGLPolyline : MGLMultiPoint <MGLOverlay>
@@ -64,8 +80,8 @@ MGL_EXPORT
 
  You can add multipolyline shapes to the map by adding them to an
  `MGLShapeSource` object. Configure the appearance of an `MGLShapeSource`’s or
- `MGLVectorSource`’s multipolylines collectively using an `MGLLineStyleLayer` or
- `MGLSymbolStyleLayer` object.
+ `MGLVectorTileSource`’s multipolylines collectively using an
+ `MGLLineStyleLayer` or `MGLSymbolStyleLayer` object.
 
  You cannot add an `MGLMultiPolyline` object directly to a map view using
  `-[MGLMapView addAnnotation:]` or `-[MGLMapView addOverlay:]`. However, you can
@@ -81,7 +97,7 @@ MGL_EXPORT
 /**
  An array of polygons forming the multipolyline.
  */
-@property (nonatomic, copy, readonly) NS_ARRAY_OF(MGLPolyline *) *polylines;
+@property (nonatomic, copy, readonly) NSArray<MGLPolyline *> *polylines;
 
 /**
  Creates and returns a multipolyline object consisting of the given polylines.
@@ -89,7 +105,7 @@ MGL_EXPORT
  @param polylines The array of polylines defining the shape.
  @return A new multipolyline object.
  */
-+ (instancetype)multiPolylineWithPolylines:(NS_ARRAY_OF(MGLPolyline *) *)polylines;
++ (instancetype)multiPolylineWithPolylines:(NSArray<MGLPolyline *> *)polylines;
 
 @end
 

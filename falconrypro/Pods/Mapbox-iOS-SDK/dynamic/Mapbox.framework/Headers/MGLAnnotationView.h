@@ -1,5 +1,7 @@
 #import <UIKit/UIKit.h>
 
+#import "MGLFoundation.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol MGLAnnotation;
@@ -50,6 +52,7 @@ typedef NS_ENUM(NSUInteger, MGLAnnotationViewDragState) {
  interactivity such as dragging, you can use an `MGLAnnotationImage` instead to
  conserve memory and optimize drawing performance.
  */
+MGL_EXPORT
 @interface MGLAnnotationView : UIView <NSSecureCoding>
 
 #pragma mark Initializing and Preparing the View
@@ -72,6 +75,36 @@ typedef NS_ENUM(NSUInteger, MGLAnnotationViewDragState) {
  @return The initialized annotation view object.
  */
 - (instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier;
+
+/**
+ Initializes and returns a new annotation view object.
+ 
+ Providing an annotation allows you to explicitly associate the annotation instance
+ with the new view and, in custom subclasses of `MGLAnnotationView`, customize the view
+ based on properties of the annotation instance in an overridden initializer. However,
+ annotation views that are reused will not necessarily be associated with the
+ same annotation they were initialized with. Also, annotation views that are in
+ the reuse queue will have a nil value for the annotation property. Passing an annotation
+ instance to the view is optional and the map view will automatically associate annotations
+ with views when views are provided to the map via the `-[MGLMapViewDelegate mapView:viewForAnnotation:]`
+ method.
+ 
+ The reuse identifier provides a way for you to improve performance by recycling
+ annotation views as they enter and leave the map’s viewport. As an annotation
+ leaves the viewport, the map view moves its associated view to a reuse queue.
+ When a new annotation becomes visible, you can request a view for that
+ annotation by passing the appropriate reuse identifier string to the
+ `-[MGLMapView dequeueReusableAnnotationViewWithIdentifier:]` method.
+ 
+ @param annotation The annotation object to associate with the new view.
+ @param reuseIdentifier A unique string identifier for this view that allows you
+ to reuse this view with multiple similar annotations. You can set this
+ parameter to `nil` if you don’t intend to reuse the view, but it is a good
+ idea in general to specify a reuse identifier to avoid creating redundant
+ views.
+ @return The initialized annotation view object.
+ */
+- (instancetype)initWithAnnotation:(nullable id<MGLAnnotation>)annotation reuseIdentifier:(nullable NSString *)reuseIdentifier;
 
 /**
  Called when the view is removed from the reuse queue.
@@ -136,10 +169,27 @@ typedef NS_ENUM(NSUInteger, MGLAnnotationViewDragState) {
  value of this property is `NO` or the map’s pitch is zero, the annotation view
  remains the same size regardless of its position on-screen.
 
- The default value of this property is `YES`. Set this property to `NO` if the
- view’s legibility is important.
+ The default value of this property is `NO`. Keep this property set to `NO` if
+ the view’s legibility is important.
+
+ @note Scaling many on-screen annotation views can contribute to poor map
+    performance. Consider keeping this property disabled if your use case
+    involves hundreds or thousands of annotation views.
  */
 @property (nonatomic, assign) BOOL scalesWithViewingDistance;
+
+/**
+ A Boolean value that determines whether the annotation view rotates together
+ with the map.
+
+ When the value of this property is `YES` and the map is rotated, the annotation
+ view rotates. This is also the behavior of `MGLAnnotationImage` objects. When the
+ value of this property is `NO` the annotation has its rotation angle fixed.
+
+ The default value of this property is `NO`. Set this property to `YES` if the
+ view’s rotation is important.
+ */
+@property (nonatomic, assign) BOOL rotatesToMatchCamera;
 
 #pragma mark Managing the Selection State
 
@@ -172,6 +222,11 @@ typedef NS_ENUM(NSUInteger, MGLAnnotationViewDragState) {
     if it should display itself as unselected.
  @param animated `YES` if the change in selection state is animated; `NO` if the
     change is immediate.
+ 
+ #### Related examples
+ See the <a href="https://docs.mapbox.com/ios/maps/examples/annotation-vie
+ ws/">Annotation views</a> example to learn how to modify an
+ `MGLAnnotationView`'s behavior when it is selected.
  */
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated;
 
@@ -200,6 +255,11 @@ typedef NS_ENUM(NSUInteger, MGLAnnotationViewDragState) {
  attempting to stop an operation that has already been initiated; doing so can
  lead to undefined behavior. Once begun, the drag operation should always
  continue to completion.
+ 
+ #### Related examples
+ See the <a href="https://docs.mapbox.com/ios/maps/examples/draggable-views
+ /">Draggable annotation views</a> to learn how to enable users to drag
+ `MGLAnnotationView` objects on your map.
  */
 @property (nonatomic, assign, getter=isDraggable) BOOL draggable;
 

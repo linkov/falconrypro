@@ -69,7 +69,7 @@ class SDWStatsItemCell: UITableViewCell {
     
     func setupWithWeightChart(dataPoints:[ChartDataEntry]) {
         
-        self.contentView.sendSubview(toBack: self.chartViewBarHorizontal)
+        self.contentView.sendSubviewToBack(self.chartViewBarHorizontal)
         
         
         self.chartViewLineHorizontal.leftAxis.enabled = false;
@@ -91,7 +91,7 @@ class SDWStatsItemCell: UITableViewCell {
         
 
         
-        let dataset:LineChartDataSet = LineChartDataSet(values: dataPoints, label:"weight")
+        let dataset:LineChartDataSet = LineChartDataSet(entries: dataPoints, label:"weight")
         dataset.lineWidth = 2.5;
         dataset.circleRadius = 4.0;
         dataset.circleHoleRadius = 2.0;
@@ -108,7 +108,7 @@ class SDWStatsItemCell: UITableViewCell {
         let mdataPoint20:ChartDataEntry = ChartDataEntry(x: 30, y: hWeght)
 
         
-        let medianDataset:LineChartDataSet = LineChartDataSet(values: [mdataPoint10,mdataPoint20], label:"median")
+        let medianDataset:LineChartDataSet = LineChartDataSet(entries: [mdataPoint10,mdataPoint20], label:"median")
         medianDataset.lineWidth = 1.5;
         medianDataset.circleRadius = 0.0;
         medianDataset.circleHoleRadius = 0.0;
@@ -121,7 +121,7 @@ class SDWStatsItemCell: UITableViewCell {
         let deadPoint10:ChartDataEntry = ChartDataEntry(x: 1, y: deadWeight)
         let deadPoint20:ChartDataEntry = ChartDataEntry(x: 30, y: deadWeight)
         
-        let deadDataset:LineChartDataSet = LineChartDataSet(values: [deadPoint10,deadPoint20], label:"median")
+        let deadDataset:LineChartDataSet = LineChartDataSet(entries: [deadPoint10,deadPoint20], label:"median")
         deadDataset.lineWidth = 1.0;
         deadDataset.circleRadius = 0.0;
         deadDataset.circleHoleRadius = 0.0;
@@ -135,7 +135,7 @@ class SDWStatsItemCell: UITableViewCell {
         let fatPoint10:ChartDataEntry = ChartDataEntry(x: 1, y: fWeght)
         let fatPoint20:ChartDataEntry = ChartDataEntry(x: 30, y: fWeght)
         
-        let fatDataset:LineChartDataSet = LineChartDataSet(values: [fatPoint10,fatPoint20], label:"median")
+        let fatDataset:LineChartDataSet = LineChartDataSet(entries: [fatPoint10,fatPoint20], label:"median")
         fatDataset.lineWidth = 1.0;
         fatDataset.circleRadius = 0.0;
         fatDataset.circleHoleRadius = 0.0;
@@ -154,7 +154,7 @@ class SDWStatsItemCell: UITableViewCell {
     
     func setupWithBarChart(dataPoints:[ChartDataEntry]) {
         
-        self.contentView.sendSubview(toBack: self.chartViewLineHorizontal)
+        self.contentView.sendSubviewToBack(self.chartViewLineHorizontal)
         self.chartViewBarHorizontal.chartDescription?.enabled = false
         self.chartViewBarHorizontal.drawBarShadowEnabled = false
         
@@ -196,7 +196,7 @@ class SDWStatsItemCell: UITableViewCell {
         self.chartViewBarHorizontal.legend.drawInside = false
         self.chartViewBarHorizontal.legend.form = .square
         self.chartViewBarHorizontal.legend.formSize = 8.0
-        self.chartViewBarHorizontal.legend.font = UIFont.systemFont(ofSize: 10, weight: 0.2)
+        self.chartViewBarHorizontal.legend.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight(rawValue: 0.2))
         self.chartViewBarHorizontal.legend.xEntrySpace = 4.0
         
         self.chartViewBarHorizontal.fitBars = true
@@ -212,11 +212,11 @@ class SDWStatsItemCell: UITableViewCell {
         
         self.chartViewBarHorizontal.legend.entries = [legend1,legend2,legend3]
         
-        let dataSet:BarChartDataSet = BarChartDataSet(values: [dataPoints[0]], label: "Rabbit")
+        let dataSet:BarChartDataSet = BarChartDataSet(entries: [dataPoints[0]], label: "Rabbit")
         dataSet.setColor(UIColor.lightGray)
-        let dataSet1:BarChartDataSet = BarChartDataSet(values: [dataPoints[1]], label: "Mice")
+        let dataSet1:BarChartDataSet = BarChartDataSet(entries: [dataPoints[1]], label: "Mice")
         dataSet1.setColor(UIColor.gray)
-        let dataSet2:BarChartDataSet = BarChartDataSet(values: [dataPoints[2]], label: "Rats")
+        let dataSet2:BarChartDataSet = BarChartDataSet(entries: [dataPoints[2]], label: "Rats")
         dataSet2.setColor(AppUtility.app_color_black)
 
 

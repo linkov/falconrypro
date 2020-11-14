@@ -1,6 +1,0 @@
-framework module MiniTabBar {
-  umbrella header "MiniTabBar-umbrella.h"
-
-  export *
-  module * { export * }
-}

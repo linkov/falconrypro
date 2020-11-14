@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
+#import "MGLFoundation.h"
 #import "MGLAnnotationView.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -9,6 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class MGLUserLocation;
 
 /** View representing an `MGLUserLocation` on screen. */
+MGL_EXPORT
 @interface MGLUserLocationAnnotationView : MGLAnnotationView
 
 /**
@@ -23,6 +25,11 @@ NS_ASSUME_NONNULL_BEGIN
 
  The value of this property is nil during initialization and while user tracking
  is inactive.
+ 
+ #### Related examples
+ See the <a href="https://docs.mapbox.com/ios/maps/examples/user-location-annotation/">
+ Customize the user location annotation</a> example to learn how to customize
+ the default user location annotation object.
  */
 @property (nonatomic, readonly, weak, nullable) MGLUserLocation *userLocation;
 

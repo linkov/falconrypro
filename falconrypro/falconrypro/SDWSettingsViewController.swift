@@ -90,7 +90,7 @@ class SDWSettingsViewController: FormViewController {
         self.navigationItem.rightBarButtonItem = addButton
     }
     
-    func finish(_ sender: Any) {
+    @objc func finish(_ sender: Any) {
         
         var metricBool:Bool = true
         let metricRow: SegmentedRow<String> = form.rowBy(tag: "metric")! as SegmentedRow<String>

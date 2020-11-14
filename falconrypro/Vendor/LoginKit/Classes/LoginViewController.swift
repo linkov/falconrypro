@@ -219,7 +219,7 @@ extension LoginViewController : UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let nextTag = textField.tag + 1
-        let nextResponder = view.viewWithTag(nextTag) as UIResponder!
+        let nextResponder = view.viewWithTag(nextTag) as UIResponder?
 
         if nextResponder != nil {
             nextResponder?.becomeFirstResponder()

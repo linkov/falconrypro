@@ -79,7 +79,7 @@ open class _SearchableViewController<T: Equatable, Row: SelectableRowType, TOrig
         
         
        self.noresultsView?.autoSetDimension(.height, toSize: 200)
-       self.noresultsView?.autoPinEdgesToSuperviewEdges(with: UIEdgeInsetsMake(200, 20, 20, 20))
+        self.noresultsView?.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 200, left: 20, bottom: 20, right: 20))
        self.noresultsView?.actionButton.addTarget(self, action: #selector(addCustomFood), for: .touchUpInside)
        self.noresultsView?.isHidden = true
     
@@ -90,10 +90,10 @@ open class _SearchableViewController<T: Equatable, Row: SelectableRowType, TOrig
         
 
         tableView!.tableHeaderView = searchController.searchBar
-        if let options = row.dataProvider?.arrayData {
-            self.originalOptions = options
-            self.currentOptions = options
-        }
+//        if let options = row.dataProvider?.arrayData {
+//            self.originalOptions = options
+//            self.currentOptions = options
+//        }
        
         self.tableView.reloadData()
     }
@@ -103,7 +103,7 @@ open class _SearchableViewController<T: Equatable, Row: SelectableRowType, TOrig
         self.noresultsView?.isHidden = true
     }
     
-    func addCustomFood() {
+    @objc func addCustomFood() {
         print(searchController.searchBar.text ?? "no text")
         
         let firstRecord = self.originalOptions.first
@@ -166,7 +166,7 @@ open class _SearchableViewController<T: Equatable, Row: SelectableRowType, TOrig
             }
             
             self.noresultsView?.isHidden = false
-            self.noresultsView?.actionButton.setAttributedTitle("add ".set(style: AppUtility.style_normal) + "\(query)".set(style: AppUtility.style_bold) + " \(string)".set(style: AppUtility.style_normal), for: .normal)
+//            self.noresultsView?.actionButton.setAttributedTitle("add ".set(style: AppUtility.style_normal) + "\(query)".set(style: AppUtility.style_bold) + " \(string)".set(style: AppUtility.style_normal), for: .normal)
         } else {
             self.noresultsView?.isHidden = true
         }

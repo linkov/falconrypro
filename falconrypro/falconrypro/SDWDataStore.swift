@@ -384,18 +384,18 @@ class SDWDataStore: NSObject {
     
     public func setSunsetTimeForCurrentUser() {
         
-        Location.getLocation(accuracy: .block, frequency: .oneShot, success: { (request, location:CLLocation) -> (Void) in
-            
-            let currentUser = self.currentUser()
-            let solar = Solar(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            
-            currentUser?.model.sunsetTime = solar?.sunset
-            self.dataModelManager.saveContext()
-            
-        }, error: { (request, location, error) -> (Void) in
-            
-            print(error.localizedDescription)
-        })
+//        Location.getLocation(accuracy: .block, frequency: .oneShot, success: { (request, location:CLLocation) -> (Void) in
+//
+//            let currentUser = self.currentUser()
+//            let solar = Solar(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//            
+//            currentUser?.model.sunsetTime = solar?.sunset
+//            self.dataModelManager.saveContext()
+//
+//        }, error: { (request, location, error) -> (Void) in
+//
+//            print(error.localizedDescription)
+//        })
     }
 
     

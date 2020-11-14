@@ -733,7 +733,7 @@ class SDWBirdViewController: FormViewController {
         
         r.httpBody = createBody(parameters: dict,
                                 boundary: boundary,
-                                data: UIImageJPEGRepresentation(photoRowValue, 0.7)!,
+                                data: photoRowValue.jpegData(compressionQuality: 0.7)!,
                                 mimeType: "image/jpg",
                                 filename: "bird.jpg")
         
@@ -756,11 +756,11 @@ class SDWBirdViewController: FormViewController {
         
     }
 
-    func cancel(_ sender: Any) {
+    @objc func cancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func finish(_ sender: Any) {
+    @objc func finish(_ sender: Any) {
         self.updateBird()
         
         

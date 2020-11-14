@@ -14,16 +14,16 @@ Inspired by Creativedash's Dribbble post [here](http://dribbble.com/shots/163159
 <p><a href="url"><img src="https://s3.amazonaws.com/f.cl.ly/items/1p0w3B0E3m2I2k3e0z1Q/onoff.gif" align="left" height="150" width="200" ></a></p>
 <br><br><br><br><br><br><br>
 
-##Requirements
+## Requirements
 - iOS 8.0+
 - Xcode 8.0+ (Use pod version 0.0.4 for Xcode 7)
-- Swift 3.0+ (Use pod version 0.0.4 for Swift 2.3)
+- Swift 4.2+ (Use pod version 0.0.4 for Swift 2.3, Use pod version 1.0.3 for Swift 3)
 
 ## Installation
 
 > **Embedded frameworks require a minimum deployment target of iOS 8.**
 >
-> To use with a project targeting iOS 7, you must include the `AIFlatSwitch.swift` source file directly in your project. 
+> To use with a project targeting iOS 7, you must include the `AIFlatSwitch.swift` source file directly in your project.
 >
 
 ### CocoaPods
@@ -43,7 +43,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'AIFlatSwitch', '~> 1.0.1'
+pod 'AIFlatSwitch', '~> 1.0.6'
 ```
 
 Then, run the following command:
@@ -75,7 +75,7 @@ var flatSwitch = AIFlatSwitch(frame: CGRectMake(0, 0, 50, 50))
 > To change its selected state:
 
 ```swift
-flatSwitch.selected = true
+flatSwitch.isSelected = true
 ```
 - [x] IBInspectable
 
@@ -90,20 +90,43 @@ flatSwitch.setSelected(true, animated: true)
 ```swift
 @IBAction func handleSwitchValueChange(sender: AnyObject) {
 		if let flatSwitch = sender as? AIFlatSwitch {
-			println(flatSwitch.selected)
+			print(flatSwitch.isSelected)
 		}
 	}
+```
+
+> Animation observer callbacks:
+
+```swift
+flatSwitch.selectionAnimationDidStart = { isSelected in
+    print("New state: \(isSelected)")
+}
+
+flatSwitch.selectionAnimationDidStop = { isSelected in
+    print("State when animation stopped: \(isSelected)")
+}
 ```
 
 > Styling the switch:
 
 ```swift
 flatSwitch.lineWidth = 2.0
-flatSwitch.strokeColor = UIColor.blueColor()
-flatSwitch.trailStrokeColor = UIColor.redColor()
+flatSwitch.strokeColor = UIColor.blue
+flatSwitch.trailStrokeColor = UIColor.red
+flatSwitch.backgroundLayerColor = UIColor.red
 flatSwitch.animatesOnTouch = false
 ```
 - [x] IBInspectable
+
+## Contribution guidelines
+
+- Make your changes in your branch
+- Bump the pod version in AIFlatSwitch.podspec file (e.g. 1.0.1 to 1.0.2)
+- Make a pod install in Example project to update its dependency to new framework version you just created
+- Make sure the Example project compiles and works fine in the Simulator
+- Find podspec version references in README.md and update them (e.g. Cocoapods section)
+- Find references to your source code changes in README.md and update them (e.g. method names, changed features)
+- Create a pull request
 
 ## License
 

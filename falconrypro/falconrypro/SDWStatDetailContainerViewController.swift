@@ -71,11 +71,11 @@ class SDWStatDetailContainerViewController: UIViewController, UIPageViewControll
         self.pageController?.setViewControllers([self.lineChartVC!], direction:.forward, animated: false, completion: nil)
         
         self.pageController?.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-        self.addChildViewController(self.pageController!)
+        self.addChild(self.pageController!)
         self.view .addSubview((self.pageController?.view)!)
-        self.pageController?.didMove(toParentViewController: self)
+        self.pageController?.didMove(toParent: self)
         
-        self.view.bringSubview(toFront: self.chartTimeControl)
+        self.view.bringSubviewToFront(self.chartTimeControl)
         
         self.pageController?.delegate = self
         

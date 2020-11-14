@@ -2,7 +2,6 @@
 
 #import "FEMRepresentationUtility.h"
 #import "FEMMapping.h"
-#import "FEMMappingUtility.h"
 #import "FEMAttribute.h"
 
 id FEMRepresentationRootForKeyPath(id representation, NSString *keyPath) {
@@ -13,15 +12,13 @@ id FEMRepresentationRootForKeyPath(id representation, NSString *keyPath) {
     return representation;
 }
 
-void _FEMRepresentationCollectPresentedPrimaryKeys(id, FEMMapping *, NSDictionary *);
+void _FEMRepresentationCollectPresentedPrimaryKeys(id representation, FEMMapping *mapping, NSMutableDictionary<NSNumber *, NSMutableSet<id> *> *container);
 
-void _FEMRepresentationCollectObjectPrimaryKeys(NSDictionary *object, FEMMapping *mapping, NSDictionary *container) {
-    if (mapping.primaryKey) {
-        FEMAttribute *primaryKeyMapping = mapping.primaryKeyAttribute;
-        id primaryKeyValue = FEMRepresentationValueForAttribute(object, primaryKeyMapping);
-        if (primaryKeyValue && primaryKeyValue != NSNull.null) {
-            NSMutableSet *set = container[mapping.entityName];
-            [set addObject:primaryKeyValue];
+void _FEMRepresentationCollectObjectPrimaryKeys(id object, FEMMapping *mapping, NSMutableDictionary<NSNumber *, NSMutableSet<id> *> *container) {
+    if (mapping.primaryKeyAttribute) {
+        id value = FEMRepresentationValueForAttribute(object, mapping.primaryKeyAttribute);
+        if (value && value != NSNull.null) {
+            [[container objectForKey:mapping.uniqueIdentifier] addObject:value];
         }
     }
 
@@ -33,35 +30,42 @@ void _FEMRepresentationCollectObjectPrimaryKeys(NSDictionary *object, FEMMapping
     }
 }
 
-void _FEMRepresentationCollectPresentedPrimaryKeys(id representation, FEMMapping *mapping, NSDictionary *container) {
-    if ([representation isKindOfClass:NSArray.class]) {
+void _FEMRepresentationCollectPresentedPrimaryKeys(id representation, FEMMapping *mapping, NSMutableDictionary<NSNumber *, NSMutableSet<id> *> *container) {
+    if ([representation isKindOfClass:[NSArray class]]) {
         for (id object in (id<NSFastEnumeration>)representation) {
             _FEMRepresentationCollectObjectPrimaryKeys(object, mapping, container);
         }
-    } else if ([representation isKindOfClass:NSDictionary.class] || [representation isKindOfClass:[NSNumber class]] || [representation isKindOfClass:[NSString class]]) {
+    } else if ([representation isKindOfClass:[NSDictionary class]] || [representation isKindOfClass:[NSNumber class]] || [representation isKindOfClass:[NSString class]]) {
         _FEMRepresentationCollectObjectPrimaryKeys(representation, mapping, container);
     } else {
         NSCAssert(
             NO,
-            @"Expected container classes: NSArray, NSDictionary, NSNumber or NSString. Got:%@",
-            NSStringFromClass([representation class])
+            @"Can not collect primary keys for a given representation.\n"
+            "Expected container classes: NSArray, NSDictionary, NSNumber or NSString. Got: %@.\n"
+            "Mapping: %@\nRepresentation:%@",
+            NSStringFromClass([representation class]), mapping, representation
         );
     }
 };
-NSDictionary *FEMRepresentationCollectPresentedPrimaryKeys(id representation, FEMMapping *mapping) {
-    FEMMappingApply(mapping, ^(FEMMapping *object) {
-        NSCParameterAssert(object.entityName != nil);
-    });
 
-    NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
-    for (NSString *name in FEMMappingCollectUsedEntityNames(mapping)) {
-        output[name] = [[NSMutableSet alloc] init];
+NSDictionary<NSNumber *, NSSet<id> *> *FEMRepresentationCollectPresentedPrimaryKeys(id representation, FEMMapping *mapping) {
+    NSSet<FEMMapping *> *flattenMappings = [mapping flatten];
+    
+    NSMutableDictionary<NSNumber *, NSMutableSet<id> *> *map = [[NSMutableDictionary alloc] initWithCapacity:flattenMappings.count];
+
+    for (FEMMapping *key in flattenMappings) {
+        // When we have a set of different mappings that describes same entity / objectClass (indirect recursive relationship)
+        // then store interested in unified map where all of the primary keys from the different mappings but identical entity
+        // has the same key
+        if ([map objectForKey:key.uniqueIdentifier] == nil) {
+            [map setObject:[NSMutableSet new] forKey:key.uniqueIdentifier];
+        }
     }
 
     id root = FEMRepresentationRootForKeyPath(representation, mapping.rootPath);
-    _FEMRepresentationCollectPresentedPrimaryKeys(root, mapping, output);
+    _FEMRepresentationCollectPresentedPrimaryKeys(root, mapping, map);
 
-    return output;
+    return map;
 }
 
 id FEMRepresentationValueForAttribute(id representation, FEMAttribute *attribute) {

@@ -9,17 +9,17 @@
 import UIKit
 import Eureka
 
-final class SDWPinRow : SelectorRow<PushSelectorCell<PinItemDisplayItem>, SDWPinViewController>, RowType {
-
-    public required init(tag: String?) {
-        super.init(tag: tag)
-        presentationMode = .show(controllerProvider: ControllerProvider.callback {
-            
-            return SDWPinViewController(){ _ in
-                
-            } }, onDismiss: { vc in _ = vc.navigationController?.popViewController(animated: true) })
-        
-        
-    }
-    
-}
+//final class SDWPinRow : SelectorRow<PushSelectorCell<PinItemDisplayItem>, SDWPinViewController>, RowType {
+//
+//    public required init(tag: String?) {
+//        super.init(tag: tag)
+//        presentationMode = .show(controllerProvider: ControllerProvider.callback {
+//            
+//            return SDWPinViewController(){ _ in
+//                
+//            } }, onDismiss: { vc in _ = vc.navigationController?.popViewController(animated: true) })
+//        
+//        
+//    }
+//    
+//}

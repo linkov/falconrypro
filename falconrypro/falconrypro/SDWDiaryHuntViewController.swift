@@ -55,37 +55,37 @@ class SDWDiaryHuntViewController: FormViewController, SDWPageable {
                                header: "Pins",
                                footer: "") { section in
                                 section.tag = "pinitem"
-                                section.multivaluedRowToInsertAt = { index in
-                                    return SDWPinRow(){
-                                        $0.tag = "\(index+1)_newpinitem"
-                                        $0.title = "Just added:"
-                                        $0.displayValueFor = { value in
-                                            return  "\(value?.pintype?.title ?? "")"
-                                            
-                                        }
-                                        
-                                        }.cellSetup({ (cell,row) in
-                                            AppUtility.delay(delay: 0.3, closure: {
-                                                row.didSelect()
-                                            })
-                                            
-                                        })
-                                }
+//                                section.multivaluedRowToInsertAt = { index in
+//                                    return SDWPinRow(){
+//                                        $0.tag = "\(index+1)_newpinitem"
+//                                        $0.title = "Just added:"
+//                                        $0.displayValueFor = { value in
+//                                            return  "\(value?.pintype?.title ?? "")"
+//                                            
+//                                        }
+//                                        
+//                                        }.cellSetup({ (cell,row) in
+//                                            AppUtility.delay(delay: 0.3, closure: {
+//                                                row.didSelect()
+//                                            })
+//                                            
+//                                        })
+//                                }
                                 if(self.diaryItem != nil && (self.diaryItem?.pins!.count)! > 0) {
                                     
                                     
                                     for (index, pinItem) in (self.diaryItem?.pins)!.enumerated() {
                                         
                                         
-                                        section <<< SDWPinRow() {
-                                            $0.tag = "\(index+1)_pinitem"
-                                            $0.value = pinItem
-                                            $0.title = "\($0.value?.pintype?.title ?? "")"
-                                            $0.displayValueFor = { value in
-                                                return  ""
-                                            }
-                                            
-                                        }
+//                                        section <<< SDWPinRow() {
+//                                            $0.tag = "\(index+1)_pinitem"
+//                                            $0.value = pinItem
+//                                            $0.title = "\($0.value?.pintype?.title ?? "")"
+//                                            $0.displayValueFor = { value in
+//                                                return  ""
+//                                            }
+//
+//                                        }
                                         
                                     }
                                 }
@@ -146,7 +146,7 @@ class SDWDiaryHuntViewController: FormViewController, SDWPageable {
         
         self.view.backgroundColor = UIColor.clear
         
-        self.tableView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsetsMake(40, 20, 20, 20))
+        self.tableView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 40, left: 20, bottom: 20, right: 20))
         self.tableView.layer.cornerRadius = 8
         self.tableView.layer.masksToBounds = true
 

@@ -78,14 +78,14 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
         
     }
     
-    func insertNewObject(_ sender: Any) {
+    @objc func insertNewObject(_ sender: Any) {
         
         let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "BirdProfileEdit") as! UINavigationController
         
         self.present(controller, animated: true, completion: nil)
     }
     
-    func logout(_ sender: Any) {
+    @objc func logout(_ sender: Any) {
         
         self.dataStore.logout()
         loginCoordinator.start()
@@ -113,7 +113,7 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
                 PKHUD.sharedHUD.hide()
             }
             self.tableView.reloadData()
-            self.reloadEmptyState(forTableView: self.tableView)
+        //    self.reloadEmptyState(forTableView: self.tableView)
         
         }) { (fetched, error) in
             
@@ -126,7 +126,7 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
             
             self.objects = data as! [BirdDisplayItem]
             self.tableView.reloadData()
-            self.reloadEmptyState(forTableView: self.tableView)
+         //   self.reloadEmptyState(forTableView: self.tableView)
             
         }
         
@@ -266,14 +266,14 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
     
     var emptyStateDetailMessage: NSAttributedString? {
         
-        let attrs = [NSForegroundColorAttributeName: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
-                     NSFontAttributeName: UIFont.systemFont(ofSize: 12)]
+        let attrs = [NSAttributedString.Key.foregroundColor: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
+                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
         return NSAttributedString(string: "Hit + to add one now", attributes: attrs)
     }
     
     var emptyStateTitle: NSAttributedString {
-        let attrs = [NSForegroundColorAttributeName: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
-                     NSFontAttributeName: UIFont.systemFont(ofSize: 22)]
+        let attrs = [NSAttributedString.Key.foregroundColor: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
+                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
         return NSAttributedString(string: "No birds yet", attributes: attrs)
     }
     
@@ -284,8 +284,8 @@ class SDWBirdsTableViewController: UITableViewController, UIEmptyStateDataSource
 
     
     var emptyStateButtonTitle: NSAttributedString? {
-        let attrs = [NSForegroundColorAttributeName: AppUtility.app_color_black,
-                     NSFontAttributeName: UIFont.systemFont(ofSize: 26)]
+        let attrs = [NSAttributedString.Key.foregroundColor: AppUtility.app_color_black,
+                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 26)]
         return NSAttributedString(string: "Add", attributes: attrs)
     }
 

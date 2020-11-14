@@ -50,15 +50,15 @@ struct AppUtility {
         }
     }
     
-    static let style_bold = Style("bold", {
-        $0.font = FontAttribute(.HelveticaNeue_Bold, size: 14)
-        $0.color = AppUtility.app_color_black
-    })
-    
-    static let style_normal = Style("normal", {
-        $0.font = FontAttribute(.HelveticaNeue, size: 14)
-        $0.color = AppUtility.app_color_black
-    })
+//    static let style_bold = Style("bold", {
+//        $0.font = FontAttribute(.HelveticaNeue_Bold, size: 14)
+//        $0.color = AppUtility.app_color_black
+//    })
+//
+//    static let style_normal = Style("normal", {
+//        $0.font = FontAttribute(.HelveticaNeue, size: 14)
+//        $0.color = AppUtility.app_color_black
+//    })
     
     static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
         

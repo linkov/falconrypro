@@ -19,7 +19,7 @@ public extension Dictionary where Key: ExpressibleByStringLiteral {
     ///
     /// - Returns: Returns the parameters in using URL-enconding, for example ["username": "Michael", "age": 20] will become "username=Michael&age=20".
     /// - Throws: Returns an error if it wasn't able to encode the dictionary.
-    public func urlEncodedString() throws -> String {
+    func urlEncodedString() throws -> String {
 
         let pairs = try reduce([]) { current, keyValuePair -> [String] in
             if let encodedValue = "\(keyValuePair.value)".addingPercentEncoding(withAllowedCharacters: .urlQueryParametersAllowed) {
@@ -45,7 +45,7 @@ extension String {
         var components = self.components(separatedBy: "/")
         guard let lastComponent = components.popLast(),
             let endcodedLastComponent = lastComponent.addingPercentEncoding(withAllowedCharacters: .urlQueryParametersAllowed) else {
-                return nil
+            return nil
         }
 
         return (components + [endcodedLastComponent]).joined(separator: "/")
@@ -69,27 +69,27 @@ extension FileManager {
 }
 
 extension URLRequest {
-    init(url: URL, requestType: Networking.RequestType, path: String, parameterType: Networking.ParameterType?, responseType: Networking.ResponseType, boundary: String, authorizationHeaderValue: String?, token: String?, authorizationHeaderKey: String, headerFields: [String: String]?) {
+    init(url: URL, requestType: Networking.RequestType, path _: String, parameterType: Networking.ParameterType?, responseType: Networking.ResponseType, boundary: String, authorizationHeaderValue: String?, token: String?, authorizationHeaderKey: String, headerFields: [String: String]?) {
         self = URLRequest(url: url)
-        self.httpMethod = requestType.rawValue
+        httpMethod = requestType.rawValue
 
         if let parameterType = parameterType, let contentType = parameterType.contentType(boundary) {
-            self.addValue(contentType, forHTTPHeaderField: "Content-Type")
+            addValue(contentType, forHTTPHeaderField: "Content-Type")
         }
 
         if let accept = responseType.accept {
-            self.addValue(accept, forHTTPHeaderField: "Accept")
+            addValue(accept, forHTTPHeaderField: "Accept")
         }
 
         if let authorizationHeader = authorizationHeaderValue {
-            self.setValue(authorizationHeader, forHTTPHeaderField: authorizationHeaderKey)
+            setValue(authorizationHeader, forHTTPHeaderField: authorizationHeaderKey)
         } else if let token = token {
-            self.setValue("Bearer \(token)", forHTTPHeaderField: authorizationHeaderKey)
+            setValue("Bearer \(token)", forHTTPHeaderField: authorizationHeaderKey)
         }
 
         if let headerFields = headerFields {
             for (key, value) in headerFields {
-                self.setValue(value, forHTTPHeaderField: key)
+                setValue(value, forHTTPHeaderField: key)
             }
         }
     }
@@ -111,7 +111,7 @@ extension HTTPURLResponse {
 }
 
 extension NSError {
-    convenience init(fakeRequest: Networking.FakeRequest) {
+    convenience init(fakeRequest: FakeRequest) {
         self.init(domain: Networking.domain, code: fakeRequest.statusCode, userInfo: [NSLocalizedDescriptionKey: HTTPURLResponse.localizedString(forStatusCode: fakeRequest.statusCode)])
     }
 }

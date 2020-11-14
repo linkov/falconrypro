@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MiniTabBar
 
 
 class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
@@ -57,7 +56,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func reactOnBirdStatus() {
+    @objc func reactOnBirdStatus() {
         self.editTodayButton?.isEnabled = !(self.bird?.isViewOnly())!
     }
     
@@ -74,7 +73,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
 
         hmButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
         hmButton.setImage(#imageLiteral(resourceName: "target"), for: .normal)
-        hmButton.imageView?.tintColor = AppUtility.app_color_offWhite
+        hmButton.imageView?.tintColor = AppUtility.app_color_black
         hmButton.setTitleColor(AppUtility.app_color_black, for: .normal)
         hmButton.imageView?.contentMode = .scaleAspectFit
         hmButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
@@ -94,9 +93,9 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         let tabBar = MiniTabBar(items: items)
         tabBar.delegate = self
         tabBar.backgroundBlurEnabled = false
-        tabBar.backgroundColor = AppUtility.app_color_black
+        tabBar.backgroundColor = UIColor.white
         tabBar.keyLine.backgroundColor = AppUtility.app_color_black
-        tabBar.tintColor = AppUtility.app_color_offWhite
+        tabBar.tintColor = AppUtility.app_color_black
         tabBar.frame = CGRect(x: 0, y: self.view.frame.height - 44, width: self.view.frame.width, height: 44)
         self.view.addSubview(tabBar)
         tabSelected(0)
@@ -108,22 +107,22 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         if (index == 0) {
             
             if ((self.galleryNav) != nil) {
-                self.galleryVC?.removeFromParentViewController()
-                self.galleryNav?.willMove(toParentViewController: self)
+                self.galleryVC?.removeFromParent()
+                self.galleryNav?.willMove(toParent: self)
                 self.galleryNav?.view.removeFromSuperview()
-                self.galleryNav?.removeFromParentViewController()
+                self.galleryNav?.removeFromParent()
             }
             
             if ((self.mapNav) != nil) {
-                self.mapNav?.willMove(toParentViewController: self)
+                self.mapNav?.willMove(toParent: self)
                 self.mapNav?.view.removeFromSuperview()
-                self.mapNav?.removeFromParentViewController()
+                self.mapNav?.removeFromParent()
             }
             
             if ((self.settingsNav) != nil) {
-                self.settingsNav?.willMove(toParentViewController: self)
+                self.settingsNav?.willMove(toParent: self)
                 self.settingsNav?.view.removeFromSuperview()
-                self.settingsNav?.removeFromParentViewController()
+                self.settingsNav?.removeFromParent()
             }
             
             
@@ -151,32 +150,32 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
             
             
             
-            self.addChildViewController(self.diaryListNav!)
+            self.addChild(self.diaryListNav!)
             self.diaryListNav!.view.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height-44)
             self.view.insertSubview(self.diaryListNav!.view, at: 0)
-            self.view.bringSubview(toFront: self.view)
-            self.diaryListNav!.didMove(toParentViewController: self)
+            self.view.bringSubviewToFront(self.view)
+            self.diaryListNav!.didMove(toParent: self)
             
         } else if (index == 1) {
             
             
             if ((self.mapNav) != nil) {
-                self.mapNav?.willMove(toParentViewController: self)
+                self.mapNav?.willMove(toParent: self)
                 self.mapNav?.view.removeFromSuperview()
-                self.mapNav?.removeFromParentViewController()
+                self.mapNav?.removeFromParent()
             }
             
             if ((self.settingsNav) != nil) {
-                self.settingsNav?.willMove(toParentViewController: self)
+                self.settingsNav?.willMove(toParent: self)
                 self.settingsNav?.view.removeFromSuperview()
-                self.settingsNav?.removeFromParentViewController()
+                self.settingsNav?.removeFromParent()
             }
             
             
             
-            self.diaryListNav?.willMove(toParentViewController: self)
+            self.diaryListNav?.willMove(toParent: self)
             self.diaryListNav?.view.removeFromSuperview()
-            self.diaryListNav?.removeFromParentViewController()
+            self.diaryListNav?.removeFromParent()
             
             
             
@@ -188,11 +187,11 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
             
             
             
-            self.addChildViewController(self.galleryNav!)
+            self.addChild(self.galleryNav!)
             self.galleryNav!.view.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
             self.view.insertSubview(self.galleryNav!.view, at: 0)
-            self.view.bringSubview(toFront: self.view)
-            self.galleryNav!.didMove(toParentViewController: self)
+            self.view.bringSubviewToFront(self.view)
+            self.galleryNav!.didMove(toParent: self)
 
             
 
@@ -200,21 +199,21 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
             
             
             if ((self.galleryNav) != nil) {
-                self.galleryNav?.willMove(toParentViewController: self)
+                self.galleryNav?.willMove(toParent: self)
                 self.galleryNav?.view.removeFromSuperview()
-                self.galleryNav?.removeFromParentViewController()
+                self.galleryNav?.removeFromParent()
             }
             
             if ((self.diaryListNav) != nil) {
-                self.diaryListNav?.willMove(toParentViewController: self)
+                self.diaryListNav?.willMove(toParent: self)
                 self.diaryListNav?.view.removeFromSuperview()
-                self.diaryListNav?.removeFromParentViewController()
+                self.diaryListNav?.removeFromParent()
             }
             
             if ((self.settingsNav) != nil) {
-                self.settingsNav?.willMove(toParentViewController: self)
+                self.settingsNav?.willMove(toParent: self)
                 self.settingsNav?.view.removeFromSuperview()
-                self.settingsNav?.removeFromParentViewController()
+                self.settingsNav?.removeFromParent()
             }
             
             
@@ -227,11 +226,11 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
             self.mapVC?.title = "All pins"
             
             
-            self.addChildViewController(self.mapNav!)
+            self.addChild(self.mapNav!)
             self.mapNav!.view.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
             self.view.insertSubview(self.mapNav!.view, at: 0)
-            self.view.bringSubview(toFront: self.view)
-            self.mapNav!.didMove(toParentViewController: self)
+            self.view.bringSubviewToFront(self.view)
+            self.mapNav!.didMove(toParent: self)
 
             
             
@@ -240,20 +239,20 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
         } else if (index == 4) {
             
             if ((self.galleryNav) != nil) {
-                self.galleryNav?.willMove(toParentViewController: self)
+                self.galleryNav?.willMove(toParent: self)
                 self.galleryNav?.view.removeFromSuperview()
-                self.galleryNav?.removeFromParentViewController()
+                self.galleryNav?.removeFromParent()
             }
             
             if ((self.diaryListNav) != nil) {
-                self.diaryListNav?.willMove(toParentViewController: self)
+                self.diaryListNav?.willMove(toParent: self)
                 self.diaryListNav?.view.removeFromSuperview()
-                self.diaryListNav?.removeFromParentViewController()
+                self.diaryListNav?.removeFromParent()
             }
             if ((self.mapNav) != nil) {
-                self.mapNav?.willMove(toParentViewController: self)
+                self.mapNav?.willMove(toParent: self)
                 self.mapNav?.view.removeFromSuperview()
-                self.mapNav?.removeFromParentViewController()
+                self.mapNav?.removeFromParent()
             }
             
             
@@ -264,11 +263,11 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
             self.settingsVC?.title = "Settings"
             
             
-            self.addChildViewController(self.settingsNav!)
+            self.addChild(self.settingsNav!)
             self.settingsNav!.view.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height-44)
             self.view.insertSubview(self.settingsNav!.view, at: 0)
-            self.view.bringSubview(toFront: self.view)
-            self.settingsNav!.didMove(toParentViewController: self)
+            self.view.bringSubviewToFront(self.view)
+            self.settingsNav!.didMove(toParent: self)
             
             
             
@@ -277,9 +276,13 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     
     @objc private func customButtonTapped() {
         
+        let htNav =  storyboard?.instantiateViewController(withIdentifier: "SDWHTNav") as? UINavigationController
+        
+        let controller:SDWHTViewController = htNav?.viewControllers[0] as! SDWHTViewController
+        controller.bird = bird
+        controller.title = "Hunting Track"
 
-        
-        
+        present(htNav!, animated:true)
         
 //        if (self.hmButton.backgroundColor == UIColor.white) {
 //            
@@ -326,7 +329,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
 //        self.present(controller, animated: true, completion: nil)
     }
     
-    func back(_ sender: Any) {
+    @objc func back(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
         
     }
@@ -349,7 +352,7 @@ class SDWHomeViewController: UIViewController, MiniTabBarDelegate {
     }
 
     
-    func editToday(_ sender: Any) {
+    @objc func editToday(_ sender: Any) {
         
         let controller:SDWDiaryItemContainerViewController = storyboard?.instantiateViewController(withIdentifier: "SDWDiaryItemContainerViewController") as! SDWDiaryItemContainerViewController
         controller.bird = bird

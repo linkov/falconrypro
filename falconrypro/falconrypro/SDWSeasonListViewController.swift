@@ -56,7 +56,7 @@ class SDWSeasonListViewController: UITableViewController,SwipeTableViewCellDeleg
         
     }
     
-    func insertNewObject(_ sender: Any) {
+    @objc func insertNewObject(_ sender: Any) {
         
         let controller:UINavigationController = storyboard?.instantiateViewController(withIdentifier: "SeasonEdit") as! UINavigationController
         let seasonVC:SDWSeasonViewController = controller.viewControllers[0] as! SDWSeasonViewController

@@ -54,7 +54,7 @@ class SDWDiaryItemViewController: FormViewController, SDWPageable {
         
         self.view.backgroundColor = UIColor.clear
         
-        self.tableView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsetsMake(40, 20, 20, 20))
+        self.tableView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 40, left: 20, bottom: 20, right: 20))
         self.tableView.layer.cornerRadius = 8
         self.tableView.layer.masksToBounds = true
 
@@ -103,38 +103,38 @@ class SDWDiaryItemViewController: FormViewController, SDWPageable {
                                footer: "") { section in
 
                                 section.tag = "weightitem"
-                                section.multivaluedRowToInsertAt = { index in
-                                    return SDWWeightItemRow(){
-                                        $0.tag = "\(index+1)_newweightitem"
-                                        $0.title = "just added:"
-                                        $0.displayValueFor = { value in
-                                            return  "\(value?.weight ?? 0) grm. - \(value?.timeString ?? "")"
-                                            
-                                        }
-                                        
-                                        }.cellSetup({ (cell,row) in
-                                            AppUtility.delay(delay: 0.3, closure: {
-                                                row.didSelect()
-                                            })
-                                            
-                                            
-                                        })
-                                }
+//                                section.multivaluedRowToInsertAt = { index in
+//                                    return SDWWeightItemRow(){
+//                                        $0.tag = "\(index+1)_newweightitem"
+//                                        $0.title = "just added:"
+//                                        $0.displayValueFor = { value in
+//                                            return  "\(value?.weight ?? 0) grm. - \(value?.timeString ?? "")"
+//
+//                                        }
+//
+//                                        }.cellSetup({ (cell,row) in
+//                                            AppUtility.delay(delay: 0.3, closure: {
+//                                                row.didSelect()
+//                                            })
+//
+//
+//                                        })
+//                                }
                                 if(self.diaryItem != nil && (self.diaryItem?.weights!.count)! > 0) {
                                     
                                     
                                     for (index, weightItem) in (self.diaryItem?.weights)!.enumerated() {
                                         
                                         
-                                        section <<< SDWWeightItemRow() {
-                                            $0.tag = "\(index+1)_weightitem"
-                                            $0.value = weightItem
-                                            $0.title = "\($0.value?.weight ?? 0) grm. - \($0.value?.timeString ?? "")"
-                                            $0.displayValueFor = { value in
-                                                return  ""
-                                                
-                                            }
-                                        }
+//                                        section <<< SDWWeightItemRow() {
+//                                            $0.tag = "\(index+1)_weightitem"
+//                                            $0.value = weightItem
+//                                            $0.title = "\($0.value?.weight ?? 0) grm. - \($0.value?.timeString ?? "")"
+//                                            $0.displayValueFor = { value in
+//                                                return  ""
+//
+//                                            }
+//                                        }
                                         
                                     }
                                 }
@@ -150,36 +150,36 @@ class SDWDiaryItemViewController: FormViewController, SDWPageable {
                                footer: "") { section in
                                 section.tag = "fooditem"
 
-                                section.multivaluedRowToInsertAt = { index in
-                                    return SDWFoodItemRow(){
-                                        $0.tag = "\(index+1)_newfooditem"
-                                        $0.title = "just added:"
-                                        $0.displayValueFor = { value in
-                                            return  "\(value?.amountEaten ?? 0) grm. - \(value?.timeString ?? "")"
-                                        }
-                                        
-                                        }.cellSetup({ (cell,row) in
-                                            AppUtility.delay(delay: 0.3, closure: {
-                                                row.didSelect()
-                                            })
-                                            
-                                        })
-                                }
+//                                section.multivaluedRowToInsertAt = { index in
+//                                    return SDWFoodItemRow(){
+//                                        $0.tag = "\(index+1)_newfooditem"
+//                                        $0.title = "just added:"
+//                                        $0.displayValueFor = { value in
+//                                            return  "\(value?.amountEaten ?? 0) grm. - \(value?.timeString ?? "")"
+//                                        }
+//
+//                                        }.cellSetup({ (cell,row) in
+//                                            AppUtility.delay(delay: 0.3, closure: {
+//                                                row.didSelect()
+//                                            })
+//
+//                                        })
+//                                }
                                 if(self.diaryItem != nil && (self.diaryItem?.foods!.count)! > 0) {
                                     
                                     
                                     for (index, foodItem) in (self.diaryItem?.foods)!.enumerated() {
                                         
                                         
-                                        section <<< SDWFoodItemRow() {
-                                            $0.tag = "\(index+1)_fooditem"
-                                            $0.value = foodItem
-                                            $0.title = "\($0.value?.amountEaten ?? 0) grm. - \($0.value?.timeString ?? "")"
-                                            $0.displayValueFor = { value in
-                                                return  ""
-                                                
-                                            }
-                                        }
+//                                        section <<< SDWFoodItemRow() {
+//                                            $0.tag = "\(index+1)_fooditem"
+//                                            $0.value = foodItem
+//                                            $0.title = "\($0.value?.amountEaten ?? 0) grm. - \($0.value?.timeString ?? "")"
+//                                            $0.displayValueFor = { value in
+//                                                return  ""
+//                                                
+//                                            }
+//                                        }
                                         
                                     }
                                 }

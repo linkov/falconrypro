@@ -11,7 +11,6 @@ import Eureka
 import Networking
 import SDWebImage
 import PKHUD
-import EZYGradientView
 
 class SDWDiaryItemContainerViewController: UIViewController, UIPageViewControllerDataSource,UIPageViewControllerDelegate {
 
@@ -77,9 +76,9 @@ class SDWDiaryItemContainerViewController: UIViewController, UIPageViewControlle
         self.pageController?.setViewControllers([self.diaryVC!], direction:.forward, animated: false, completion: nil)
         
         self.pageController?.view.frame = CGRect(x: 0, y: 50, width: self.view.frame.size.width, height: self.view.frame.size.height-50)
-        self.addChildViewController(self.pageController!)
+        self.addChild(self.pageController!)
         self.view .addSubview((self.pageController?.view)!)
-        self.pageController?.didMove(toParentViewController: self)
+        self.pageController?.didMove(toParent: self)
         
         
         self.pageController?.delegate = self
@@ -92,17 +91,17 @@ class SDWDiaryItemContainerViewController: UIViewController, UIPageViewControlle
     
     func setupGradient() {
         
-        let gradientView = EZYGradientView()
-        gradientView.frame = view.bounds
-        gradientView.firstColor = AppUtility.app_color_black
-        gradientView.secondColor = UIColor.darkGray
-        gradientView.angleº = 185.0
-        gradientView.colorRatio = 0.5
-        gradientView.fadeIntensity = 1
-        gradientView.isBlur = false
-        gradientView.blurOpacity = 0.5
-        
-        self.pageController?.view.insertSubview(gradientView, at: 0)
+//        let gradientView = EZYGradientView()
+//        gradientView.frame = view.bounds
+//        gradientView.firstColor = AppUtility.app_color_black
+//        gradientView.secondColor = UIColor.darkGray
+//        gradientView.angleº = 185.0
+//        gradientView.colorRatio = 0.5
+//        gradientView.fadeIntensity = 1
+//        gradientView.isBlur = false
+//        gradientView.blurOpacity = 0.5
+//
+//        self.pageController?.view.insertSubview(gradientView, at: 0)
     }
     
     
@@ -167,7 +166,7 @@ class SDWDiaryItemContainerViewController: UIViewController, UIPageViewControlle
     }
     
     
-    func finish(_ sender: Any) {
+    @objc func finish(_ sender: Any) {
         
         self.diaryVC?.updateDiaryItem()
         self.huntingVC?.updateDiaryItem()

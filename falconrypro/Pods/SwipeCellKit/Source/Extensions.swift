@@ -9,7 +9,17 @@ import UIKit
 
 extension UITableView {
     var swipeCells: [SwipeTableViewCell] {
-        return visibleCells as? [SwipeTableViewCell] ?? []
+        return visibleCells.compactMap({ $0 as? SwipeTableViewCell })
+    }
+    
+    func hideSwipeCell() {
+        swipeCells.forEach { $0.hideSwipe(animated: true) }
+    }
+}
+
+extension UICollectionView {
+    var swipeCells: [SwipeCollectionViewCell] {
+        return visibleCells.compactMap({ $0 as? SwipeCollectionViewCell })
     }
     
     func hideSwipeCell() {
@@ -21,6 +31,30 @@ extension UITableView {
             guard $0 != panGestureRecognizer else { return }
             
             $0.isEnabled = enabled
+        }
+    }
+}
+
+extension UIScrollView {
+    var swipeables: [Swipeable] {
+        switch self {
+        case let tableView as UITableView:
+            return tableView.swipeCells
+        case let collectionView as UICollectionView:
+            return collectionView.swipeCells
+        default:
+            return []
+        }
+    }
+    
+    func hideSwipeables() {
+        switch self {
+        case let tableView as UITableView:
+            tableView.hideSwipeCell()
+        case let collectionView as UICollectionView:
+            collectionView.hideSwipeCell()
+        default:
+            return
         }
     }
 }

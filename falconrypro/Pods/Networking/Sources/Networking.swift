@@ -28,34 +28,8 @@ public extension Int {
 open class Networking {
     static let domain = "com.3lvis.networking"
 
-    struct FakeRequest {
-        let response: Any?
-        let responseType: ResponseType
-        let statusCode: Int
-    }
-
-    /// Provides the options for configuring your Networking object with NSURLSessionConfiguration.
-    ///
-    /// - `default`: This configuration type manages upload and download tasks using the default options.
-    /// - ephemeral: A configuration type that uses no persistent storage for caches, cookies, or credentials. It's optimized for transferring data to and from your app’s memory.
-    /// - background: A configuration type that allows HTTP and HTTPS uploads or downloads to be performed in the background. It causes upload and download tasks to be performed by the system in a separate process.
-    public enum ConfigurationType {
-        case `default`, ephemeral, background
-
-        var sessionConfiguration: URLSessionConfiguration {
-            switch self {
-            case .default:
-                return URLSessionConfiguration.default
-            case .ephemeral:
-                return URLSessionConfiguration.ephemeral
-            case .background:
-                return URLSessionConfiguration.background(withIdentifier: "NetworkingBackgroundConfiguration")
-            }
-        }
-    }
-
     enum RequestType: String {
-        case get = "GET", post = "POST", put = "PUT", delete = "DELETE"
+        case get = "GET", post = "POST", put = "PUT", patch = "PATCH", delete = "DELETE"
     }
 
     enum SessionTaskType: String {
@@ -65,7 +39,7 @@ open class Networking {
     /// Sets the rules to serialize your parameters, also sets the `Content-Type` header.
     ///
     /// - none: No Content-Type header
-    /// - json: Serializes your parameters using `NSJSONSerialization` and sets your `Content-Type` to `application/json`.
+    /// - json: Serializes your parameters using `JSONSerialization` and sets your `Content-Type` to `application/json`.
     /// - formURLEncoded: Serializes your parameters using `Percent-encoding` and sets your `Content-Type` to `application/x-www-form-urlencoded`.
     /// - multipartFormData: Serializes your parameters and parts as multipart and sets your `Content-Type` to `multipart/form-data`.
     /// - custom: Sends your parameters as plain data, sets your `Content-Type` to the value inside `custom`.
@@ -82,7 +56,7 @@ open class Networking {
                 return "application/x-www-form-urlencoded"
             case .multipartFormData:
                 return "multipart/form-data; boundary=\(boundary)"
-            case .custom(let value):
+            case let .custom(value):
                 return value
             }
         }
@@ -121,35 +95,38 @@ open class Networking {
     var token: String?
     var authorizationHeaderValue: String?
     var authorizationHeaderKey = "Authorization"
-    fileprivate var configurationType: ConfigurationType
+    fileprivate var configuration: URLSessionConfiguration
     var cache: NSCache<AnyObject, AnyObject>
 
     /// Flag used to indicate synchronous request.
     public var isSynchronous = false
 
     /// Flag used to disable error logging. Useful when want to disable log before release build.
-    public var disableErrorLogging = false
+    public var isErrorLoggingEnabled = true
 
     /// The boundary used for multipart requests.
     let boundary = String(format: "net.3lvis.networking.%08x%08x", arc4random(), arc4random())
 
     lazy var session: URLSession = {
-        var configuration = self.configurationType.sessionConfiguration
-        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        configuration.urlCache = nil
-
-        return URLSession(configuration: configuration)
+        URLSession(configuration: self.configuration)
     }()
+
+    /// Caching options
+    public enum CachingLevel {
+        case memory
+        case memoryAndFile
+        case none
+    }
 
     /// Base initializer, it creates an instance of `Networking`.
     ///
     /// - Parameters:
     ///   - baseURL: The base URL for HTTP requests under `Networking`.
-    ///   - configurationType: The configuration type to be used, by default is default.
+    ///   - configuration: The URLSessionConfiguration configuration to be used
     ///   - cache: The NSCache to use, it has a built-in default one.
-    public init(baseURL: String, configurationType: ConfigurationType = .default, cache: NSCache<AnyObject, AnyObject>? = nil) {
+    public init(baseURL: String = "", configuration: URLSessionConfiguration = .default, cache: NSCache<AnyObject, AnyObject>? = nil) {
         self.baseURL = baseURL
-        self.configurationType = configurationType
+        self.configuration = configuration
         self.cache = cache ?? NSCache()
     }
 
@@ -218,7 +195,7 @@ open class Networking {
         if let normalizedCacheName = normalizedCacheName {
             resourcesPath = normalizedCacheName
         } else {
-            let url = try self.composedURL(with: path)
+            let url = try composedURL(with: path)
             resourcesPath = url.absoluteString
         }
 
@@ -227,13 +204,8 @@ open class Networking {
         let finalPath = "\(folderPath)/\(normalizedResourcesPath)"
 
         if let url = URL(string: finalPath) {
-            #if os(tvOS)
-                let directory = FileManager.SearchPathDirectory.cachesDirectory
-            #else
-                let directory = TestCheck.isTesting ? FileManager.SearchPathDirectory.cachesDirectory : FileManager.SearchPathDirectory.documentDirectory
-            #endif
+            let directory = FileManager.SearchPathDirectory.cachesDirectory
             if let cachesURL = FileManager.default.urls(for: directory, in: .userDomainMask).first {
-                try (cachesURL as NSURL).setResourceValue(true, forKey: URLResourceKey.isExcludedFromBackupKey)
                 let folderURL = cachesURL.appendingPathComponent(URL(string: folderPath)!.absoluteString)
 
                 if FileManager.default.exists(at: folderURL) == false {
@@ -260,7 +232,7 @@ open class Networking {
         guard let url = URL(string: encodedPath) else { fatalError("Path \(encodedPath) can't be converted to url") }
         guard let baseURLWithDash = URL(string: "/", relativeTo: url)?.absoluteURL.absoluteString else { fatalError("Can't find absolute url of url: \(url)") }
         let index = baseURLWithDash.index(before: baseURLWithDash.endIndex)
-        let baseURL = baseURLWithDash.substring(to: index)
+        let baseURL = String(baseURLWithDash[..<index])
         let relativePath = path.replacingOccurrences(of: baseURL, with: "")
 
         return (baseURL, relativePath)
@@ -310,22 +282,6 @@ open class Networking {
         _ = semaphore.wait(timeout: DispatchTime.now() + 60.0)
     }
 
-    /// Deletes the downloaded/cached files.
-    public static func deleteCachedFiles() {
-        #if os(tvOS)
-            let directory = FileManager.SearchPathDirectory.cachesDirectory
-        #else
-            let directory = TestCheck.isTesting ? FileManager.SearchPathDirectory.cachesDirectory : FileManager.SearchPathDirectory.documentDirectory
-        #endif
-        if let cachesURL = FileManager.default.urls(for: directory, in: .userDomainMask).first {
-            let folderURL = cachesURL.appendingPathComponent(URL(string: Networking.domain)!.absoluteString)
-
-            if FileManager.default.exists(at: folderURL) {
-                _ = try? FileManager.default.remove(at: folderURL)
-            }
-        }
-    }
-
     /// Removes the stored credentials and cached data.
     public func reset() {
         cache.removeAllObjects()
@@ -334,7 +290,18 @@ open class Networking {
         headerFields = nil
         authorizationHeaderKey = "Authorization"
         authorizationHeaderValue = nil
-
+        
         Networking.deleteCachedFiles()
+    }
+
+    /// Deletes the downloaded/cached files.
+    public static func deleteCachedFiles() {
+        let directory = FileManager.SearchPathDirectory.cachesDirectory
+        if let cachesURL = FileManager.default.urls(for: directory, in: .userDomainMask).first {
+            let folderURL = cachesURL.appendingPathComponent(URL(string: Networking.domain)!.absoluteString)
+            if FileManager.default.exists(at: folderURL) {
+                _ = try? FileManager.default.remove(at: folderURL)
+            }
+        }
     }
 }

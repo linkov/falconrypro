@@ -26,12 +26,18 @@ public class SDWDiaryItem: NSManagedObject, SDWObjectMapping {
         mapping.addAttribute(withProperty: "note", keyPath: "note")
         mapping.addAttribute(FEMAttribute.dateAttribute(withProperty: "createdAt", keyPath: "created_at"))
         
-        mapping.add(toManyRelationshipMapping: SDWDiaryWeight.defaultMapping(), forProperty: "weights", keyPath: "diary_weights")
-        mapping.add(toManyRelationshipMapping: SDWDiaryFood.defaultMapping(), forProperty: "foods", keyPath: "diary_foods")
+        mapping.addToManyRelationshipMapping(SDWDiaryWeight.defaultMapping(), forProperty: "weights", keyPath: "diary_weights")
         
-        mapping.add(toManyRelationshipMapping: SDWPinItem.defaultMapping(), forProperty: "pins", keyPath: "pin_items")
+        mapping.addToManyRelationshipMapping(SDWDiaryFood.defaultMapping(), forProperty: "foods", keyPath: "diary_foods")
         
-        mapping.add(toManyRelationshipMapping: SDWDiaryPhoto.defaultMapping(), forProperty: "photos", keyPath: "diary_photos")
+        mapping.addToManyRelationshipMapping(SDWPinItem.defaultMapping(), forProperty: "pins", keyPath: "pin_items")
+        
+
+        
+        mapping.addToManyRelationshipMapping(SDWDiaryPhoto.defaultMapping(), forProperty: "photos", keyPath: "diary_photos")
+        
+        
+
         
         let quarryRelationshipMapping:FEMRelationship = FEMRelationship(property: "quarryTypes", keyPath: "quarry_types", mapping: SDWQuarryType.defaultMapping())
         quarryRelationshipMapping.weak = true

@@ -9,8 +9,6 @@
 import UIKit
 import PKHUD
 import SDWebImage
-import SimpleImageViewer
-import ALCameraViewController
 import CHTCollectionViewWaterfallLayout
 import TagListView
 
@@ -23,6 +21,8 @@ class SDWGalleryViewController: UIViewController, UICollectionViewDataSource, UI
 
     let dataStore:SDWDataStore = SDWDataStore.sharedInstance
     
+    @IBOutlet weak var collectionViewTopConstraint: NSLayoutConstraint!
+   
     @IBOutlet weak var tagListView: TagListView!
     
     var selectedTags:[String] = []
@@ -58,7 +58,7 @@ class SDWGalleryViewController: UIViewController, UICollectionViewDataSource, UI
         
                 
         // Collection view attributes
-        self.collectionView.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleWidth]
+        self.collectionView.autoresizingMask = [UIView.AutoresizingMask.flexibleHeight, UIView.AutoresizingMask.flexibleWidth]
         self.collectionView.alwaysBounceVertical = true
         
         // Add the waterfall layout to your collection view
@@ -78,6 +78,11 @@ class SDWGalleryViewController: UIViewController, UICollectionViewDataSource, UI
         addButton.isEnabled = !(self.bird?.isViewOnly())!
         self.navigationItem.rightBarButtonItem = addButton
         
+        let filterButton = UIBarButtonItem(image: #imageLiteral(resourceName: "filter"), style: .plain, target: self, action: #selector(toggleFilter(_:)))
+        filterButton.tintColor = AppUtility.app_color_linkBlue
+        filterButton.isEnabled = !(self.bird?.isViewOnly())!
+        self.navigationItem.leftBarButtonItem = filterButton
+        
         self.automaticallyAdjustsScrollViewInsets = false;
         
         self.pullPhotos()
@@ -86,6 +91,22 @@ class SDWGalleryViewController: UIViewController, UICollectionViewDataSource, UI
 
     }
     
+    override func viewWillAppear(_ animated:Bool) {
+        super.viewWillAppear(animated)
+//        self.tagListTopConstraint.constant = -(self.tagListView.frame.height+10)
+    }
+    
+
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        
+//        DispatchQueue.main.async {
+//            print("tagListView = \(self.tagListView.frame)")
+//            
+//        }
+//    }
+//    
+
     
     func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
         
@@ -161,24 +182,41 @@ class SDWGalleryViewController: UIViewController, UICollectionViewDataSource, UI
         return CGSize(width: CGFloat(thePhoto.width!) , height: CGFloat(thePhoto.height!))
     }
     
-    
-    func insertNewObject(_ sender: Any) {
+    @objc func toggleFilter(_ sender: Any) {
         
-        let realSelf = self
-        
-        let croppingEnabled = true
-        let cameraViewController = CameraViewController(croppingEnabled: croppingEnabled) { [weak self] image, asset in
-            
-            realSelf.diaryPhotoImage = image!
-            
-            self?.dismiss(animated: true, completion: {
-                
-                
-                    realSelf.showTags()
-            })
+        if (self.collectionViewTopConstraint.priority.rawValue == 250) {
+            self.collectionViewTopConstraint.priority = UILayoutPriority(rawValue: 700)
+        } else {
+            self.collectionViewTopConstraint.priority = UILayoutPriority(rawValue: 250)
         }
         
-        present(cameraViewController, animated: true, completion: nil)
+        UIView.animate(withDuration:0.2) {
+            self.view.layoutIfNeeded()
+        }
+        
+        
+//        self.tagListTopConstraint.constant = self.tagListView.frame.height+10
+    }
+    
+    
+    
+    @objc func insertNewObject(_ sender: Any) {
+        
+//        let realSelf = self
+//
+//        let croppingEnabled = true
+//        let cameraViewController = CameraViewController(croppingEnabled: croppingEnabled) { [weak self] image, asset in
+//            
+//            realSelf.diaryPhotoImage = image!
+//
+//            self?.dismiss(animated: true, completion: {
+//
+//
+//                    realSelf.showTags()
+//            })
+//        }
+//
+//        present(cameraViewController, animated: true, completion: nil)
     }
     
     

@@ -752,7 +752,7 @@ class NetworkManager: NSObject {
         
         r.httpBody = createBody(parameters: dict,
                                 boundary: boundary,
-                                data: UIImageJPEGRepresentation(image, 0.7)!,
+                                data: image.jpegData(compressionQuality: 0.7)!,
                                 mimeType: "image/jpg",
                                 filename: "bird.jpg")
         

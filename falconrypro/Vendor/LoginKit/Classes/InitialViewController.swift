@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JBKenBurnsView
 
 protocol InitialViewControllerDelegate: class {
 
@@ -21,7 +22,12 @@ protocol InitialViewControllerDelegate: class {
 class InitialViewController: UIViewController, BackgroundMovable {
 
     // MARK: - Properties
+    
+    
+    var imagesArray:[UIImage]?
+    var currentImage:UIImage?
 
+    @IBOutlet weak var kenBurnsView: JBKenBurnsView!
     weak var delegate: InitialViewControllerDelegate?
 
     weak var configurationSource: ConfigurationSource?
@@ -35,6 +41,7 @@ class InitialViewController: UIViewController, BackgroundMovable {
     }
 
     // MARK: Outlet's
+    
 
     @IBOutlet weak var logoImageView: UIImageView!
 
@@ -52,8 +59,20 @@ class InitialViewController: UIViewController, BackgroundMovable {
         super.viewDidLoad()
 
         _ = loadFonts
-        initBackgroundMover()
+//        initBackgroundMover()
         customizeAppearance()
+        
+//        self.kenBurnsView.dataSource = self
+
+        
+        imagesArray = [#imageLiteral(resourceName: "signupbg"),#imageLiteral(resourceName: "signupbg3")]
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        kenBurnsView.animate(withImages: imagesArray, transitionDuration: 10, initialDelay: 0, loop: true, isLandscape: true)
+        
     }
 
     override func loadView() {
@@ -67,12 +86,18 @@ class InitialViewController: UIViewController, BackgroundMovable {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
+    override var prefersStatusBarHidden: Bool{
+        return true
+    }
 
     // MARK: - Setup
 
     func customizeAppearance() {
         configureFromSource()
         setupFonts()
+        facebookButton.layer.borderWidth = 2
+        facebookButton.layer.borderColor = UIColor.white.cgColor
 //        addShadows()
 
         navigationController?.isNavigationBarHidden = true
@@ -88,11 +113,11 @@ class InitialViewController: UIViewController, BackgroundMovable {
         logoImageView.image = config.mainLogoImage
 
         signupButton.setTitle(config.signupButtonText, for: .normal)
-        signupButton.setTitleColor(config.tintColor, for: .normal)
+        signupButton.setTitleColor(UIColor.white, for: .normal)
         signupButton.borderColor = config.tintColor.withAlphaComponent(0.25)
 
         loginButton.setTitle(config.loginButtonText, for: .normal)
-        loginButton.setTitleColor(config.tintColor, for: .normal)
+        loginButton.setTitleColor(UIColor.white, for: .normal)
         loginButton.borderColor = config.tintColor.withAlphaComponent(0.25)
         
         facebookButton.setTitle(config.facebookButtonText, for: .normal)
@@ -124,6 +149,15 @@ class InitialViewController: UIViewController, BackgroundMovable {
     @IBAction func didSelectFacebook(_ sender: AnyObject) {
         delegate?.didSelectFacebook(self)
     }
+    
+    func nextImage() -> UIImage
+    {
+        let currentIndex = imagesArray?.index(of: currentImage ?? UIImage()) ?? -1
+        var nextIndex = currentIndex+1
+        nextIndex = (imagesArray?.indices.contains(nextIndex))! ? nextIndex : 0
+        currentImage = imagesArray?[nextIndex]
+        return currentImage!
+    }
 
 }
 
@@ -131,8 +165,9 @@ class InitialViewController: UIViewController, BackgroundMovable {
 
 extension InitialViewController: UINavigationControllerDelegate {
 
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return CrossDissolveAnimation()
     }
 
 }
+

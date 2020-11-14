@@ -118,10 +118,10 @@ public class WeekDayCell : Cell<Set<WeekDay>>, CellType {
 
         guard let imageSize = button.imageView?.image?.size else { return }
         let spacing : CGFloat = 3.0
-        button.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing), 0.0)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: -imageSize.width, bottom: -(imageSize.height + spacing), right: 0.0)
         guard let titleLabel = button.titleLabel, let title = titleLabel.text else { return }
-        let titleSize = title.size(attributes: [NSFontAttributeName: titleLabel.font])
-        button.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0, 0, -titleSize.width)
+        let titleSize = title.size(withAttributes: [NSAttributedString.Key.font: titleLabel.font])
+        button.imageEdgeInsets = UIEdgeInsets(top: -(titleSize.height + spacing), left: 0, bottom: 0, right: -titleSize.width)
     }
 }
 
@@ -143,7 +143,7 @@ public class _FloatLabelCell<T>: Cell<T>, UITextFieldDelegate, TextFieldCell whe
 
     public var textField: UITextField! { return floatLabelTextField }
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
@@ -175,7 +175,7 @@ public class _FloatLabelCell<T>: Cell<T>, UITextFieldDelegate, TextFieldCell whe
         super.update()
         textLabel?.text = nil
         detailTextLabel?.text = nil
-        floatLabelTextField.attributedPlaceholder = NSAttributedString(string: row.title ?? "", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+        floatLabelTextField.attributedPlaceholder = NSAttributedString(string: row.title ?? "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         floatLabelTextField.text =  row.displayValueFor?(row.value)
         floatLabelTextField.isEnabled = !row.isDisabled
         floatLabelTextField.titleTextColour = .lightGray
@@ -200,7 +200,7 @@ public class _FloatLabelCell<T>: Cell<T>, UITextFieldDelegate, TextFieldCell whe
         return NSLayoutConstraint.constraints(withVisualFormat: "H:|-[floatLabeledTextField]-|", options: .alignAllLastBaseline, metrics: metrics, views: views) + NSLayoutConstraint.constraints(withVisualFormat: "V:|-(vMargin)-[floatLabeledTextField]-(vMargin)-|", options: .alignAllLastBaseline, metrics: metrics, views: views)
     }
 
-    public func textFieldDidChange(_ textField : UITextField){
+    @objc public func textFieldDidChange(_ textField : UITextField){
         guard let textValue = textField.text else {
             row.value = nil
             return
@@ -273,7 +273,7 @@ public class _FloatLabelCell<T>: Cell<T>, UITextFieldDelegate, TextFieldCell whe
 
 public class TextFloatLabelCell : _FloatLabelCell<String>, CellType {
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
@@ -292,7 +292,7 @@ public class TextFloatLabelCell : _FloatLabelCell<String>, CellType {
 
 public class IntFloatLabelCell : _FloatLabelCell<Int>, CellType {
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
@@ -310,7 +310,7 @@ public class IntFloatLabelCell : _FloatLabelCell<Int>, CellType {
 
 public class PhoneFloatLabelCell : _FloatLabelCell<String>, CellType {
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
@@ -326,7 +326,7 @@ public class PhoneFloatLabelCell : _FloatLabelCell<String>, CellType {
 
 public class NameFloatLabelCell : _FloatLabelCell<String>, CellType {
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
@@ -344,7 +344,7 @@ public class NameFloatLabelCell : _FloatLabelCell<String>, CellType {
 
 public class EmailFloatLabelCell : _FloatLabelCell<String>, CellType {
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
@@ -362,14 +362,18 @@ public class EmailFloatLabelCell : _FloatLabelCell<String>, CellType {
 
 public class PasswordFloatLabelCell : _FloatLabelCell<String>, CellType {
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+//
+//    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+//        fatalError("init(style:reuseIdentifier:) has not been implemented")
+//    }
+    
     public override func setup() {
         super.setup()
         textField?.autocorrectionType = .no
@@ -381,7 +385,7 @@ public class PasswordFloatLabelCell : _FloatLabelCell<String>, CellType {
 
 public class DecimalFloatLabelCell : _FloatLabelCell<Float>, CellType {
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
@@ -397,7 +401,7 @@ public class DecimalFloatLabelCell : _FloatLabelCell<Float>, CellType {
 
 public class URLFloatLabelCell : _FloatLabelCell<URL>, CellType {
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
@@ -413,7 +417,7 @@ public class URLFloatLabelCell : _FloatLabelCell<URL>, CellType {
 
 public class TwitterFloatLabelCell : _FloatLabelCell<String>, CellType {
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
@@ -431,7 +435,7 @@ public class TwitterFloatLabelCell : _FloatLabelCell<String>, CellType {
 
 public class AccountFloatLabelCell : _FloatLabelCell<String>, CellType {
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
@@ -507,22 +511,22 @@ public final class EmailFloatLabelRow: FloatFieldRow<EmailFloatLabelCell>, RowTy
 
 //MARK: LocationRow
 
-public final class LocationRow : SelectorRow<PushSelectorCell<CLLocation>, MapViewController>, RowType {
-    public required init(tag: String?) {
-        super.init(tag: tag)
-        presentationMode = .show(controllerProvider: ControllerProvider.callback { return MapViewController(){ _ in } }, onDismiss: { vc in _ = vc.navigationController?.popViewController(animated: true) })
-
-        displayValueFor = {
-            guard let location = $0 else { return "" }
-            let fmt = NumberFormatter()
-            fmt.maximumFractionDigits = 4
-            fmt.minimumFractionDigits = 4
-            let latitude = fmt.string(from: NSNumber(value: location.coordinate.latitude))!
-            let longitude = fmt.string(from: NSNumber(value: location.coordinate.longitude))!
-            return  "\(latitude), \(longitude)"
-        }
-    }
-}
+//public final class LocationRow : SelectorRow<PushSelectorCell<CLLocation>, MapViewController>, RowType {
+//    public required init(tag: String?) {
+//        super.init(tag: tag)
+//        presentationMode = .show(controllerProvider: ControllerProvider.callback { return MapViewController(){ _ in } }, onDismiss: { vc in _ = vc.navigationController?.popViewController(animated: true) })
+//
+//        displayValueFor = {
+//            guard let location = $0 else { return "" }
+//            let fmt = NumberFormatter()
+//            fmt.maximumFractionDigits = 4
+//            fmt.minimumFractionDigits = 4
+//            let latitude = fmt.string(from: NSNumber(value: location.coordinate.latitude))!
+//            let longitude = fmt.string(from: NSNumber(value: location.coordinate.longitude))!
+//            return  "\(latitude), \(longitude)"
+//        }
+//    }
+//}
 
 public class MapViewController : UIViewController, TypedRowControllerType, MKMapViewDelegate {
 
@@ -533,7 +537,7 @@ public class MapViewController : UIViewController, TypedRowControllerType, MKMap
     
     lazy var mapView : MKMapView = { [unowned self] in
         let v = MKMapView(frame: self.view.bounds)
-        v.autoresizingMask = UIViewAutoresizing.flexibleWidth.union(.flexibleHeight)
+        v.autoresizingMask = UIView.AutoresizingMask.flexibleWidth.union(.flexibleHeight)
         return v
         }()
 
@@ -563,11 +567,11 @@ public class MapViewController : UIViewController, TypedRowControllerType, MKMap
         layer.bounds = CGRect(x: 0, y: 0, width: self.width, height: self.height)
         layer.path = self.ellipse.cgPath
         layer.fillColor = UIColor.gray.cgColor
-        layer.fillRule = kCAFillRuleNonZero
-        layer.lineCap = kCALineCapButt
+        layer.fillRule = CAShapeLayerFillRule.nonZero
+        layer.lineCap = CAShapeLayerLineCap.butt
         layer.lineDashPattern = nil
         layer.lineDashPhase = 0.0
-        layer.lineJoin = kCALineJoinMiter
+        layer.lineJoin = CAShapeLayerLineJoin.miter
         layer.lineWidth = 1.0
         layer.miterLimit = 10.0
         layer.strokeColor = UIColor.gray.cgColor
@@ -596,27 +600,27 @@ public class MapViewController : UIViewController, TypedRowControllerType, MKMap
         mapView.addSubview(pinView)
         mapView.layer.insertSublayer(ellipsisLayer, below: pinView.layer)
 
-        let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(MapViewController.tappedDone(_:)))
+        let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(MapViewController.tappedDone(_:)))
         button.title = "Done"
         navigationItem.rightBarButtonItem = button
 
         if let value = row.value {
-            let region = MKCoordinateRegionMakeWithDistance(value.coordinate, 400, 400)
+            let region = MKCoordinateRegion(center: value.coordinate, latitudinalMeters: 400, longitudinalMeters: 400)
             mapView.setRegion(region, animated: true)
         }
         else{
             
             
-            Location.getLocation(accuracy: .block, frequency: .oneShot, success: { (request, location) -> (Void) in
-                
-                let region = MKCoordinateRegionMakeWithDistance(location.coordinate, 400, 400)
-                self.mapView.setRegion(region, animated: true)
-                
-            }, error: { (request, location, error) -> (Void) in
-                
-                print(error.localizedDescription)
-                self.mapView.showsUserLocation = true
-            })
+//            Location.getLocation(accuracy: .block, frequency: .oneShot, success: { (request, location) -> (Void) in
+//
+//                let region = MKCoordinateRegionMakeWithDistance(location.coordinate, 400, 400)
+//                self.mapView.setRegion(region, animated: true)
+//
+//            }, error: { (request, location, error) -> (Void) in
+//
+//                print(error.localizedDescription)
+//                self.mapView.showsUserLocation = true
+//            })
             
             
             
@@ -635,7 +639,7 @@ public class MapViewController : UIViewController, TypedRowControllerType, MKMap
     }
 
 
-    func tappedDone(_ sender: UIBarButtonItem){
+    @objc func tappedDone(_ sender: UIBarButtonItem){
         let target = mapView.convert(ellipsisLayer.position, toCoordinateFrom: mapView)
         row.value = CLLocation(latitude: target.latitude, longitude: target.longitude)
         onDismissCallback?(self)
@@ -676,7 +680,7 @@ public final class ImageCheckRow<T: Equatable>: Row<ImageCheckCell<T>>, Selectab
 
 public class ImageCheckCell<T: Equatable> : Cell<T>, CellType {
 
-    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
